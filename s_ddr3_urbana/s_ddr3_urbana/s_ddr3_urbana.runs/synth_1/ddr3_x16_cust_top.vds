@@ -1,0 +1,556 @@
+#-----------------------------------------------------------
+# Vivado v2022.2 (64-bit)
+# SW Build 3671981 on Fri Oct 14 05:00:03 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Tue Nov 11 23:43:18 2025
+# Process ID: 12012
+# Current directory: C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.runs/synth_1
+# Command line: vivado.exe -log ddr3_x16_cust_top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source ddr3_x16_cust_top.tcl
+# Log file: C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.runs/synth_1/ddr3_x16_cust_top.vds
+# Journal file: C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.runs/synth_1\vivado.jou
+# Running On: Aniketh_x86-64, OS: Windows, CPU Frequency: 3294 MHz, CPU Physical cores: 16, Host memory: 16438 MB
+#-----------------------------------------------------------
+source ddr3_x16_cust_top.tcl -notrace
+create_project: Time (s): cpu = 00:00:03 ; elapsed = 00:00:06 . Memory (MB): peak = 1000.922 ; gain = 117.273
+Command: read_checkpoint -auto_incremental -incremental C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/utils_1/imports/synth_1/ddr3_x16_cust_top.dcp
+INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/utils_1/imports/synth_1/ddr3_x16_cust_top.dcp for incremental synthesis
+INFO: [Vivado 12-7989] Please ensure there are no constraint changes
+Command: synth_design -top ddr3_x16_cust_top -part xc7s50csga324-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7s50'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7s50'
+INFO: [Device 21-403] Loading part xc7s50csga324-1
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 4080
+INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [C:/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
+WARNING: [Synth 8-10835] illegal leading underscore character in based number '__0__0__0__0__0__0__0__1__1__0__0__1__0__0__0__0__0' [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_phy_params.vh:21]
+WARNING: [Synth 8-10835] illegal leading underscore character in based number '__0__0__1__0__0__0__0__0__0__0__0__0__0__0__0__0__0' [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_phy_params.vh:22]
+WARNING: [Synth 8-10835] illegal leading underscore character in based number '__0__1__0__0__0__0__0__0__0__0__0__0__0__1__0__0__0' [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_phy_params.vh:23]
+WARNING: [Synth 8-10835] illegal leading underscore character in based number '__0__1__1__0__0__0__0__0__0__0__0__0__0__0__0__0__0' [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_phy_params.vh:24]
+WARNING: [Synth 8-10835] illegal leading underscore character in based number '__0__0__0__0__0__0__0__1__1__0__0__0__1__0__0__0__0' [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_phy_params.vh:41]
+WARNING: [Synth 8-10835] illegal leading underscore character in based number '__0__0__1__0__0__0__0__0__0__0__1__0__0__0__1__0__0' [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_phy_params.vh:42]
+WARNING: [Synth 8-10835] illegal leading underscore character in based number '__0__1__0__0__0__0__0__0__0__0__0__0__0__0__0__0__0' [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_phy_params.vh:43]
+WARNING: [Synth 8-10835] illegal leading underscore character in based number '__0__1__1__0__0__0__0__0__0__0__0__0__0__0__0__0__0' [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_phy_params.vh:44]
+WARNING: [Synth 8-10835] illegal leading underscore character in based number '__0__0__0__0__0__0__1__0__1__0__0__1__0__0__0__0__0' [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_phy_params.vh:61]
+WARNING: [Synth 8-10835] illegal leading underscore character in based number '__0__0__1__0__0__0__0__0__0__0__1__0__0__0__1__0__0' [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_phy_params.vh:62]
+WARNING: [Synth 8-10835] illegal leading underscore character in based number '__0__1__0__0__0__0__0__0__0__0__0__0__0__0__0__0__0' [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_phy_params.vh:63]
+WARNING: [Synth 8-10835] illegal leading underscore character in based number '__0__1__1__0__0__0__0__0__0__0__0__0__0__0__0__0__0' [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_phy_params.vh:64]
+WARNING: [Synth 8-10835] illegal leading underscore character in based number '__0__0__0__0__0__0__1__1__1__0__0__1__1__0__0__0__0' [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_phy_params.vh:82]
+WARNING: [Synth 8-10835] illegal leading underscore character in based number '__0__0__1__0__0__0__0__0__0__0__1__0__0__0__1__0__0' [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_phy_params.vh:83]
+WARNING: [Synth 8-10835] illegal leading underscore character in based number '__0__1__0__0__0__0__0__0__0__0__0__0__0__1__0__0__0' [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_phy_params.vh:84]
+WARNING: [Synth 8-10835] illegal leading underscore character in based number '__0__1__1__0__0__0__0__0__0__0__0__0__0__0__0__0__0' [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_phy_params.vh:85]
+WARNING: [Synth 8-10835] illegal leading underscore character in based number '__0__0__0__0__0__0__0__0__0__0__0__1__0__0' [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_phy_params.vh:97]
+INFO: [Synth 8-11241] undeclared symbol 'w_clk_ddr_n', assumed default net type 'wire' [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_phy_cust.v:380]
+INFO: [Synth 8-11241] undeclared symbol 'w_clk_tristate', assumed default net type 'wire' [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_phy_cust.v:399]
+INFO: [Synth 8-11241] undeclared symbol 'w_idelay_rdy', assumed default net type 'wire' [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_phy_cust.v:428]
+WARNING: [Synth 8-6901] identifier 'lp_CCD' is used before its declaration [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_phy_params.vh:14]
+WARNING: [Synth 8-6901] identifier 'lp_BL' is used before its declaration [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_phy_params.vh:15]
+WARNING: [Synth 8-6901] identifier 'lp_CCD' is used before its declaration [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_phy_params.vh:36]
+WARNING: [Synth 8-6901] identifier 'lp_BL' is used before its declaration [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_phy_params.vh:37]
+WARNING: [Synth 8-6901] identifier 'lp_BL' is used before its declaration [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_phy_params.vh:38]
+WARNING: [Synth 8-6901] identifier 'lp_CCD' is used before its declaration [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_phy_params.vh:56]
+WARNING: [Synth 8-6901] identifier 'lp_BL' is used before its declaration [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_phy_params.vh:57]
+WARNING: [Synth 8-6901] identifier 'lp_BL' is used before its declaration [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_phy_params.vh:58]
+WARNING: [Synth 8-6901] identifier 'lp_CCD' is used before its declaration [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_phy_params.vh:76]
+WARNING: [Synth 8-6901] identifier 'lp_BL' is used before its declaration [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_phy_params.vh:77]
+WARNING: [Synth 8-6901] identifier 'lp_BL' is used before its declaration [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_phy_params.vh:78]
+WARNING: [Synth 8-10929] literal value 'hfff truncated to fit in 10 bits [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_cust_top.v:74]
+INFO: [Synth 8-11241] undeclared symbol 'w_phy_cmd_en', assumed default net type 'wire' [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_cust_top.v:134]
+INFO: [Synth 8-11241] undeclared symbol 'w_phy_cmd_sel', assumed default net type 'wire' [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_cust_top.v:135]
+INFO: [Synth 8-11241] undeclared symbol 'w_phy_cmd_full', assumed default net type 'wire' [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_cust_top.v:136]
+INFO: [Synth 8-11241] undeclared symbol 'w3_phy_bank', assumed default net type 'wire' [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_cust_top.v:139]
+INFO: [Synth 8-11241] undeclared symbol 'w14_phy_row', assumed default net type 'wire' [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_cust_top.v:140]
+INFO: [Synth 8-11241] undeclared symbol 'w10_phy_col', assumed default net type 'wire' [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_cust_top.v:141]
+INFO: [Synth 8-11241] undeclared symbol 'w128_phy_wrdata', assumed default net type 'wire' [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_cust_top.v:142]
+WARNING: [Synth 8-8895] 'w_phy_cmd_en' is already implicitly declared on line 134 [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_cust_top.v:242]
+WARNING: [Synth 8-8895] 'w_phy_cmd_sel' is already implicitly declared on line 135 [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_cust_top.v:242]
+WARNING: [Synth 8-8895] 'w3_phy_bank' is already implicitly declared on line 139 [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_cust_top.v:243]
+WARNING: [Synth 8-8895] 'w14_phy_row' is already implicitly declared on line 140 [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_cust_top.v:244]
+WARNING: [Synth 8-8895] 'w10_phy_col' is already implicitly declared on line 141 [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_cust_top.v:245]
+WARNING: [Synth 8-8895] 'w128_phy_wrdata' is already implicitly declared on line 142 [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_cust_top.v:246]
+WARNING: [Synth 8-6901] identifier 'w_idelay_rdy' is used before its declaration [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_cust_top.v:69]
+WARNING: [Synth 8-6901] identifier 'w_rdcal_done' is used before its declaration [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_cust_top.v:70]
+WARNING: [Synth 8-6901] identifier 'w_dqs_delay_ld' is used before its declaration [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_cust_top.v:81]
+WARNING: [Synth 8-6901] identifier 'w_dqs_delay_ld' is used before its declaration [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_cust_top.v:81]
+WARNING: [Synth 8-6901] identifier 'w_dq_delay_ld' is used before its declaration [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_cust_top.v:82]
+WARNING: [Synth 8-6901] identifier 'w_dq_delay_ld' is used before its declaration [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_cust_top.v:82]
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1819.332 ; gain = 408.031
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'ddr3_x16_cust_top' [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_cust_top.v:3]
+INFO: [Synth 8-6157] synthesizing module 'clk_wiz_1' [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.runs/synth_1/.Xil/Vivado-12012-Aniketh_x86-64/realtime/clk_wiz_1_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'clk_wiz_1' (0#1) [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.runs/synth_1/.Xil/Vivado-12012-Aniketh_x86-64/realtime/clk_wiz_1_stub.v:5]
+WARNING: [Synth 8-7071] port 'clk_out1_ddr_n' of module 'clk_wiz_1' is unconnected for instance 'clkgen_ddr3ctrl_instance' [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_cust_top.v:40]
+WARNING: [Synth 8-7071] port 'clk_out4_div_n' of module 'clk_wiz_1' is unconnected for instance 'clkgen_ddr3ctrl_instance' [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_cust_top.v:40]
+WARNING: [Synth 8-7023] instance 'clkgen_ddr3ctrl_instance' of module 'clk_wiz_1' has 9 connections declared, but only 7 given [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_cust_top.v:40]
+INFO: [Synth 8-6157] synthesizing module 'ddr3_x16_phy_cust' [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_phy_cust.v:9]
+	Parameter p_IDELAY_TYPE bound to: VAR_LOAD - type: string 
+	Parameter p_IDELAY_INIT_DQS bound to: 0 - type: integer 
+	Parameter p_IDELAY_INIT_DQ bound to: 0 - type: integer 
+	Parameter p_RD_DELAY bound to: 8 - type: integer 
+	Parameter p_ISERDES_32B_SHIFT bound to: TRUE - type: string 
+	Parameter p_ROW_W bound to: 14 - type: integer 
+	Parameter p_ADDR_W bound to: 14 - type: integer 
+	Parameter p_REFCLK_FREQUENCY bound to: 200.000000 - type: double 
+	Parameter p_DDR_FREQ_MHZ bound to: 400 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'OSERDESE2' [C:/Xilinx/Vivado/2022.2/scripts/rt/data/unisim_comp.v:94875]
+	Parameter DATA_RATE_OQ bound to: DDR - type: string 
+	Parameter DATA_RATE_TQ bound to: DDR - type: string 
+	Parameter DATA_WIDTH bound to: 4 - type: integer 
+	Parameter SERDES_MODE bound to: MASTER - type: string 
+	Parameter TRISTATE_WIDTH bound to: 4 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'OSERDESE2' (0#1) [C:/Xilinx/Vivado/2022.2/scripts/rt/data/unisim_comp.v:94875]
+INFO: [Synth 8-6157] synthesizing module 'IOBUFDS' [C:/Xilinx/Vivado/2022.2/scripts/rt/data/unisim_comp.v:75919]
+	Parameter IOSTANDARD bound to: DIFF_SSTL135 - type: string 
+INFO: [Synth 8-6155] done synthesizing module 'IOBUFDS' (0#1) [C:/Xilinx/Vivado/2022.2/scripts/rt/data/unisim_comp.v:75919]
+INFO: [Synth 8-6157] synthesizing module 'IDELAYE2' [C:/Xilinx/Vivado/2022.2/scripts/rt/data/unisim_comp.v:73445]
+	Parameter HIGH_PERFORMANCE_MODE bound to: TRUE - type: string 
+	Parameter IDELAY_TYPE bound to: VAR_LOAD - type: string 
+	Parameter IDELAY_VALUE bound to: 0 - type: integer 
+	Parameter REFCLK_FREQUENCY bound to: 200.000000 - type: double 
+	Parameter SIGNAL_PATTERN bound to: CLOCK - type: string 
+INFO: [Synth 8-6155] done synthesizing module 'IDELAYE2' (0#1) [C:/Xilinx/Vivado/2022.2/scripts/rt/data/unisim_comp.v:73445]
+INFO: [Synth 8-6157] synthesizing module 'IOBUF' [C:/Xilinx/Vivado/2022.2/scripts/rt/data/unisim_comp.v:75902]
+	Parameter IOSTANDARD bound to: SSTL135 - type: string 
+	Parameter SLEW bound to: FAST - type: string 
+INFO: [Synth 8-6155] done synthesizing module 'IOBUF' (0#1) [C:/Xilinx/Vivado/2022.2/scripts/rt/data/unisim_comp.v:75902]
+INFO: [Synth 8-6157] synthesizing module 'IDELAYE2__parameterized0' [C:/Xilinx/Vivado/2022.2/scripts/rt/data/unisim_comp.v:73445]
+	Parameter HIGH_PERFORMANCE_MODE bound to: TRUE - type: string 
+	Parameter IDELAY_TYPE bound to: VAR_LOAD - type: string 
+	Parameter IDELAY_VALUE bound to: 0 - type: integer 
+	Parameter REFCLK_FREQUENCY bound to: 200.000000 - type: double 
+	Parameter SIGNAL_PATTERN bound to: DATA - type: string 
+INFO: [Synth 8-6155] done synthesizing module 'IDELAYE2__parameterized0' (0#1) [C:/Xilinx/Vivado/2022.2/scripts/rt/data/unisim_comp.v:73445]
+INFO: [Synth 8-6157] synthesizing module 'ISERDESE2' [C:/Xilinx/Vivado/2022.2/scripts/rt/data/unisim_comp.v:78437]
+	Parameter DATA_RATE bound to: DDR - type: string 
+	Parameter DATA_WIDTH bound to: 4 - type: integer 
+	Parameter INTERFACE_TYPE bound to: MEMORY - type: string 
+	Parameter IOBDELAY bound to: IFD - type: string 
+	Parameter NUM_CE bound to: 2 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'ISERDESE2' (0#1) [C:/Xilinx/Vivado/2022.2/scripts/rt/data/unisim_comp.v:78437]
+INFO: [Synth 8-6157] synthesizing module 'OBUFDS' [C:/Xilinx/Vivado/2022.2/scripts/rt/data/unisim_comp.v:90676]
+	Parameter IOSTANDARD bound to: DIFF_SSTL135 - type: string 
+INFO: [Synth 8-6155] done synthesizing module 'OBUFDS' (0#1) [C:/Xilinx/Vivado/2022.2/scripts/rt/data/unisim_comp.v:90676]
+INFO: [Synth 8-6157] synthesizing module 'IDELAYCTRL' [C:/Xilinx/Vivado/2022.2/scripts/rt/data/unisim_comp.v:73432]
+INFO: [Synth 8-6155] done synthesizing module 'IDELAYCTRL' (0#1) [C:/Xilinx/Vivado/2022.2/scripts/rt/data/unisim_comp.v:73432]
+INFO: [Synth 8-6157] synthesizing module 'fifo_generator_0' [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.runs/synth_1/.Xil/Vivado-12012-Aniketh_x86-64/realtime/fifo_generator_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'fifo_generator_0' (0#1) [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.runs/synth_1/.Xil/Vivado-12012-Aniketh_x86-64/realtime/fifo_generator_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'ddr3_x16_phy_cust' (0#1) [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_phy_cust.v:9]
+INFO: [Synth 8-6157] synthesizing module 'uart_rx' [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/ip/uart_rx.v:2]
+	Parameter p_BAUDRATE bound to: 3000000 - type: integer 
+	Parameter p_CLK_FREQ bound to: 200000000 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'uart_rx' (0#1) [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/ip/uart_rx.v:2]
+INFO: [Synth 8-6157] synthesizing module 'uart_tx' [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/ip/uart_tx.v:42]
+	Parameter p_BAUDRATE bound to: 3000000 - type: integer 
+	Parameter p_CLK_FREQ bound to: 200000000 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'uart_tx' (0#1) [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/ip/uart_tx.v:42]
+INFO: [Synth 8-6157] synthesizing module 'ddr3_rdcal' [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_rdcal.v:7]
+	Parameter p_RDCAL_ROW bound to: 14 - type: integer 
+INFO: [Synth 8-226] default block is never used [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_rdcal.v:79]
+INFO: [Synth 8-6155] done synthesizing module 'ddr3_rdcal' (0#1) [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_rdcal.v:7]
+WARNING: [Synth 8-689] width (1) of port connection 'o8_phy_wrdm' does not match port width (8) of module 'ddr3_rdcal' [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_cust_top.v:291]
+INFO: [Synth 8-6155] done synthesizing module 'ddr3_x16_cust_top' (0#1) [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_cust_top.v:3]
+WARNING: [Synth 8-6014] Unused sequential element r_dq_delay_ld_reg was removed.  [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_rdcal.v:75]
+WARNING: [Synth 8-6014] Unused sequential element r8_16_rx_buff_reg[0] was removed.  [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_cust_top.v:340]
+WARNING: [Synth 8-7129] Port RGBLED0[1] in module ddr3_x16_cust_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RGBLED1[2] in module ddr3_x16_cust_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RGBLED1[0] in module ddr3_x16_cust_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SW[2] in module ddr3_x16_cust_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SW[1] in module ddr3_x16_cust_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SW[0] in module ddr3_x16_cust_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port BTN[3] in module ddr3_x16_cust_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port BTN[2] in module ddr3_x16_cust_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port BTN[1] in module ddr3_x16_cust_top is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1929.559 ; gain = 518.258
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1929.559 ; gain = 518.258
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1929.559 ; gain = 518.258
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.020 . Memory (MB): peak = 1929.559 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 53 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [c:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.gen/sources_1/ip/fifo_generator_0/fifo_generator_0/fifo_generator_0_in_context.xdc] for cell 'phy_instance/cmdfifo_inst'
+Finished Parsing XDC File [c:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.gen/sources_1/ip/fifo_generator_0/fifo_generator_0/fifo_generator_0_in_context.xdc] for cell 'phy_instance/cmdfifo_inst'
+Parsing XDC File [c:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.gen/sources_1/ip/clk_wiz_1/clk_wiz_1/clk_wiz_1_in_context.xdc] for cell 'clkgen_ddr3ctrl_instance'
+Finished Parsing XDC File [c:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.gen/sources_1/ip/clk_wiz_1/clk_wiz_1/clk_wiz_1_in_context.xdc] for cell 'clkgen_ddr3ctrl_instance'
+Parsing XDC File [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/constrs_1/new/urbana_sDDR3.xdc]
+WARNING: [Constraints 18-619] A clock with name 'DDR3_CLK100' already exists, overwriting the previous clock with the same name. [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/constrs_1/new/urbana_sDDR3.xdc:25]
+Finished Parsing XDC File [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/constrs_1/new/urbana_sDDR3.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/constrs_1/new/urbana_sDDR3.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/ddr3_x16_cust_top_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/ddr3_x16_cust_top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2002.789 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 19 instances were transformed.
+  IOBUF => IOBUF (IBUF, OBUFT): 16 instances
+  IOBUFDS => IOBUFDS (IBUFDS, INV, OBUFTDS(x2)): 2 instances
+  OBUFDS => OBUFDS_DUAL_BUF (INV, OBUFDS(x2)): 1 instance 
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.025 . Memory (MB): peak = 2002.789 ; gain = 0.000
+WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'phy_instance/cmdfifo_inst' at clock pin 'clk' is different from the actual clock period '5.000', this can lead to different synthesis results.
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [C:/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2003.566 ; gain = 592.266
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7s50csga324-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2003.566 ; gain = 592.266
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property IO_BUFFER_TYPE = NONE for DDR3_CLK100. (constraint file  c:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.gen/sources_1/ip/clk_wiz_1/clk_wiz_1/clk_wiz_1_in_context.xdc, line 8).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR3_CLK100. (constraint file  c:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.gen/sources_1/ip/clk_wiz_1/clk_wiz_1/clk_wiz_1_in_context.xdc, line 9).
+Applied set_property KEEP_HIERARCHY = SOFT for phy_instance/cmdfifo_inst. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for clkgen_ddr3ctrl_instance. (constraint file  auto generated constraint).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2003.566 ; gain = 592.266
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'r3_dqs_state_reg' in module 'ddr3_x16_phy_cust'
+INFO: [Synth 8-802] inferred FSM for state register 'r3_state_reg' in module 'uart_rx'
+INFO: [Synth 8-802] inferred FSM for state register 'r2_state_reg' in module 'uart_tx'
+INFO: [Synth 8-802] inferred FSM for state register 'r3_calib_state_reg' in module 'ddr3_rdcal'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  iSTATE |                              000 |                              000
+                 iSTATE0 |                              001 |                              011
+                 iSTATE1 |                              010 |                              100
+                 iSTATE3 |                              011 |                              111
+                 iSTATE2 |                              100 |                              101
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'r3_dqs_state_reg' using encoding 'sequential' in module 'ddr3_x16_phy_cust'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+              STATE_IDLE |                              000 |                              000
+             STATE_START |                              001 |                              001
+              STATE_DATA |                              010 |                              010
+              STATE_STOP |                              011 |                              011
+              STATE_DONE |                              100 |                              100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'r3_state_reg' using encoding 'sequential' in module 'uart_rx'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+             STATE_READY |                              001 |                               00
+              STATE_LOAD |                              010 |                               01
+              STATE_SEND |                              100 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'r2_state_reg' using encoding 'one-hot' in module 'uart_tx'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  iSTATE |                         00000001 |                              000
+                 iSTATE5 |                         00000010 |                              001
+                 iSTATE0 |                         00000100 |                              010
+                 iSTATE1 |                         00001000 |                              011
+                 iSTATE2 |                         00010000 |                              100
+                 iSTATE6 |                         00100000 |                              101
+                 iSTATE3 |                         01000000 |                              110
+                 iSTATE4 |                         10000000 |                              111
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'r3_calib_state_reg' using encoding 'one-hot' in module 'ddr3_rdcal'
+WARNING: [Synth 8-327] inferring latch for variable 'RGBLED0_2' [C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.srcs/sources_1/imports/src/ddr3_x16_cust/ddr3_x16_cust_top.v:328]
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 2003.566 ; gain = 592.266
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   27 Bit       Adders := 1     
+	   2 Input   11 Bit       Adders := 1     
+	   2 Input    7 Bit       Adders := 4     
+	   2 Input    5 Bit       Adders := 5     
+	   2 Input    4 Bit       Adders := 3     
+	   2 Input    3 Bit       Adders := 2     
++---Registers : 
+	              128 Bit    Registers := 10    
+	               64 Bit    Registers := 1     
+	               32 Bit    Registers := 1     
+	               27 Bit    Registers := 3     
+	               14 Bit    Registers := 3     
+	               11 Bit    Registers := 2     
+	               10 Bit    Registers := 4     
+	                9 Bit    Registers := 2     
+	                8 Bit    Registers := 23    
+	                7 Bit    Registers := 4     
+	                5 Bit    Registers := 7     
+	                4 Bit    Registers := 11    
+	                3 Bit    Registers := 6     
+	                1 Bit    Registers := 27    
++---RAMs : 
+	              16K Bit	(128 X 128 bit)          RAMs := 1     
++---Muxes : 
+	   2 Input  165 Bit        Muxes := 1     
+	   5 Input   64 Bit        Muxes := 1     
+	   2 Input   27 Bit        Muxes := 2     
+	  15 Input   27 Bit        Muxes := 1     
+	   4 Input   17 Bit        Muxes := 1     
+	   6 Input   14 Bit        Muxes := 1     
+	   2 Input   11 Bit        Muxes := 1     
+	   8 Input    9 Bit        Muxes := 1     
+	   2 Input    8 Bit        Muxes := 4     
+	   5 Input    8 Bit        Muxes := 1     
+	   8 Input    8 Bit        Muxes := 1     
+	  14 Input    8 Bit        Muxes := 1     
+	  16 Input    8 Bit        Muxes := 1     
+	   2 Input    7 Bit        Muxes := 5     
+	   5 Input    7 Bit        Muxes := 1     
+	  15 Input    7 Bit        Muxes := 1     
+	   8 Input    5 Bit        Muxes := 7     
+	   2 Input    4 Bit        Muxes := 7     
+	   5 Input    4 Bit        Muxes := 4     
+	   3 Input    4 Bit        Muxes := 3     
+	  15 Input    4 Bit        Muxes := 1     
+	   2 Input    3 Bit        Muxes := 11    
+	   3 Input    3 Bit        Muxes := 3     
+	  10 Input    3 Bit        Muxes := 2     
+	   5 Input    3 Bit        Muxes := 3     
+	   6 Input    3 Bit        Muxes := 1     
+	   8 Input    3 Bit        Muxes := 1     
+	   2 Input    2 Bit        Muxes := 1     
+	   2 Input    1 Bit        Muxes := 54    
+	  10 Input    1 Bit        Muxes := 4     
+	   5 Input    1 Bit        Muxes := 8     
+	   6 Input    1 Bit        Muxes := 1     
+	   3 Input    1 Bit        Muxes := 5     
+	   8 Input    1 Bit        Muxes := 10    
+	  15 Input    1 Bit        Muxes := 13    
+	  14 Input    1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 120 (col length:60)
+BRAMs: 150 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-7129] Port RGBLED0[1] in module ddr3_x16_cust_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RGBLED1[2] in module ddr3_x16_cust_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RGBLED1[0] in module ddr3_x16_cust_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port BTN[3] in module ddr3_x16_cust_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port BTN[2] in module ddr3_x16_cust_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port BTN[1] in module ddr3_x16_cust_top is either unconnected or has no load
+RAM Pipeline Warning: Read Address Register Found For RAM rn_ram_reg. We will not be able to pipeline it. This may degrade performance. 
+RAM Pipeline Warning: Read Address Register Found For RAM rn_ram_reg. We will not be able to pipeline it. This may degrade performance. 
+RAM Pipeline Warning: Read Address Register Found For RAM rn_ram_reg. We will not be able to pipeline it. This may degrade performance. 
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 2003.566 ; gain = 592.266
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Preliminary Mapping Report (see note below)
++------------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name       | RTL Object | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++------------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|ddr3_x16_cust_top | rn_ram_reg | 128 x 128(READ_FIRST)  | W |   | 128 x 128(WRITE_FIRST) |   | R | Port A and B     | 0      | 2      | 
++------------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-565] redefining clock 'DDR3_CLK100'
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 2003.566 ; gain = 592.266
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 2003.566 ; gain = 592.266
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Final Mapping Report
++------------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name       | RTL Object | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++------------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|ddr3_x16_cust_top | rn_ram_reg | 128 x 128(READ_FIRST)  | W |   | 128 x 128(WRITE_FIRST) |   | R | Port A and B     | 0      | 2      | 
++------------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+INFO: [Synth 8-7052] The timing for the instance rn_ram_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance rn_ram_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 2003.566 ; gain = 592.266
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 2003.566 ; gain = 592.266
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 2003.566 ; gain = 592.266
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 2003.566 ; gain = 592.266
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 2003.566 ; gain = 592.266
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 2003.566 ; gain = 592.266
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 2003.566 ; gain = 592.266
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Static Shift Register Report:
++------------------+--------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+|Module Name       | RTL Name                             | Length | Width | Reset Signal | Pull out first Reg | Pull out last Reg | SRL16E | SRLC32E | 
++------------------+--------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+|ddr3_x16_cust_top | phy_instance/rn_rd_op_delayed_reg[8] | 10     | 1     | NO           | NO                 | YES               | 1      | 0       | 
+|ddr3_x16_cust_top | phy_instance/rn_col_pipe_reg[0][9]   | 3      | 10    | NO           | NO                 | YES               | 10     | 0       | 
+|ddr3_x16_cust_top | phy_instance/r8_wrm_pipe_reg[0][7]   | 3      | 8     | NO           | NO                 | NO                | 8      | 0       | 
+|ddr3_x16_cust_top | phy_instance/rn_wrd_pipe_reg[0][127] | 3      | 128   | NO           | NO                 | NO                | 128    | 0       | 
++------------------+--------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+-----------------+----------+
+|      |BlackBox name    |Instances |
++------+-----------------+----------+
+|1     |clk_wiz_1        |         1|
+|2     |fifo_generator_0 |         1|
++------+-----------------+----------+
+
+Report Cell Usage: 
++------+---------------+------+
+|      |Cell           |Count |
++------+---------------+------+
+|1     |clk_wiz        |     1|
+|2     |fifo_generator |     1|
+|3     |CARRY4         |    72|
+|4     |IDELAYCTRL     |     1|
+|5     |IDELAYE2       |    18|
+|7     |ISERDESE2      |    16|
+|8     |LUT1           |    41|
+|9     |LUT2           |   200|
+|10    |LUT3           |   254|
+|11    |LUT4           |   160|
+|12    |LUT5           |   151|
+|13    |LUT6           |   249|
+|14    |MUXF7          |    33|
+|15    |MUXF8          |     7|
+|16    |OSERDESE2      |    41|
+|17    |RAMB36E1       |     2|
+|18    |SRL16E         |   147|
+|19    |FDRE           |  1521|
+|20    |FDSE           |    27|
+|21    |LD             |     1|
+|22    |IBUF           |     3|
+|23    |IOBUF          |    16|
+|24    |IOBUFDS        |     2|
+|25    |OBUF           |    33|
+|26    |OBUFDS         |     1|
+|27    |OBUFT          |     3|
++------+---------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 2003.566 ; gain = 592.266
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 9 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:19 ; elapsed = 00:00:24 . Memory (MB): peak = 2003.566 ; gain = 518.258
+Synthesis Optimization Complete : Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 2003.566 ; gain = 592.266
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.016 . Memory (MB): peak = 2003.566 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 168 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 3 inverter(s) to 32 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 2010.953 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 20 instances were transformed.
+  IOBUF => IOBUF (IBUF, OBUFT): 16 instances
+  IOBUFDS => IOBUFDS (IBUFDS, INV, OBUFTDS(x2)): 2 instances
+  LD => LDCE: 1 instance 
+  OBUFDS => OBUFDS_DUAL_BUF (INV, OBUFDS(x2)): 1 instance 
+
+Synth Design complete, checksum: d22815f9
+INFO: [Common 17-83] Releasing license: Synthesis
+76 Infos, 67 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:28 ; elapsed = 00:00:31 . Memory (MB): peak = 2010.953 ; gain = 976.930
+INFO: [Common 17-1381] The checkpoint 'C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/s_ddr3_urbana/s_ddr3_urbana.runs/synth_1/ddr3_x16_cust_top.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file ddr3_x16_cust_top_utilization_synth.rpt -pb ddr3_x16_cust_top_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Tue Nov 11 23:44:04 2025...

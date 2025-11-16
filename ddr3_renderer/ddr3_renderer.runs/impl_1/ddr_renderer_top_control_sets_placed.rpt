@@ -1,0 +1,144 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
+| Date         : Sun Nov 16 02:00:08 2025
+| Host         : Aniketh_x86-64 running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file ddr_renderer_top_control_sets_placed.rpt
+| Design       : ddr_renderer_top
+| Device       : xc7s50
+---------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |    66 |
+|    Minimum number of control sets                        |    66 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |   168 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |    66 |
+| >= 0 to < 4        |    13 |
+| >= 4 to < 6        |    13 |
+| >= 6 to < 8        |     4 |
+| >= 8 to < 10       |    20 |
+| >= 10 to < 12      |     1 |
+| >= 12 to < 14      |     0 |
+| >= 14 to < 16      |     3 |
+| >= 16              |    12 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |             483 |          133 |
+| No           | No                    | Yes                    |               0 |            0 |
+| No           | Yes                   | No                     |              35 |           17 |
+| Yes          | No                    | No                     |             948 |          246 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |             102 |           32 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++---------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------+------------------+----------------+--------------+
+|                          Clock Signal                         |                                                       Enable Signal                                                      |                         Set/Reset Signal                        | Slice Load Count | Bel Load Count | Bels / Slice |
++---------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------+------------------+----------------+--------------+
+|  RGBLED0_20                                                   |                                                                                                                          |                                                                 |                1 |              1 |         1.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | uart_tx_instance/r4_uart_state_reg[1]                                                                                    | uart_tx_instance/r4_uart_state_reg[1]_0                         |                1 |              1 |         1.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | uart_tx_instance/r_tx_bit                                                                                                | uart_tx_instance/FSM_onehot_r2_state_reg_n_0_[0]                |                1 |              1 |         1.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | uart_rx_instance/r8_rxdata[5]                                                                                            |                                                                 |                1 |              1 |         1.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | uart_rx_instance/r8_rxdata[2]                                                                                            |                                                                 |                1 |              1 |         1.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | uart_rx_instance/r8_rxdata[3]                                                                                            |                                                                 |                1 |              1 |         1.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | uart_rx_instance/r8_rxdata[4]                                                                                            |                                                                 |                1 |              1 |         1.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | uart_rx_instance/r8_rxdata[0]                                                                                            |                                                                 |                1 |              1 |         1.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | uart_rx_instance/r8_rxdata[6]                                                                                            |                                                                 |                1 |              1 |         1.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | uart_rx_instance/r8_rxdata[7]                                                                                            |                                                                 |                1 |              1 |         1.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | uart_rx_instance/r8_rxdata[1]                                                                                            |                                                                 |                1 |              1 |         1.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | ddr3_arbiter_inst/phy_instance/r_ddr_cke_i_2_n_0                                                                         | ddr3_arbiter_inst/phy_instance/r_ddr_cke_i_1_n_0                |                1 |              1 |         1.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | ddr3_arbiter_inst/rdcal_instance/r_rd_cal_err                                                                            |                                                                 |                1 |              1 |         1.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div |                                                                                                                          | ddr3_arbiter_inst/phy_instance/r_mem_rst                        |                3 |              4 |         1.33 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | uart_rx_instance/w_uart_rx_done                                                                                          |                                                                 |                1 |              4 |         4.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | uart_tx_instance/r4_bit_index                                                                                            |                                                                 |                1 |              4 |         4.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | uart_tx_instance/E[0]                                                                                                    |                                                                 |                3 |              4 |         1.33 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | uart_tx_instance/r4_uart_state_reg[2][0]                                                                                 |                                                                 |                2 |              4 |         2.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | ddr3_arbiter_inst/phy_instance/r4_tristate_dqs                                                                           |                                                                 |                1 |              4 |         4.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | ddr3_arbiter_inst/phy_instance/r4_tristate_dqs                                                                           | ddr3_arbiter_inst/phy_instance/r4_oserdes_dm_par[0]_i_1_n_0     |                1 |              4 |         4.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | ddr3_arbiter_inst/phy_instance/rn_state_2ahead[3]_i_1_n_0                                                                |                                                                 |                3 |              4 |         1.33 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | uart_tx_instance/r4_uart_state_reg[1]                                                                                    |                                                                 |                3 |              5 |         1.67 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | ddr3_arbiter_inst/rdcal_instance/r5_calib_width[4]_i_1_n_0                                                               |                                                                 |                2 |              5 |         2.50 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | ddr3_arbiter_inst/rdcal_instance/r5_calib_dqs_min[4]_i_2_n_0                                                             | ddr3_arbiter_inst/phy_instance/FSM_onehot_r3_calib_state_reg[3] |                1 |              5 |         5.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | ddr3_arbiter_inst/rdcal_instance/r5_dq_delay_cnt[4]_i_1_n_0                                                              |                                                                 |                2 |              5 |         2.50 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | ddr3_arbiter_inst/rdcal_instance/r5_dqs_delay_cnt[4]_i_1_n_0                                                             |                                                                 |                2 |              5 |         2.50 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | ddr3_arbiter_inst/phy_instance/r4_oserdes_dqs_par                                                                        |                                                                 |                2 |              6 |         3.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div |                                                                                                                          | uart_tx_instance/FSM_onehot_r2_state_reg_n_0_[0]                |                2 |              7 |         3.50 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | uart_rx_instance/rn_bit_tmr                                                                                              | uart_rx_instance/rn_bit_tmr0                                    |                2 |              7 |         3.50 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | ddr3_arbiter_inst/phy_instance/r4_uart_state_reg[2][0]                                                                   |                                                                 |                4 |              7 |         1.75 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | uart_rx_instance/r4_rx_byte_index_reg[3]_2[0]                                                                            |                                                                 |                3 |              8 |         2.67 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | uart_rx_instance/r4_rx_byte_index_reg[1]_2[0]                                                                            |                                                                 |                3 |              8 |         2.67 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | uart_rx_instance/r_done_reg_0[0]                                                                                         |                                                                 |                3 |              8 |         2.67 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | uart_rx_instance/r4_rx_byte_index_reg[1][0]                                                                              |                                                                 |                1 |              8 |         8.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div |                                                                                                                          | ddr3_arbiter_inst/phy_instance/rn_ddr_addr[9]_i_1_n_0           |                3 |              8 |         2.67 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | uart_rx_instance/r4_rx_byte_index_reg[1]_0[0]                                                                            |                                                                 |                1 |              8 |         8.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | uart_rx_instance/r4_rx_byte_index_reg[3]_4[0]                                                                            |                                                                 |                2 |              8 |         4.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | uart_rx_instance/r4_rx_byte_index_reg[0][0]                                                                              |                                                                 |                2 |              8 |         4.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | uart_rx_instance/r4_rx_byte_index_reg[0]_0[0]                                                                            |                                                                 |                2 |              8 |         4.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | uart_rx_instance/r4_rx_byte_index_reg[1]_4[0]                                                                            |                                                                 |                2 |              8 |         4.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | uart_rx_instance/r4_rx_byte_index_reg[1]_3[0]                                                                            |                                                                 |                1 |              8 |         8.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | uart_rx_instance/r4_rx_byte_index_reg[3]_0[0]                                                                            |                                                                 |                2 |              8 |         4.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | r8_uart_tx_data[7]_i_2_n_0                                                                                               | r8_uart_tx_data[7]_i_1_n_0                                      |                4 |              8 |         2.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | ddr3_arbiter_inst/phy_instance/cmdfifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/E[0] | ddr3_arbiter_inst/phy_instance/r_mem_rst                        |                3 |              8 |         2.67 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | ddr3_arbiter_inst/phy_instance/cmdfifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/E[0] | ddr3_arbiter_inst/phy_instance/r_mem_rst                        |                2 |              8 |         4.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | ddr3_arbiter_inst/rdcal_instance/FSM_onehot_r3_calib_state[7]_i_1_n_0                                                    |                                                                 |                2 |              8 |         4.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | uart_rx_instance/r4_rx_byte_index_reg[3]_3[0]                                                                            |                                                                 |                2 |              8 |         4.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | uart_rx_instance/r4_rx_byte_index_reg[1]_1[0]                                                                            |                                                                 |                2 |              8 |         4.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | uart_rx_instance/r4_rx_byte_index_reg[3]_1[0]                                                                            |                                                                 |                2 |              8 |         4.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | uart_rx_instance/r4_rx_byte_index_reg[3][0]                                                                              |                                                                 |                3 |              8 |         2.67 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | r_uart_tx_send_en_reg_n_0                                                                                                |                                                                 |                3 |             10 |         3.33 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | ddr3_arbiter_inst/phy_instance/LED_OBUF[0]                                                                               | ddr3_arbiter_inst/phy_instance/rn_ref_tmr[0]_i_1_n_0            |                4 |             14 |         3.50 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | ddr3_arbiter_inst/phy_instance/rn_bank_pipe                                                                              | ddr3_arbiter_inst/r_phy_rst                                     |                5 |             14 |         2.80 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | ddr3_arbiter_inst/phy_instance/r_rdcal_start_reg                                                                         | ddr3_arbiter_inst/rdcal_instance/r5_calib_width_best[4]_i_1_n_0 |                3 |             15 |         5.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div |                                                                                                                          | ddr3_arbiter_inst/r_phy_rst                                     |                9 |             16 |         1.78 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | ddr3_arbiter_inst/sel                                                                                                    | ddr3_arbiter_inst/rn_rst_ctr[0]_i_1_n_0                         |                4 |             16 |         4.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | ddr3_arbiter_inst/phy_instance/E[0]                                                                                      |                                                                 |                9 |             27 |         3.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | r32_rd_seq_tmr[0]_i_1_n_0                                                                                                |                                                                 |                8 |             32 |         4.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | r27_end_addr                                                                                                             |                                                                 |               18 |             54 |         3.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | ddr3_arbiter_inst/phy_instance/rn_oserdes_dq_par[0]_i_1_n_0                                                              |                                                                 |               15 |             64 |         4.27 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | ddr3_arbiter_inst/phy_instance/r4_uart_state_reg[0][0]                                                                   |                                                                 |               32 |            128 |         4.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | r128_wrdata[127]_i_1_n_0                                                                                                 |                                                                 |               27 |            128 |         4.74 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | uart_rx_instance/E[0]                                                                                                    |                                                                 |               35 |            128 |         3.66 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | ddr3_arbiter_inst/phy_instance/r8_write_mask[7]_i_1_n_0                                                                  |                                                                 |               17 |            136 |         8.00 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div | ddr3_arbiter_inst/phy_instance/rn_bank_pipe                                                                              |                                                                 |               31 |            193 |         6.23 |
+|  ddr3_arbiter_inst/clkgen_ddr3ctrl_instance/inst/clk_out4_div |                                                                                                                          |                                                                 |              132 |            483 |         3.66 |
++---------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------+------------------+----------------+--------------+
+
+
