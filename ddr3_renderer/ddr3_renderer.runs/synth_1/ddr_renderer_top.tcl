@@ -71,7 +71,6 @@ proc create_report { reportName command } {
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param chipscope.maxJobs 4
-set_param xicom.use_bs_reader 1
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7s50csga324-1
 
@@ -84,12 +83,15 @@ set_property parent.project_path C:/Users/anike/class-ECE385/Final_Project/ddr3_
 set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
+set_property ip_repo_paths c:/Users/anike/class-ECE385/IP/hdmi_tx_1.0 [current_project]
+update_ip_catalog
 set_property ip_output_repo c:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/imports/ddr3_controller/ddr3_x16_phy_params.vh
 read_verilog -library xil_defaultlib -sv {
+  C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/imports/design_source/VGA_controller.sv
   C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/new/ddr3_arbiter.sv
   C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/new/ddr_renderer_top.sv
 }
@@ -107,6 +109,13 @@ read_ip -quiet C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_rend
 set_property used_in_implementation false [get_files -all c:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.gen/sources_1/ip/clk_wiz_1/clk_wiz_1_board.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.gen/sources_1/ip/clk_wiz_1/clk_wiz_1.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.gen/sources_1/ip/clk_wiz_1/clk_wiz_1_ooc.xdc]
+
+read_ip -quiet c:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
+set_property used_in_implementation false [get_files -all c:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_board.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_ooc.xdc]
+
+read_ip -quiet c:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/ip/hdmi_tx_0/hdmi_tx_0.xci
 
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being

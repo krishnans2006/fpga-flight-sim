@@ -30,7 +30,7 @@ module ddr_renderer_top(
 	
 	input	UART_TXD_IN,
 	output	UART_RXD_OUT,
-	// ### BEGIN DDR3 IO ###
+	/* ### BEGIN DDR3 IO ### */
 	// Inouts
 	inout	[15:0]	ddr3_dq,
 	inout 	[1:0]	ddr3_dqs_n,
@@ -48,7 +48,14 @@ module ddr_renderer_top(
 	output	[0:0]	ddr3_cke,
 	//output	[0:0]	ddr3_cs_n,//removed in Urbana board
 	output 	[1:0]	ddr3_dm,
-	output	[0:0]	ddr3_odt
+	output	[0:0]	ddr3_odt,
+	/* ### END DDR3 IO ### */
+	
+	//HDMI
+    output logic       hdmi_tmds_clk_n,
+    output logic       hdmi_tmds_clk_p,
+    output logic [2:0] hdmi_tmds_data_n,
+    output logic [2:0] hdmi_tmds_data_p
 );
 
 localparam lp_DDR_FREQ = 400;
@@ -106,6 +113,72 @@ logic w_phy_rddata_valid;
 logic w_phy_cmd_full;
 logic [26:0] app_addr;
 logic [127:0] w128_phy_rddata, r128_wrdata;
+
+/* ### BEGIN HDMI signals ### */
+logic clk_25Mhz, clk_125Mhz, hdmi_clk;
+logic locked;
+logic reset_ah;
+logic [3:0] red, green, blue;
+logic hsync, vsync, vde;
+
+assign reset_ah = BTN[0];
+assign hdmi_clk = DDR3_CLK100;
+logic hdmi_clk_o;
+
+BUFG bufg_inst (.I(hdmi_clk), .O(hdmi_clk_o));
+
+//clock wizard configured with a 1x and 5x clock for HDMI
+assign red = 4'b0;
+assign blue = 4'b1111;
+assign green = 4'b1111;
+
+clk_wiz_0 clk_wiz (
+  .clk_out1(clk_25MHz),
+  .clk_out2(clk_125MHz),
+  .reset   (reset_ah),
+  .locked  (locked),
+  .clk_in1 (hdmi_clk_o)
+);
+
+  //VGA Sync signal generator
+  vga_controller vga (
+   .pixel_clk    (clk_25MHz),
+   .reset        (reset_ah),
+   .hs           (hsync),
+   .vs           (vsync),
+   .active_nblank(vde),
+   .drawX        (),
+   .drawY        ()
+);
+
+//Real Digital VGA to HDMI converter
+hdmi_tx_0 vga_to_hdmi (
+//Clocking and Reset
+  .pix_clk       (clk_25MHz),
+  .pix_clkx5     (clk_125MHz),
+  .pix_clk_locked(locked),
+  .rst           (reset_ah),
+ //Color and Sync Signals
+  .red           (red),
+  .green         (green),
+  .blue          (blue),
+  .hsync         (hsync),
+  .vsync         (vsync),
+  .vde           (vde),
+
+ //aux Data (unused)
+  .aux0_din(4'b0),
+  .aux1_din(4'b0),
+  .aux2_din(4'b0),
+  .ade     (1'b0),
+
+ //Differential outputs
+  .TMDS_CLK_P (hdmi_tmds_clk_p),
+  .TMDS_CLK_N (hdmi_tmds_clk_n),
+  .TMDS_DATA_P(hdmi_tmds_data_p),
+  .TMDS_DATA_N(hdmi_tmds_data_n)
+);
+/* ### END HDMI signals ### */
 
 /* uart clock signal */
 wire w_uart_clk;

@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-| Date         : Sun Nov 16 02:00:33 2025
+| Date         : Sun Nov 16 22:48:28 2025
 | Host         : Aniketh_x86-64 running 64-bit major release  (build 9200)
 | Command      : report_drc -file ddr_renderer_top_drc_routed.rpt -pb ddr_renderer_top_drc_routed.pb -rpx ddr_renderer_top_drc_routed.rpx
 | Design       : ddr_renderer_top
@@ -136,9 +136,8 @@ Related violations: <none>
 
 RTSTAT-10#1 Warning
 No routable loads  
-3 net(s) have no routable loads. The problem bus(es) and/or net(s) are ddr3_arbiter_inst/phy_instance/cmdfifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_afull_fb,
-ddr3_arbiter_inst/phy_instance/cmdfifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_afull_i
-ddr3_arbiter_inst/phy_instance/r_pre_req_i_2_n_0.
+2 net(s) have no routable loads. The problem bus(es) and/or net(s) are ddr3_arbiter_inst/phy_instance/cmdfifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_afull_fb
+ddr3_arbiter_inst/phy_instance/cmdfifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_afull_i.
 Related violations: <none>
 
 

@@ -77,6 +77,19 @@ set_property IOSTANDARD LVCMOS33 [get_ports UART_RXD_OUT]
 set_property PACKAGE_PIN B16 [get_ports UART_TXD_IN]
 set_property PACKAGE_PIN A16 [get_ports UART_RXD_OUT]
 
+
+#HDMI Signals
+set_property -dict { PACKAGE_PIN V17   IOSTANDARD TMDS_33 } [get_ports {hdmi_tmds_clk_n}]
+set_property -dict { PACKAGE_PIN U16   IOSTANDARD TMDS_33 } [get_ports {hdmi_tmds_clk_p}]
+
+set_property -dict { PACKAGE_PIN U18   IOSTANDARD TMDS_33  } [get_ports {hdmi_tmds_data_n[0]}]
+set_property -dict { PACKAGE_PIN R17   IOSTANDARD TMDS_33  } [get_ports {hdmi_tmds_data_n[1]}]
+set_property -dict { PACKAGE_PIN T14   IOSTANDARD TMDS_33  } [get_ports {hdmi_tmds_data_n[2]}]
+                                    
+set_property -dict { PACKAGE_PIN U17   IOSTANDARD TMDS_33  } [get_ports {hdmi_tmds_data_p[0]}]
+set_property -dict { PACKAGE_PIN R16   IOSTANDARD TMDS_33  } [get_ports {hdmi_tmds_data_p[1]}]
+set_property -dict { PACKAGE_PIN R14   IOSTANDARD TMDS_33  } [get_ports {hdmi_tmds_data_p[2]}]
+
 # PadFunction: IO_L1N_T0_34 (SCHEMATIC DDR_DQ0)
 set_property SLEW FAST [get_ports {ddr3_dq[0]}]
 set_property IN_TERM UNTUNED_SPLIT_50 [get_ports {ddr3_dq[0]}]
