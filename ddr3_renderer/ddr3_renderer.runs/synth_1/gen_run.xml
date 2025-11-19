@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7s50csga324-1" LaunchTime="1763354798" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/ddr_renderer_top.dcp">
+<GenRun Id="synth_1" LaunchPart="xc7s50csga324-1" LaunchTime="1763571736" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/ddr_renderer_top.dcp">
   <File Type="PA-TCL" Name="ddr_renderer_top.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="ddr_renderer_top_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="ddr_renderer_top_reports.tcl"/>
@@ -72,6 +72,13 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/sources_1/new/frame_buffer.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/new/ddr_renderer_top.sv">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -114,9 +121,12 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2022"/>
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2022">
+      <Desc>Vivado Synthesis Defaults</Desc>
+    </StratHandle>
     <Step Id="synth_design"/>
   </Strategy>
+  <BlockFileSet Type="BlockSrcs" Name="blk_mem_gen_0"/>
   <BlockFileSet Type="BlockSrcs" Name="fifo_generator_0"/>
   <BlockFileSet Type="BlockSrcs" Name="clk_wiz_1"/>
   <BlockFileSet Type="BlockSrcs" Name="hdmi_tx_0"/>

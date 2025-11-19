@@ -1,7 +1,7 @@
 -- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
--- Date        : Mon Nov 17 00:08:38 2025
+-- Date        : Wed Nov 19 00:35:27 2025
 -- Host        : Aniketh_x86-64 running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode synth_stub
 --               c:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.gen/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0_stub.vhdl
@@ -19,7 +19,13 @@ entity blk_mem_gen_0 is
     wea : in STD_LOGIC_VECTOR ( 1 downto 0 );
     addra : in STD_LOGIC_VECTOR ( 9 downto 0 );
     dina : in STD_LOGIC_VECTOR ( 15 downto 0 );
-    douta : out STD_LOGIC_VECTOR ( 15 downto 0 )
+    douta : out STD_LOGIC_VECTOR ( 15 downto 0 );
+    clkb : in STD_LOGIC;
+    enb : in STD_LOGIC;
+    web : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    addrb : in STD_LOGIC_VECTOR ( 9 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    doutb : out STD_LOGIC_VECTOR ( 15 downto 0 )
   );
 
 end blk_mem_gen_0;
@@ -28,7 +34,7 @@ architecture stub of blk_mem_gen_0 is
 attribute syn_black_box : boolean;
 attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
-attribute black_box_pad_pin of stub : architecture is "clka,ena,wea[1:0],addra[9:0],dina[15:0],douta[15:0]";
+attribute black_box_pad_pin of stub : architecture is "clka,ena,wea[1:0],addra[9:0],dina[15:0],douta[15:0],clkb,enb,web[1:0],addrb[9:0],dinb[15:0],doutb[15:0]";
 attribute x_core_info : string;
 attribute x_core_info of stub : architecture is "blk_mem_gen_v8_4_5,Vivado 2022.2";
 begin

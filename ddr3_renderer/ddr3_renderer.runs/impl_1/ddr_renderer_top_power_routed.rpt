@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-| Date             : Sun Nov 16 22:48:30 2025
+| Date             : Wed Nov 19 11:04:07 2025
 | Host             : Aniketh_x86-64 running 64-bit major release  (build 9200)
 | Command          : report_power -file ddr_renderer_top_power_routed.rpt -pb ddr_renderer_top_power_summary_routed.pb -rpx ddr_renderer_top_power_routed.rpx
 | Design           : ddr_renderer_top
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.717        |
+| Total On-Chip Power (W)  | 0.720        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.642        |
+| Dynamic (W)              | 0.646        |
 | Device Static (W)        | 0.075        |
 | Effective TJA (C/W)      | 4.9          |
-| Max Ambient (C)          | 81.5         |
-| Junction Temperature (C) | 28.5         |
+| Max Ambient (C)          | 81.4         |
+| Junction Temperature (C) | 28.6         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -53,19 +53,19 @@ Table of Contents
 | On-Chip                 | Power (W) | Used     | Available | Utilization (%) |
 +-------------------------+-----------+----------+-----------+-----------------+
 | Clocks                  |     0.018 |       13 |       --- |             --- |
-| Slice Logic             |     0.003 |     3252 |       --- |             --- |
-|   LUT as Logic          |     0.003 |     1022 |     32600 |            3.13 |
+| Slice Logic             |     0.003 |     3373 |       --- |             --- |
+|   LUT as Logic          |     0.003 |     1073 |     32600 |            3.29 |
 |   CARRY4                |    <0.001 |       72 |      8150 |            0.88 |
-|   Register              |    <0.001 |     1675 |     65200 |            2.57 |
+|   Register              |    <0.001 |     1717 |     65200 |            2.63 |
 |   F7/F8 Muxes           |    <0.001 |       42 |     32600 |            0.13 |
-|   LUT as Shift Register |    <0.001 |       87 |      9600 |            0.91 |
-|   Others                |     0.000 |       49 |       --- |             --- |
-| Signals                 |     0.003 |     2904 |       --- |             --- |
-| Block RAM               |     0.028 |      4.5 |        75 |            6.00 |
+|   LUT as Shift Register |    <0.001 |       91 |      9600 |            0.95 |
+|   Others                |     0.000 |       52 |       --- |             --- |
+| Signals                 |     0.004 |     3002 |       --- |             --- |
+| Block RAM               |     0.030 |        5 |        75 |            6.67 |
 | MMCM                    |     0.205 |        2 |         5 |           40.00 |
 | I/O                     |     0.385 |       70 |       210 |           33.33 |
 | Static Power            |     0.075 |          |           |                 |
-| Total                   |     0.717 |          |           |                 |
+| Total                   |     0.720 |          |           |                 |
 +-------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -75,7 +75,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.076 |       0.065 |      0.011 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.079 |       0.068 |      0.011 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.174 |       0.161 |      0.013 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.042 |       0.041 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -152,7 +152,7 @@ Table of Contents
 +-----------------------------------+-----------+
 | Name                              | Power (W) |
 +-----------------------------------+-----------+
-| ddr_renderer_top                  |     0.642 |
+| ddr_renderer_top                  |     0.646 |
 |   clk_wiz                         |     0.107 |
 |     inst                          |     0.107 |
 |   ddr3_arbiter_inst               |     0.330 |
@@ -179,6 +179,9 @@ Table of Contents
 |       genblk9[8].iobuf_dq_inst    |     0.006 |
 |       genblk9[9].iobuf_dq_inst    |     0.006 |
 |       obufds_ck_inst              |     0.002 |
+|   frame_buffer_inst               |     0.003 |
+|     bram0                         |     0.003 |
+|       U0                          |     0.003 |
 |   vga_to_hdmi                     |     0.132 |
 |     inst                          |     0.132 |
 +-----------------------------------+-----------+

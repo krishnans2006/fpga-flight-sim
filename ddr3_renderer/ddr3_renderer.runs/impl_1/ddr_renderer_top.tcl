@@ -123,6 +123,7 @@ set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
   set_param chipscope.maxJobs 4
+  set_param xicom.use_bs_reader 1
 OPTRACE "create in-memory project" START { }
   create_project -in_memory -part xc7s50csga324-1
   set_property design_mode GateLvl [current_fileset]
@@ -143,6 +144,7 @@ OPTRACE "add files" START { }
   read_ip -quiet C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1.xci
   read_ip -quiet c:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
   read_ip -quiet c:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/ip/hdmi_tx_0/hdmi_tx_0.xci
+  read_ip -quiet c:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci
 OPTRACE "read constraints: implementation" START { }
   read_xdc C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/constrs_1/imports/new/urbana_sDDR3.xdc
 OPTRACE "read constraints: implementation" END { }

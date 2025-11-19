@@ -1,7 +1,7 @@
 // Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-// Date        : Mon Nov 17 00:08:38 2025
+// Date        : Wed Nov 19 00:35:27 2025
 // Host        : Aniketh_x86-64 running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode synth_stub
 //               c:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.gen/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0_stub.v
@@ -14,12 +14,19 @@
 // The synthesis directives are for Synopsys Synplify support to prevent IO buffer insertion.
 // Please paste the declaration into a Verilog source file or add the file as an additional source.
 (* x_core_info = "blk_mem_gen_v8_4_5,Vivado 2022.2" *)
-module blk_mem_gen_0(clka, ena, wea, addra, dina, douta)
-/* synthesis syn_black_box black_box_pad_pin="clka,ena,wea[1:0],addra[9:0],dina[15:0],douta[15:0]" */;
+module blk_mem_gen_0(clka, ena, wea, addra, dina, douta, clkb, enb, web, addrb, 
+  dinb, doutb)
+/* synthesis syn_black_box black_box_pad_pin="clka,ena,wea[1:0],addra[9:0],dina[15:0],douta[15:0],clkb,enb,web[1:0],addrb[9:0],dinb[15:0],doutb[15:0]" */;
   input clka;
   input ena;
   input [1:0]wea;
   input [9:0]addra;
   input [15:0]dina;
   output [15:0]douta;
+  input clkb;
+  input enb;
+  input [1:0]web;
+  input [9:0]addrb;
+  input [15:0]dinb;
+  output [15:0]doutb;
 endmodule

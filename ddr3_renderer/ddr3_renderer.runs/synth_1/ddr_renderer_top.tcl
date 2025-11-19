@@ -71,6 +71,7 @@ proc create_report { reportName command } {
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param chipscope.maxJobs 4
+set_param xicom.use_bs_reader 1
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7s50csga324-1
 
@@ -93,6 +94,7 @@ read_verilog C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_render
 read_verilog -library xil_defaultlib -sv {
   C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/imports/design_source/VGA_controller.sv
   C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/new/ddr3_arbiter.sv
+  C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/new/frame_buffer.sv
   C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/new/ddr_renderer_top.sv
 }
 read_verilog -library xil_defaultlib {
@@ -116,6 +118,9 @@ set_property used_in_implementation false [get_files -all c:/Users/anike/class-E
 set_property used_in_implementation false [get_files -all c:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_ooc.xdc]
 
 read_ip -quiet c:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/ip/hdmi_tx_0/hdmi_tx_0.xci
+
+read_ip -quiet c:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci
+set_property used_in_implementation false [get_files -all c:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.gen/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0_ooc.xdc]
 
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being

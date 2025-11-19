@@ -103,7 +103,7 @@ ddr3_arbiter ddr3_arbiter_inst (
   .w_cmd_full(w_phy_cmd_full),
 	/* ### END DDR3 R/W Signals */
 
-	.w_clk_div_o(w_uart_clk)
+    .w_clk_div_o(w_uart_clk)
 );
 
 /* misc signals */
@@ -128,9 +128,7 @@ logic hdmi_clk_o;
 BUFG bufg_inst (.I(hdmi_clk), .O(hdmi_clk_o));
 
 //clock wizard configured with a 1x and 5x clock for HDMI
-assign red = 4'b0;
-assign blue = 4'b1111;
-assign green = 4'b1111;
+logic [9:0] drawX, drawY;
 
 clk_wiz_0 clk_wiz (
   .clk_out1(clk_25MHz),
@@ -147,8 +145,8 @@ clk_wiz_0 clk_wiz (
    .hs           (hsync),
    .vs           (vsync),
    .active_nblank(vde),
-   .drawX        (),
-   .drawY        ()
+   .drawX        (drawX),
+   .drawY        (drawY)
 );
 
 //Real Digital VGA to HDMI converter
@@ -179,6 +177,104 @@ hdmi_tx_0 vga_to_hdmi (
   .TMDS_DATA_N(hdmi_tmds_data_n)
 );
 /* ### END HDMI signals ### */
+
+/* BEGIN Frame Buffer */
+logic fbuf_we, fbuf_wr_complete;
+logic [9:0] fbuf_addr;
+logic [15:0] fbuf_dout;
+logic [127:0] fbuf_dina_burst;
+
+frame_buffer frame_buffer_inst (
+  .clk(w_uart_clk),
+  .rst_n(~reset_ah),
+  .fbuf_we(fbuf_we),
+  .fbuf_addr(fbuf_addr),
+  .fbuf_raddr(drawX),
+  .fbuf_dina_burst(fbuf_dina_burst),
+
+  .fbuf_dout(fbuf_dout),
+  .fbuf_wr_complete(fbuf_wr_complete)
+);
+
+// frame buffer write logic
+
+/*
+StIdle waits until blanking interval, at which point it transitions to StPoll
+StPoll waits until DRAM burst is ready, at which point it transitions to StWrite
+StWrite(s) write into frame buffer until fbuf_wr_complete is asserted, at which point it returns to StPoll, or StIdle if all 80 bursts are written.
+*/
+typedef enum {
+    StIdle, StPoll, StWrite0, StWrite1, StWrite2
+} fbuf_wr_state_e;
+
+logic [6:0] curr_counter_d, curr_counter_q;
+fbuf_wr_state_e fbuf_wr_state_d, fbuf_wr_state_q;
+
+// assign temporary value to burst, this will eventually be the DRAM burst output
+assign fbuf_dina_burst = 128'h0FFF0FFF_0FF00FF0_0F0F0F0F_00FF00FF;
+
+// combinational decode of the state
+always_comb begin
+	fbuf_we = 1'b0;
+	curr_counter_d = curr_counter_q;
+	fbuf_wr_state_d = fbuf_wr_state_q;
+	fbuf_addr = {3'b0, curr_counter_q} << 3; // multiply by 8 to determine start address
+
+	unique case (fbuf_wr_state_q)
+		StIdle: begin
+		// this currently has the potential to do multiple FB writes in one blanking interval ~ timing issue
+			curr_counter_d = 7'b0;
+			if (~vde) fbuf_wr_state_d = StPoll;
+		end
+		StPoll: begin
+			// currently skip DRAM, just go to write
+			fbuf_wr_state_d = StWrite0;
+		end
+		StWrite0: begin
+			fbuf_we = 1'b1;
+			fbuf_wr_state_d = StWrite1;
+		end
+		StWrite1: begin
+			curr_counter_d = curr_counter_d + 1;
+
+			if (curr_counter_q == 7'b1001111) begin
+				fbuf_wr_state_d = StIdle;
+			end else begin
+				fbuf_wr_state_d = StWrite2;
+			end
+		end
+		StWrite2: begin
+			if (fbuf_wr_complete) fbuf_wr_state_d = StPoll;
+			else fbuf_wr_state_d = StWrite2;
+		end
+	endcase
+end
+
+// register the write SM @ 200 Mhz
+always_ff @(posedge w_uart_clk) begin
+  if (reset_ah) begin
+		fbuf_wr_state_q <= StIdle;
+		curr_counter_q = 7'b0;
+	end else begin
+		fbuf_wr_state_q <= fbuf_wr_state_d;
+		curr_counter_q <= curr_counter_d;
+	end
+end
+
+// frame buffer read logic (easy)
+always_comb begin
+  if (vde) begin
+    red = fbuf_dout[11:8];
+    blue = fbuf_dout[7:4];
+    green = fbuf_dout[3:0];
+  end else begin
+    red = 4'b0;
+    blue = 4'b0;
+    green = 4'b0;
+  end
+end
+
+/* ### END Frame Buffer ### */
 
 /* uart clock signal */
 wire w_uart_clk;
