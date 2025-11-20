@@ -208,28 +208,35 @@ typedef enum {
 } fbuf_wr_state_e;
 
 logic [26:0] rd_addr;
+logic old_vga_vde;
 logic [6:0] curr_counter_d, curr_counter_q;
-logic rd_cmd_en, rd_cmd_sel;
+logic rd_cmd_en, rd_cmd_sel, rd_flag;
 fbuf_wr_state_e fbuf_wr_state_d, fbuf_wr_state_q;
 
+assign RGBLED0[2] = rd_flag;
 
 // combinational decode of the state
 always_comb begin
-	fbuf_we = 1'b0;
 	curr_counter_d = curr_counter_q;
 	fbuf_wr_state_d = fbuf_wr_state_q;
 	fbuf_addr = {3'b0, curr_counter_q} << 3; // multiply by 8 to determine start address'
+	fbuf_we = 1'b0;
 
 	ddr3_dout_latched_burst_d = ddr3_dout_latched_burst_q;
 	rd_cmd_en = 1'b0;
  	rd_cmd_sel = 1'b0;
 	rd_addr = {17'b0, curr_counter_q, 3'b000}; // when we start to R/W multi rows, you have to add some offset here
+	
+	// debugging
+	rd_flag = 1'b0;
 
 	unique case (fbuf_wr_state_q)
 		StIdle: begin
 		// this currently has the potential to do multiple FB writes in one blanking interval ~ timing issue
 			curr_counter_d = 7'b0;
-			if (~vde) begin
+			
+			// transition on falling edge of vde
+			if ((vde == 1'b0) && (old_vga_vde == 1'b1)) begin
 				fbuf_wr_state_d = StReqDDR3;
 			end
 		end
@@ -247,15 +254,18 @@ always_comb begin
 		StPollDDR3: begin
 			if (w_phy_rddata_valid) begin
 				fbuf_wr_state_d = StWrite0;
+				rd_flag = 1'b1;
 				ddr3_dout_latched_burst_d = w128_phy_rddata;
 			end
 		end
 		StWrite0: begin
+			rd_flag = 1'b1;
 			fbuf_we = 1'b1;
 			fbuf_dina_burst = ddr3_dout_latched_burst_q;
 			fbuf_wr_state_d = StWrite1;
 		end
 		StWrite1: begin
+		  rd_flag = 1'b1;
 			curr_counter_d = curr_counter_d + 1;
 
 			// stop at 80 bursts ~ corresponds to 640 pixels
@@ -266,6 +276,7 @@ always_comb begin
 			end
 		end
 		StWrite2: begin
+		  rd_flag = 1'b1;
 			if (fbuf_wr_complete) begin
 				fbuf_wr_state_d = StReqDDR3;
 			end else begin 
@@ -283,10 +294,12 @@ always_ff @(posedge w_uart_clk) begin
 		fbuf_wr_state_q <= StIdle;
 		curr_counter_q = 7'b0;
 		ddr3_dout_latched_burst_q <= 128'b0;
+		old_vga_vde <= 1'b0;
 	end else begin
 		fbuf_wr_state_q <= fbuf_wr_state_d;
 		curr_counter_q <= curr_counter_d;
 		ddr3_dout_latched_burst_q <= ddr3_dout_latched_burst_d;
+		old_vga_vde <= vde;
 	end
 end
 
@@ -313,25 +326,29 @@ typedef enum {
 ddr3_wr_state_e ddr3_wr_state_d, ddr3_wr_state_q;
 logic [127:0] ddr3_wr_data;
 logic [26:0]  wr_addr;
+logic [7:0] 	vga_vsync_counter;
 logic				 	wr_cmd_en, wr_cmd_sel;
 
 // TEMP
-logic btn_prev;
-logic btn_rise;
 logic [6:0] wr_counter_d, wr_counter_q;
+logic old_vga_vsync;
 
-assign btn_rise = (BTN[1] && !btn_prev);
 
 // register states
 always_ff @(posedge w_uart_clk) begin
-	btn_prev <= BTN[1];
-
 	if (reset_ah) begin
 		ddr3_wr_state_q <= StIdleWr;
 		wr_counter_q <= 7'b0;
+		old_vga_vsync <= 1'b0;
+		vga_vsync_counter <= 8'b0;
 	end else begin
 		ddr3_wr_state_q <= ddr3_wr_state_d;
 		wr_counter_q <= wr_counter_d;
+		old_vga_vsync <= vsync;
+
+		if ((vsync == 1'b0) && (old_vga_vsync == 1'b1)) begin
+			vga_vsync_counter = vga_vsync_counter + 1;
+		end
 	end
 end
 
@@ -342,16 +359,17 @@ always_comb begin
 
 	ddr3_wr_state_d = ddr3_wr_state_q;
 	wr_addr = {17'b0, wr_counter_q, 3'b0}; // write to addr 0 for now
-	ddr3_wr_data = 128'h0F000F00_00F000F0_000F000F_0000FFFF;
+	ddr3_wr_data = {8{{vga_vsync_counter, wr_counter_q[3:0], 4'b0}}}; // test data thgat looks cool
 	wr_counter_d = wr_counter_q;
 
 
 	unique case (ddr3_wr_state_q)
 		StIdleWr: begin
 			/* NOTE: when GPU implementation is finished, this state should transition only after some handshaking process */
-			wr_counter_d = 6'b0;
+			wr_counter_d = 7'b0;
 
-			if (btn_rise) begin
+            // begin write on falling edge of vsync
+			if ((vsync == 1'b0) && (old_vga_vsync == 1'b1)) begin
 				ddr3_wr_state_d = StReqDDR3Wr;
 			end else begin
 				ddr3_wr_state_d = StIdleWr;
@@ -373,11 +391,7 @@ always_comb begin
 		end
 		StDoneWr: begin
 			if (wr_counter_q == 7'b1001111) begin
-				if (!BTN[1]) begin
-					ddr3_wr_state_d = StIdleWr;
-				end else begin
-					ddr3_wr_state_d = StDoneWr;
-				end
+				ddr3_wr_state_d = StIdleWr;
 			end else begin
 				ddr3_wr_state_d = StReqDDR3Wr;
 			end
@@ -392,6 +406,7 @@ end
 // TEMP
 logic btn_active;
 assign btn_active = (ddr3_wr_state_q != StIdleWr);
+assign RGBLED1[1] = btn_active;
 
 always_comb begin
 	// priority encoder
