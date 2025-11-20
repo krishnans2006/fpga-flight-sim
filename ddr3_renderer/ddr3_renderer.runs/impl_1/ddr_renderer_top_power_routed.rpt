@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-| Date             : Wed Nov 19 16:24:17 2025
+| Date             : Thu Nov 20 00:47:55 2025
 | Host             : Aniketh_x86-64 running 64-bit major release  (build 9200)
 | Command          : report_power -file ddr_renderer_top_power_routed.rpt -pb ddr_renderer_top_power_summary_routed.pb -rpx ddr_renderer_top_power_routed.rpx
 | Design           : ddr_renderer_top
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.721        |
+| Total On-Chip Power (W)  | 0.698        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.647        |
+| Dynamic (W)              | 0.624        |
 | Device Static (W)        | 0.075        |
 | Effective TJA (C/W)      | 4.9          |
-| Max Ambient (C)          | 81.4         |
-| Junction Temperature (C) | 28.6         |
+| Max Ambient (C)          | 81.6         |
+| Junction Temperature (C) | 28.4         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -52,20 +52,21 @@ Table of Contents
 +-------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                 | Power (W) | Used     | Available | Utilization (%) |
 +-------------------------+-----------+----------+-----------+-----------------+
-| Clocks                  |     0.019 |       13 |       --- |             --- |
-| Slice Logic             |     0.003 |     3687 |       --- |             --- |
-|   LUT as Logic          |     0.003 |     1117 |     32600 |            3.43 |
-|   CARRY4                |    <0.001 |       72 |      8150 |            0.88 |
-|   Register              |    <0.001 |     1972 |     65200 |            3.02 |
-|   F7/F8 Muxes           |    <0.001 |       44 |     32600 |            0.13 |
+| Clocks                  |     0.016 |       13 |       --- |             --- |
+| Slice Logic             |     0.001 |     2350 |       --- |             --- |
+|   LUT as Logic          |     0.001 |      562 |     32600 |            1.72 |
+|   Register              |    <0.001 |     1405 |     65200 |            2.15 |
+|   CARRY4                |    <0.001 |       23 |      8150 |            0.28 |
+|   BUFG                  |    <0.001 |        1 |        32 |            3.13 |
 |   LUT as Shift Register |    <0.001 |       91 |      9600 |            0.95 |
-|   Others                |     0.000 |       52 |       --- |             --- |
-| Signals                 |     0.004 |     3319 |       --- |             --- |
-| Block RAM               |     0.030 |        5 |        75 |            6.67 |
+|   F7/F8 Muxes           |    <0.001 |        1 |     32600 |           <0.01 |
+|   Others                |     0.000 |       48 |       --- |             --- |
+| Signals                 |     0.002 |     2155 |       --- |             --- |
+| Block RAM               |     0.018 |        3 |        75 |            4.00 |
 | MMCM                    |     0.205 |        2 |         5 |           40.00 |
-| I/O                     |     0.386 |       70 |       210 |           33.33 |
+| I/O                     |     0.382 |       70 |       210 |           33.33 |
 | Static Power            |     0.075 |          |           |                 |
-| Total                   |     0.721 |          |           |                 |
+| Total                   |     0.698 |          |           |                 |
 +-------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -75,13 +76,13 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.080 |       0.069 |      0.011 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.061 |       0.050 |      0.011 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.174 |       0.161 |      0.013 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     0.042 |       0.041 |      0.001 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     0.041 |       0.040 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vcco135   |       1.350 |     0.113 |       0.112 |      0.001 |       NA    | Unspecified | NA         |
+| Vcco135   |       1.350 |     0.114 |       0.113 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccbram   |       1.000 |     0.001 |       0.001 |      0.000 |       NA    | Unspecified | NA         |
@@ -92,17 +93,17 @@ Table of Contents
 1.3 Confidence Level
 --------------------
 
-+-----------------------------+------------+--------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
-| User Input Data             | Confidence | Details                                                | Action                                                                                                     |
-+-----------------------------+------------+--------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
-| Design implementation state | High       | Design is routed                                       |                                                                                                            |
-| Clock nodes activity        | High       | User specified more than 95% of clocks                 |                                                                                                            |
-| I/O nodes activity          | Low        | More than 75% of inputs are missing user specification | Provide missing input activity with simulation results or by editing the "By Resource Type -> I/Os" view   |
-| Internal nodes activity     | Medium     | User specified less than 25% of internal nodes         | Provide missing internal nodes activity with simulation results or by editing the "By Resource Type" views |
-| Device models               | High       | Device models are Production                           |                                                                                                            |
-|                             |            |                                                        |                                                                                                            |
-| Overall confidence level    | Low        |                                                        |                                                                                                            |
-+-----------------------------+------------+--------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
++-----------------------------+------------+--------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+
+| User Input Data             | Confidence | Details                                                | Action                                                                                                             |
++-----------------------------+------------+--------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+
+| Design implementation state | High       | Design is routed                                       |                                                                                                                    |
+| Clock nodes activity        | Medium     | More than 5% of clocks are missing user specification  | Provide missing clock activity with a constraint file, simulation results or by editing the "By Clock Domain" view |
+| I/O nodes activity          | Low        | More than 75% of inputs are missing user specification | Provide missing input activity with simulation results or by editing the "By Resource Type -> I/Os" view           |
+| Internal nodes activity     | Medium     | User specified less than 25% of internal nodes         | Provide missing internal nodes activity with simulation results or by editing the "By Resource Type" views         |
+| Device models               | High       | Device models are Production                           |                                                                                                                    |
+|                             |            |                                                        |                                                                                                                    |
+| Overall confidence level    | Low        |                                                        |                                                                                                                    |
++-----------------------------+------------+--------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+
 
 
 2. Settings
@@ -152,38 +153,38 @@ Table of Contents
 +-----------------------------------+-----------+
 | Name                              | Power (W) |
 +-----------------------------------+-----------+
-| ddr_renderer_top                  |     0.647 |
+| ddr_renderer_top                  |     0.624 |
 |   clk_wiz                         |     0.107 |
 |     inst                          |     0.107 |
-|   ddr3_arbiter_inst               |     0.329 |
+|   ddr3_arbiter_inst               |     0.332 |
 |     clkgen_ddr3ctrl_instance      |     0.100 |
 |       inst                        |     0.100 |
-|     phy_instance                  |     0.228 |
+|     phy_instance                  |     0.231 |
 |       cmdfifo_inst                |     0.016 |
 |       genblk6[0].iobufds_dqs_inst |     0.010 |
 |       genblk6[1].iobufds_dqs_inst |     0.010 |
-|       genblk9[0].iobuf_dq_inst    |     0.006 |
-|       genblk9[10].iobuf_dq_inst   |     0.006 |
-|       genblk9[11].iobuf_dq_inst   |     0.006 |
-|       genblk9[12].iobuf_dq_inst   |     0.006 |
-|       genblk9[13].iobuf_dq_inst   |     0.006 |
-|       genblk9[14].iobuf_dq_inst   |     0.006 |
-|       genblk9[15].iobuf_dq_inst   |     0.006 |
-|       genblk9[1].iobuf_dq_inst    |     0.006 |
-|       genblk9[2].iobuf_dq_inst    |     0.006 |
-|       genblk9[3].iobuf_dq_inst    |     0.006 |
-|       genblk9[4].iobuf_dq_inst    |     0.006 |
-|       genblk9[5].iobuf_dq_inst    |     0.006 |
-|       genblk9[6].iobuf_dq_inst    |     0.006 |
-|       genblk9[7].iobuf_dq_inst    |     0.006 |
-|       genblk9[8].iobuf_dq_inst    |     0.006 |
-|       genblk9[9].iobuf_dq_inst    |     0.006 |
+|       genblk9[0].iobuf_dq_inst    |     0.007 |
+|       genblk9[10].iobuf_dq_inst   |     0.007 |
+|       genblk9[11].iobuf_dq_inst   |     0.007 |
+|       genblk9[12].iobuf_dq_inst   |     0.007 |
+|       genblk9[13].iobuf_dq_inst   |     0.007 |
+|       genblk9[14].iobuf_dq_inst   |     0.007 |
+|       genblk9[15].iobuf_dq_inst   |     0.007 |
+|       genblk9[1].iobuf_dq_inst    |     0.007 |
+|       genblk9[2].iobuf_dq_inst    |     0.007 |
+|       genblk9[3].iobuf_dq_inst    |     0.007 |
+|       genblk9[4].iobuf_dq_inst    |     0.007 |
+|       genblk9[5].iobuf_dq_inst    |     0.007 |
+|       genblk9[6].iobuf_dq_inst    |     0.007 |
+|       genblk9[7].iobuf_dq_inst    |     0.007 |
+|       genblk9[8].iobuf_dq_inst    |     0.007 |
+|       genblk9[9].iobuf_dq_inst    |     0.007 |
 |       obufds_ck_inst              |     0.002 |
 |   frame_buffer_inst               |     0.003 |
 |     bram0                         |     0.002 |
 |       U0                          |     0.002 |
-|   vga_to_hdmi                     |     0.133 |
-|     inst                          |     0.133 |
+|   vga_to_hdmi                     |     0.132 |
+|     inst                          |     0.132 |
 +-----------------------------------+-----------+
 
 

@@ -70,8 +70,6 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param chipscope.maxJobs 4
-set_param xicom.use_bs_reader 1
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7s50csga324-1
 
@@ -100,8 +98,6 @@ read_verilog -library xil_defaultlib -sv {
 read_verilog -library xil_defaultlib {
   C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/imports/ddr3_controller/ddr3_rdcal.v
   C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/imports/ddr3_controller/ddr3_x16_phy_cust.v
-  C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/imports/ip/uart_rx.v
-  C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/imports/ip/uart_tx.v
 }
 read_ip -quiet C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/ip/fifo_generator_0/fifo_generator_0.xci
 set_property used_in_implementation false [get_files -all c:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.gen/sources_1/ip/fifo_generator_0/fifo_generator_0.xdc]
@@ -112,14 +108,14 @@ set_property used_in_implementation false [get_files -all c:/Users/anike/class-E
 set_property used_in_implementation false [get_files -all c:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.gen/sources_1/ip/clk_wiz_1/clk_wiz_1.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.gen/sources_1/ip/clk_wiz_1/clk_wiz_1_ooc.xdc]
 
-read_ip -quiet c:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
+read_ip -quiet C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
 set_property used_in_implementation false [get_files -all c:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_board.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_ooc.xdc]
 
-read_ip -quiet c:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/ip/hdmi_tx_0/hdmi_tx_0.xci
+read_ip -quiet C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/ip/hdmi_tx_0/hdmi_tx_0.xci
 
-read_ip -quiet c:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci
+read_ip -quiet C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci
 set_property used_in_implementation false [get_files -all c:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.gen/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0_ooc.xdc]
 
 OPTRACE "Adding files" END { }
