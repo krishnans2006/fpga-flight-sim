@@ -235,6 +235,7 @@ always_comb begin
 	fbuf_we = 1'b0;
 
 	ddr3_dout_latched_burst_d = ddr3_dout_latched_burst_q;
+	fbuf_dina_burst = 128'b0;
 	rd_cmd_en = 1'b0;
  	rd_cmd_sel = 1'b0;
 
@@ -322,8 +323,11 @@ always_ff @(posedge w_uart_clk) begin
 		ddr3_dout_latched_burst_q <= ddr3_dout_latched_burst_d;
 		old_vga_vde <= vde;
 		
-		if (~vsync) begin
+		if (~vsync && old_vga_vsync) begin
 		  rd_addr_offset <= 27'b0;
+		  // on falling edge of vsync, swap buffers
+		  staging_buffer_addr <= output_buffer_addr;
+		  output_buffer_addr  <= staging_buffer_addr;
 		end else if (fbuf_wr_state_q == StWrite1 && fbuf_wr_state_d == StIdle) 
 		  rd_addr_offset <= rd_addr_offset + lp_HORIZ_PIXEL_WIDTH;
 	end
@@ -346,7 +350,7 @@ end
 
 /* ### BEGIN DDR3 Write Logic ### */
 typedef enum { 
-	StIdleWr, StReqDDR3Wr, StPollDDR3Wr, StDoneWr
+	StIdleWr, StIdleWr1, StReqDDR3Wr, StPollDDR3Wr, StDoneWr
 } ddr3_wr_state_e;
 
 ddr3_wr_state_e ddr3_wr_state_d, ddr3_wr_state_q;
@@ -368,22 +372,13 @@ always_ff @(posedge w_uart_clk) begin
 		old_vga_vsync <= 1'b0;
 		vga_vsync_counter <= 8'b0;
 	end else begin
+		old_vga_vsync <= vsync;
 		ddr3_wr_state_q <= ddr3_wr_state_d;
 		wr_counter_q <= wr_counter_d;
-		old_vga_vsync <= vsync;
 
 		if (~vsync && old_vga_vsync) begin
 			vga_vsync_counter <= vga_vsync_counter + 1;
-
-			// on falling edge of vsync, swap buffers
-			if (staging_buffer_addr != output_buffer_addr) begin
-				staging_buffer_addr <= output_buffer_addr;
-				output_buffer_addr  <= staging_buffer_addr;
-			end else begin // hits this condition if buffers weren't initialized properly
-				output_buffer_addr  <= 27'h0000000; 
-				staging_buffer_addr <= 27'h004B000;
-			end
-		end
+		end 
 	end
 end
 
@@ -393,7 +388,7 @@ always_comb begin
 	wr_cmd_sel = 1'b0;
 
 	ddr3_wr_state_d = ddr3_wr_state_q;
-	wr_addr = staging_buffer_addr + 27'h0002800 + {17'b0, wr_counter_q, 3'b0}; // write to addr 0 for now
+	wr_addr = staging_buffer_addr + 27'h0028000 + {17'b0, wr_counter_q, 3'b0}; // write to addr 0 for now
 	ddr3_wr_data = {8{{vga_vsync_counter, wr_counter_q[3:0], 4'b0}}}; // test data thgat looks cool
 	wr_counter_d = wr_counter_q;
 
@@ -403,12 +398,16 @@ always_comb begin
 			/* NOTE: when GPU implementation is finished, this state should transition only after some handshaking process */
 			wr_counter_d = 7'b0;
 
-            // begin write on falling edge of vsync
+      // begin write on falling edge of vsync
 			if (~vsync && old_vga_vsync) begin
-				ddr3_wr_state_d = StReqDDR3Wr;
+				ddr3_wr_state_d = StIdleWr1;
 			end else begin
 				ddr3_wr_state_d = StIdleWr;
 			end
+		end
+		StIdleWr1: begin
+			// transition state just to allow buffer pointers to stabilize
+			ddr3_wr_state_d = StReqDDR3Wr;
 		end
 		StReqDDR3Wr: begin
 			wr_cmd_en = 1'b1;
