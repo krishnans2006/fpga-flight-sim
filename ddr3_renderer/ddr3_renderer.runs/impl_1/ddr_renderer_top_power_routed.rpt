@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-| Date             : Thu Nov 20 14:07:51 2025
+| Date             : Fri Nov 21 01:58:35 2025
 | Host             : Aniketh_x86-64 running 64-bit major release  (build 9200)
 | Command          : report_power -file ddr_renderer_top_power_routed.rpt -pb ddr_renderer_top_power_summary_routed.pb -rpx ddr_renderer_top_power_routed.rpx
 | Design           : ddr_renderer_top
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.701        |
+| Total On-Chip Power (W)  | 0.707        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.627        |
+| Dynamic (W)              | 0.632        |
 | Device Static (W)        | 0.075        |
 | Effective TJA (C/W)      | 4.9          |
 | Max Ambient (C)          | 81.5         |
@@ -52,21 +52,21 @@ Table of Contents
 +-------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                 | Power (W) | Used     | Available | Utilization (%) |
 +-------------------------+-----------+----------+-----------+-----------------+
-| Clocks                  |     0.015 |       13 |       --- |             --- |
-| Slice Logic             |     0.001 |     2393 |       --- |             --- |
-|   LUT as Logic          |     0.001 |      576 |     32600 |            1.77 |
-|   Register              |    <0.001 |     1414 |     65200 |            2.17 |
-|   CARRY4                |    <0.001 |       23 |      8150 |            0.28 |
-|   BUFG                  |    <0.001 |        1 |        32 |            3.13 |
+| Clocks                  |     0.016 |       13 |       --- |             --- |
+| Slice Logic             |     0.002 |     2449 |       --- |             --- |
+|   LUT as Logic          |     0.002 |      600 |     32600 |            1.84 |
+|   CARRY4                |    <0.001 |       33 |      8150 |            0.40 |
+|   Register              |    <0.001 |     1432 |     65200 |            2.20 |
 |   LUT as Shift Register |    <0.001 |       91 |      9600 |            0.95 |
+|   BUFG                  |    <0.001 |        1 |        32 |            3.13 |
 |   F7/F8 Muxes           |    <0.001 |        1 |     32600 |           <0.01 |
 |   Others                |     0.000 |       48 |       --- |             --- |
-| Signals                 |     0.002 |     2184 |       --- |             --- |
-| Block RAM               |     0.018 |        3 |        75 |            4.00 |
+| Signals                 |     0.003 |     2239 |       --- |             --- |
+| Block RAM               |     0.023 |        3 |        75 |            4.00 |
 | MMCM                    |     0.205 |        2 |         5 |           40.00 |
-| I/O                     |     0.385 |       69 |       210 |           32.86 |
+| I/O                     |     0.383 |       69 |       210 |           32.86 |
 | Static Power            |     0.075 |          |           |                 |
-| Total                   |     0.701 |          |           |                 |
+| Total                   |     0.707 |          |           |                 |
 +-------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -76,13 +76,13 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.060 |       0.049 |      0.011 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.067 |       0.056 |      0.011 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.174 |       0.161 |      0.013 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.042 |       0.041 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vcco135   |       1.350 |     0.114 |       0.113 |      0.001 |       NA    | Unspecified | NA         |
+| Vcco135   |       1.350 |     0.113 |       0.112 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccbram   |       1.000 |     0.001 |       0.001 |      0.000 |       NA    | Unspecified | NA         |
@@ -153,39 +153,39 @@ Table of Contents
 +-----------------------------------+-----------+
 | Name                              | Power (W) |
 +-----------------------------------+-----------+
-| ddr_renderer_top                  |     0.627 |
+| ddr_renderer_top                  |     0.632 |
 |   clk_wiz                         |     0.107 |
 |     inst                          |     0.107 |
-|   ddr3_arbiter_inst               |     0.332 |
+|   ddr3_arbiter_inst               |     0.335 |
 |     clkgen_ddr3ctrl_instance      |     0.100 |
 |       inst                        |     0.100 |
-|     phy_instance                  |     0.230 |
-|       cmdfifo_inst                |     0.016 |
+|     phy_instance                  |     0.233 |
+|       cmdfifo_inst                |     0.021 |
 |       genblk6[0].iobufds_dqs_inst |     0.010 |
 |       genblk6[1].iobufds_dqs_inst |     0.010 |
-|       genblk9[0].iobuf_dq_inst    |     0.007 |
-|       genblk9[10].iobuf_dq_inst   |     0.007 |
-|       genblk9[11].iobuf_dq_inst   |     0.007 |
-|       genblk9[12].iobuf_dq_inst   |     0.007 |
-|       genblk9[13].iobuf_dq_inst   |     0.007 |
-|       genblk9[14].iobuf_dq_inst   |     0.007 |
-|       genblk9[15].iobuf_dq_inst   |     0.007 |
-|       genblk9[1].iobuf_dq_inst    |     0.007 |
-|       genblk9[2].iobuf_dq_inst    |     0.007 |
-|       genblk9[3].iobuf_dq_inst    |     0.007 |
-|       genblk9[4].iobuf_dq_inst    |     0.007 |
-|       genblk9[5].iobuf_dq_inst    |     0.007 |
-|       genblk9[6].iobuf_dq_inst    |     0.007 |
-|       genblk9[7].iobuf_dq_inst    |     0.007 |
-|       genblk9[8].iobuf_dq_inst    |     0.007 |
-|       genblk9[9].iobuf_dq_inst    |     0.007 |
+|       genblk9[0].iobuf_dq_inst    |     0.006 |
+|       genblk9[10].iobuf_dq_inst   |     0.006 |
+|       genblk9[11].iobuf_dq_inst   |     0.006 |
+|       genblk9[12].iobuf_dq_inst   |     0.006 |
+|       genblk9[13].iobuf_dq_inst   |     0.006 |
+|       genblk9[14].iobuf_dq_inst   |     0.006 |
+|       genblk9[15].iobuf_dq_inst   |     0.006 |
+|       genblk9[1].iobuf_dq_inst    |     0.006 |
+|       genblk9[2].iobuf_dq_inst    |     0.006 |
+|       genblk9[3].iobuf_dq_inst    |     0.006 |
+|       genblk9[4].iobuf_dq_inst    |     0.006 |
+|       genblk9[5].iobuf_dq_inst    |     0.006 |
+|       genblk9[6].iobuf_dq_inst    |     0.006 |
+|       genblk9[7].iobuf_dq_inst    |     0.006 |
+|       genblk9[8].iobuf_dq_inst    |     0.006 |
+|       genblk9[9].iobuf_dq_inst    |     0.006 |
 |       obufds_ck_inst              |     0.002 |
 |     rdcal_instance                |     0.001 |
-|   frame_buffer_inst               |     0.003 |
-|     bram0                         |     0.002 |
-|       U0                          |     0.002 |
-|   vga_to_hdmi                     |     0.132 |
-|     inst                          |     0.132 |
+|   frame_buffer_inst               |     0.004 |
+|     bram0                         |     0.003 |
+|       U0                          |     0.003 |
+|   vga_to_hdmi                     |     0.133 |
+|     inst                          |     0.133 |
 +-----------------------------------+-----------+
 
 

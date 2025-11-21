@@ -59,6 +59,7 @@ module ddr_renderer_top(
 );
 
 localparam lp_DDR_FREQ = 400;
+localparam lp_HORIZ_PIXEL_WIDTH = 640;
 
 ddr3_arbiter ddr3_arbiter_inst (
   .DDR3_CLK100(DDR3_CLK100),
@@ -198,16 +199,27 @@ frame_buffer frame_buffer_inst (
 
 // frame buffer write logic
 
+logic [26:0] output_buffer_addr, staging_buffer_addr;
+
 /*
 StIdle waits until blanking interval, at which point it transitions to StPoll
-StPoll waits until DRAM burst is ready, at which point it transitions to StWrite
+StReqDDR3/StPollDDR3 wait until DRAM burst is ready, at which point it transitions to StWrite
 StWrite(s) write into frame buffer until fbuf_wr_complete is asserted, at which point it returns to StPoll, or StIdle if all 80 bursts are written.
+
+Circular-Buffer VRAM Design/Memory Map
+
+0x00000 - 0x4AFFF : VRAM 1
+0x4B000 - 0x960FF : VRAM 2
+
+One buffer is used to hold next frame, the other is used to draw current frame. On every vsync call, the pointers to these buffers are swapped.
 */
+
 typedef enum {
     StIdle, StReqDDR3, StPollDDR3, StWrite0, StWrite1, StWrite2
 } fbuf_wr_state_e;
 
 logic [26:0] rd_addr;
+logic [26:0] rd_addr_offset;
 logic old_vga_vde;
 logic [6:0] curr_counter_d, curr_counter_q;
 logic rd_cmd_en, rd_cmd_sel, rd_flag;
@@ -225,7 +237,11 @@ always_comb begin
 	ddr3_dout_latched_burst_d = ddr3_dout_latched_burst_q;
 	rd_cmd_en = 1'b0;
  	rd_cmd_sel = 1'b0;
-	rd_addr = {17'b0, curr_counter_q, 3'b000}; // when we start to R/W multi rows, you have to add some offset here
+
+	/* 
+	starting address of VRAM + current row offset + current column "chunk"
+	*/
+	rd_addr = output_buffer_addr + rd_addr_offset + {17'b0, curr_counter_q, 3'b000};
 	
 	// debugging
 	rd_flag = 1'b0;
@@ -236,7 +252,7 @@ always_comb begin
 			curr_counter_d = 7'b0;
 			
 			// transition on falling edge of vde
-			if ((vde == 1'b0) && (old_vga_vde == 1'b1)) begin
+			if (~vde && old_vga_vde) begin
 				fbuf_wr_state_d = StReqDDR3;
 			end
 		end
@@ -295,11 +311,21 @@ always_ff @(posedge w_uart_clk) begin
 		curr_counter_q = 7'b0;
 		ddr3_dout_latched_burst_q <= 128'b0;
 		old_vga_vde <= 1'b0;
+		rd_addr_offset <= 27'b0;
+
+		// initialize buffer addresses
+		staging_buffer_addr <= 27'h004B000;
+		output_buffer_addr  <= 27'h0000000;
 	end else begin
 		fbuf_wr_state_q <= fbuf_wr_state_d;
 		curr_counter_q <= curr_counter_d;
 		ddr3_dout_latched_burst_q <= ddr3_dout_latched_burst_d;
 		old_vga_vde <= vde;
+		
+		if (~vsync) begin
+		  rd_addr_offset <= 27'b0;
+		end else if (fbuf_wr_state_q == StWrite1 && fbuf_wr_state_d == StIdle) 
+		  rd_addr_offset <= rd_addr_offset + lp_HORIZ_PIXEL_WIDTH;
 	end
 end
 
@@ -346,8 +372,17 @@ always_ff @(posedge w_uart_clk) begin
 		wr_counter_q <= wr_counter_d;
 		old_vga_vsync <= vsync;
 
-		if ((vsync == 1'b0) && (old_vga_vsync == 1'b1)) begin
-			vga_vsync_counter = vga_vsync_counter + 1;
+		if (~vsync && old_vga_vsync) begin
+			vga_vsync_counter <= vga_vsync_counter + 1;
+
+			// on falling edge of vsync, swap buffers
+			if (staging_buffer_addr != output_buffer_addr) begin
+				staging_buffer_addr <= output_buffer_addr;
+				output_buffer_addr  <= staging_buffer_addr;
+			end else begin // hits this condition if buffers weren't initialized properly
+				output_buffer_addr  <= 27'h0000000; 
+				staging_buffer_addr <= 27'h004B000;
+			end
 		end
 	end
 end
@@ -358,7 +393,7 @@ always_comb begin
 	wr_cmd_sel = 1'b0;
 
 	ddr3_wr_state_d = ddr3_wr_state_q;
-	wr_addr = {17'b0, wr_counter_q, 3'b0}; // write to addr 0 for now
+	wr_addr = staging_buffer_addr + 27'h0002800 + {17'b0, wr_counter_q, 3'b0}; // write to addr 0 for now
 	ddr3_wr_data = {8{{vga_vsync_counter, wr_counter_q[3:0], 4'b0}}}; // test data thgat looks cool
 	wr_counter_d = wr_counter_q;
 
@@ -369,7 +404,7 @@ always_comb begin
 			wr_counter_d = 7'b0;
 
             // begin write on falling edge of vsync
-			if ((vsync == 1'b0) && (old_vga_vsync == 1'b1)) begin
+			if (~vsync && old_vga_vsync) begin
 				ddr3_wr_state_d = StReqDDR3Wr;
 			end else begin
 				ddr3_wr_state_d = StIdleWr;
@@ -424,277 +459,5 @@ always_comb begin
 end
 
 /* ### END DDR3 Write Logic ### */
-
-
-//  /* uart clock signal */
-//  wire w_uart_clk;
-//  localparam lp_UART_CLK_FREQ = lp_DDR_FREQ*500_000;
-//  localparam lp_UART_BAUDRATE = 3_000_000;
-
-//  /** BEGIN UART_RX module */
-//  	reg r_uart_rx_en = 1'b0;
-//  	wire w_uart_rx_done;
-//  	wire [7:0] w8_uart_rx_data;
-//  uart_rx #(
-//  	.p_BAUDRATE(lp_UART_BAUDRATE),
-//  	.p_CLK_FREQ(lp_UART_CLK_FREQ)
-//  	)
-//  uart_rx_instance (
-//  	.i_clk(w_uart_clk),
-//  	.i_en(r_uart_rx_en),
-//  	.i_uart_rx(UART_TXD_IN),
-	
-//  	.o_done(w_uart_rx_done),
-//  	.o8_rxdata(w8_uart_rx_data)
-//  	);
-//  /** End UART_RX module */
-//  /** Begin UART_TX module */
-//  	wire w_uart_tx_rdy;
-//  	wire w_uart_tx_byte_done;
-//  	reg r_uart_tx_send_en = 1'b0;
-//  	reg [7:0] r8_uart_tx_data;
-//  uart_tx #(
-//  	.p_BAUDRATE(lp_UART_BAUDRATE),
-//  	.p_CLK_FREQ(lp_UART_CLK_FREQ)
-//  ) uart_tx_instance (
-//  	.i_en(r_uart_tx_send_en),
-//  	.i8_txdata(r8_uart_tx_data),
-//  	.i_clk(w_uart_clk),
-	
-//  	.o_ready(w_uart_tx_rdy),
-//  	.o_done(w_uart_tx_byte_done),
-//  	.o_uart_tx(UART_RXD_OUT)
-//  );
-//  /* End UART_TX module */
-
-
-//  reg btn0_prev, btn1_prev, btn2_prev, btn3_prev = 1'b0;
-
-//  reg [3:0] r4_uart_state = 4'b0000;
-//  reg [3:0] r4_uart_byte_index = 4'b1111; // counts bytes in DDR read vector for uart tx
-
-//  reg [127:0] r128_ddr_rd_buffer = 128'b0; // 128 bit (read) buffer from DDR
-//  reg [3:0] r4_rx_byte_index = 4'b1111; // counts 16 bytes across 128 bit words in 2x128 bit rx buffer
-//  reg r1_rx_word_index_delay = 1'b0;
-//  reg r1_rx_word_index_prev_read = 1'b0;
-
-//  reg	[14+10+3-1:0] r27_start_addr = 'b0;
-//  reg	[14+10+3-1:0] r27_end_addr = 'b0;
-
-//  reg	[7:0]	r8_16_rx_buff	[15:0];
-//  reg	r_uart_128_done, r_uart_128_done_prev;
-//  reg	[127:0]	r128_dram_wrbuf;
-
-//  /*(* ram_style = "block" *)*/
-//  reg [127:0] rn_ram [127:0];
-
-//  reg	[6:0]	r7_ram_ctr;
-//  reg	[6:0]	r7_rd_valid_ctr;
-//  reg	[31:0]	r32_rd_seq_tmr;
-
-//  // UART MACHINE
-//  /**/
-//  assign RGBLED1[1] = ~r4_rx_byte_index[0]; // blue 1 toggles with each byte received
-//  assign RGBLED0[2] = (!r_uart_128_done_prev && r_uart_128_done) ? ~RGBLED0[2] : RGBLED0[2]; // green 1 toggles with each 128-bit word received
-
-//  always @(posedge w_uart_clk) begin: uart_state_machine
-//  	btn0_prev <= BTN[0];
-
-//  	r_uart_128_done <= 1'b0;
-//  	r_uart_128_done_prev <= r_uart_128_done;
-//  	r_uart_rx_en <= 1'b1;
-//  	if (w_uart_rx_done) begin
-//  		r8_16_rx_buff[r4_rx_byte_index] <= w8_uart_rx_data;
-//  		r4_rx_byte_index <= r4_rx_byte_index - 1; // keep overflowing 16 byte counter
-//  		if (r4_rx_byte_index == 4'b0000) begin
-//  			r128_dram_wrbuf <= {r8_16_rx_buff[15], r8_16_rx_buff[14], r8_16_rx_buff[13], r8_16_rx_buff[12],
-//  				r8_16_rx_buff[11], r8_16_rx_buff[10], r8_16_rx_buff[9], r8_16_rx_buff[8], r8_16_rx_buff[7], 
-//  				r8_16_rx_buff[6], r8_16_rx_buff[5], r8_16_rx_buff[4], r8_16_rx_buff[3], r8_16_rx_buff[2],
-//  				r8_16_rx_buff[1], w8_uart_rx_data};
-//  			r_uart_128_done <= 1'b1;
-//  		end
-//  	end
-
-//  case (r4_uart_state)
-//  	'b0000: begin // TAKE DATA FROM RX BUFFER, decide next state based on buffer contents
-//  		r_uart_tx_send_en <= 1'b0;
-//  		r_phy_cmd_en <= 1'b0;
-//  		r_phy_cmd_sel <= 1'b0;
-		
-//  		if (!r_uart_128_done_prev && r_uart_128_done) begin
-//  			// Send ACK byte, reset current write address
-//  			if (r128_dram_wrbuf == 128'h66666666_66666666_66666666_66666666) begin // ASCII 'f'
-//  				app_addr <= 27'b0;
-//  				r_uart_tx_send_en <= 1'b1;
-//  				r8_uart_tx_data <= 8'h8a;
-				
-//  			// Set read begin/end address and commence read
-//  			end else if ((r128_dram_wrbuf[127:64] == 64'h77777777_77777777) // ASCII 'w'
-//  						&& (r128_dram_wrbuf[58:32] != r128_dram_wrbuf[26:0])) begin
-//  				r4_uart_state <= 4'b0011; // go to read/tx loop
-//  				r27_start_addr <= r128_dram_wrbuf[58:32]; // send end addr for RD op
-//  				r27_end_addr <= r128_dram_wrbuf[26:0]; // set start addr for RD op
-				
-//  			// Set current write address
-//  			end else if (r128_dram_wrbuf[127:64] == 64'h61616161_61616161) begin // ASCII '!'
-//  				app_addr <= r128_dram_wrbuf[26:0];
-			
-//  			// Test sequential speeds -- read first row of SDRAM into FPGA BRAM
-//  			end else if (r128_dram_wrbuf == 128'h72727272_72727272_72727272_72727272) begin // ASCII 's' (sequential)
-//  				app_addr <= 27'b0;
-//  				r4_uart_state <= 4'b1000;
-				
-//  				r_phy_cmd_en <= 1'b1;
-//  				r_phy_cmd_sel <= 1'b1;
-				
-//  				r7_rd_valid_ctr <= 9'b0;
-//  				r32_rd_seq_tmr <= 32'b0;
-				
-//  				r_uart_tx_send_en <= 1'b0;
-//  				r8_uart_tx_data <= 8'hfd;
-				
-//  			// Write data to SDRAM
-//  			end else begin
-//  				r128_wrdata <= r128_dram_wrbuf; // wr data
-//  				r4_uart_state <= 4'b0001; // DDR WR
-//  			end
-//  		end
-//  	end
-//  	'b0001: begin // END WR CMD, SIGNAL ENABLE
-//  		r_phy_cmd_en <= 1'b1;
-//  		r_phy_cmd_sel <= 1'b0;
-//  		r4_uart_state <= 4'b0010;
-//  	end
-//  	'b0010: begin // STOP WRITE, INCREMENT ADDR, BACK TO IDLE
-//  		r_phy_cmd_en <= 1'b0;
-		
-//  		app_addr <= app_addr + 8;
-//  		//r_uart_tx_send_en <= 1'b1;
-//  		r8_uart_tx_data <= 8'h8a;
-//  		r4_uart_state <= 4'b0000;
-//  	end
-//  	'b0011: begin // DDR/TX STATE MACHINE BEGIN, addr start/end setup
-//  		//r27_rd_addr_max <= {app_addr[26:3] - 1'b1, app_addr[2:0]};
-//  		app_addr <= r27_start_addr;
-//  		r4_uart_byte_index <= 4'b1111;
-//  		r4_uart_state <= 4'b0100;
-//  	end
-//  	'b0100: begin // REQUEST DATA FROM DDR BLOCK
-//  		// (is separate state for easier looping from 'b111)
-//  		r_phy_cmd_en <= 1'b1;
-//  		r_phy_cmd_sel <= 1'b1;
-//  		r4_uart_state <= 4'b0101;
-//  	end
-//  	'b0101: begin // WAIT FOR DDR DATA VALID, BUFFER RD DATA
-//  		r_phy_cmd_en <= 1'b0;
-//  		if (w_phy_rddata_valid) begin
-//  			r128_ddr_rd_buffer <= w128_phy_rddata;
-//  			r4_uart_state <= 4'b0110;
-//  		end else if (w_uart_rx_done)
-//  			r4_uart_state <= 4'b0000;
-//  	end
-//  	'b0110: begin // SETUP (NEXT) TX BYTE AND SEND ENABLE
-//  		r8_uart_tx_data <= r128_ddr_rd_buffer[r4_uart_byte_index*8 +: 8];
-//  		r_uart_tx_send_en <= 1;
-//  		r4_uart_state <= 4'b0111;
-//  	end
-//  	'b0111: begin // WAIT FOR TX BYTE DONE
-//  		r_uart_tx_send_en <= 0;
-//  		if (w_uart_tx_byte_done) begin
-//  			r4_uart_byte_index <= r4_uart_byte_index - 1; // always increment, no resets, overflow
-//  			if (r4_uart_byte_index == 4'b0000) begin // rd buffer sent
-//  				if (app_addr == r27_end_addr) begin // read finished
-//  					app_addr <= r27_start_addr;
-//  					r4_uart_state <= 4'b0000;
-//  				end else begin // read not finished, read from next addr
-//  					app_addr <= app_addr + 8;
-//  					r4_uart_state <= 4'b0100;
-//  				end
-//  			end else begin // rd buffer not sent, setup next buffer byte
-//  				r4_uart_state <= 4'b0110;
-//  			end
-//  		end
-//  	end
-//  	'b1000: begin // read entire first row of SDRAM into FPGA BRAM
-//  		r_uart_tx_send_en <= 1'b0;
-//  		r_phy_cmd_en <= 1'b1;
-//  		r_phy_cmd_sel <= 1'b1;
-		
-//  		if (!w_phy_cmd_full) begin
-//  			app_addr <= app_addr + 'b1000;
-//  			if (app_addr == 'h400) begin
-//  				r4_uart_state <= 'b1001;
-//  				r_phy_cmd_en <= 1'b0;
-//  			end
-//  		end
-//  	end
-//  	'b1001: begin
-//  		r_phy_cmd_en <= 1'b0;
-//  		if (r7_rd_valid_ctr == 'd127) begin
-//  			r4_uart_state <= 'b1010;
-//  			r7_ram_ctr <= 8'd0;
-//  			r4_uart_byte_index <= 'b1111;
-//  		end
-
-//  	end
-//  	'b1010: begin
-//  		r8_uart_tx_data <= rn_ram[r7_ram_ctr][r4_uart_byte_index*8 +: 8];
-//  		r_uart_tx_send_en <= 1;
-//  		r4_uart_state <= 'b1011;
-//  	end
-//  	'b1011: begin
-//  		r_uart_tx_send_en <= 0;
-		
-//  		if (w_uart_tx_byte_done) begin
-//  			r4_uart_byte_index <= r4_uart_byte_index - 1; // always increment, no resets, overflow
-//  			if (r4_uart_byte_index == 4'b0000) begin // rd buffer sent
-//  				if (r7_ram_ctr == 'd127) begin // read finished
-//  					r4_uart_state <= 4'b1100;
-//  					r4_uart_byte_index <= 4'b0011;
-//  				end else begin // read not finished, read from next addr
-//  					r7_ram_ctr <= r7_ram_ctr + 1;
-//  					r4_uart_state <= 4'b1010;
-//  				end
-//  			end else begin // rd buffer not sent, setup next buffer byte
-//  				r4_uart_state <= 4'b1010;
-//  			end
-//  		end
-//  	end
-//  	'b1100: begin
-//  		r8_uart_tx_data <= r32_rd_seq_tmr[r4_uart_byte_index*8 +: 8];
-//  		r_uart_tx_send_en <= 1;
-//  		r4_uart_state <= 'b1101;	
-//  	end
-//  	'b1101: begin
-//  		r_uart_tx_send_en <= 0;
-		
-//  		if (w_uart_tx_byte_done) begin
-//  			r4_uart_byte_index <= r4_uart_byte_index - 1; // always increment, no resets, overflow
-//  			if (r4_uart_byte_index == 4'b0000) begin // rd buffer sent
-//  				r4_uart_state <= 'b0000;
-//  			end else begin // rd buffer not sent, setup next buffer byte
-//  				r4_uart_state <= 4'b1100;
-//  			end
-//  		end
-//  	end
-//  	default: ; // should not be reached
-//  	endcase
-		
-//  	if (r4_uart_state == 'b1000 || r4_uart_state == 'b1001) begin
-//  		r32_rd_seq_tmr <= r32_rd_seq_tmr + 1'b1;
-//  		if (w_phy_rddata_valid) begin
-//  			r7_rd_valid_ctr <= r7_rd_valid_ctr + 1'b1;
-//  			rn_ram[r7_rd_valid_ctr] <= w128_phy_rddata;
-//  			fbuf_dina_burst <= w128_phy_rddata;
-//  		end
-//  	end
-//  end //always
-//  /**/
-//  // END UART MACHINE
-
-//  reg	[4:0]	r5_dqs_delay_out;
-//  reg	[4:0]	r5_dq_delay_out;
-
-//  wire w_btnpress = (!btn0_prev && BTN[0]) || (!btn1_prev && BTN[1]) || (!btn2_prev && BTN[2]) || (!btn3_prev && BTN[3]);
 
 endmodule
