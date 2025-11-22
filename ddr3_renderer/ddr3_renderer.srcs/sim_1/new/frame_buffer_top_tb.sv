@@ -1,6 +1,6 @@
 `timescale 1ns/1ps
 
-module tb_frame_buffer();
+module frame_buffer_top_tb();
 
     // ------------------------------------------------------
     // Clock + Reset
