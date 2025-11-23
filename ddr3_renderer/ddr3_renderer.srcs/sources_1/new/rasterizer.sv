@@ -31,7 +31,8 @@ module rasterizer(
   input logic         vertex_valid,
   input logic [9:0]   x1, x2, y1, y2,
   input logic [11:0]  color,
-  
+  // interface with writeback controller
+  input logic         wb_ready,
   output logic        mem_valid,
   output logic [26:0] mem_addr,
   output logic [15:0] mem_data

@@ -38,7 +38,7 @@ module gpu_wb_controller(
 );
 
 typedef enum {
-  StIdle, StRead0, StRead1, StWriteback, StFlush
+  StIdle, StRead, StWriteback, StFlush
 } wb_controller_state_e;
 
 wb_controller_state_e wb_controller_state_d, wb_controller_state_q;
@@ -91,7 +91,7 @@ always_comb begin
 
   dout_burst_valid = 1'b0;
   dout_burst_128 = wb_buffer_q;
-  dout_wrdm = din_wrdm_q;
+  dout_wrdm = ~din_wrdm_q;
   dout_burst_addr = {din_tag_q, 3'b0}; // reconstruct to 27 bits
 
   ready = 1'b0;
@@ -100,7 +100,7 @@ always_comb begin
     StIdle: begin
       // this is only executed on resets & initially, when there is no previous tags/values to compare
       if (din_valid) begin
-        wb_controller_state_d = StRead1;
+        wb_controller_state_d = StRead;
         wb_buffer_d[curr_din_idx*16 +: 16] = din; // part select
         din_tag_d = curr_din_tag;
         din_wrdm_d[curr_din_idx] = 1'b1;
@@ -110,34 +110,27 @@ always_comb begin
 
       ready = 1'b1;
     end
-    StRead0: begin
-      // this is a duplicate state to avoid timing issues with din_valid, as well as provide a clock cycle for latches to update
+    StRead: begin
       if (din_valid) begin
-        wb_controller_state_d = StRead1;
-      end else begin
-        wb_controller_state_d = StRead0;
-      end
-    end
-    StRead1: begin
-      if (din_tag_q == din_tag_latched) begin
-        wb_buffer_d[din_idx_latched*16 +: 16] = din_latched;
-        din_wrdm_d[din_idx_latched] = 1'b1;
-        ready = 1'b1;
-        wb_controller_state_d = StRead0;
-      end else begin
-        wb_controller_state_d = StWriteback;
+        if (din_tag_q == curr_din_tag) begin
+          wb_buffer_d[curr_din_idx*16 +: 16] = din;
+          din_wrdm_d[curr_din_idx] = 1'b1;
+          ready = 1'b1;
+          wb_controller_state_d = StRead;
+        end else begin
+          wb_controller_state_d = StWriteback;
+        end
       end
     end
     StWriteback: begin
       if (mem_wrdy) begin
         dout_burst_valid = 1'b1;
-        din_wrdm_d = ~din_wrdm_d; // ddr3 expexts 0 to enable writes, and 1 to disable
         wb_controller_state_d = StFlush;
       end else
         wb_controller_state_d = StWriteback;
     end
     StFlush: begin
-      wb_controller_state_d = StRead0;
+      wb_controller_state_d = StRead;
 
       // when we get this point, there is still some latched value waiting to be written
       wb_buffer_d = {112'b0, din_latched} << (din_idx_latched*16); // shifts latched din into right place
