@@ -94,6 +94,7 @@ ddr3_arbiter ddr3_arbiter_inst (
 
   /* ### BEGIN DDR3 R/W Signals ### */
   .r128_wrdata(r128_wrdata),
+	.wrdm(8'b0), // always write 128-bits, for now...
   .app_addr(app_addr),
 
   .r_phy_cmd_en(r_phy_cmd_en),

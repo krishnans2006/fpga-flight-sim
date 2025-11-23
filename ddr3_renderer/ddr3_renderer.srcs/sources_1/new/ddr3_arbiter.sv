@@ -55,6 +55,7 @@ module ddr3_arbiter (
 
   // ### BEGIN DDR3 R/W Signals ###
   input logic	 [127:0]	r128_wrdata,
+	input logic	 [7:0]	 	wrdm,
   input logic  [26:0]   app_addr,
 
   input logic           r_phy_cmd_en,
@@ -179,7 +180,7 @@ ddr3_x16_phy_cust #(
 	.in_mem_row(w14_phy_row),//	input	[p_ROW_W-1:0]	in_phy_row,
 	.in_mem_col(w10_phy_col),//	input	[p_COL_W-1:0]	in_phy_col,
 	.in_mem_wrd(w128_phy_wrdata),//	input	[(8*p_DQ_W)-1:0]	in_phy_wrdata,	// eight words of write data for OSERDES (out of 8 for a total of BL8)
-	.i8_mem_wrdm(w8_phy_wrdm),//	input	[7:0]	i8_phy_wrdm,	// write data mask input, 1 bit per word in burst
+	.i8_mem_wrdm(wrdm),//	input	[7:0]	i8_phy_wrdm,	// write data mask input, 1 bit per word in burst
 	.on_mem_rddata(w128_phy_rddata),//	output	[(4*p_DQ_W)-1:0]	on_phy_rddata,	// four words of read data from ISERDES (out of 8 for a total of BL8)
 	.o_mem_rddata_valid(w_phy_rddata_valid),//output	o_phy_rddata_valid, // output data valid flag
 	//	output	o_phy_rddata_end,	// last burst of read data

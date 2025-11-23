@@ -2,8 +2,8 @@
 # Vivado v2022.2 (64-bit)
 # SW Build 3671981 on Fri Oct 14 05:00:03 MDT 2022
 # IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
-# Start of session at: Fri Nov 21 03:08:16 2025
-# Process ID: 11112
+# Start of session at: Sun Nov 23 15:36:15 2025
+# Process ID: 49464
 # Current directory: C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.runs/synth_1
 # Command line: vivado.exe -log ddr_renderer_top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source ddr_renderer_top.tcl
 # Log file: C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.runs/synth_1/ddr_renderer_top.vds
@@ -26,7 +26,7 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 47072
+INFO: [Synth 8-7075] Helper process launched with PID 12580
 INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [C:/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
 INFO: [Synth 8-11241] undeclared symbol 'w_phy_cmd_en', assumed default net type 'wire' [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/new/ddr3_arbiter.sv:173]
 INFO: [Synth 8-11241] undeclared symbol 'w_phy_cmd_sel', assumed default net type 'wire' [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/new/ddr3_arbiter.sv:174]
@@ -95,12 +95,12 @@ WARNING: [Synth 8-6901] identifier 'lp_CCD' is used before its declaration [C:/U
 WARNING: [Synth 8-6901] identifier 'lp_BL' is used before its declaration [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/imports/ddr3_controller/ddr3_x16_phy_params.vh:77]
 WARNING: [Synth 8-6901] identifier 'lp_BL' is used before its declaration [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/imports/ddr3_controller/ddr3_x16_phy_params.vh:78]
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 1822.074 ; gain = 407.539
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 1822.664 ; gain = 408.254
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'ddr_renderer_top' [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/new/ddr_renderer_top.sv:22]
 INFO: [Synth 8-6157] synthesizing module 'ddr3_arbiter' [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/new/ddr3_arbiter.sv:24]
-INFO: [Synth 8-6157] synthesizing module 'clk_wiz_1' [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.runs/synth_1/.Xil/Vivado-11112-Aniketh_x86-64/realtime/clk_wiz_1_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'clk_wiz_1' (0#1) [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.runs/synth_1/.Xil/Vivado-11112-Aniketh_x86-64/realtime/clk_wiz_1_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'clk_wiz_1' [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.runs/synth_1/.Xil/Vivado-49464-Aniketh_x86-64/realtime/clk_wiz_1_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'clk_wiz_1' (0#1) [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.runs/synth_1/.Xil/Vivado-49464-Aniketh_x86-64/realtime/clk_wiz_1_stub.v:5]
 WARNING: [Synth 8-7071] port 'clk_out1_ddr_n' of module 'clk_wiz_1' is unconnected for instance 'clkgen_ddr3ctrl_instance' [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/new/ddr3_arbiter.sv:78]
 WARNING: [Synth 8-7071] port 'clk_out4_div_n' of module 'clk_wiz_1' is unconnected for instance 'clkgen_ddr3ctrl_instance' [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/new/ddr3_arbiter.sv:78]
 WARNING: [Synth 8-7023] instance 'clkgen_ddr3ctrl_instance' of module 'clk_wiz_1' has 9 connections declared, but only 7 given [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/new/ddr3_arbiter.sv:78]
@@ -154,8 +154,8 @@ INFO: [Synth 8-6157] synthesizing module 'OBUFDS' [C:/Xilinx/Vivado/2022.2/scrip
 INFO: [Synth 8-6155] done synthesizing module 'OBUFDS' (0#1) [C:/Xilinx/Vivado/2022.2/scripts/rt/data/unisim_comp.v:90676]
 INFO: [Synth 8-6157] synthesizing module 'IDELAYCTRL' [C:/Xilinx/Vivado/2022.2/scripts/rt/data/unisim_comp.v:73432]
 INFO: [Synth 8-6155] done synthesizing module 'IDELAYCTRL' (0#1) [C:/Xilinx/Vivado/2022.2/scripts/rt/data/unisim_comp.v:73432]
-INFO: [Synth 8-6157] synthesizing module 'fifo_generator_0' [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.runs/synth_1/.Xil/Vivado-11112-Aniketh_x86-64/realtime/fifo_generator_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'fifo_generator_0' (0#1) [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.runs/synth_1/.Xil/Vivado-11112-Aniketh_x86-64/realtime/fifo_generator_0_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'fifo_generator_0' [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.runs/synth_1/.Xil/Vivado-49464-Aniketh_x86-64/realtime/fifo_generator_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'fifo_generator_0' (0#1) [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.runs/synth_1/.Xil/Vivado-49464-Aniketh_x86-64/realtime/fifo_generator_0_stub.v:5]
 INFO: [Synth 8-6155] done synthesizing module 'ddr3_x16_phy_cust' (0#1) [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/imports/ddr3_controller/ddr3_x16_phy_cust.v:9]
 INFO: [Synth 8-6157] synthesizing module 'ddr3_rdcal' [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/imports/ddr3_controller/ddr3_rdcal.v:7]
 	Parameter p_RDCAL_ROW bound to: 14 - type: integer 
@@ -165,17 +165,17 @@ WARNING: [Synth 8-689] width (1) of port connection 'o8_phy_wrdm' does not match
 INFO: [Synth 8-6155] done synthesizing module 'ddr3_arbiter' (0#1) [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/new/ddr3_arbiter.sv:24]
 INFO: [Synth 8-6157] synthesizing module 'BUFG' [C:/Xilinx/Vivado/2022.2/scripts/rt/data/unisim_comp.v:1082]
 INFO: [Synth 8-6155] done synthesizing module 'BUFG' (0#1) [C:/Xilinx/Vivado/2022.2/scripts/rt/data/unisim_comp.v:1082]
-INFO: [Synth 8-6157] synthesizing module 'clk_wiz_0' [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.runs/synth_1/.Xil/Vivado-11112-Aniketh_x86-64/realtime/clk_wiz_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'clk_wiz_0' (0#1) [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.runs/synth_1/.Xil/Vivado-11112-Aniketh_x86-64/realtime/clk_wiz_0_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'clk_wiz_0' [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.runs/synth_1/.Xil/Vivado-49464-Aniketh_x86-64/realtime/clk_wiz_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'clk_wiz_0' (0#1) [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.runs/synth_1/.Xil/Vivado-49464-Aniketh_x86-64/realtime/clk_wiz_0_stub.v:5]
 INFO: [Synth 8-6157] synthesizing module 'vga_controller' [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/imports/design_source/VGA_controller.sv:1]
 INFO: [Synth 8-6155] done synthesizing module 'vga_controller' (0#1) [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/imports/design_source/VGA_controller.sv:1]
 WARNING: [Synth 8-7071] port 'sync' of module 'vga_controller' is unconnected for instance 'vga' [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/new/ddr_renderer_top.sv:143]
 WARNING: [Synth 8-7023] instance 'vga' of module 'vga_controller' has 8 connections declared, but only 7 given [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/new/ddr_renderer_top.sv:143]
-INFO: [Synth 8-6157] synthesizing module 'hdmi_tx_0' [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.runs/synth_1/.Xil/Vivado-11112-Aniketh_x86-64/realtime/hdmi_tx_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'hdmi_tx_0' (0#1) [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.runs/synth_1/.Xil/Vivado-11112-Aniketh_x86-64/realtime/hdmi_tx_0_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'hdmi_tx_0' [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.runs/synth_1/.Xil/Vivado-49464-Aniketh_x86-64/realtime/hdmi_tx_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'hdmi_tx_0' (0#1) [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.runs/synth_1/.Xil/Vivado-49464-Aniketh_x86-64/realtime/hdmi_tx_0_stub.v:5]
 INFO: [Synth 8-6157] synthesizing module 'frame_buffer' [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/new/frame_buffer.sv:23]
-INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_0' [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.runs/synth_1/.Xil/Vivado-11112-Aniketh_x86-64/realtime/blk_mem_gen_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_0' (0#1) [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.runs/synth_1/.Xil/Vivado-11112-Aniketh_x86-64/realtime/blk_mem_gen_0_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_0' [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.runs/synth_1/.Xil/Vivado-49464-Aniketh_x86-64/realtime/blk_mem_gen_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_0' (0#1) [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.runs/synth_1/.Xil/Vivado-49464-Aniketh_x86-64/realtime/blk_mem_gen_0_stub.v:5]
 INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/new/frame_buffer.sv:84]
 INFO: [Synth 8-6155] done synthesizing module 'frame_buffer' (0#1) [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/new/frame_buffer.sv:23]
 INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/new/ddr_renderer_top.sv:250]
@@ -197,18 +197,18 @@ WARNING: [Synth 8-7129] Port BTN[2] in module ddr_renderer_top is either unconne
 WARNING: [Synth 8-7129] Port BTN[1] in module ddr_renderer_top is either unconnected or has no load
 WARNING: [Synth 8-7129] Port UART_TXD_IN in module ddr_renderer_top is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1929.844 ; gain = 515.309
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1928.961 ; gain = 514.551
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1929.844 ; gain = 515.309
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1928.961 ; gain = 514.551
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1929.844 ; gain = 515.309
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1928.961 ; gain = 514.551
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.022 . Memory (MB): peak = 1929.844 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.026 . Memory (MB): peak = 1928.961 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 53 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -232,28 +232,28 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/ddr_renderer_top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2006.199 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2016.090 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 19 instances were transformed.
   IOBUF => IOBUF (IBUF, OBUFT): 16 instances
   IOBUFDS => IOBUFDS (IBUFDS, INV, OBUFTDS(x2)): 2 instances
   OBUFDS => OBUFDS_DUAL_BUF (INV, OBUFDS(x2)): 1 instance 
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.014 . Memory (MB): peak = 2006.199 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.013 . Memory (MB): peak = 2016.090 ; gain = 0.000
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'ddr3_arbiter_inst/phy_instance/cmdfifo_inst' at clock pin 'clk' is different from the actual clock period '5.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'frame_buffer_inst/bram0' at clock pin 'clka' is different from the actual clock period '5.000', this can lead to different synthesis results.
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [C:/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2007.086 ; gain = 592.551
+Finished Constraint Validation : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2016.090 ; gain = 601.680
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7s50csga324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2007.086 ; gain = 592.551
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2016.090 ; gain = 601.680
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -282,7 +282,7 @@ Applied set_property KEEP_HIERARCHY = SOFT for clk_wiz. (constraint file  auto g
 Applied set_property KEEP_HIERARCHY = SOFT for vga_to_hdmi. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for frame_buffer_inst/bram0. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2007.086 ; gain = 592.551
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2016.090 ; gain = 601.680
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'r3_dqs_state_reg' in module 'ddr3_x16_phy_cust'
 INFO: [Synth 8-802] inferred FSM for state register 'r3_calib_state_reg' in module 'ddr3_rdcal'
@@ -343,7 +343,7 @@ INFO: [Synth 8-3354] encoded FSM with state register 'fbuf_wr_state_q_reg' using
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'ddr3_wr_state_q_reg' using encoding 'sequential' in module 'ddr_renderer_top'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 2007.086 ; gain = 592.551
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 2016.090 ; gain = 601.680
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -441,26 +441,26 @@ WARNING: [Synth 8-7129] Port UART_TXD_IN in module ddr_renderer_top is either un
 WARNING: [Synth 8-3332] Sequential element (ddr3_arbiter_inst/grant_reg[1]) is unused and will be removed from module ddr_renderer_top.
 WARNING: [Synth 8-3332] Sequential element (ddr3_arbiter_inst/grant_reg[0]) is unused and will be removed from module ddr_renderer_top.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 2007.086 ; gain = 592.551
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 2016.090 ; gain = 601.680
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-565] redefining clock 'DDR3_CLK100'
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 2007.086 ; gain = 592.551
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 2016.090 ; gain = 601.680
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 2007.086 ; gain = 592.551
+Finished Timing Optimization : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 2016.090 ; gain = 601.680
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 2007.086 ; gain = 592.551
+Finished Technology Mapping : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 2016.090 ; gain = 601.680
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -494,37 +494,37 @@ CRITICAL WARNING: [Synth 8-4442] BlackBox module \frame_buffer_inst/bram0  has u
 CRITICAL WARNING: [Synth 8-4442] BlackBox module \frame_buffer_inst/bram0  has unconnected pin dinb[1]
 CRITICAL WARNING: [Synth 8-4442] BlackBox module \frame_buffer_inst/bram0  has unconnected pin dinb[0]
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 2007.086 ; gain = 592.551
+Finished IO Insertion : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 2016.090 ; gain = 601.680
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 2007.086 ; gain = 592.551
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 2016.090 ; gain = 601.680
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 2007.086 ; gain = 592.551
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 2016.090 ; gain = 601.680
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 2007.086 ; gain = 592.551
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 2016.090 ; gain = 601.680
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 2007.086 ; gain = 592.551
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 2016.090 ; gain = 601.680
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 2007.086 ; gain = 592.551
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 2016.090 ; gain = 601.680
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -590,31 +590,31 @@ Report Cell Usage:
 |28    |OBUFT          |     4|
 +------+---------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 2007.086 ; gain = 592.551
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 2016.090 ; gain = 601.680
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 16 critical warnings and 17 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:16 ; elapsed = 00:00:21 . Memory (MB): peak = 2007.086 ; gain = 515.309
-Synthesis Optimization Complete : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 2007.086 ; gain = 592.551
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:16 ; elapsed = 00:00:21 . Memory (MB): peak = 2016.090 ; gain = 514.551
+Synthesis Optimization Complete : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 2016.090 ; gain = 601.680
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.015 . Memory (MB): peak = 2007.086 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.014 . Memory (MB): peak = 2016.090 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 87 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-140] Inserted 1 IBUFs to IO ports without IO buffers.
 INFO: [Opt 31-138] Pushed 3 inverter(s) to 32 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 2007.086 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 2016.090 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 19 instances were transformed.
   IOBUF => IOBUF (IBUF, OBUFT): 16 instances
   IOBUFDS => IOBUFDS (IBUFDS, INV, OBUFTDS(x2)): 2 instances
   OBUFDS => OBUFDS_DUAL_BUF (INV, OBUFDS(x2)): 1 instance 
 
-Synth Design complete, checksum: 3513e50b
+Synth Design complete, checksum: f3be8e05
 INFO: [Common 17-83] Releasing license: Synthesis
 102 Infos, 88 Warnings, 16 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 2007.086 ; gain = 971.457
+synth_design: Time (s): cpu = 00:00:25 ; elapsed = 00:00:27 . Memory (MB): peak = 2016.090 ; gain = 981.844
 INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
 INFO: [Common 17-1381] The checkpoint 'C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.runs/synth_1/ddr_renderer_top.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file ddr_renderer_top_utilization_synth.rpt -pb ddr_renderer_top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Fri Nov 21 03:08:49 2025...
+INFO: [Common 17-206] Exiting Vivado at Sun Nov 23 15:36:49 2025...
