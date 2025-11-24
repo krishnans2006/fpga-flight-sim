@@ -41,7 +41,7 @@ module rasterizer(
 localparam lp_HORIZ_PIXEL_WIDTH = 27'h0000280;
 
 typedef enum {
-  StIdle, StSetup, StDraw, StDraw2, StDone
+  StIdle, StSetup, StDraw, StDone
 } rasterizer_state_e;
 
 rasterizer_state_e rasterizer_state_d, rasterizer_state_q;
@@ -54,7 +54,7 @@ logic [26:0] start_addr, curr_addr_d, curr_addr_q;
 /* 640 * curr_y = (512 * curr_y) + (128 * curr_y) = curr_y << 9 + curr_y << 7
    doing this to avoid inferring a DSP unit ~ we want to preserve as many as possible
 */
-assign start_addr = ({17'b0, start_y} << 9 + {17'b0, start_y} << 7) + start_x;
+assign start_addr = (({17'b0, start_y} << 9) + ({17'b0, start_y} << 7)) + start_x;
 
 // register states
 always_ff @(posedge clk) begin
@@ -77,9 +77,6 @@ always_ff @(posedge clk) begin
       end_x     <= x2;
       start_y   <= y1;
       end_y     <= y2;
-
-      curr_x_q  <= x1;
-      curr_y_q  <= y1;
     end
   end
 end
@@ -107,30 +104,32 @@ always_comb begin
     // redundant state to allow for registers to settle, also allows us to toggle mem_valid
       rasterizer_state_d = StDraw;
       curr_addr_d = start_addr;
+
+      curr_x_d = start_x;
+      curr_y_d = start_y;
     end
     StDraw: begin
-      mem_valid = 1'b1;
       mem_data = {4'b0, color};
       mem_addr = curr_addr_q;
-
+      mem_valid = 1'b1;
     // this needs to be updated with more boundary conditions when we implement triangle-rasterization (necessary for more complex shapes)
-      if (curr_x_q == end_x) begin
-        if (curr_y_q == end_y) begin
-          rasterizer_state_d = StDone;
+      if (wb_ready) begin
+        if (curr_x_q == end_x) begin
+          if (curr_y_q == end_y) begin
+            rasterizer_state_d = StDone;
+          end else begin
+            curr_x_d = start_x;
+            curr_y_d = curr_y_d + 1;
+            curr_addr_d = curr_addr_d + lp_HORIZ_PIXEL_WIDTH - (end_x - start_x);
+            rasterizer_state_d = StDraw;
+          end
         end else begin
-          curr_x_d = start_x;
-          curr_y_d = curr_y_d + 1;
-          curr_addr_d = curr_addr_d + lp_HORIZ_PIXEL_WIDTH - (start_x - end_x);
-          rasterizer_state_d = StDraw2;
+          curr_x_d = curr_x_d + 1;
+          curr_addr_d = curr_addr_d + 1;
+          rasterizer_state_d = StDraw;
         end
-      end else begin
-        curr_x_d = curr_x_d + 1;
-        curr_addr_d = curr_addr_d + 1;
-        rasterizer_state_d = StDraw2;
-      end
-    end
-    StDraw2: begin
-      rasterizer_state_d = StDraw;
+      end else
+        rasterizer_state_d = StDraw;
     end
     StDone: begin
       rasterizer_state_d = StIdle;

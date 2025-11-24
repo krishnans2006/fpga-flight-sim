@@ -138,6 +138,8 @@ always_comb begin
       din_tag_d = din_tag_latched;
       ready = 1'b1;
     end
+    // catch parasitic states
+    default: wb_controller_state_d = StIdle;
   endcase
 end
 
