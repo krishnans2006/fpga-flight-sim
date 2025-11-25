@@ -30,7 +30,7 @@ module rasterizer(
   // currently we're working with a "box" rasterizer ~ this will be updated to do triangles
   input logic         vertex_valid,
   input logic [9:0]   x1, x2, y1, y2,
-  input logic [11:0]  color,
+  input logic [15:0]  color,
   // interface with writeback controller
   input logic         wb_ready,
   output logic        mem_valid,
@@ -71,7 +71,7 @@ always_ff @(posedge clk) begin
       curr_y_q <= curr_y_d;
     end
 
-    // latch values
+    // latch values on rising edge of vertex_valid
     if (vertex_valid) begin
       start_x   <= x1;
       end_x     <= x2;
@@ -109,11 +109,12 @@ always_comb begin
       curr_y_d = start_y;
     end
     StDraw: begin
-      mem_data = {4'b0, color};
+      mem_data = color;
       mem_addr = curr_addr_q;
       mem_valid = 1'b1;
     // this needs to be updated with more boundary conditions when we implement triangle-rasterization (necessary for more complex shapes)
       if (wb_ready) begin
+
         if (curr_x_q == end_x) begin
           if (curr_y_q == end_y) begin
             rasterizer_state_d = StDone;

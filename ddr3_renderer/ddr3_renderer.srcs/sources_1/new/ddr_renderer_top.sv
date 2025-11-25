@@ -94,7 +94,7 @@ ddr3_arbiter ddr3_arbiter_inst (
 
   /* ### BEGIN DDR3 R/W Signals ### */
   .r128_wrdata(r128_wrdata),
-	.wrdm(8'b0), // always write 128-bits, for now...
+	.wrdm(gpu_wrdm), // as per controller documentation, wrdm is effectively high-Z during read ops
   .app_addr(app_addr),
 
   .r_phy_cmd_en(r_phy_cmd_en),
@@ -355,8 +355,10 @@ typedef enum {
 } ddr3_wr_state_e;
 
 ddr3_wr_state_e ddr3_wr_state_d, ddr3_wr_state_q;
+logic 				ddr3_mem_wrdy, gpu_burst_valid;
 logic [127:0] ddr3_wr_data;
 logic [26:0]  wr_addr;
+logic [7:0] 	gpu_wrdm;
 logic [7:0] 	vga_vsync_counter;
 logic				 	wr_cmd_en, wr_cmd_sel;
 
@@ -364,99 +366,143 @@ logic				 	wr_cmd_en, wr_cmd_sel;
 logic [6:0] wr_counter_d, wr_counter_q;
 logic old_vga_vsync;
 
+// instantiate GPU pipeline
+graphics_top graphics_inst (
+  .clk(w_uart_clk),
+  .rst(reset_ah),
 
-// register states
-always_ff @(posedge w_uart_clk) begin
-	if (reset_ah) begin
-		ddr3_wr_state_q <= StIdleWr;
-		wr_counter_q <= 7'b0;
-		old_vga_vsync <= 1'b0;
-		vga_vsync_counter <= 8'b0;
-	end else begin
-		old_vga_vsync <= vsync;
-		ddr3_wr_state_q <= ddr3_wr_state_d;
-		wr_counter_q <= wr_counter_d;
+  // DDR3 connections
+  .mem_wrdy(ddr3_mem_wrdy),
+  .burst_valid(gpu_burst_valid),
+  .burst_mem_addr(wr_addr),
+  .burst_mem_wrdm(gpu_wrdm),
+  .burst_mem_128(ddr3_wr_data),
+  
+  // this is for cool graphics :)
+  .vsync_cntr(vga_vsync_counter)
+);
 
-		if (~vsync && old_vga_vsync) begin
-			vga_vsync_counter <= vga_vsync_counter + 1;
-		end 
-	end
-end
+//// write enable logic ~ only write when we are in active mode & ddr3 controller FIFO is able to recieve new commands
+//assign ddr3_mem_wrdy = vde && !w_phy_cmd_full;
 
-// combinational decode of write statres
-always_comb begin
-	wr_cmd_en = 1'b0;
-	wr_cmd_sel = 1'b0;
+//logic wr_success;
+//assign wr_success = ddr3_mem_wrdy && gpu_burst_valid;
 
-	ddr3_wr_state_d = ddr3_wr_state_q;
-	wr_addr = staging_buffer_addr + 27'h0028000 + {17'b0, wr_counter_q, 3'b0}; // write to addr 0 for now
-	ddr3_wr_data = {8{{vga_vsync_counter, wr_counter_q[3:0], 4'b0}}}; // test data thgat looks cool
-	wr_counter_d = wr_counter_q;
+///* BEGIN Arbitration Logic */
+//always_comb begin
+//	// infer a priority encoder here
+//	if (!vde) begin
+//		app_addr = rd_addr;
+//		r_phy_cmd_en = rd_cmd_en;
+//		r_phy_cmd_sel = rd_cmd_sel;
+//		r128_wrdata = 'b0;
+//	end else begin
+//	    r_phy_cmd_en = 1'b0;
+////		if (wr_success) begin
+////			app_addr = staging_buffer_addr + wr_addr;
+////			r_phy_cmd_en = 1'b1;
+////			r_phy_cmd_sel = 1'b0;
+////			r128_wrdata = ddr3_wr_data;
+////		end
+//	end
+//end
 
 
-	unique case (ddr3_wr_state_q)
-		StIdleWr: begin
-			/* NOTE: when GPU implementation is finished, this state should transition only after some handshaking process */
-			wr_counter_d = 7'b0;
 
-      // begin write on falling edge of vsync
-			if (~vsync && old_vga_vsync) begin
-				ddr3_wr_state_d = StIdleWr1;
-			end else begin
-				ddr3_wr_state_d = StIdleWr;
-			end
-		end
-		StIdleWr1: begin
-			// transition state just to allow buffer pointers to stabilize
-			ddr3_wr_state_d = StReqDDR3Wr;
-		end
-		StReqDDR3Wr: begin
-			wr_cmd_en = 1'b1;
-			wr_cmd_sel = 1'b0;
+ // register states
+ always_ff @(posedge w_uart_clk) begin
+ 	if (reset_ah) begin
+ 		ddr3_wr_state_q <= StIdleWr;
+ 		// wr_counter_q <= 7'b0;
+ 		old_vga_vsync <= 1'b0;
+ 		vga_vsync_counter <= 8'b0;
+ 	end else begin
+ 		old_vga_vsync <= vsync;
+ 		ddr3_wr_state_q <= ddr3_wr_state_d;
+ 		// wr_counter_q <= wr_counter_d;
 
-			if (!w_phy_cmd_full) begin
-				ddr3_wr_state_d = StPollDDR3Wr;
-			end else begin
-				ddr3_wr_state_d = StReqDDR3Wr;
-			end
-		end
-		StPollDDR3Wr: begin
-			wr_counter_d = wr_counter_d + 1;
-			ddr3_wr_state_d = StDoneWr;
-		end
-		StDoneWr: begin
-			if (wr_counter_q == 7'b1001111) begin
-				ddr3_wr_state_d = StIdleWr;
-			end else begin
-				ddr3_wr_state_d = StReqDDR3Wr;
-			end
-		end
-	// catch parasitic states
-		default: ddr3_wr_state_d = StIdleWr;
-	endcase
-end
-
-// arbitration logic
-
-// TEMP
-logic btn_active;
-assign btn_active = (ddr3_wr_state_q != StIdleWr);
-assign RGBLED1[1] = btn_active;
-
-always_comb begin
-	// priority encoder
-	if (btn_active) begin
-		app_addr = wr_addr;
-		r_phy_cmd_en = wr_cmd_en;
-		r_phy_cmd_sel = wr_cmd_sel;
-		r128_wrdata = ddr3_wr_data;
-	end else begin
-		app_addr = rd_addr;
-		r_phy_cmd_en = rd_cmd_en;
-		r_phy_cmd_sel = rd_cmd_sel;
-		r128_wrdata = 'b0;
+ 		if (~vsync && old_vga_vsync) begin
+ 			vga_vsync_counter <= vga_vsync_counter + 1;
+ 		end 
  	end
-end
+ end
+
+ // combinational decode of write states
+ // "Why use a FSM for this?" - idk this works consistently for me
+ always_comb begin
+ 	wr_cmd_en = 1'b0;
+ 	wr_cmd_sel = 1'b0;
+
+ 	ddr3_wr_state_d = ddr3_wr_state_q;
+ 	// wr_addr = staging_buffer_addr + 27'h0028000 + {17'b0, wr_counter_q, 3'b0}; // write to addr 0 for now
+ 	// ddr3_wr_data = {8{{vga_vsync_counter, wr_counter_q[3:0], 4'b0}}}; // test data thgat looks cool
+ 	// wr_counter_d = wr_counter_q;
+
+
+ 	unique case (ddr3_wr_state_q)
+ 		StIdleWr: begin
+ 			/* NOTE: when GPU implementation is finished, this state should transition only after some handshaking process */
+ 			// wr_counter_d = 7'b0;
+
+       // begin write on falling edge of vsync
+ 			if (gpu_burst_valid) begin
+ 				ddr3_wr_state_d = StReqDDR3Wr;
+ 			end else begin
+ 				ddr3_wr_state_d = StIdleWr;
+ 			end
+ 		end
+ 		// StIdleWr1: begin
+ 		// 	// transition state just to allow buffer pointers to stabilize
+ 		// 	ddr3_wr_state_d = StReqDDR3Wr;
+ 		// end
+ 		StReqDDR3Wr: begin
+ 			wr_cmd_en = 1'b1;
+ 			wr_cmd_sel = 1'b0;
+
+ 			if (!w_phy_cmd_full) begin
+ 				ddr3_wr_state_d = StIdleWr;
+ 			end else begin
+ 				ddr3_wr_state_d = StReqDDR3Wr;
+ 			end
+ 		end
+// 		StPollDDR3Wr: begin
+// 			wr_counter_d = wr_counter_d + 1;
+// 			ddr3_wr_state_d = StDoneWr;
+// 		end
+// 		StDoneWr: begin
+// 			if (wr_counter_q == 7'b1001111) begin
+// 				ddr3_wr_state_d = StIdleWr;
+// 			end else begin
+// 				ddr3_wr_state_d = StReqDDR3Wr;
+// 			end
+// 		end
+ 	// catch parasitic states
+ 		default: ddr3_wr_state_d = StIdleWr;
+ 	endcase
+ end
+
+ // arbitration logic
+
+ // TEMP
+ logic fbuf_active;
+ assign fbuf_active = (fbuf_wr_state_q != StIdle);
+
+ always_comb begin
+ 	// priority encoder
+ 	if (fbuf_active) begin
+ 	    ddr3_mem_wrdy = 1'b0;
+ 		app_addr = rd_addr;
+ 		r_phy_cmd_en = rd_cmd_en;
+ 		r_phy_cmd_sel = rd_cmd_sel;
+ 		r128_wrdata = 'b0;
+ 	end else begin
+ 	    ddr3_mem_wrdy = 1'b1;
+ 		app_addr = staging_buffer_addr + wr_addr;
+ 		r_phy_cmd_en = wr_cmd_en;
+ 		r_phy_cmd_sel = wr_cmd_sel;
+ 		r128_wrdata = ddr3_wr_data;
+  	end
+ end
 
 /* ### END DDR3 Write Logic ### */
 

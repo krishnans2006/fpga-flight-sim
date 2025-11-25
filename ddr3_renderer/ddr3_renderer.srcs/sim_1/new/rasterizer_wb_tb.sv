@@ -166,8 +166,8 @@ module rasterizer_wb_tb;
         
         @(posedge clk);
         vertex_valid = 1'b1; // Send vertex command
-        @(posedge clk);
-        vertex_valid = 1'b0;
+//        @(posedge clk);
+//        vertex_valid = 1'b0;
         
         // Rasterize 8 pixels (Fill Burst 0: Addr 0-7, Tag 0)
         repeat (8) @(posedge clk); 

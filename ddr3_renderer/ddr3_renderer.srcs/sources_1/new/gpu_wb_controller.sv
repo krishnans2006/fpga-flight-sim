@@ -17,6 +17,10 @@
 // Revision 0.01 - File Created
 // Additional Comments:
 // This module coalesces 8 consecutive memory writes into a 128-bit chunk, which can more efficiently be written into DDR3.
+// Potential improvements:
+// ~ instead of mem_ready handshaking, we can have something like
+// WB Controller <-> FIFO <-> DDR3 Renderer (Top)
+// this approach has no backpressure logic, except when FIFO is full -> higher throughput
 //////////////////////////////////////////////////////////////////////////////////
 
 
@@ -133,7 +137,7 @@ always_comb begin
       wb_controller_state_d = StRead;
 
       // when we get this point, there is still some latched value waiting to be written
-      wb_buffer_d = {112'b0, din_latched} << (din_idx_latched*16); // shifts latched din into right place
+      wb_buffer_d = (128'b0 | din_latched) << (din_idx_latched*16); // shifts latched din into right place
       din_wrdm_d = 8'b00000001 << (din_idx_latched);
       din_tag_d = din_tag_latched;
       ready = 1'b1;
