@@ -496,7 +496,7 @@ graphics_top graphics_inst (
  		r_phy_cmd_sel = rd_cmd_sel;
  		r128_wrdata = 'b0;
  	end else begin
- 	    ddr3_mem_wrdy = 1'b1;
+ 	  ddr3_mem_wrdy = 1'b1;
  		app_addr = staging_buffer_addr + wr_addr;
  		r_phy_cmd_en = wr_cmd_en;
  		r_phy_cmd_sel = wr_cmd_sel;
