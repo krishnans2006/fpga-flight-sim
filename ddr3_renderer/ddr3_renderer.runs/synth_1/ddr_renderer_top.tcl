@@ -72,6 +72,7 @@ proc create_report { reportName command } {
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param chipscope.maxJobs 4
 set_param xicom.use_bs_reader 1
+set_msg_config -id {Common 17-41} -limit 10000000
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7s50csga324-1
 
@@ -93,6 +94,7 @@ OPTRACE "Adding files" START { }
 read_verilog C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/imports/ddr3_controller/ddr3_x16_phy_params.vh
 read_verilog -library xil_defaultlib -sv {
   C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/imports/design_source/VGA_controller.sv
+  C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/new/barycentric_calc.sv
   C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/new/ddr3_arbiter.sv
   C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/new/frame_buffer.sv
   C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/new/gpu_wb_controller.sv

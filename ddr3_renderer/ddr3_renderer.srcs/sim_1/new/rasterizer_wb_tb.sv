@@ -21,188 +21,149 @@
 
 
 module rasterizer_wb_tb;
-// Parameters for Test Case 1: 2x4 box (8 pixels, two burst)
-    localparam X1_T1 = 10;
-    localparam X2_T1 = 13; // 10, 11, 12, 13 (4 pixels wide)
-    localparam Y1_T1 = 0;
-    localparam Y2_T1 = 1;  // 0, 1 (2 pixels high)
-    localparam COLOR_T1 = 12'hF00; // Red Color
+  // Clock and Reset Signals
+  localparam real Q24_SCALE = 16777216.0; // 2^24
+  logic clk = 1'b0;
+  logic rst = 1'b1;
+  logic stall = 1'b0;
+  
+  // -- Test Parameters for Small Triangle (Green Color) --
+  // Coordinates (10, 10), (13, 13), (10, 13)
+  logic [9:0] x0=10'd10, y0=10'd10, x1=10'd15, y1=10'd15, x2=10'd10, y2=10'd15;
+  // Inverse Area for Area = 4.5 (32'h0038E37E)
+  logic [31:0] inv_area = calc_inv_area(x0, y0, x1, y1, x2, y2); 
+  logic [15:0] color = 16'h07E0; // Green 
 
-    // Parameters for Test Case 2: 2x5 box (10 pixels, forces mismatch/flush)
-    localparam X1_T2 = 0;
-    localparam X2_T2 = 4; // 0, 1, 2, 3, 4 (5 pixels wide)
-    localparam Y1_T2 = 2;
-    localparam Y2_T2 = 3; // 2, 3 (2 pixels high)
-    localparam COLOR_T2 = 12'h00F; // Blue Color
+  logic vertex_valid = 1'b0;
+  logic rasterizer_done;
 
-    // Global Signals
-    logic clk = 1'b0;
-    logic rst = 1'b1;
-    logic stall = 1'b0;
+  // Wires connecting Rasterizer Outputs to WB Controller Inputs
+  logic mem_valid;
+  logic [26:0] mem_addr;
+  logic [15:0] mem_data;
+  
+  // Wires connecting WB Controller Outputs to Rasterizer Inputs
+  logic wb_ready;
+  
+  // Mock DDR3 Arbiter Interface
+  logic mem_wrdy;
+  logic [26:0] dout_burst_addr;
+  logic [7:0] dout_wrdm;
+  logic [127:0] dout_burst_128;
+  logic dout_burst_valid;
 
-    // Rasterizer Inputs
-    logic vertex_valid = 1'b0;
-    logic [9:0] x1, x2, y1, y2;
-    logic [11:0] color;
-    logic [26:0] start_addr;
-    assign start_addr = dut_r.start_addr;
+  // Clock Generation
+  always #5 clk = ~clk; // 10ns period, 100MHz
 
-    // Interface Wires
-    logic wb_ready;
-    logic mem_valid;
-    logic [26:0] mem_addr;
-    logic [15:0] mem_data;
-    logic rasterizer_done;
+  // 1. Instantiate the Writeback Controller (Top-level)
+  gpu_wb_controller wb_controller_inst (
+    .clk(clk),
+    .stall(stall),
+    .rst(rst),
+    // Rasterizer Connection
+    .din(mem_data),
+    .din_addr(mem_addr),
+    .din_valid(mem_valid),
+    .ready(wb_ready), // Backpressure signal to rasterizer
+    // DDR3 Arbiter Connection (Mocked)
+    .mem_wrdy(mem_wrdy),
+    .dout_burst_addr(dout_burst_addr),
+    .dout_wrdm(dout_wrdm),
+    .dout_burst_128(dout_burst_128),
+    .dout_burst_valid(dout_burst_valid)
+  );
 
-    // WB Controller Outputs
-    logic mem_wrdy = 1'b0; // Mock DDR3 ready signal
-    logic [26:0] dout_burst_addr;
-    logic [7:0] dout_wrdm = 8'b0;
-    logic [127:0] dout_burst_128 = 128'b0;
-    logic dout_burst_valid;
-
-    // Instantiate Modules
-    rasterizer dut_r (
-        .clk(clk),
-        .rst(rst),
-        .stall(stall),
-        .vertex_valid(vertex_valid),
-        .rasterizer_done(rasterizer_done),
-        .x1(x1), .x2(x2), .y1(y1), .y2(y2),
-        .color(color),
-        .wb_ready(wb_ready),
-        .mem_valid(mem_valid),
-        .mem_addr(mem_addr),
-        .mem_data(mem_data)
-    );
-
-    gpu_wb_controller dut_wb (
-        .clk(clk),
-        .rst(rst),
-        .stall(stall),
-        .din(mem_data),
-        .din_addr(mem_addr),
-        .din_valid(mem_valid),
-        .ready(wb_ready),
-        .mem_wrdy(mem_wrdy),
-        .dout_burst_addr(dout_burst_addr),
-        .dout_wrdm(dout_wrdm),
-        .dout_burst_128(dout_burst_128),
-        .dout_burst_valid(dout_burst_valid)
-    );
-
-    // -------------------------------------------------------------
-    // Clock Generator
-    // -------------------------------------------------------------
-    always #5 clk = ~clk; // 10ns period (100 MHz)
-
-    // -------------------------------------------------------------
-    // Test Sequence
-    // -------------------------------------------------------------
-    initial begin
-        // Initial Reset
-        rst = 1'b1;
-        repeat (2) @(posedge clk);
-        rst = 1'b0;
-        repeat (20) @(posedge clk);
-        $display("-------------------------------------------");
-        $display("Initial Reset Complete. Start Test Case 1.");
-        $display("-------------------------------------------");
-
-        // --- Test Case 1: Fill a single burst (2x4 box, 8 pixels) ---
-        x1 = X1_T1; x2 = X2_T1; y1 = Y1_T1; y2 = Y2_T1; color = COLOR_T1;
+  // 2. Instantiate the Rasterizer
+  rasterizer rasterizer_inst (
+    .clk(clk),
+    .rst(rst),
+    .stall(stall),
+    .vertex_valid(vertex_valid),
+    .rasterizer_done(rasterizer_done),
+    // Triangle Vertices
+    .x0(x0), .y0(y0),
+    .x1(x1), .y1(y1),
+    .x2(x2), .y2(y2),
+    .inv_area(inv_area),
+    .color(color),
+    // Writeback Interface
+    .wb_ready(wb_ready), // Connected to controller ready
+    .mem_valid(mem_valid),
+    .mem_addr(mem_addr),
+    .mem_data(mem_data)
+  );
+  function logic [31:0] calc_inv_area(int x0, int y0, int x1, int y1, int x2, int y2);
+        real area;
+        // Area calc based on edge functions (standard 2D cross product)
+        // Area = (x1 - x2) * (y0 - y2) - (y1 - y2) * (x0 - x2)
+        // Note: The DUT calculates unnormalized weights. The sum of weights = Area.
+        // The specific winding formula adapted from Alchitry/standard rasterizers:
+        area = (y1 - y2) * (x0 - x2) + (x2 - x1) * (y0 - y2);
         
-        @(posedge clk);
-        vertex_valid = 1'b1; // Send vertex command
-        @(posedge clk);
-        vertex_valid = 1'b0;
+        // If area is 0, return 0 to avoid div by zero (degenerate triangle)
+        if (area == 0) return 0;
+        
+        // Return 1.0 / Area in Q8.24 format
+        return $rtoi((1.0 / area) * Q24_SCALE);
+  endfunction
+  // 3. Mock DDR3 Arbiter (Simulates a slow memory)
+  // mem_wrdy will be high for 1 cycle every 5 cycles
+  localparam MEM_WRDY_PERIOD = 5;
+  logic [3:0] wrdy_ctr = 4'd0;
+  
+  always @(posedge clk) begin
+      if (rst) begin
+          wrdy_ctr <= 4'd0;
+          mem_wrdy <= 1'b0;
+      end else if (!stall) begin
+          wrdy_ctr <= wrdy_ctr + 1;
+          if (wrdy_ctr == MEM_WRDY_PERIOD - 1) begin
+              mem_wrdy <= 1'b1;
+              wrdy_ctr <= 4'd0;
+          end else begin
+              mem_wrdy <= 1'b0;
+          end
+      end
+  end
 
-        // The rasterizer starts drawing. WB controller should stay in StRead, wb_ready=1.
-        repeat (8) @(posedge clk); 
-        
-        $display("T=%0t: Rasterizer finished 8 writes.", $time);
-        $display("T=%0t: WB Controller should be full (Tag 0).", $time);
-        
-        // Check: WB Controller should be in StRead, mask should be 8'hC3
-        if (dut_wb.wb_controller_state_q != dut_wb.StRead || dut_wb.din_wrdm_q != 8'hC3) begin
-            $error("Test 1 Failed: WB state or mask incorrect after 8 writes.");
-        end
+  // 4. Test Scenario
+  initial begin
+    // Initial reset
+    @(posedge clk) rst = 1'b1;
+    @(posedge clk) rst = 1'b0;
 
-        // --- Test Case 1 Continued: Simulate successful flush ---
-        $display("T=%0t: Simulating mem_wrdy=1 to flush the burst.", $time);
-        mem_wrdy = 1'b1;
-        @(posedge clk); 
-        
-        // Check: Flush should happen on this cycle (dout_burst_valid=1)
-        if (dout_burst_valid != 1'b1) begin
-            $error("Test 1 Failed: dout_burst_valid not asserted during flush.");
-        end
-        
-        // Assert burst data is correct (8 words of the color)
-        // 16'hF00 -> 16'h0F00
-        if (dut_wb.dout_burst_128 != {16'h0000, 16'h0000, 16'h0F00, 16'h0F00, 
-                                      16'h0F00, 16'h0F00, 16'h0000, 16'h0000}) begin
-            $error("Test 1 Failed: Burst data incorrect.");
-        end
-        
-        mem_wrdy = 1'b0;
-        @(posedge clk); 
+    $display("--- Starting Rasterizer Test ---");
+    // Assert vertex_valid to start the rasterizer
+    @(posedge clk) vertex_valid = 1'b1;
+    
+    // Hold vertex_valid high for one cycle (StIdle -> StSetup)
+    //@(posedge clk) vertex_valid = 1'b0; 
+    
+    // Wait until rasterization is complete
+    wait(rasterizer_done) @(posedge clk);
 
-        // Check: WB Controller should be back to StRead (or StIdle if done)
-        if (dut_wb.wb_controller_state_q != dut_wb.StRead) begin
-            $error("Test 1 Failed: WB state not StRead after flush.");
-        end
+    $display("--- Rasterization Complete ---");
+    $display("Total simulation time: %0t ns", $time);
+    
+    // Final check for a clean state
+    repeat (100) @(posedge clk);
+    
+    $finish;
+  end
+  
+  // Monitor key activity
+  always @(posedge clk) begin
+      if (mem_valid) begin
+          $display("[%0t] Rasterizer sending data: Addr=0x%h, Data=0x%h. WB Ready: %b", 
+                   $time, mem_addr, mem_data, wb_ready);
+      end
+      if (dout_burst_valid) begin
+          $display("[%0t] WB Controller writing burst: Addr=0x%h, Data=0x%h. WRDM=0x%h", 
+                   $time, dout_burst_addr, dout_burst_128, dout_wrdm);
+      end
+      if (rasterizer_done) begin
+          $display("[%0t] Rasterizer FSM reached StDone.", $time);
+      end
+  end
 
-        // Wait for rasterizer to finish StDone transition
-        repeat (20) @(posedge clk); 
-        
-        $display("-------------------------------------------");
-        $display("Test Case 1 Complete. Start Test Case 2.");
-        $display("-------------------------------------------");
-
-        // --- Test Case 2: Flush on Mismatch (2x5 box, 10 pixels total) ---
-        // This will attempt to write index 8 (Tag 1, Index 0) which forces a flush of Tag 0.
-        x1 = X1_T2; x2 = X2_T2; y1 = Y1_T2; y2 = Y2_T2; color = COLOR_T2;
-        
-        @(posedge clk);
-        vertex_valid = 1'b1; // Send vertex command
-//        @(posedge clk);
-//        vertex_valid = 1'b0;
-        
-        // Rasterize 8 pixels (Fill Burst 0: Addr 0-7, Tag 0)
-        repeat (8) @(posedge clk); 
-        
-        // Pixel 9 (Addr 8, Tag 1, Index 0) arrives on the next cycle
-        @(posedge clk); 
-
-        // Check 1: WB Controller should detect mismatch and transition to StWriteback
-        if (dut_wb.wb_controller_state_q != dut_wb.StWriteback || dut_wb.wb_buffer_q[15:0] == 16'h000F) begin
-            $error("Test 2 Failed: WB did not transition to StWriteback on Tag mismatch.");
-        end
-        
-        // Check 2: wb_ready should be low to pause the rasterizer
-        if (wb_ready != 1'b0) begin
-             $error("Test 2 Failed: wb_ready not low during flush preparation.");
-        end
-
-        // --- Test Case 2 Continued: Allow Flush ---
-        $display("T=%0t: Mismatch detected. Simulating mem_wrdy=1 to flush Tag 0.", $time);
-        mem_wrdy = 1'b1;
-        @(posedge clk);
-        
-        // Check 3: Flush must have happened (valid=1) and the latched data (pixel 9) must be in the buffer
-        if (dut_wb.dout_burst_valid != 1'b1 || dut_wb.wb_controller_state_q != dut_wb.StRead) begin
-            $error("Test 2 Failed: Flush did not occur or state transition failed.");
-        end
-        
-        // Check 4: Buffer now holds the single pending pixel (Tag 1, Index 0)
-        if (dut_wb.wb_buffer_q[15:0] != 16'h000F || dut_wb.din_wrdm_q != 8'h01) begin
-             $error("Test 2 Failed: Flush did not correctly load pending pixel (Tag 1).");
-        end
-        
-        repeat (50) @(posedge clk);
-
-        $display("T=%0t: Test Cases Complete.", $time);
-        $finish;
-    end
 endmodule

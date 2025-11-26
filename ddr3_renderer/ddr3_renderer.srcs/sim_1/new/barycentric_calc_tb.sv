@@ -115,29 +115,29 @@ module barycentric_calc_tb;
 
     // =========================================================
     // Test Case 1: Standard Right Triangle
-    // (10,10) -> (110, 10) -> (10, 110)
+    // (10,50) -> (10, 55) -> (15, 50)
     // =========================================================
     $display("Test Case 1: Right Angle Triangle");
     
     // 1. Setup Triangle
-    t0_x = 10; t0_y = 10;
-    t1_x = 110; t1_y = 10;
-    t2_x = 10; t2_y = 110;
+    t0_x = 10; t0_y = 50;
+    t1_x = 10; t1_y = 55;
+    t2_x = 15; t2_y = 50;
     
     // 2. Calculate Inverse Area and drive it
     inv_area = calc_inv_area(t0_x, t0_y, t1_x, t1_y, t2_x, t2_y);
     
     // 3. Drive a point strictly INSIDE the triangle (Example: 30, 30)
     // Expected: Equal pull from t0, and some from others.
-    drive_pixel(30, 30, "Inside Point");
+    drive_pixel(11, 51, "Inside Point");
 
     // 4. Drive a point ON VERTEX t0 (10, 10)
     // Expected: Alpha or Beta or Gamma should be approx 1.0 (depending on vertex assignment)
-    drive_pixel(10, 10, "Vertex T0");
+    drive_pixel(10, 50, "Vertex T0");
 
     // 5. Drive a point OUTSIDE the triangle (150, 150)
     // Expected: within_tri = 0.
-    drive_pixel(150, 150, "Outside Point");
+    drive_pixel(11, 54, "Outside Point");
 
     // =========================================================
     // Test Case 2: Pipelining Stress Test
@@ -147,9 +147,9 @@ module barycentric_calc_tb;
     
     // Feed inputs
     @(posedge clk);
-    point_x = 30; point_y = 30; // Inside
+    point_x = 12; point_y = 51; // Inside
     @(posedge clk);
-    point_x = 10; point_y = 10; // Vertex
+    point_x = 13; point_y = 50; // Vertex
     @(posedge clk);
     point_x = 200; point_y = 200; // Outside
     

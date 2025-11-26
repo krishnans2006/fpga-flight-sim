@@ -46,20 +46,8 @@ module graphics_top(
 /* DEFINE AXI Behavior ~ it should be similar to lab 7.1/7.2 where we just write pitch/yaw/roll data to some internal BRAM/registers */
 
 // Rasterizer Inputs
-
-// Parameters for Test: 80x240 box (19200 pixels)
-localparam X1_T2 = 64;
-localparam X2_T2 = 303; 
-localparam Y1_T2 = 5;
-localparam Y2_T2 = 84;
-
-logic [9:0] x1, x2, y1, y2;
 logic [15:0] color;
 
-assign x1 = X1_T2;
-assign x2 = X2_T2;
-assign y1 = Y1_T2;
-assign y2 = Y2_T2;
 assign color = {4'b0, vsync_cntr, 4'b0}; // cycle through several colors :)
 
 // Interface Wires
@@ -86,10 +74,20 @@ rasterizer rasterizer_inst (
   .clk(clk),
   .rst(rst),
   .stall(1'b0),
+  
   .vertex_valid(1'b1),
   .rasterizer_done(rasterizer_done),
-  .x1(x1), .x2(x2), .y1(y1), .y2(y2),
-  .color(color),
+  
+  .x0(10'd10), 
+  .y0(10'd10),
+  .x1(10'd100), 
+  .y1(10'd100),
+  .x2(10'd10), 
+  .y2(10'd100),
+  
+  // note "area" isnt actually the area of the triangle. rather its the magnitude of the cross product of the vectors defined by the triangle
+  .inv_area(32'h00000817), // Q8.24 value for 1/60000
+  .color(color), // changes color :D
   .wb_ready(wb_ready),
   .mem_valid(mem_valid),
   .mem_addr(mem_addr),

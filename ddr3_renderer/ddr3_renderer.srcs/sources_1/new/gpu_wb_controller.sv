@@ -115,11 +115,12 @@ always_comb begin
       ready = 1'b1;
     end
     StRead: begin
+    ready = 1'b1;
       if (din_valid) begin
         if (din_tag_q == curr_din_tag) begin
           wb_buffer_d[curr_din_idx*16 +: 16] = din;
           din_wrdm_d[curr_din_idx] = 1'b1;
-          ready = 1'b1;
+          
           wb_controller_state_d = StRead;
         end else begin
           wb_controller_state_d = StWriteback;

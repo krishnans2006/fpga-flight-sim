@@ -482,6 +482,7 @@ graphics_top graphics_inst (
  end
 
  // arbitration logic
+assign RGBLED1[0] = (ddr3_wr_state_q != StIdleWr);
 
  // TEMP
  logic fbuf_active;
@@ -490,7 +491,7 @@ graphics_top graphics_inst (
  always_comb begin
  	// priority encoder
  	if (fbuf_active) begin
- 	    ddr3_mem_wrdy = 1'b0;
+ 	  ddr3_mem_wrdy = 1'b0;
  		app_addr = rd_addr;
  		r_phy_cmd_en = rd_cmd_en;
  		r_phy_cmd_sel = rd_cmd_sel;
