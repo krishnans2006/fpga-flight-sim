@@ -61,11 +61,12 @@ logic [31:0] alpha, beta, gamma; // unused for now, but will be when we do Z-buf
 logic [26:0] addr_pipe_d [0:6];
 logic [26:0] addr_pipe_q [0:6];
 logic [2:0] ctr_d, ctr_q;
+logic internal_stall;
 logic [6:0] v_pipe_d, v_pipe_q;
  
 barycentric_calc barycentric_calc_inst (
   .clk(clk),
-  .stall((stall || !wb_ready)),
+  .stall((stall || !wb_ready || internal_stall)),
 
   // three triangle vertices, padded to 16-bit
   .t0_x({6'b0, x0}), 
@@ -144,6 +145,7 @@ always_comb begin
   rasterizer_done = 1'b0;
   mem_data = color;
   mem_addr = addr_pipe_q[6]; // 7th value in pipeline
+  internal_stall = 1'b0;
   ctr_d = ctr_q;
 
   if (v_pipe_q[6] && within_triangle)
@@ -153,6 +155,7 @@ always_comb begin
 
   unique case (rasterizer_state_q)
     StIdle: begin
+      internal_stall = 1'b1;
       if (vertex_valid) 
         rasterizer_state_d = StSetup;
       else
@@ -193,6 +196,7 @@ always_comb begin
       else if (y1 >= y0 && y1 >= y2) end_y_d = y1;
       else end_y_d = y2;
 
+      internal_stall = 1'b1;
       rasterizer_state_d = StDraw;
 
 /* 640 * curr_y = (512 * curr_y) + (128 * curr_y) = curr_y << 9 + curr_y << 7

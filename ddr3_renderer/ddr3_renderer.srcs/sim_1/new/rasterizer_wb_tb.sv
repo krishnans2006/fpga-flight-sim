@@ -28,8 +28,8 @@ module rasterizer_wb_tb;
   logic stall = 1'b0;
   
   // -- Test Parameters for Small Triangle (Green Color) --
-  // Coordinates (10, 10), (13, 13), (10, 13)
-  logic [9:0] x0=10'd10, y0=10'd10, x1=10'd15, y1=10'd15, x2=10'd10, y2=10'd15;
+  // Coordinates (240, 320), (250, 330), (240, 330)
+  logic [9:0] x0=10'd240, y0=10'd320, x1=10'd250, y1=10'd340, x2=10'd260, y2=10'd330;
   // Inverse Area for Area = 4.5 (32'h0038E37E)
   logic [31:0] inv_area = calc_inv_area(x0, y0, x1, y1, x2, y2); 
   logic [15:0] color = 16'h07E0; // Green 

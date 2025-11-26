@@ -95,8 +95,8 @@ assign dp_1 = inv_area;
 
 // stage 5 intermediate calculation
 always_comb begin
-  tmp1 = $signed(m1_4[47:16]) * $signed(dp_3);
-  tmp2 = $signed(m2_4[47:16]) * $signed(dp_3);
+  tmp1 = $signed(m1_4[47:16]) * $signed(dp_4);
+  tmp2 = $signed(m2_4[47:16]) * $signed(dp_4);
 end
 
 always_ff @(posedge clk) begin
