@@ -210,7 +210,7 @@ StWrite(s) write into frame buffer until fbuf_wr_complete is asserted, at which 
 Circular-Buffer VRAM Design/Memory Map
 
 0x00000 - 0x4AFFF : VRAM 1
-0x4B000 - 0x960FF : VRAM 2
+0x4B000 - 0x95FFF : VRAM 2
 
 One buffer is used to hold next frame, the other is used to draw current frame. On every vsync call, the pointers to these buffers are swapped.
 */
@@ -254,7 +254,7 @@ always_comb begin
 			curr_counter_d = 7'b0;
 			
 			// transition on falling edge of vde
-			if (~vde && old_vga_vde) begin
+			if (~vde && old_vga_vde && ~init_active) begin
 				fbuf_wr_state_d = StReqDDR3;
 			end
 		end
@@ -365,11 +365,13 @@ logic				 	wr_cmd_en, wr_cmd_sel;
 // TEMP
 logic [6:0] wr_counter_d, wr_counter_q;
 logic old_vga_vsync;
+logic init_active;
 
 // instantiate GPU pipeline
 graphics_top graphics_inst (
   .clk(w_uart_clk),
   .rst(reset_ah),
+	.trigger(BTN[1]),
 
   // DDR3 connections
   .mem_wrdy(ddr3_mem_wrdy),
@@ -377,6 +379,7 @@ graphics_top graphics_inst (
   .burst_mem_addr(wr_addr),
   .burst_mem_wrdm(gpu_wrdm),
   .burst_mem_128(ddr3_wr_data),
+  .init(init_active),
   
   // this is for cool graphics :)
   .vsync_cntr(vga_vsync_counter)
@@ -489,16 +492,16 @@ assign RGBLED1[0] = (ddr3_wr_state_q != StIdleWr);
  assign fbuf_active = (fbuf_wr_state_q != StIdle);
 
  always_comb begin
- 	// priority encoder
- 	if (fbuf_active) begin
+ 	// priority encoder, if init_active is asserted high, we will continuously write
+ 	if (fbuf_active && ~init_active) begin
  	  ddr3_mem_wrdy = 1'b0;
  		app_addr = rd_addr;
  		r_phy_cmd_en = rd_cmd_en;
  		r_phy_cmd_sel = rd_cmd_sel;
  		r128_wrdata = 'b0;
  	end else begin
- 	  ddr3_mem_wrdy = 1'b1;
- 		app_addr = staging_buffer_addr + wr_addr;
+ 	  ddr3_mem_wrdy = ~wr_cmd_en;
+ 		app_addr = (init_active) ? wr_addr : (staging_buffer_addr + wr_addr);
  		r_phy_cmd_en = wr_cmd_en;
  		r_phy_cmd_sel = wr_cmd_sel;
  		r128_wrdata = ddr3_wr_data;

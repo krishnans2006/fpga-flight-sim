@@ -32,6 +32,7 @@ Temporarily, because I'm not using microblaze to test ddr3 renderer, I don't rea
 module graphics_top(
   input logic           clk,
   input logic           rst,
+  input logic           trigger,
 
   // DDR3 connections
   input logic           mem_wrdy,
@@ -39,6 +40,7 @@ module graphics_top(
   output logic [26:0]   burst_mem_addr,
   output logic [7:0]    burst_mem_wrdm,
   output logic [127:0]  burst_mem_128,
+  output logic          init,
   
   // cool graphics test :)
   input logic [7:0]     vsync_cntr
@@ -63,10 +65,19 @@ logic [7:0] dout_wrdm;
 logic [127:0] dout_burst_128;
 logic dout_burst_valid;
 
-assign burst_valid = dout_burst_valid;
-assign burst_mem_addr = dout_burst_addr;
-assign burst_mem_128 = dout_burst_128;
-assign burst_mem_wrdn = dout_wrdm;
+// Initialization Outputs
+logic [26:0] init_dout_burst_addr;
+logic [7:0] init_dout_wrdm;
+logic [127:0] init_dout_burst_128;
+logic init_dout_burst_valid;
+
+logic init_active;
+
+assign burst_valid =    (init_active) ? init_dout_burst_valid : dout_burst_valid;
+assign burst_mem_addr = (init_active) ? init_dout_burst_addr : dout_burst_addr;
+assign burst_mem_128 =  (init_active) ? init_dout_burst_128 : dout_burst_128;
+assign burst_mem_wrdm = (init_active) ? init_dout_wrdm : dout_wrdm;
+assign init = init_active;
 
 
 // Instantiate Modules
@@ -78,12 +89,12 @@ rasterizer rasterizer_inst (
   .vertex_valid(1'b1),
   .rasterizer_done(rasterizer_done),
   
-  .x0(10'd240), 
-  .y0(10'd320),
-  .x1(10'd250), 
-  .y1(10'd340),
-  .x2(10'd260), 
-  .y2(10'd330),
+  .x0(10'd320), // 320
+  .y0(10'd240), // 240
+  .x1(10'd330), // 330 
+  .y1(10'd260), // 260 
+  .x2(10'd340), // 340
+  .y2(10'd250), // 250
   
   // note "area" isnt actually the area of the triangle. rather its the magnitude of the cross product of the vectors defined by the triangle
   .inv_area(32'hFFFF258C),
@@ -108,5 +119,19 @@ gpu_wb_controller wb_controller_inst (
   .dout_burst_128(dout_burst_128),
   .dout_burst_valid(dout_burst_valid)
 );
+
+background_initializer init_inst (
+  .clk(clk),
+  .rst(rst),
+  .trigger(trigger),
+// connection to DDR3 arbiter
+  .mem_wrdy(mem_wrdy),
+  .init_active(init_active),
+  .dout_burst_addr(init_dout_burst_addr),
+  .dout_wrdm(init_dout_wrdm),
+  .dout_burst_128(init_dout_burst_128),
+  .dout_burst_valid(init_dout_burst_valid)
+);
+
 
 endmodule

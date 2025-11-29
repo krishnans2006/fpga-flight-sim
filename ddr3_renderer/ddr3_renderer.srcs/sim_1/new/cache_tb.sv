@@ -127,7 +127,6 @@ module cache_tb;
             wait(cache_ddr3_req);
             req_addr = cache_ddr3_addr;
             req_is_read = cache_ddr3_rw_n;
-            cache_ddr3_req = 0; // Acknowledge command reception
         end
 
         if (req_is_read) begin
@@ -186,7 +185,7 @@ module cache_tb;
         localparam A_TAG_0_IDX_0_OFF_3 = 27'h0000003; 
         
         // A_TAG_1_IDX_0_OFF_3: Tag 1, Index 0, Offset 3 (Z-val 3)
-        localparam A_TAG_1_IDX_0_OFF_3 = 27'h0010006; 
+        localparam A_TAG_1_IDX_0_OFF_3 = 27'h0010003; 
         
         localparam Z_UPDATE_VAL = 16'hBEEF;
 
@@ -272,12 +271,14 @@ module cache_tb;
         // Wait for DRAM write and read
         fork
             ddr3_model(); // Model the Write-Back (4 cycles of receiving data)
-            ddr3_model(); // Model the subsequent Read-Fill (4 cycles of sending data)
+        join
+         
+        fork
+            ddr3_model(); // Model the Write-Back (4 cycles of receiving data)
         join
 
         // Wait for the whole transaction to complete (~15 cycles of DRAM + 3 access cycles)
-        #250; 
-        @(posedge clk) if (zbuf_dout_valid) begin
+        wait (zbuf_dout_valid) begin
             // Expected Z-value (Z-index 3 for the new line): 0xAAAA + 3 = 0xAAAD
             $display("[T4] SUCCESS: New data 0x%h received after Evict/Fill cycle.", zbuf_dout);
             if (zbuf_dout == 16'hAAAD) $display("[T4] Verification: PASS (0xAAAD).");

@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Company: Krishy Fishy and Aniketh Dynamic Duo
+// Engineer: Aniketh
 // 
 // Create Date: 11/21/2025 03:57:04 PM
 // Design Name: 
