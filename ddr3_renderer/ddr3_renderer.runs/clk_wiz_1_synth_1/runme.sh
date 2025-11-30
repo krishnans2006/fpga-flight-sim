@@ -24,7 +24,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='C:/Users/anike/class-ECE385/Final_Project/s_ddr3_urbana/ddr3_renderer/ddr3_renderer.runs/clk_wiz_1_synth_1'
+HD_PWD='C:/Users/anike/fpga-flight-sim/ddr3_renderer/ddr3_renderer.runs/clk_wiz_1_synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

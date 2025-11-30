@@ -17,7 +17,7 @@ proc create_report { reportName command } {
   }
 }
 namespace eval ::optrace {
-  variable script "C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.runs/impl_1/ddr_renderer_top.tcl"
+  variable script "C:/Users/anike/fpga-flight-sim/ddr3_renderer/ddr3_renderer.runs/impl_1/ddr_renderer_top.tcl"
   variable category "vivado_impl"
 }
 
@@ -115,7 +115,6 @@ proc step_failed { step } {
 OPTRACE "impl_1" END { }
 }
 
-set_msg_config -id {Common 17-41} -limit 10000000
 
 OPTRACE "impl_1" START { ROLLUP_1 }
 OPTRACE "Phase: Init Design" START { ROLLUP_AUTO }
@@ -124,30 +123,29 @@ set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
   set_param chipscope.maxJobs 4
-  set_param xicom.use_bs_reader 1
 OPTRACE "create in-memory project" START { }
   create_project -in_memory -part xc7s50csga324-1
   set_property design_mode GateLvl [current_fileset]
   set_param project.singleFileAddWarning.threshold 0
 OPTRACE "create in-memory project" END { }
 OPTRACE "set parameters" START { }
-  set_property webtalk.parent_dir C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.cache/wt [current_project]
-  set_property parent.project_path C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.xpr [current_project]
+  set_property webtalk.parent_dir C:/Users/anike/fpga-flight-sim/ddr3_renderer/ddr3_renderer.cache/wt [current_project]
+  set_property parent.project_path C:/Users/anike/fpga-flight-sim/ddr3_renderer/ddr3_renderer.xpr [current_project]
   set_property ip_repo_paths C:/Users/anike/class-ECE385/IP/hdmi_tx_1.0 [current_project]
   update_ip_catalog
-  set_property ip_output_repo C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.cache/ip [current_project]
+  set_property ip_output_repo C:/Users/anike/fpga-flight-sim/ddr3_renderer/ddr3_renderer.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
   set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
-  add_files -quiet C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.runs/synth_1/ddr_renderer_top.dcp
-  read_ip -quiet C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/ip/fifo_generator_0/fifo_generator_0.xci
-  read_ip -quiet C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1.xci
-  read_ip -quiet C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
-  read_ip -quiet C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/ip/hdmi_tx_0/hdmi_tx_0.xci
-  read_ip -quiet C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci
+  add_files -quiet C:/Users/anike/fpga-flight-sim/ddr3_renderer/ddr3_renderer.runs/synth_1/ddr_renderer_top.dcp
+  read_ip -quiet C:/Users/anike/fpga-flight-sim/ddr3_renderer/ddr3_renderer.srcs/sources_1/ip/fifo_generator_0/fifo_generator_0.xci
+  read_ip -quiet C:/Users/anike/fpga-flight-sim/ddr3_renderer/ddr3_renderer.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1.xci
+  read_ip -quiet C:/Users/anike/fpga-flight-sim/ddr3_renderer/ddr3_renderer.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
+  read_ip -quiet C:/Users/anike/fpga-flight-sim/ddr3_renderer/ddr3_renderer.srcs/sources_1/ip/hdmi_tx_0/hdmi_tx_0.xci
+  read_ip -quiet C:/Users/anike/fpga-flight-sim/ddr3_renderer/ddr3_renderer.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci
 OPTRACE "read constraints: implementation" START { }
-  read_xdc C:/Users/anike/class-ECE385/Final_Project/ddr3_renderer/ddr3_renderer.srcs/constrs_1/imports/new/urbana_sDDR3.xdc
+  read_xdc C:/Users/anike/fpga-flight-sim/ddr3_renderer/ddr3_renderer.srcs/constrs_1/imports/new/urbana_sDDR3.xdc
 OPTRACE "read constraints: implementation" END { }
 OPTRACE "add files" END { }
 OPTRACE "link_design" START { }
