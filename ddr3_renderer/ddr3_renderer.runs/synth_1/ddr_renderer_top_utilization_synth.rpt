@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-| Date         : Sat Nov 29 14:56:50 2025
+| Date         : Sat Nov 29 19:34:49 2025
 | Host         : Aniketh_x86-64 running 64-bit major release  (build 9200)
 | Command      : report_utilization -file ddr_renderer_top_utilization_synth.rpt -pb ddr_renderer_top_utilization_synth.pb
 | Design       : ddr_renderer_top
@@ -31,14 +31,14 @@ Table of Contents
 +----------------------------+------+-------+------------+-----------+-------+
 |          Site Type         | Used | Fixed | Prohibited | Available | Util% |
 +----------------------------+------+-------+------------+-----------+-------+
-| Slice LUTs*                | 1487 |     0 |          0 |     32600 |  4.56 |
-|   LUT as Logic             | 1312 |     0 |          0 |     32600 |  4.02 |
+| Slice LUTs*                | 1531 |     0 |          0 |     32600 |  4.70 |
+|   LUT as Logic             | 1356 |     0 |          0 |     32600 |  4.16 |
 |   LUT as Memory            |  175 |     0 |          0 |      9600 |  1.82 |
 |     LUT as Distributed RAM |    0 |     0 |            |           |       |
 |     LUT as Shift Register  |  175 |     0 |            |           |       |
-| Slice Registers            | 2179 |     0 |          0 |     65200 |  3.34 |
-|   Register as Flip Flop    | 2179 |     0 |          0 |     65200 |  3.34 |
-|   Register as Latch        |    0 |     0 |          0 |     65200 |  0.00 |
+| Slice Registers            | 2183 |     0 |          0 |     65200 |  3.35 |
+|   Register as Flip Flop    | 2181 |     0 |          0 |     65200 |  3.35 |
+|   Register as Latch        |    2 |     0 |          0 |     65200 | <0.01 |
 | F7 Muxes                   |    0 |     0 |          0 |     16300 |  0.00 |
 | F8 Muxes                   |    0 |     0 |          0 |      8150 |  0.00 |
 +----------------------------+------+-------+------------+-----------+-------+
@@ -59,9 +59,9 @@ Warning! LUT value is adjusted to account for LUT combining.
 | 0     |            _ |       Reset |            - |
 | 0     |          Yes |           - |            - |
 | 0     |          Yes |           - |          Set |
-| 22    |          Yes |           - |        Reset |
-| 29    |          Yes |         Set |            - |
-| 2128  |          Yes |       Reset |            - |
+| 24    |          Yes |           - |        Reset |
+| 30    |          Yes |         Set |            - |
+| 2129  |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -153,18 +153,18 @@ Warning! LUT value is adjusted to account for LUT combining.
 +------------+------+---------------------+
 |  Ref Name  | Used | Functional Category |
 +------------+------+---------------------+
-| FDRE       | 2128 |        Flop & Latch |
-| LUT2       |  627 |                 LUT |
-| LUT6       |  299 |                 LUT |
-| LUT3       |  283 |                 LUT |
-| CARRY4     |  207 |          CarryLogic |
+| FDRE       | 2129 |        Flop & Latch |
+| LUT2       |  616 |                 LUT |
+| LUT3       |  345 |                 LUT |
+| LUT6       |  277 |                 LUT |
+| CARRY4     |  200 |          CarryLogic |
+| LUT4       |  182 |                 LUT |
 | SRL16E     |  175 |  Distributed Memory |
-| LUT4       |  170 |                 LUT |
-| LUT5       |  137 |                 LUT |
-| LUT1       |   70 |                 LUT |
+| LUT5       |  141 |                 LUT |
+| LUT1       |   66 |                 LUT |
 | OSERDESE2  |   41 |                  IO |
 | OBUF       |   32 |                  IO |
-| FDSE       |   29 |        Flop & Latch |
+| FDSE       |   30 |        Flop & Latch |
 | FDCE       |   22 |        Flop & Latch |
 | DSP48E1    |   22 |    Block Arithmetic |
 | OBUFT      |   20 |                  IO |
@@ -174,6 +174,7 @@ Warning! LUT value is adjusted to account for LUT combining.
 | OBUFTDS    |    4 |                  IO |
 | INV        |    3 |                 LUT |
 | OBUFDS     |    2 |                  IO |
+| LDCE       |    2 |        Flop & Latch |
 | IBUFDS     |    2 |                  IO |
 | IDELAYCTRL |    1 |                  IO |
 | BUFG       |    1 |               Clock |

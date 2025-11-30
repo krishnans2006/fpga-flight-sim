@@ -254,7 +254,7 @@ always_comb begin
 			curr_counter_d = 7'b0;
 			
 			// transition on falling edge of vde
-			if (~vde && old_vga_vde && ~init_active) begin
+			if (~vde && old_vga_vde) begin
 				fbuf_wr_state_d = StReqDDR3;
 			end
 		end
@@ -371,7 +371,7 @@ logic init_active;
 graphics_top graphics_inst (
   .clk(w_uart_clk),
   .rst(reset_ah),
-	.trigger(BTN[1]),
+  .trigger(BTN[1]), // hopefully this writes the background on every screen refresh
 
   // DDR3 connections
   .mem_wrdy(ddr3_mem_wrdy),
@@ -493,15 +493,15 @@ assign RGBLED1[0] = (ddr3_wr_state_q != StIdleWr);
 
  always_comb begin
  	// priority encoder, if init_active is asserted high, we will continuously write
- 	if (fbuf_active && ~init_active) begin
- 	  ddr3_mem_wrdy = 1'b0;
+ 	if (fbuf_active) begin
+ 	    ddr3_mem_wrdy = 1'b0;
  		app_addr = rd_addr;
  		r_phy_cmd_en = rd_cmd_en;
  		r_phy_cmd_sel = rd_cmd_sel;
  		r128_wrdata = 'b0;
  	end else begin
- 	  ddr3_mem_wrdy = ~wr_cmd_en;
- 		app_addr = (init_active) ? wr_addr : (staging_buffer_addr + wr_addr);
+ 	    ddr3_mem_wrdy = ~wr_cmd_en;
+ 		app_addr = (init_active) ? wr_addr : staging_buffer_addr + wr_addr;
  		r_phy_cmd_en = wr_cmd_en;
  		r_phy_cmd_sel = wr_cmd_sel;
  		r128_wrdata = ddr3_wr_data;

@@ -89,15 +89,15 @@ rasterizer rasterizer_inst (
   .vertex_valid(1'b1),
   .rasterizer_done(rasterizer_done),
   
-  .x0(10'd320), // 320
-  .y0(10'd240), // 240
-  .x1(10'd330), // 330 
-  .y1(10'd260), // 260 
-  .x2(10'd340), // 340
-  .y2(10'd250), // 250
+  .x0(10'd200), // 320
+  .y0(10'd100), // 240
+  .x1(10'd250), // 330 
+  .y1(10'd150), // 260 
+  .x2(10'd270), // 340
+  .y2(10'd110), // 250
   
   // note "area" isnt actually the area of the triangle. rather its the magnitude of the cross product of the vectors defined by the triangle
-  .inv_area(32'hFFFF258C),
+  .inv_area(32'hFFFFEA28),
   .color(color), // changes color :D
   .wb_ready(wb_ready),
   .mem_valid(mem_valid),
