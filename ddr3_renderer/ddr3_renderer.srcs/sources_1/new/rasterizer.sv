@@ -36,7 +36,9 @@ module rasterizer(
   input logic         wb_ready,
   output logic        mem_valid,
   output logic [26:0] mem_addr,
-  output logic [15:0] mem_data
+  output logic [15:0] mem_data,
+
+  output logic [31:0] alpha, beta, gamma
 ); 
 
 localparam lp_HORIZ_PIXEL_WIDTH = 27'h0000280;
@@ -55,7 +57,11 @@ logic [26:0] curr_addr_d, curr_addr_q;
 
 // instantiate barycentric_calc module, wires
 logic within_triangle;
-logic [31:0] alpha, beta, gamma; // unused for now, but will be when we do Z-buffering
+logic [31:0] alpha_o, beta_o, gamma_o; 
+
+assign alpha = alpha_o;
+assign beta = beta_o;
+assign gamma = gamma_o;
 
 // hold address of each element being processed in the pipeline. addr_pipe_q[6] holds the "curr" mem_addr
 logic [26:0] addr_pipe_d [0:6];
@@ -83,9 +89,9 @@ barycentric_calc barycentric_calc_inst (
 
   // output to rasterizer
   .within_tri(within_triangle),
-  .alpha(alpha), 
-  .beta(beta), 
-  .gamma(gamma)
+  .alpha(alpha_o), 
+  .beta(beta_o), 
+  .gamma(gamma_o)
 );
 
 // register states
@@ -148,6 +154,7 @@ always_comb begin
   internal_stall = 1'b0;
   ctr_d = ctr_q;
 
+  // within triangle inherently has 7 cycles of latency, so we dont have to pipeline it here, same thing with abg
   if (v_pipe_q[6] && within_triangle)
     mem_valid = 1'b1;
   else

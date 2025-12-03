@@ -45,6 +45,8 @@ module zbuffer(
   output logic [15:0] mem_data_out
 );
 
+localparam VRAM_UBOUND = 27'h0096000;
+ 
 // Stage 1 -> read from cache (and if necessary, ddr3)
 typedef struct packed {
   logic valid;
@@ -104,9 +106,9 @@ always_comb begin
   zbuf_dout = 'b0;
 
   // writeback controller
-  mem_valid_out = 1'b0;
-  mem_data_out  = zbuf_q3_q.data;
-  mem_addr_out  = zbuf_q3_q.addr;
+  mem_valid_out = mem_valid; // 1'b0
+  mem_data_out  = mem_data;//zbuf_q3_q.data;
+  mem_addr_out  = mem_addr;//zbuf_q3_q.addr;
   
   /* stage 1 */
   zbuf_q_d.valid = mem_valid;
@@ -126,39 +128,39 @@ always_comb begin
   end
 
   /* stage 2 */
-  zbuf_q2_d.valid = 1'b0;
+  zbuf_q2_d.valid = 1'b1; // originally 1'b0;
   zbuf_q2_d.addr = zbuf_q_q.addr;
   zbuf_q2_d.zbuff_val_in = zbuf_q_q.zbuff_val;
   zbuf_q2_d.zbuff_val_stored = 16'b0;
   zbuf_q2_d.data = zbuf_q_q.data;
 
-  if (zbuf_q_q.valid) begin
-    // backpressure, can only do one memory op at any given time
-    if (mem_req_q3) begin
-      gstall = 1'b1;
-      zbuf_q2_d = zbuf_q2_q;
-    end else begin
-      zbuf_req = 1'b1;
-      zbuf_rw_n = 1'b1; // read
-      zbuf_addr = zbuf_q_q.addr;
+//  if (zbuf_q_q.valid) begin
+//    // backpressure, can only do one memory op at any given time
+//    if (mem_req_q3) begin
+//      gstall = 1'b1;
+//      zbuf_q2_d = zbuf_q2_q;
+//    end else begin
+//      zbuf_req = 1'b1;
+//      zbuf_rw_n = 1'b1; // read
+//      zbuf_addr = zbuf_q_q.addr + VRAM_UBOUND; // take advantage of the similar memory map for vram and z-buffer
 
-      // we are in this state and valid is asserted
-      if (zbuf_valid) begin
-        zbuf_q2_d.valid = 1'b1;
-        zbuf_q2_d.zbuff_val_stored = zbuf_din;
-      end else begin
-        gstall = 1'b1;
-        zbuf_q2_d = zbuf_q2_q;
-      end
-    end
-  end
+//      // we are in this state and valid is asserted
+//      if (zbuf_valid) begin
+//        zbuf_q2_d.valid = 1'b1;
+//        zbuf_q2_d.zbuff_val_stored = zbuf_din;
+//      end else begin
+//        gstall = 1'b1;
+//        zbuf_q2_d = zbuf_q2_q;
+//      end
+//    end
+//  end
 
   /* stage 3 */
   mem_req_q3 = 1'b0;
 
-  zbuf_q3_d.valid = 1'b0;
+  zbuf_q3_d.valid = 1'b1; // originally 1'b0;
   zbuf_q3_d.addr = zbuf_q2_q.addr;
-  zbuf_q3_d.data = zbuf_q3_q.data;
+  zbuf_q3_d.data = zbuf_q2_q.data;
   zbuf_q3_d.zbuff_val_out = 16'b0;
 
   /* ok so pixel gets replaced if its Z value is less than the stored one
@@ -166,7 +168,7 @@ always_comb begin
   thus, if the stored value is larger than the new value, the pixel gets replaced
   */
   if (zbuf_q2_q.valid) begin
-    if (zbuf_q2_q.zbuff_val_stored > zbuf_q2_q.zbuff_val_in) begin
+    if ($signed(zbuf_q2_q.zbuff_val_stored) < $signed(zbuf_q2_q.zbuff_val_in)) begin
       zbuf_q3_d.valid = 1'b1;
     end
   end
@@ -175,19 +177,19 @@ always_comb begin
   if (zbuf_q3_q.valid) begin
     mem_req_q3 = 1'b1;
 
-    zbuf_req = 1'b1;
-    zbuf_rw_n = 1'b0;
-    zbuf_addr = zbuf_q3_q.addr;
-    zbuf_dout = zbuf_q3_q.zbuff_val_out;
+//    zbuf_req = 1'b1;
+//    zbuf_rw_n = 1'b0;
+//    zbuf_addr = zbuf_q3_q.addr + VRAM_UBOUND;
+//    zbuf_dout = zbuf_q3_q.zbuff_val_out;
 
-    if (zbuf_valid) begin
-      if (wb_ready)
-        mem_valid_out = 1'b1;
-      else
-        gstall = 1'b1;
-    end else begin
-      gstall = 1'b1;
-    end
+//    if (zbuf_valid) begin
+//      if (wb_ready)
+//        mem_valid_out = 1'b1;
+//      else
+//        gstall = 1'b1;
+//    end else begin
+//      gstall = 1'b1;
+//    end
   end
 end
 

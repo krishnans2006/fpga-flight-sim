@@ -38,7 +38,8 @@ module gpu_wb_controller(
   output logic [26:0]     dout_burst_addr,
   output logic [7:0]      dout_wrdm,
   output logic [127:0]    dout_burst_128,
-  output logic            dout_burst_valid
+  output logic            dout_burst_valid,
+  output logic            mem_write_active
 );
 
 typedef enum {
@@ -94,6 +95,7 @@ always_comb begin
   din_tag_d = din_tag_q;
 
   dout_burst_valid = 1'b0;
+  mem_write_active = 1'b0;
   dout_burst_128 = wb_buffer_q;
   dout_wrdm = ~din_wrdm_q;
   dout_burst_addr = {din_tag_q, 3'b0}; // reconstruct to 27 bits
@@ -123,11 +125,13 @@ always_comb begin
           wb_controller_state_d = StRead;
         end else begin
           ready = 1'b0;
+          mem_write_active = 1'b1;
           wb_controller_state_d = StWriteback;
         end
       end
     end
     StWriteback: begin
+      mem_write_active = 1'b1;
       if (mem_wrdy) begin
         dout_burst_valid = 1'b1;
         wb_controller_state_d = StFlush;
@@ -135,6 +139,7 @@ always_comb begin
         wb_controller_state_d = StWriteback;
     end
     StFlush: begin
+      mem_write_active = 1'b1; // asserting this for an extra clock cycle, lets see how it works out
       wb_controller_state_d = StRead;
 
       // when we get this point, there is still some latched value waiting to be written

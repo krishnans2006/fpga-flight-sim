@@ -5,7 +5,7 @@
 // 
 // Create Date: 11/29/2025 12:00:16 PM
 // Design Name: 
-// Module Name: background_initializer
+// Module Name: zbuffer_initializer
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -21,7 +21,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module background_initializer(
+module zbuffer_initializer(
   input logic             clk,
   input logic             rst,
   input logic             trigger,
@@ -38,8 +38,6 @@ module background_initializer(
   Choosing Q2.14 representation because we're storing 1/Z in the buffer
   */
   localparam ZMIN = -16'b0100_0000_0000_0000; // I'm using Q2.14 to store these values
-  localparam VRAM_BACKGROUND = 16'hFFFF; // some random ass color?
-
   /* 
   Note: this continuously writes 640 * 480 * 2 * 3 = 1.8432MB of pixel/Z-buffer data
   With a max observed (sequential) write speed of 1489 MB/s, the bandwidth should be large/fast enough for this to not cause any visual issues
@@ -60,7 +58,7 @@ module background_initializer(
     if (rst) begin
       initializer_state_q <= StIdle;
       trigger_latched <= 1'b0;
-      addr_curr_q <= 27'b0;
+      addr_curr_q <= VRAM_UBOUND;
     end else begin
       initializer_state_q <= initializer_state_d;
       addr_curr_q <= addr_curr_d;
@@ -79,32 +77,19 @@ module background_initializer(
 
     unique case (initializer_state_q)
       StIdle: begin
-        addr_curr_d = 27'b0;
+        addr_curr_d = VRAM_UBOUND;
         // only transition on posedge of triggr
         if (trigger && ~trigger_latched) begin
-          initializer_state_d = StWriteVRAM;
-          init_active = 1'b1;
-        end
-      end
-      StWriteVRAM: begin
-        init_active = 1'b1;
-        dout_burst_128 = {8{VRAM_BACKGROUND}}; // 128b burst of all white
-
-        if (mem_wrdy) begin
-          dout_burst_valid = 1'b1;
-          addr_curr_d = addr_curr_q + 8;
-        end
-
-        if (addr_curr_d >= VRAM_UBOUND) begin
           initializer_state_d = StWriteZBuffer;
+          init_active = 1'b1;
         end
       end
      StWriteZBuffer: begin
        init_active = 1'b1;
+       dout_burst_128 = {8{ZMIN}}; // 128b burst of all 
 
        if (mem_wrdy) begin
          dout_burst_valid = 1'b1;
-         dout_burst_128 = {8{ZMIN}}; // 128b burst of all white
          addr_curr_d = addr_curr_q + 8;
        end
 

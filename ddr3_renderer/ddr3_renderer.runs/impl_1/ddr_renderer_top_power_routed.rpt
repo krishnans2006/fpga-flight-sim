@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-| Date             : Sat Nov 29 23:46:58 2025
+| Date             : Wed Dec  3 01:11:14 2025
 | Host             : Aniketh_x86-64 running 64-bit major release  (build 9200)
 | Command          : report_power -file ddr_renderer_top_power_routed.rpt -pb ddr_renderer_top_power_summary_routed.pb -rpx ddr_renderer_top_power_routed.rpx
 | Design           : ddr_renderer_top
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.738        |
+| Total On-Chip Power (W)  | 0.740        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.663        |
+| Dynamic (W)              | 0.665        |
 | Device Static (W)        | 0.075        |
 | Effective TJA (C/W)      | 4.9          |
-| Max Ambient (C)          | 81.4         |
-| Junction Temperature (C) | 28.6         |
+| Max Ambient (C)          | 81.3         |
+| Junction Temperature (C) | 28.7         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -52,21 +52,21 @@ Table of Contents
 +-------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                 | Power (W) | Used     | Available | Utilization (%) |
 +-------------------------+-----------+----------+-----------+-----------------+
-| Clocks                  |     0.026 |       13 |       --- |             --- |
-| Slice Logic             |     0.008 |     4565 |       --- |             --- |
-|   LUT as Logic          |     0.006 |     1515 |     32600 |            4.65 |
-|   CARRY4                |     0.001 |      196 |      8150 |            2.40 |
-|   Register              |    <0.001 |     2289 |     65200 |            3.51 |
+| Clocks                  |     0.023 |       13 |       --- |             --- |
+| Slice Logic             |     0.008 |     4635 |       --- |             --- |
+|   LUT as Logic          |     0.006 |     1570 |     32600 |            4.82 |
+|   CARRY4                |     0.001 |      210 |      8150 |            2.58 |
+|   Register              |    <0.001 |     2310 |     65200 |            3.54 |
 |   LUT as Shift Register |    <0.001 |      119 |      9600 |            1.24 |
 |   F7/F8 Muxes           |    <0.001 |        1 |     32600 |           <0.01 |
-|   Others                |     0.000 |       60 |       --- |             --- |
-| Signals                 |     0.012 |     4820 |       --- |             --- |
-| Block RAM               |     0.018 |        3 |        75 |            4.00 |
+|   Others                |     0.000 |       59 |       --- |             --- |
+| Signals                 |     0.012 |     4887 |       --- |             --- |
+| Block RAM               |     0.024 |        3 |        75 |            4.00 |
 | MMCM                    |     0.205 |        2 |         5 |           40.00 |
 | DSPs                    |     0.011 |       22 |       120 |           18.33 |
-| I/O                     |     0.382 |       70 |       210 |           33.33 |
+| I/O                     |     0.381 |       70 |       210 |           33.33 |
 | Static Power            |     0.075 |          |           |                 |
-| Total                   |     0.738 |          |           |                 |
+| Total                   |     0.740 |          |           |                 |
 +-------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -76,7 +76,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.100 |       0.089 |      0.011 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.102 |       0.091 |      0.011 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.174 |       0.161 |      0.013 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.041 |       0.040 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -153,14 +153,14 @@ Table of Contents
 +-----------------------------------+-----------+
 | Name                              | Power (W) |
 +-----------------------------------+-----------+
-| ddr_renderer_top                  |     0.663 |
+| ddr_renderer_top                  |     0.665 |
 |   clk_wiz                         |     0.107 |
 |     inst                          |     0.107 |
-|   ddr3_arbiter_inst               |     0.331 |
+|   ddr3_arbiter_inst               |     0.336 |
 |     clkgen_ddr3ctrl_instance      |     0.100 |
 |       inst                        |     0.100 |
-|     phy_instance                  |     0.230 |
-|       cmdfifo_inst                |     0.016 |
+|     phy_instance                  |     0.235 |
+|       cmdfifo_inst                |     0.022 |
 |       genblk6[0].iobufds_dqs_inst |     0.010 |
 |       genblk6[1].iobufds_dqs_inst |     0.010 |
 |       genblk9[0].iobuf_dq_inst    |     0.006 |
@@ -183,13 +183,13 @@ Table of Contents
 |   frame_buffer_inst               |     0.004 |
 |     bram0                         |     0.003 |
 |       U0                          |     0.003 |
-|   graphics_inst                   |     0.035 |
-|     init_inst                     |     0.001 |
-|     rasterizer_inst               |     0.032 |
-|       barycentric_calc_inst       |     0.030 |
+|   graphics_inst                   |     0.034 |
+|     init_inst                     |     0.002 |
+|     rasterizer_inst               |     0.030 |
+|       barycentric_calc_inst       |     0.028 |
 |     wb_controller_inst            |     0.002 |
-|   vga_to_hdmi                     |     0.132 |
-|     inst                          |     0.132 |
+|   vga_to_hdmi                     |     0.133 |
+|     inst                          |     0.133 |
 +-----------------------------------+-----------+
 
 

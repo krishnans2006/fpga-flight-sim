@@ -94,7 +94,7 @@ ddr3_arbiter ddr3_arbiter_inst (
 
   /* ### BEGIN DDR3 R/W Signals ### */
   .r128_wrdata(r128_wrdata),
-	.wrdm(gpu_wrdm), // as per controller documentation, wrdm is effectively high-Z during read ops
+	.wrdm(((wb_active) ? gpu_wrdm : cache_ddr3_wrdm)), // as per controller documentation, wrdm is effectively high-Z during read ops
   .app_addr(app_addr),
 
   .r_phy_cmd_en(r_phy_cmd_en),
@@ -366,6 +366,7 @@ logic				 	wr_cmd_en, wr_cmd_sel;
 logic [6:0] wr_counter_d, wr_counter_q;
 logic old_vga_vsync;
 logic init_active;
+logic wb_active;
 
 // instantiate GPU pipeline
 graphics_top graphics_inst (
@@ -380,9 +381,62 @@ graphics_top graphics_inst (
   .burst_mem_wrdm(gpu_wrdm),
   .burst_mem_128(ddr3_wr_data),
   .init(init_active),
+	.wb_active(wb_active),
+
+	.zbuf_cache_addr(zbuf_addr),
+  .zbuf_cache_req(zbuf_req),
+  .zbuf_cache_rw_n(zbuf_rw_n), // 1 = Read, 0 = Write
+  .zbuf_cache_dout(zbuf_din),
+  .zbuf_cache_din(zbuf_dout),
+  .zbuf_cache_valid(zbuf_valid),
   
   // this is for cool graphics :)
-  .vsync_cntr(vga_vsync_counter)
+  .vsync_cntr(vga_vsync_counter),
+	.swap((~vsync && old_vga_vsync))
+);
+
+// Z-buffer cache
+logic [26:0] zbuf_addr;
+logic        zbuf_req; // cache request
+logic        zbuf_rw_n; // 1 = Read, 0 = Write
+logic [15:0] zbuf_dout;
+logic [15:0] zbuf_din;
+logic        zbuf_valid;
+
+logic [26:0] cache_ddr3_addr;
+logic 			 cache_ddr3_req;
+logic				 cache_ddr3_rw_n; // 1 = Read, 0 = Write
+
+  // W
+logic [127:0]	cache_ddr3_dout;
+logic					cache_ddr3_wrdm;
+
+cache dmc_inst (
+  .clk(clk),
+  .rst(rst),
+
+  /* BEGIN interface with DDR3 arbiter */
+  // R/W
+  .cache_ddr3_addr(cache_ddr3_addr),
+  .cache_ddr3_req(cache_ddr3_req),
+  .cache_ddr3_rw_n(cache_ddr3_rw_n), // 1 = Read, 0 = Write
+  .cache_ddr3_ready(ddr3_mem_wrdy),
+  // R
+  .cache_ddr3_din(w128_phy_rddata),
+  .cache_ddr3_din_valid(w_phy_rddata_valid),
+  // W
+  .cache_ddr3_dout(cache_ddr3_dout),
+  .cache_ddr3_wrdm(cache_ddr3_wrdm),
+  // output logic          cache_ddr3_dout_valid,
+  /* END interface with DDR3 arbiter */
+
+  /* BEGIN interface with Z-buffer */
+  .zbuf_addr(zbuf_addr),
+  .zbuf_req(zbuf_req),
+  .zbuf_rw_n(zbuf_rw_n), // 1 = Read, 0 = Write
+  .zbuf_din(zbuf_din),
+  .zbuf_dout(zbuf_dout),
+  .zbuf_dout_valid(zbuf_valid) // asserted when read value is valid OR value has been successfully written
 );
 
 //// write enable logic ~ only write when we are in active mode & ddr3 controller FIFO is able to recieve new commands
@@ -409,8 +463,6 @@ graphics_top graphics_inst (
 ////		end
 //	end
 //end
-
-
 
  // register states
  always_ff @(posedge w_uart_clk) begin
@@ -494,17 +546,25 @@ assign RGBLED1[0] = (ddr3_wr_state_q != StIdleWr);
  always_comb begin
  	// priority encoder, if init_active is asserted high, we will continuously write
  	if (fbuf_active) begin
- 	    ddr3_mem_wrdy = 1'b0;
+ 	  ddr3_mem_wrdy = 1'b0;
  		app_addr = rd_addr;
  		r_phy_cmd_en = rd_cmd_en;
  		r_phy_cmd_sel = rd_cmd_sel;
  		r128_wrdata = 'b0;
  	end else begin
- 	    ddr3_mem_wrdy = ~wr_cmd_en;
- 		app_addr = (init_active) ? wr_addr : staging_buffer_addr + wr_addr;
- 		r_phy_cmd_en = wr_cmd_en;
- 		r_phy_cmd_sel = wr_cmd_sel;
- 		r128_wrdata = ddr3_wr_data;
+		if (wb_active) begin
+			ddr3_mem_wrdy = ~wr_cmd_en;
+			app_addr = (init_active) ? wr_addr : staging_buffer_addr + wr_addr;
+			r_phy_cmd_en = wr_cmd_en;
+			r_phy_cmd_sel = wr_cmd_sel;
+			r128_wrdata = ddr3_wr_data;
+		end else begin
+			ddr3_mem_wrdy = 1'b1;
+			app_addr = cache_ddr3_addr;
+			r_phy_cmd_en = cache_ddr3_req;
+			r_phy_cmd_sel = cache_ddr3_rw_n;
+			r128_wrdata = cache_ddr3_dout;
+		end
   	end
  end
 

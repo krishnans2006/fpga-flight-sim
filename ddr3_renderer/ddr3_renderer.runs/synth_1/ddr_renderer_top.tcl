@@ -71,6 +71,7 @@ proc create_report { reportName command } {
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param chipscope.maxJobs 4
+set_param xicom.use_bs_reader 1
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7s50csga324-1
 
@@ -92,13 +93,15 @@ OPTRACE "Adding files" START { }
 read_verilog C:/Users/anike/fpga-flight-sim/ddr3_renderer/ddr3_renderer.srcs/sources_1/imports/ddr3_controller/ddr3_x16_phy_params.vh
 read_verilog -library xil_defaultlib -sv {
   C:/Users/anike/fpga-flight-sim/ddr3_renderer/ddr3_renderer.srcs/sources_1/imports/design_source/VGA_controller.sv
-  C:/Users/anike/fpga-flight-sim/ddr3_renderer/ddr3_renderer.srcs/sources_1/new/background_initializer.sv
   C:/Users/anike/fpga-flight-sim/ddr3_renderer/ddr3_renderer.srcs/sources_1/new/barycentric_calc.sv
+  C:/Users/anike/fpga-flight-sim/ddr3_renderer/ddr3_renderer.srcs/sources_1/new/cache.sv
   C:/Users/anike/fpga-flight-sim/ddr3_renderer/ddr3_renderer.srcs/sources_1/new/ddr3_arbiter.sv
   C:/Users/anike/fpga-flight-sim/ddr3_renderer/ddr3_renderer.srcs/sources_1/new/frame_buffer.sv
   C:/Users/anike/fpga-flight-sim/ddr3_renderer/ddr3_renderer.srcs/sources_1/new/gpu_wb_controller.sv
   C:/Users/anike/fpga-flight-sim/ddr3_renderer/ddr3_renderer.srcs/sources_1/gpu/graphics_top.sv
   C:/Users/anike/fpga-flight-sim/ddr3_renderer/ddr3_renderer.srcs/sources_1/new/rasterizer.sv
+  C:/Users/anike/fpga-flight-sim/ddr3_renderer/ddr3_renderer.srcs/sources_1/new/zbuffer.sv
+  C:/Users/anike/fpga-flight-sim/ddr3_renderer/ddr3_renderer.srcs/sources_1/new/zbuffer_initializer.sv
   C:/Users/anike/fpga-flight-sim/ddr3_renderer/ddr3_renderer.srcs/sources_1/new/ddr_renderer_top.sv
 }
 read_verilog -library xil_defaultlib {
@@ -123,6 +126,9 @@ read_ip -quiet C:/Users/anike/fpga-flight-sim/ddr3_renderer/ddr3_renderer.srcs/s
 
 read_ip -quiet C:/Users/anike/fpga-flight-sim/ddr3_renderer/ddr3_renderer.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci
 set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/ddr3_renderer/ddr3_renderer.gen/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0_ooc.xdc]
+
+read_ip -quiet C:/Users/anike/fpga-flight-sim/ddr3_renderer/ddr3_renderer.srcs/sources_1/ip/blk_mem_gen_1/blk_mem_gen_1.xci
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/ddr3_renderer/ddr3_renderer.gen/sources_1/ip/blk_mem_gen_1/blk_mem_gen_1_ooc.xdc]
 
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
