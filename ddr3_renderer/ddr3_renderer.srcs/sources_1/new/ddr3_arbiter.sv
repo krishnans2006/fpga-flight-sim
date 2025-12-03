@@ -48,11 +48,6 @@ module ddr3_arbiter (
 	output logic [0:0]	  ddr3_odt,
   // ### END DDR3 IO ###
 
-  // Arbitration Signals
-  input logic  [1:0]  req,
-  input logic         blank_n,
-  output logic [1:0]  grant,
-
   // ### BEGIN DDR3 R/W Signals ###
   input logic	 [127:0]	r128_wrdata,
 	input logic	 [7:0]	 	wrdm,
@@ -307,20 +302,6 @@ always_ff @(posedge w_clk_div) begin: ddr3_calibration
 		r_rdcal_start <= 1'b1;
 	else
 		r_rdcal_start <= 1'b0;
-end
-
-/* Implements the following control structure:
-
-If device 1 (req[0]) requests DDR3 access, it will always be provided. 
-In the case blank_n is asserted (corresponds to the horizontal blanking interval), device 2 (req[1]) (frame buffer logic) should always have priority. 
-
-*/
-always_comb begin : ddr3_arbiter
-  if (req[0] == 1'b1) begin 
-    grant = (2'b01 ^ ({blank_n, blank_n}));
-  end else if (req[1] == 1'b1) begin
-    grant = 2'b10;
-  end
 end
 
 endmodule

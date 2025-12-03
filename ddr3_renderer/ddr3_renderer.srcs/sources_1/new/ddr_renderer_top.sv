@@ -87,11 +87,6 @@ ddr3_arbiter ddr3_arbiter_inst (
 	.ddr3_odt(ddr3_odt),
   // ### END DDR3 IO ###
 
-  // Arbitration Signals
-  .req(),
-  .grant(),
-  .blank_n(),
-
   /* ### BEGIN DDR3 R/W Signals ### */
   .r128_wrdata(r128_wrdata),
 	.wrdm(((wb_active) ? gpu_wrdm : cache_ddr3_wrdm)), // as per controller documentation, wrdm is effectively high-Z during read ops
