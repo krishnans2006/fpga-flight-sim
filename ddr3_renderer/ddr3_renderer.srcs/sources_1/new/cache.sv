@@ -183,19 +183,19 @@ always_comb begin
     end
     StDecode: begin
       // separating out this and Idle in order to allow registers to latch
-      if (hit) begin
+      //if (hit) begin
         // Cache Hit
         cache_state_d = StCacheHit0;
-      end else begin
+      //end else begin
         // Cache Miss, we implement a write-back cache here, so only write back to main memory on eviction
-        if (curr_dirty && curr_valid) begin
-          // WB -> read new value
-          cache_state_d = StEvictRead;
-        end else begin
-          // read new value
-          cache_state_d = StRead0;
-        end
-      end
+//        if (curr_dirty && curr_valid) begin
+//          // WB -> read new value
+//          cache_state_d = StEvictRead;
+//        end else begin
+//          // read new value
+//          cache_state_d = StRead0;
+//        end
+//      end
     end
     StCacheHit0: begin
       // redundant state to account for BRAM latency
@@ -234,13 +234,12 @@ always_comb begin
       end
     end
     StRead0: begin
+      cache_ddr3_req = 1'b1;
+      cache_ddr3_rw_n = 1'b1;
+      cache_ddr3_addr = {input_tag, input_index, chunk_count_q, 3'b000};
+
       // issue ddr3 read
       if (cache_ddr3_ready) begin
-        cache_ddr3_req = 1'b1;
-        cache_ddr3_rw_n = 1'b1;
-
-        // read 4 consecutive 128-bit chunks from ddr3
-        cache_ddr3_addr = {input_tag, input_index, chunk_count_q, 3'b000};
         cache_state_d = StRead1;
       end
     end

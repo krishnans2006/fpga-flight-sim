@@ -73,6 +73,7 @@ module zbuffer_initializer(
 
     dout_burst_addr = addr_curr_q;
     dout_burst_valid = 1'b0;
+    dout_burst_128 = 128'b0;
     dout_wrdm = 8'b0;
 
     unique case (initializer_state_q)

@@ -167,21 +167,17 @@ logic init_active;
 logic        zbuf_dvalid;
 logic [15:0] zbuf_dout;
 logic [26:0] zbuf_addrout;
+logic        zbuf_ready;
 
 logic [26:0] zbuf_addr;
 logic        zbuf_req; // cache request
 logic        zbuf_rw_n; // 1 = Read, 0 = Write
 logic [15:0] zbuf_mem_dout;
-logic [15:0] zbuf_din;
-logic        zbuf_valid;
 
 assign zbuf_cache_addr = zbuf_addr;
-assign zbuf_cache_req  = zbuf_cache_req;
+assign zbuf_cache_req  = zbuf_req;
 assign zbuf_cache_rw_n = zbuf_rw_n;
 assign zbuf_cache_dout = zbuf_mem_dout;
-
-assign zbuf_din = zbuf_cache_din;
-assign zbuf_valid = zbuf_cache_valid;
 
 assign burst_valid =    (init_active) ? init_dout_burst_valid : ((int_graphics_stall) ? background_burst_valid : dout_burst_valid);
 assign burst_mem_addr = (init_active) ? init_dout_burst_addr :  ((int_graphics_stall) ? background_burst_addr : dout_burst_addr);
@@ -209,7 +205,7 @@ rasterizer rasterizer_inst (
   // note "area" isnt actually the area of the triangle. rather its the magnitude of the cross product of the vectors defined by the triangle
   .inv_area(32'hFFFFEA28),
   .color(color), // changes color :D
-  .wb_ready(wb_ready), // memory has to be write-w
+  .wb_ready(zbuf_ready), // memory has to be write-w
   .mem_valid(mem_valid),
   .mem_addr(mem_addr),
   .mem_data(mem_data),
@@ -223,23 +219,24 @@ zbuffer zbuffer_inst (
   .clk(clk),
   .rst(rst),
   /* Interface with rasterizer */
-  .z0(16'b0100_0000_0000_0000), // I think this is +1 in Q2.14
-  .z1(16'b0100_0000_0000_0000), 
-  .z2(16'b0100_0000_0000_0000), 
+  .z0(32'h01000000), // I think this is +1 in Q8.24
+  .z1(32'h01000000), 
+  .z2(32'h01000000), 
   .alpha(alpha), .beta(beta), .gamma(gamma), // barycentric coords in Q8.24
   .mem_valid(mem_valid),
   .mem_addr(mem_addr),
   .mem_data(mem_data),
+  .ready(zbuf_ready),
 
   /* BEGIN interface with memory (cache) */
   .zbuf_addr(zbuf_addr),
   .zbuf_req(zbuf_req), // cache request
   .zbuf_rw_n(zbuf_rw_n), // 1 = Read, 0 = Write
   .zbuf_dout(zbuf_mem_dout),
-  .zbuf_din(zbuf_din),
-  .zbuf_valid(zbuf_valid), 
+  .zbuf_din(zbuf_cache_din),
+  .zbuf_valid(zbuf_cache_valid), 
 
-  /* Interface with writeback controller */
+  /* Interface with Writeback Controller */
   .wb_ready(wb_ready),
   .mem_valid_out(zbuf_dvalid),
   .mem_addr_out(zbuf_addrout),

@@ -144,7 +144,7 @@ module cache_tb;
                     chunk_data[z_idx*16 +: 16] = 16'hAAAA + (chunk * 8) + z_idx; 
                 end
 
-                #10; // Wait 1 cycle for next chunk transmission
+                repeat (10) @(posedge clk); // Wait 1 cycle for next chunk transmission
                 @(posedge clk) begin
                     cache_ddr3_din = chunk_data;
                     cache_ddr3_din_valid = 1;

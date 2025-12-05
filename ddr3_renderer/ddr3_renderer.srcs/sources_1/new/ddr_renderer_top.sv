@@ -333,8 +333,8 @@ end
 always_comb begin
   if (vde) begin
     red = fbuf_dout[11:8];
-    blue = fbuf_dout[7:4];
-    green = fbuf_dout[3:0];
+    green = fbuf_dout[7:4];
+    blue = fbuf_dout[3:0];
   end else begin
     red = 4'b0;
     blue = 4'b0;
@@ -554,7 +554,7 @@ assign RGBLED1[0] = (ddr3_wr_state_q != StIdleWr);
 			r_phy_cmd_sel = wr_cmd_sel;
 			r128_wrdata = ddr3_wr_data;
 		end else begin
-			ddr3_mem_wrdy = 1'b1;
+			ddr3_mem_wrdy = !w_phy_cmd_full;
 			app_addr = cache_ddr3_addr;
 			r_phy_cmd_en = cache_ddr3_req;
 			r_phy_cmd_sel = cache_ddr3_rw_n;
