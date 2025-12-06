@@ -37,7 +37,7 @@ module zbuffer_initializer(
   /*
   Choosing Q2.14 representation because we're storing 1/Z in the buffer
   */
-  localparam ZMIN = -16'b0100_0000_0000_0000; // I'm using Q2.14 to store these values
+  localparam ZMIN = -16'b0100_0000_0000_1000; // I'm using Q2.14 to store these values
   /* 
   Note: this continuously writes 640 * 480 * 2 * 3 = 1.8432MB of pixel/Z-buffer data
   With a max observed (sequential) write speed of 1489 MB/s, the bandwidth should be large/fast enough for this to not cause any visual issues

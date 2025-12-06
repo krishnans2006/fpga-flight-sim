@@ -49,7 +49,10 @@ module cache #(
   input logic           zbuf_rw_n, // 1 = Read, 0 = Write
   input logic  [15:0]   zbuf_din,
   output logic [15:0]   zbuf_dout,
-  output logic          zbuf_dout_valid // asserted when read value is valid OR value has been successfully written
+  output logic          zbuf_dout_valid, // asserted when read value is valid OR value has been successfully written
+
+  // control signal
+  output logic          cache_is_active
 );
 
 localparam TAG_WIDTH    = 18; // 26:9
@@ -106,6 +109,13 @@ typedef enum {
 } cache_state_e;
 
 cache_state_e cache_state_d, cache_state_q;
+
+assign cache_is_active = (cache_state_q == StEvictRead) ||
+                         (cache_state_q == StEvictWB) ||
+                         (cache_state_q == StRead0) ||
+                         (cache_state_q == StRead1);
+
+//assign cache_is_active = (cache_state_q != StIdle);
 
 always_ff @(posedge clk) begin
   if (rst) begin
@@ -166,7 +176,7 @@ always_comb begin
   cache_ddr3_req = 1'b0;
   cache_ddr3_rw_n = 1'b1; // default to reads idk
   cache_ddr3_addr = 27'b0;
-  cache_ddr3_wrdm = 8'b11111111;
+  cache_ddr3_wrdm = 8'hFF;
   cache_ddr3_dout =  evict_buffer[128*chunk_count_q +: 128];
 
   // Z-buffer default assignmnets
@@ -183,26 +193,27 @@ always_comb begin
     end
     StDecode: begin
       // separating out this and Idle in order to allow registers to latch
-      //if (hit) begin
+      if (hit) begin
         // Cache Hit
         cache_state_d = StCacheHit0;
-      //end else begin
+      end else begin
         // Cache Miss, we implement a write-back cache here, so only write back to main memory on eviction
-//        if (curr_dirty && curr_valid) begin
-//          // WB -> read new value
-//          cache_state_d = StEvictRead;
-//        end else begin
-//          // read new value
-//          cache_state_d = StRead0;
-//        end
-//      end
+        if (curr_dirty && curr_valid) begin
+          // WB -> read new value
+          cache_state_d = StEvictRead;
+        end else begin
+          // read new value
+          cache_state_d = StRead0;
+        end
+      end
+//       cache_state_d = StCacheHit0;
     end
     StCacheHit0: begin
       // redundant state to account for BRAM latency
       cache_state_d = StCacheHit1;
 
       // if wen is asserted, keep this asserted for one clock cycle
-      if (~zbuf_rw_n) begin
+      if (~input_op) begin
         bram_din = {32{zbuf_din}};
         bram_wea = 64'b11 << (input_offset * 2); // we are writing two bytes
       end
@@ -255,8 +266,8 @@ always_comb begin
           cache_state_d = StRead2; // Exit loop, wait for BRAM latency
         end else begin
           // More chunks to read, increment counter and request the next one
-          chunk_count_d = chunk_count_q + 1;
-          cache_state_d = StRead0; 
+         chunk_count_d = chunk_count_q + 1;
+         cache_state_d = StRead0; 
         end
       end
     end

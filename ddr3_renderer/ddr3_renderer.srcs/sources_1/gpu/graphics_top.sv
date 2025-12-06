@@ -56,7 +56,7 @@ module graphics_top(
   input logic           swap
 );
 
-localparam VRAM_BACKGROUND = 16'h02FF; // aqua
+localparam VRAM_BACKGROUND = 16'h0133; // skibidi color
 localparam VRAM_UBOUND = 27'h004B000;
 
 typedef enum {
@@ -238,6 +238,7 @@ zbuffer zbuffer_inst (
 
   /* Interface with Writeback Controller */
   .wb_ready(wb_ready),
+  .wb_memwr_active(mem_wb_active),
   .mem_valid_out(zbuf_dvalid),
   .mem_addr_out(zbuf_addrout),
   .mem_data_out(zbuf_dout)

@@ -1,27 +1,21 @@
 +========================+========================+===========================================================================+
 | Launch Setup Clock     | Launch Hold Clock      | Pin                                                                       |
 +========================+========================+===========================================================================+
-| clk_out1_clk_wiz_0     | clk_out4_div_clk_wiz_1 | FSM_onehot_fbuf_wr_state_q_reg[2]/D                                       |
-| clk_out1_clk_wiz_0     | clk_out4_div_clk_wiz_1 | FSM_onehot_fbuf_wr_state_q_reg[4]/D                                       |
-| clk_out1_clk_wiz_0     | clk_out4_div_clk_wiz_1 | FSM_onehot_fbuf_wr_state_q_reg[5]/D                                       |
-| clk_out4_div_clk_wiz_1 | clk_out4_div_clk_wiz_1 | ddr3_arbiter_inst/phy_instance/r_act_req_reg/D                            |
 | clk_out1_clk_wiz_0     | clk_out4_div_clk_wiz_1 | graphics_inst/FSM_sequential_graphics_state_q_reg[1]/D                    |
 | clk_out1_clk_wiz_0     | clk_out4_div_clk_wiz_1 | graphics_inst/FSM_sequential_graphics_state_q_reg[0]/D                    |
+| clk_out1_clk_wiz_0     | clk_out4_div_clk_wiz_1 | FSM_onehot_fbuf_wr_state_q_reg[5]/D                                       |
 | clk_out1_clk_wiz_0     | clk_out4_div_clk_wiz_1 | FSM_onehot_fbuf_wr_state_q_reg[3]/D                                       |
-| clk_out4_div_clk_wiz_1 | clk_out4_div_clk_wiz_1 | graphics_inst/init_inst/FSM_sequential_initializer_state_q_reg/D          |
-| clk_out4_div_clk_wiz_1 | clk_out4_div_clk_wiz_1 | ddr3_arbiter_inst/phy_instance/rn_state_2ahead_reg[2]/D                   |
 | clk_out1_clk_wiz_0     | clk_out4_div_clk_wiz_1 | FSM_onehot_fbuf_wr_state_q_reg[1]/D                                       |
+| clk_out1_clk_wiz_0     | clk_out4_div_clk_wiz_1 | FSM_onehot_fbuf_wr_state_q_reg[4]/D                                       |
 | clk_out4_div_clk_wiz_1 | clk_out4_div_clk_wiz_1 | ddr3_arbiter_inst/phy_instance/rn_state_2ahead_reg[1]/D                   |
+| clk_out1_clk_wiz_0     | clk_out4_div_clk_wiz_1 | FSM_onehot_fbuf_wr_state_q_reg[2]/D                                       |
+| clk_out4_div_clk_wiz_1 | clk_out4_div_clk_wiz_1 | ddr3_arbiter_inst/phy_instance/r_act_req_reg/D                            |
 | clk_out4_div_clk_wiz_1 | clk_out4_div_clk_wiz_1 | ddr3_arbiter_inst/phy_instance/r_pre_req_reg/D                            |
-| clk_out4_div_clk_wiz_1 | clk_out4_div_clk_wiz_1 | ddr3_arbiter_inst/phy_instance/rn_state_2ahead_reg[0]/D                   |
+| clk_out4_div_clk_wiz_1 | clk_out4_div_clk_wiz_1 | ddr3_arbiter_inst/phy_instance/rn_state_2ahead_reg[2]/D                   |
 | clk_out4_div_clk_wiz_1 | clk_out4_div_clk_wiz_1 | ddr3_arbiter_inst/phy_instance/r_mem_rd_reg/D                             |
-| clk_out4_div_clk_wiz_1 | clk_out4_div_clk_wiz_1 | graphics_inst/addr_curr_q_reg[26]/D                                       |
-| clk_out4_div_clk_wiz_1 | clk_out4_div_clk_wiz_1 | graphics_inst/addr_curr_q_reg[24]/D                                       |
-| clk_out4_div_clk_wiz_1 | clk_out4_div_clk_wiz_1 | graphics_inst/init_inst/addr_curr_q_reg[23]/D                             |
-| clk_out4_div_clk_wiz_1 | clk_out4_div_clk_wiz_1 | graphics_inst/init_inst/addr_curr_q_reg[25]/D                             |
-| clk_out4_div_clk_wiz_1 | clk_out4_div_clk_wiz_1 | graphics_inst/init_inst/addr_curr_q_reg[24]/D                             |
-| clk_out4_div_clk_wiz_1 | clk_out4_div_clk_wiz_1 | graphics_inst/init_inst/addr_curr_q_reg[21]/D                             |
-| clk_out4_div_clk_wiz_1 | clk_out4_div_clk_wiz_1 | graphics_inst/init_inst/addr_curr_q_reg[22]/D                             |
-| clk_out4_div_clk_wiz_1 | clk_out4_div_clk_wiz_1 | graphics_inst/init_inst/addr_curr_q_reg[20]/D                             |
+| clk_out4_div_clk_wiz_1 | clk_out4_div_clk_wiz_1 | dmc_inst/cache_state_q_reg[2]_rep/D                                       |
+| clk_out4_div_clk_wiz_1 | clk_out4_div_clk_wiz_1 | graphics_inst/rasterizer_inst/curr_addr_q_reg[21]/D                       |
+| clk_out4_div_clk_wiz_1 | clk_out4_div_clk_wiz_1 | graphics_inst/rasterizer_inst/curr_addr_q_reg[20]/D                       |
+| clk_out4_div_clk_wiz_1 | clk_out4_div_clk_wiz_1 | graphics_inst/rasterizer_inst/curr_addr_q_reg[23]/D                       |
 | clk_out4_div_clk_wiz_1 | clk_out4_div_clk_wiz_1 | graphics_inst/rasterizer_inst/barycentric_calc_inst/r_unnorm3_5_reg[63]/D |
 +------------------------+------------------------+---------------------------------------------------------------------------+

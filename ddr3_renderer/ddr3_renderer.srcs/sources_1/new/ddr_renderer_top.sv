@@ -89,7 +89,7 @@ ddr3_arbiter ddr3_arbiter_inst (
 
   /* ### BEGIN DDR3 R/W Signals ### */
   .r128_wrdata(r128_wrdata),
-	.wrdm(((wb_active) ? gpu_wrdm : cache_ddr3_wrdm)), // as per controller documentation, wrdm is effectively high-Z during read ops
+	.wrdm(((cache_active) ? cache_ddr3_wrdm : gpu_wrdm)), // as per controller documentation, wrdm is effectively high-Z during read ops
   .app_addr(app_addr),
 
   .r_phy_cmd_en(r_phy_cmd_en),
@@ -100,7 +100,7 @@ ddr3_arbiter ddr3_arbiter_inst (
   .w_cmd_full(w_phy_cmd_full),
 	/* ### END DDR3 R/W Signals */
 
-    .w_clk_div_o(w_uart_clk)
+  .w_clk_div_o(w_uart_clk)
 );
 
 /* misc signals */
@@ -406,16 +406,20 @@ logic				 cache_ddr3_rw_n; // 1 = Read, 0 = Write
 logic [127:0]	cache_ddr3_dout;
 logic					cache_ddr3_wrdm;
 
+// control
+logic 				cache_active;
+logic               ddr3_cache_ready;
+
 cache dmc_inst (
-  .clk(clk),
-  .rst(rst),
+  .clk(w_uart_clk),
+  .rst(reset_ah),
 
   /* BEGIN interface with DDR3 arbiter */
   // R/W
   .cache_ddr3_addr(cache_ddr3_addr),
   .cache_ddr3_req(cache_ddr3_req),
   .cache_ddr3_rw_n(cache_ddr3_rw_n), // 1 = Read, 0 = Write
-  .cache_ddr3_ready(ddr3_mem_wrdy),
+  .cache_ddr3_ready(ddr3_cache_ready),
   // R
   .cache_ddr3_din(w128_phy_rddata),
   .cache_ddr3_din_valid(w_phy_rddata_valid),
@@ -431,7 +435,9 @@ cache dmc_inst (
   .zbuf_rw_n(zbuf_rw_n), // 1 = Read, 0 = Write
   .zbuf_din(zbuf_din),
   .zbuf_dout(zbuf_dout),
-  .zbuf_dout_valid(zbuf_valid) // asserted when read value is valid OR value has been successfully written
+  .zbuf_dout_valid(zbuf_valid), // asserted when read value is valid OR value has been successfully written
+
+	.cache_is_active(cache_active)
 );
 
 //// write enable logic ~ only write when we are in active mode & ddr3 controller FIFO is able to recieve new commands
@@ -540,28 +546,54 @@ assign RGBLED1[0] = (ddr3_wr_state_q != StIdleWr);
 
  always_comb begin
  	// priority encoder, if init_active is asserted high, we will continuously write
- 	if (fbuf_active) begin
- 	  ddr3_mem_wrdy = 1'b0;
- 		app_addr = rd_addr;
- 		r_phy_cmd_en = rd_cmd_en;
- 		r_phy_cmd_sel = rd_cmd_sel;
- 		r128_wrdata = 'b0;
- 	end else begin
-		if (wb_active) begin
+// 	if (fbuf_active) begin
+// 	  ddr3_mem_wrdy = 1'b0;
+// 		app_addr = rd_addr;
+// 		r_phy_cmd_en = rd_cmd_en;
+// 		r_phy_cmd_sel = rd_cmd_sel;
+// 		r128_wrdata = 'b0;
+// 	end else begin
+ 	/* this is ugly but heres a small description of how I envision this 
+ 	Initialize Background First -> This doesn't rely on graphics pipeline so its given highest write priority
+ 	Because cache is further in the pipline, its given priority because wb_controller is more resistant to pipeline stalls
+ 	*/
+ 	  if (fbuf_active) begin
+      ddr3_mem_wrdy = 1'b0;
+      ddr3_cache_ready = 1'b0;
+      app_addr = rd_addr;
+      r_phy_cmd_en = rd_cmd_en;
+      r_phy_cmd_sel = rd_cmd_sel;
+      r128_wrdata = 'b0;
+		end else if (init_active) begin
+		  ddr3_cache_ready = 1'b0;
 			ddr3_mem_wrdy = ~wr_cmd_en;
-			app_addr = (init_active) ? wr_addr : staging_buffer_addr + wr_addr;
+			app_addr = staging_buffer_addr + wr_addr;
 			r_phy_cmd_en = wr_cmd_en;
 			r_phy_cmd_sel = wr_cmd_sel;
 			r128_wrdata = ddr3_wr_data;
-		end else begin
-			ddr3_mem_wrdy = !w_phy_cmd_full;
+	  end else if (cache_active) begin
+	    ddr3_cache_ready = !w_phy_cmd_full;
+			ddr3_mem_wrdy = 1'b0;
 			app_addr = cache_ddr3_addr;
 			r_phy_cmd_en = cache_ddr3_req;
 			r_phy_cmd_sel = cache_ddr3_rw_n;
 			r128_wrdata = cache_ddr3_dout;
+		end else begin
+			ddr3_mem_wrdy = ~wr_cmd_en;
+			ddr3_cache_ready = 1'b0;
+			app_addr = staging_buffer_addr + wr_addr;
+			r_phy_cmd_en = wr_cmd_en;
+			r_phy_cmd_sel = wr_cmd_sel;
+			r128_wrdata = ddr3_wr_data;
 		end
-  	end
- end
+//		  ddr3_cache_ready = 1'b0;
+//			ddr3_mem_wrdy = 1'b0;
+//			r_phy_cmd_en = 1'b0;
+//			r_phy_cmd_sel = 1'b0;
+//			app_addr = 'b0;
+//			r128_wrdata = 'b0;
+//		end
+end
 
 /* ### END DDR3 Write Logic ### */
 

@@ -41,6 +41,7 @@ module zbuffer(
 
   /* Interface with writeback controller */
   input logic         wb_ready,
+  input logic         wb_memwr_active,
   output logic        mem_valid_out,
   output logic [26:0] mem_addr_out,
   output logic [15:0] mem_data_out
@@ -86,12 +87,15 @@ typedef enum {
 cache_state_e cache_state_d, cache_state_q;
 logic signed [63:0] tmp0, tmp1, tmp2, sum;
 logic mem_req_q3, cache_fetch_stall;
+//logic [3:0] delay_q, delay_d;
 
 always_ff @(posedge clk) begin
  if (rst) begin
    cache_state_q <= StIdle;
+//   delay_q <= 3'b000;
  end else begin
    cache_state_q <= cache_state_d;
+//   delay_q <= delay_d;
  end
 end
 
@@ -107,24 +111,24 @@ always_comb begin
 // SM for cache R/W
 
   // defaults
-  zbuf_addr = 27'b0;
+  zbuf_addr = zbuf_q.addr + VRAM_UBOUND;
   zbuf_req = 1'b0;
   zbuf_rw_n = 1'b0;
   zbuf_dout = 16'b0;
 
   cache_state_d = cache_state_q;
+//  delay_d = delay_q;
   cache_fetch_stall = 1'b0;
 
   unique case (cache_state_q)
     StIdle: begin
+//      delay_d = 3'b000;
       if (zbuf_q.valid) begin
         cache_state_d = StReq;
-        cache_fetch_stall = 1'b0;
       end
     end
     StReq: begin
       cache_fetch_stall = 1'b1;
-      zbuf_addr = zbuf_q2.addr + VRAM_UBOUND;
       zbuf_rw_n = 1'b1;
       zbuf_req = 1'b1;
 
@@ -134,7 +138,11 @@ always_comb begin
     end
     StDone: begin
       cache_fetch_stall = 1'b1;
+//      delay_d = delay_q + 1;
+      // 8 cycle delay
+//      if (delay_d == 3'b111) begin
       cache_state_d = StIdle;
+//      end
     end
   endcase
 end
