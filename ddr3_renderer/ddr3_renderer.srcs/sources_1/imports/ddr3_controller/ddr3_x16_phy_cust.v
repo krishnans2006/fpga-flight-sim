@@ -78,6 +78,7 @@ module ddr3_x16_phy_cust #(
 		// CMD FIFO control flags
 	input	i_mem_wr,
 	output	o_mem_full,
+	output 	o_mem_empty,
 	
 	// Read data output
 	output	o_mem_rddata_valid,
@@ -813,7 +814,7 @@ wire	[7:0]	w8_write_mask				= r8_write_mask_delayed;
 // OSERDES TRIGGER FLAG & OSERDES DATA
 always @(posedge i_clk_div) begin: oserdes_input
 	// The CWL difference (5 vs 6) is taken up by the nCS signal being shifted
-	//	180°. In previous designs the oserdes state machine was to be triggered
+	//	180ï¿½. In previous designs the oserdes state machine was to be triggered
 	//	either 1 or 0 divck cycles early, as calculated by
 	//	(lpdiv_WL_MAX - DLL.lpdiv_WL)
 	r_wr_op <= 1'b0;
@@ -1271,6 +1272,7 @@ assign o_mem_rddata_valid = rn_rd_op_delayed[p_RD_DELAY];
 assign on_mem_rddata = rn_rddata;
 
 assign	o_mem_full = w_mem_full;
+assign  o_mem_empty = w_mem_empty;
 
 assign o_mem_init_done = r_mem_init_done;
 

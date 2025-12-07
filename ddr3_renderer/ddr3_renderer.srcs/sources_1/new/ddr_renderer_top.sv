@@ -98,6 +98,7 @@ ddr3_arbiter ddr3_arbiter_inst (
   .rddata_valid(w_phy_rddata_valid),
   .w128_rddata(w128_phy_rddata),
   .w_cmd_full(w_phy_cmd_full),
+	.w_cmd_empty(w_phy_cmd_empty),
 	/* ### END DDR3 R/W Signals */
 
   .w_clk_div_o(w_uart_clk)
@@ -108,6 +109,7 @@ logic r_phy_cmd_en;
 logic r_phy_cmd_sel;
 logic w_phy_rddata_valid;
 logic w_phy_cmd_full;
+logic w_phy_cmd_empty;
 logic [26:0] app_addr;
 logic [127:0] w128_phy_rddata, r128_wrdata;
 
@@ -211,7 +213,7 @@ One buffer is used to hold next frame, the other is used to draw current frame. 
 */
 
 typedef enum {
-    StIdle, StReqDDR3, StPollDDR3, StWrite0, StWrite1, StWrite2
+    StIdle, StFlush, StReqDDR3, StPollDDR3, StWrite0, StWrite1, StWrite2
 } fbuf_wr_state_e;
 
 logic [26:0] rd_addr;
@@ -250,9 +252,13 @@ always_comb begin
 			
 			// transition on falling edge of vde
 			if (~vde && old_vga_vde) begin
-				fbuf_wr_state_d = StReqDDR3;
+				fbuf_wr_state_d = StFlush;
 			end
-		end
+		end 
+		StFlush: begin
+			if (w_phy_cmd_empty)
+				fbuf_wr_state_d = StReqDDR3;
+	  end
 		StReqDDR3: begin
 			rd_cmd_en = 1'b1;
  			rd_cmd_sel = 1'b1; // 1'b1 is read mode, 1'b0 is write mode
@@ -291,7 +297,7 @@ always_comb begin
 		StWrite2: begin
 		  rd_flag = 1'b1;
 			if (fbuf_wr_complete) begin
-				fbuf_wr_state_d = StReqDDR3;
+				fbuf_wr_state_d = StFlush;
 			end else begin 
 				fbuf_wr_state_d = StWrite2;
 		end
@@ -544,55 +550,43 @@ assign RGBLED1[0] = (ddr3_wr_state_q != StIdleWr);
  logic fbuf_active;
  assign fbuf_active = (fbuf_wr_state_q != StIdle);
 
- always_comb begin
+always_comb begin
  	// priority encoder, if init_active is asserted high, we will continuously write
-// 	if (fbuf_active) begin
-// 	  ddr3_mem_wrdy = 1'b0;
-// 		app_addr = rd_addr;
-// 		r_phy_cmd_en = rd_cmd_en;
-// 		r_phy_cmd_sel = rd_cmd_sel;
-// 		r128_wrdata = 'b0;
-// 	end else begin
  	/* this is ugly but heres a small description of how I envision this 
  	Initialize Background First -> This doesn't rely on graphics pipeline so its given highest write priority
  	Because cache is further in the pipline, its given priority because wb_controller is more resistant to pipeline stalls
  	*/
- 	  if (fbuf_active) begin
-      ddr3_mem_wrdy = 1'b0;
-      ddr3_cache_ready = 1'b0;
-      app_addr = rd_addr;
-      r_phy_cmd_en = rd_cmd_en;
-      r_phy_cmd_sel = rd_cmd_sel;
-      r128_wrdata = 'b0;
-		end else if (init_active) begin
-		  ddr3_cache_ready = 1'b0;
-			ddr3_mem_wrdy = ~wr_cmd_en;
-			app_addr = staging_buffer_addr + wr_addr;
-			r_phy_cmd_en = wr_cmd_en;
-			r_phy_cmd_sel = wr_cmd_sel;
-			r128_wrdata = ddr3_wr_data;
-	  end else if (cache_active) begin
-	    ddr3_cache_ready = !w_phy_cmd_full;
-			ddr3_mem_wrdy = 1'b0;
-			app_addr = cache_ddr3_addr;
-			r_phy_cmd_en = cache_ddr3_req;
-			r_phy_cmd_sel = cache_ddr3_rw_n;
-			r128_wrdata = cache_ddr3_dout;
-		end else begin
-			ddr3_mem_wrdy = ~wr_cmd_en;
-			ddr3_cache_ready = 1'b0;
-			app_addr = staging_buffer_addr + wr_addr;
-			r_phy_cmd_en = wr_cmd_en;
-			r_phy_cmd_sel = wr_cmd_sel;
-			r128_wrdata = ddr3_wr_data;
-		end
-//		  ddr3_cache_ready = 1'b0;
-//			ddr3_mem_wrdy = 1'b0;
-//			r_phy_cmd_en = 1'b0;
-//			r_phy_cmd_sel = 1'b0;
-//			app_addr = 'b0;
-//			r128_wrdata = 'b0;
-//		end
+	if (fbuf_active) begin
+        ddr3_mem_wrdy = 1'b0;
+        ddr3_cache_ready = 1'b0;
+        app_addr = rd_addr;
+        r_phy_cmd_en = rd_cmd_en;
+        r_phy_cmd_sel = rd_cmd_sel;
+        r128_wrdata = 'b0;
+	end else if (init_active) begin
+	// if initialization is active, frame buffer CAN interrupt it in order to display
+		ddr3_cache_ready = 1'b0;
+		ddr3_mem_wrdy = ~wr_cmd_en;
+		app_addr = staging_buffer_addr + wr_addr;
+		r_phy_cmd_en = wr_cmd_en;
+		r_phy_cmd_sel = wr_cmd_sel;
+		r128_wrdata = ddr3_wr_data;
+	end else if (cache_active) begin
+	// cache is uninterruptable
+	  ddr3_cache_ready = !w_phy_cmd_full;
+		ddr3_mem_wrdy = 1'b0;
+		app_addr = cache_ddr3_addr;
+		r_phy_cmd_en = cache_ddr3_req;
+		r_phy_cmd_sel = cache_ddr3_rw_n;
+		r128_wrdata = cache_ddr3_dout;
+	end else begin
+		ddr3_mem_wrdy = ~wr_cmd_en;
+		ddr3_cache_ready = 1'b0;
+		app_addr = staging_buffer_addr + wr_addr;
+		r_phy_cmd_en = wr_cmd_en;
+		r_phy_cmd_sel = wr_cmd_sel;
+		r128_wrdata = ddr3_wr_data;
+	end
 end
 
 /* ### END DDR3 Write Logic ### */

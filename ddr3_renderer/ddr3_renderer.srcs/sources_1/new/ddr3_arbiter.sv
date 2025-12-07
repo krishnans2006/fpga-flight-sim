@@ -59,6 +59,7 @@ module ddr3_arbiter (
   output logic          rddata_valid,
   output logic [127:0]  w128_rddata,
   output logic          w_cmd_full,
+	output logic					w_cmd_empty,
   
   // misc debugging signal
   output logic          w_clk_div_o
@@ -98,6 +99,7 @@ logic	 w_phy_init_done;
 logic	 w_phy_rddata_valid;
 logic  [127:0] w128_phy_rddata;
 logic  w_phy_cmd_full;
+logic  w_phy_cmd_empty;
 
 // ### BEGIN Internal Connection Wires - Ported from Example Project ###
 reg	[7:0]	r8_wrdm = 8'b0;
@@ -141,6 +143,7 @@ assign LED[3] = w_rdcal_done;
 assign rddata_valid = w_phy_rddata_valid;
 assign w128_rddata = w128_phy_rddata;
 assign w_cmd_full = w_phy_cmd_full;
+assign w_cmd_empty = w_phy_cmd_empty;
 assign {w_ba, w_row[12:0], w_col} = app_addr; //for 1Gb DDR3
  
 // ### END Internal Connection Wires ###
@@ -169,6 +172,7 @@ ddr3_x16_phy_cust #(
 	.i_mem_wr(w_phy_cmd_en),//	input	i_phy_cmd_en,	// Active high strobe for inputs: cmd_sel, addr, 
 	.i_mem_op(w_phy_cmd_sel),//	input	i_phy_cmd_sel,	// Command for current request: 'b0 = WRITE || 'b1 = READ
 	.o_mem_full(w_phy_cmd_full),
+	.o_mem_empty(w_phy_cmd_empty),
 	//	output	o_phy_cmd_rdy,	// Active high indicates UI ready to accept commands
 	
 	.in_mem_bank(w3_phy_bank),//	input	[p_BANK_W-1:0]	in_phy_bank,
