@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xF1805C84ACC979AB",
+      "boundary_crc": "0xE827BED1B56E9BFE",
       "device": "xc7s50csga324-1",
       "gen_directory": "../../../../flight_sim.gen/sources_1/bd/mb_block",
       "name": "mb_block",
@@ -150,16 +150,16 @@
           }
         }
       },
-      "usb_spi_mosi": {
+      "spi_usb_mosi": {
         "direction": "O"
       },
-      "usb_spi_miso": {
+      "spi_usb_miso": {
         "direction": "I"
       },
-      "usb_spi_sclk": {
+      "spi_usb_sclk": {
         "direction": "O"
       },
-      "usb_spi_ss": {
+      "spi_usb_ss": {
         "direction": "O",
         "left": "0",
         "right": "0"
@@ -1572,7 +1572,7 @@
       "spi_usb_io0_o": {
         "ports": [
           "spi_usb/io0_o",
-          "usb_spi_mosi"
+          "spi_usb_mosi"
         ]
       },
       "spi_usb_ip2intc_irpt": {
@@ -1584,13 +1584,13 @@
       "spi_usb_sck_o": {
         "ports": [
           "spi_usb/sck_o",
-          "usb_spi_sclk"
+          "spi_usb_sclk"
         ]
       },
       "spi_usb_ss_o": {
         "ports": [
           "spi_usb/ss_o",
-          "usb_spi_ss"
+          "spi_usb_ss"
         ]
       },
       "timer_usb_interrupt": {
@@ -1601,7 +1601,7 @@
       },
       "usb_spi_miso_1": {
         "ports": [
-          "usb_spi_miso",
+          "spi_usb_miso",
           "spi_usb/io1_i"
         ]
       }

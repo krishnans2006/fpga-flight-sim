@@ -1,4 +1,3 @@
-
 ##################################################################################################
 ## LP_DDR3 INTERFACE FOR THE URBANA BOARD based on the July 18 2022 schematic
 ## Memory Device: DDR3_SDRAM->Components->MT41K256M16XX-15E
@@ -7,8 +6,8 @@
 ## Data Mask: 1
 ## Rick Ballantyne AMD July25 2022 NOT HARDWARE VERIFIED
 ##################################################################################################
-############## NET - IOSTANDARD ##################
 
+############## NET - IOSTANDARD ##################
 
 # PadFunction: IO_L12N_T1_MRCC_16 (SCHEMATIC RGB0_G)
 #set_property IOSTANDARD LVCMOS33 [get_ports init_calib_complete]
@@ -22,63 +21,85 @@
 #set_property IO_BUFFER_TYPE NONE [get_ports {ddr3_ck_n[0]}]
 #set_property IO_BUFFER_TYPE NONE [get_ports {ddr3_ck_p[0]}]
 
-create_clock -period 10.000 [get_ports DDR3_CLK100]
-set_property IOSTANDARD LVCMOS33 [get_ports DDR3_CLK100]
-set_property PACKAGE_PIN N15 [get_ports DDR3_CLK100]
+create_clock -period 10.000 [get_ports clk]
+set_property IOSTANDARD LVCMOS33 [get_ports clk]
+set_property PACKAGE_PIN N15 [get_ports clk]
 
+
+# On-board Switches
+set_property -dict {PACKAGE_PIN G1 IOSTANDARD LVCMOS25} [get_ports {sw[0]}]
+set_property -dict {PACKAGE_PIN F2 IOSTANDARD LVCMOS25} [get_ports {sw[1]}]
+set_property -dict {PACKAGE_PIN F1 IOSTANDARD LVCMOS25} [get_ports {sw[2]}]
+set_property -dict {PACKAGE_PIN E2 IOSTANDARD LVCMOS25} [get_ports {sw[3]}]
 
 # On-board Buttons
-set_property -dict {PACKAGE_PIN J2 IOSTANDARD LVCMOS33} [get_ports {BTN[0]}]
-set_property -dict {PACKAGE_PIN J1 IOSTANDARD LVCMOS33} [get_ports {BTN[1]}]
-set_property -dict {PACKAGE_PIN G2 IOSTANDARD LVCMOS33} [get_ports {BTN[2]}]
-set_property -dict {PACKAGE_PIN H2 IOSTANDARD LVCMOS33} [get_ports {BTN[3]}]
-
-# On-board color LEDs
-set_property -dict {PACKAGE_PIN C9 IOSTANDARD LVCMOS33} [get_ports {RGBLED0[0]}]
-set_property -dict {PACKAGE_PIN A9 IOSTANDARD LVCMOS33} [get_ports {RGBLED0[1]}]
-set_property -dict {PACKAGE_PIN A10 IOSTANDARD LVCMOS33} [get_ports {RGBLED0[2]}]
-set_property -dict {PACKAGE_PIN A11 IOSTANDARD LVCMOS33} [get_ports {RGBLED1[0]}]
-set_property -dict {PACKAGE_PIN C10 IOSTANDARD LVCMOS33} [get_ports {RGBLED1[1]}]
-set_property -dict {PACKAGE_PIN B11 IOSTANDARD LVCMOS33} [get_ports {RGBLED1[2]}]
+set_property -dict {PACKAGE_PIN J2 IOSTANDARD LVCMOS25} [get_ports {btn[0]}]
+set_property -dict {PACKAGE_PIN J1 IOSTANDARD LVCMOS25} [get_ports {btn[1]}]
+set_property -dict {PACKAGE_PIN G2 IOSTANDARD LVCMOS25} [get_ports {btn[2]}]
+set_property -dict {PACKAGE_PIN H2 IOSTANDARD LVCMOS25} [get_ports {btn[3]}]
 
 # On-board LEDs
-set_property -dict {PACKAGE_PIN C13 IOSTANDARD LVCMOS33} [get_ports {LED[0]}]
-set_property -dict {PACKAGE_PIN C14 IOSTANDARD LVCMOS33} [get_ports {LED[1]}]
-set_property -dict {PACKAGE_PIN D14 IOSTANDARD LVCMOS33} [get_ports {LED[2]}]
-set_property -dict {PACKAGE_PIN D15 IOSTANDARD LVCMOS33} [get_ports {LED[3]}]
-#set_property -dict {PACKAGE_PIN D16 IOSTANDARD LVCMOS33} [get_ports {LED[4]}]
-#set_property -dict {PACKAGE_PIN F18 IOSTANDARD LVCMOS33} [get_ports {LED[5]}]
-#set_property -dict {PACKAGE_PIN E17 IOSTANDARD LVCMOS33} [get_ports {LED[6]}]
-#set_property -dict {PACKAGE_PIN D17 IOSTANDARD LVCMOS33} [get_ports {LED[7]}]
-#set_property -dict {PACKAGE_PIN C17 IOSTANDARD LVCMOS33} [get_ports {LED[8]}]
-#set_property -dict {PACKAGE_PIN B18 IOSTANDARD LVCMOS33} [get_ports {LED[9]}]
-#set_property -dict {PACKAGE_PIN A17 IOSTANDARD LVCMOS33} [get_ports {LED[10]}]
-#set_property -dict {PACKAGE_PIN B17 IOSTANDARD LVCMOS33} [get_ports {LED[11]}]
-#set_property -dict {PACKAGE_PIN C18 IOSTANDARD LVCMOS33} [get_ports {LED[12]}]
-#set_property -dict {PACKAGE_PIN D18 IOSTANDARD LVCMOS33} [get_ports {LED[13]}]
-#set_property -dict {PACKAGE_PIN E18 IOSTANDARD LVCMOS33} [get_ports {LED[14]}]
-#set_property -dict {PACKAGE_PIN G17 IOSTANDARD LVCMOS33} [get_ports {LED[15]}]
+set_property -dict {PACKAGE_PIN C13 IOSTANDARD LVCMOS33} [get_ports {led[0]}]
+set_property -dict {PACKAGE_PIN C14 IOSTANDARD LVCMOS33} [get_ports {led[1]}]
+set_property -dict {PACKAGE_PIN D14 IOSTANDARD LVCMOS33} [get_ports {led[2]}]
+set_property -dict {PACKAGE_PIN D15 IOSTANDARD LVCMOS33} [get_ports {led[3]}]
+#set_property -dict {PACKAGE_PIN D16 IOSTANDARD LVCMOS33} [get_ports {led[4]}]
+#set_property -dict {PACKAGE_PIN F18 IOSTANDARD LVCMOS33} [get_ports {led[5]}]
+#set_property -dict {PACKAGE_PIN E17 IOSTANDARD LVCMOS33} [get_ports {led[6]}]
+#set_property -dict {PACKAGE_PIN D17 IOSTANDARD LVCMOS33} [get_ports {led[7]}]
+#set_property -dict {PACKAGE_PIN C17 IOSTANDARD LVCMOS33} [get_ports {led[8]}]
+#set_property -dict {PACKAGE_PIN B18 IOSTANDARD LVCMOS33} [get_ports {led[9]}]
+#set_property -dict {PACKAGE_PIN A17 IOSTANDARD LVCMOS33} [get_ports {led[10]}]
+#set_property -dict {PACKAGE_PIN B17 IOSTANDARD LVCMOS33} [get_ports {led[11]}]
+#set_property -dict {PACKAGE_PIN C18 IOSTANDARD LVCMOS33} [get_ports {led[12]}]
+#set_property -dict {PACKAGE_PIN D18 IOSTANDARD LVCMOS33} [get_ports {led[13]}]
+#set_property -dict {PACKAGE_PIN E18 IOSTANDARD LVCMOS33} [get_ports {led[14]}]
+#set_property -dict {PACKAGE_PIN G17 IOSTANDARD LVCMOS33} [get_ports {led[15]}]
 
-set_property -dict {PACKAGE_PIN G1 IOSTANDARD LVCMOS33} [get_ports {SW[0]}]
-set_property -dict {PACKAGE_PIN F2 IOSTANDARD LVCMOS33} [get_ports {SW[1]}]
-set_property -dict {PACKAGE_PIN F1 IOSTANDARD LVCMOS33} [get_ports {SW[2]}]
-set_property -dict {PACKAGE_PIN E2 IOSTANDARD LVCMOS33} [get_ports {SW[3]}]
+# On-board color LEDs
+set_property -dict {PACKAGE_PIN C9 IOSTANDARD LVCMOS33} [get_ports {rgbled0[0]}]
+set_property -dict {PACKAGE_PIN A9 IOSTANDARD LVCMOS33} [get_ports {rgbled0[1]}]
+set_property -dict {PACKAGE_PIN A10 IOSTANDARD LVCMOS33} [get_ports {rgbled0[2]}]
+set_property -dict {PACKAGE_PIN A11 IOSTANDARD LVCMOS33} [get_ports {rgbled1[0]}]
+set_property -dict {PACKAGE_PIN C10 IOSTANDARD LVCMOS33} [get_ports {rgbled1[1]}]
+set_property -dict {PACKAGE_PIN B11 IOSTANDARD LVCMOS33} [get_ports {rgbled1[2]}]
 
 
 ############## NET - IOSTANDARD ##################
 
-# Set SPI buswidth
-set_property BITSTREAM.CONFIG.SPI_BUSWIDTH 4 [current_design]
-
 # UART
-set_property SLEW SLOW [get_ports UART_RXD_OUT]
-set_property IOSTANDARD LVCMOS33 [get_ports UART_TXD_IN]
-set_property IOSTANDARD LVCMOS33 [get_ports UART_RXD_OUT]
-set_property PACKAGE_PIN B16 [get_ports UART_TXD_IN]
-set_property PACKAGE_PIN A16 [get_ports UART_RXD_OUT]
+set_property IOSTANDARD LVCMOS33 [get_ports uart_rtl_0_rxd]
+set_property PACKAGE_PIN B16 [get_ports uart_rtl_0_rxd]
+
+set_property SLEW SLOW [get_ports uart_rtl_0_txd]
+set_property IOSTANDARD LVCMOS33 [get_ports uart_rtl_0_txd]
+set_property PACKAGE_PIN A16 [get_ports uart_rtl_0_txd]
 
 
-#HDMI Signals
+# USB
+set_property IOSTANDARD LVCMOS33 [get_ports {gpio_usb_int_tri_i}]
+set_property PACKAGE_PIN T13 [get_ports {gpio_usb_int_tri_i}]
+
+set_property IOSTANDARD LVCMOS33 [get_ports gpio_usb_rst_tri_o]
+set_property PACKAGE_PIN V13 [get_ports gpio_usb_rst_tri_o]
+
+set_property IOSTANDARD LVCMOS33 [get_ports spi_usb_miso]
+set_property PACKAGE_PIN U12 [get_ports spi_usb_miso]
+
+set_property IOSTANDARD LVCMOS33 [get_ports spi_usb_mosi]
+set_property PACKAGE_PIN V15 [get_ports spi_usb_mosi]
+
+set_property IOSTANDARD LVCMOS33 [get_ports spi_usb_sclk]
+set_property PACKAGE_PIN V14 [get_ports spi_usb_sclk]
+
+set_property IOSTANDARD LVCMOS33 [get_ports spi_usb_ss]
+set_property PACKAGE_PIN T12 [get_ports spi_usb_ss]
+
+# Set SPI buswidth
+# set_property BITSTREAM.CONFIG.SPI_BUSWIDTH 4 [current_design]
+
+
+# HDMI
 set_property -dict { PACKAGE_PIN V17   IOSTANDARD TMDS_33 } [get_ports {hdmi_tmds_clk_n}]
 set_property -dict { PACKAGE_PIN U16   IOSTANDARD TMDS_33 } [get_ports {hdmi_tmds_clk_p}]
 
@@ -89,6 +110,7 @@ set_property -dict { PACKAGE_PIN T14   IOSTANDARD TMDS_33  } [get_ports {hdmi_tm
 set_property -dict { PACKAGE_PIN U17   IOSTANDARD TMDS_33  } [get_ports {hdmi_tmds_data_p[0]}]
 set_property -dict { PACKAGE_PIN R16   IOSTANDARD TMDS_33  } [get_ports {hdmi_tmds_data_p[1]}]
 set_property -dict { PACKAGE_PIN R14   IOSTANDARD TMDS_33  } [get_ports {hdmi_tmds_data_p[2]}]
+
 
 # PadFunction: IO_L1N_T0_34 (SCHEMATIC DDR_DQ0)
 set_property SLEW FAST [get_ports {ddr3_dq[0]}]

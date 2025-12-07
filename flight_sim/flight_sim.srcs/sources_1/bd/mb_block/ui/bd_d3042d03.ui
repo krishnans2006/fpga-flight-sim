@@ -1,7 +1,7 @@
 {
    "ActiveEmotionalView":"Default View",
    "Default View_ScaleFactor":"0.684166",
-   "Default View_TopLeft":"-136,-47",
+   "Default View_TopLeft":"-136,-57",
    "ExpandedHierarchyInLayout":"",
    "guistr":"# # String gsaved with Nlview 7.0r6  2020-01-29 bk=1.5227 VDI=41 GEI=36 GUI=JA:10.0 non-TLS
 #  -string -flagsOSRD
@@ -12,10 +12,10 @@ preplace port gpio_usb_rst -pg 1 -lvl 7 -x 2110 -y 220 -defaultsOSRD
 preplace port gpio_usb_int -pg 1 -lvl 7 -x 2110 -y 550 -defaultsOSRD
 preplace port port-id_clk_100MHz -pg 1 -lvl 0 -x 0 -y 480 -defaultsOSRD
 preplace port port-id_reset_rtl_0 -pg 1 -lvl 0 -x 0 -y 540 -defaultsOSRD
-preplace port port-id_usb_spi_mosi -pg 1 -lvl 7 -x 2110 -y 910 -defaultsOSRD
-preplace port port-id_usb_spi_miso -pg 1 -lvl 0 -x 0 -y 880 -defaultsOSRD
-preplace port port-id_usb_spi_sclk -pg 1 -lvl 7 -x 2110 -y 950 -defaultsOSRD
-preplace portBus usb_spi_ss -pg 1 -lvl 7 -x 2110 -y 970 -defaultsOSRD
+preplace port port-id_spi_usb_mosi -pg 1 -lvl 7 -x 2110 -y 910 -defaultsOSRD
+preplace port port-id_spi_usb_miso -pg 1 -lvl 0 -x 0 -y 880 -defaultsOSRD
+preplace port port-id_spi_usb_sclk -pg 1 -lvl 7 -x 2110 -y 950 -defaultsOSRD
+preplace portBus spi_usb_ss -pg 1 -lvl 7 -x 2110 -y 970 -defaultsOSRD
 preplace inst microblaze_0 -pg 1 -lvl 4 -x 1180 -y 610 -defaultsOSRD
 preplace inst microblaze_0_local_memory -pg 1 -lvl 5 -x 1620 -y 620 -defaultsOSRD
 preplace inst microblaze_0_axi_periph -pg 1 -lvl 5 -x 1620 -y 280 -defaultsOSRD

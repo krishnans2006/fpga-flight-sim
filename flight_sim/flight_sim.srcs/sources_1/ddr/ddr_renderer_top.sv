@@ -22,14 +22,13 @@
 module ddr_renderer_top(
 
 	input 	DDR3_CLK100,
+  input      reset_ah,
+  input      initialize,
 	input 	[3:0]	SW,
-	input	[3:0]	BTN,
 	output	[3:0]	LED,
 	output	[2:0]	RGBLED0,
 	output	[2:0]	RGBLED1,
 	
-	input	UART_TXD_IN,
-	output	UART_RXD_OUT,
 	/* ### BEGIN DDR3 IO ### */
 	// Inouts
 	inout	[15:0]	ddr3_dq,
@@ -118,7 +117,6 @@ logic reset_ah;
 logic [3:0] red, green, blue;
 logic hsync, vsync, vde;
 
-assign reset_ah = BTN[0];
 assign hdmi_clk = DDR3_CLK100;
 logic hdmi_clk_o;
 
@@ -367,7 +365,7 @@ logic wb_active;
 graphics_top graphics_inst (
   .clk(w_uart_clk),
   .rst(reset_ah),
-  .trigger(BTN[1]), // hopefully this writes the background on every screen refresh
+  .trigger(initialize), // hopefully this writes the background on every screen refresh
 
   // DDR3 connections
   .mem_wrdy(ddr3_mem_wrdy),
