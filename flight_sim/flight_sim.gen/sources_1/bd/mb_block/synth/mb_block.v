@@ -1,7 +1,7 @@
 //Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-//Date        : Sun Dec  7 12:17:36 2025
+//Date        : Sun Dec  7 14:17:48 2025
 //Host        : Krishnan-Win running 64-bit major release  (build 9200)
 //Command     : generate_target mb_block.bd
 //Design      : mb_block
@@ -941,24 +941,24 @@ module mb_block
     gpio_usb_int_tri_i,
     gpio_usb_rst_tri_o,
     reset_rtl_0,
+    spi_usb_miso,
+    spi_usb_mosi,
+    spi_usb_sclk,
+    spi_usb_ss,
     uart_rtl_0_rxd,
-    uart_rtl_0_txd,
-    usb_spi_miso,
-    usb_spi_mosi,
-    usb_spi_sclk,
-    usb_spi_ss);
+    uart_rtl_0_txd);
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.CLK_100MHZ CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.CLK_100MHZ, CLK_DOMAIN mb_block_clk_100MHz, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.0" *) input clk_100MHz;
   (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 gpio_highway_to_hw " *) output [31:0]gpio_highway_to_hw_tri_o;
   (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 gpio_highway_to_mb " *) input [31:0]gpio_highway_to_mb_tri_i;
   (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 gpio_usb_int " *) input [0:0]gpio_usb_int_tri_i;
   (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 gpio_usb_rst " *) output [0:0]gpio_usb_rst_tri_o;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.RESET_RTL_0 RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.RESET_RTL_0, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) input reset_rtl_0;
+  input spi_usb_miso;
+  output spi_usb_mosi;
+  output spi_usb_sclk;
+  output [0:0]spi_usb_ss;
   (* X_INTERFACE_INFO = "xilinx.com:interface:uart:1.0 uart_rtl_0 RxD" *) input uart_rtl_0_rxd;
   (* X_INTERFACE_INFO = "xilinx.com:interface:uart:1.0 uart_rtl_0 TxD" *) output uart_rtl_0_txd;
-  input usb_spi_miso;
-  output usb_spi_mosi;
-  output usb_spi_sclk;
-  output [0:0]usb_spi_ss;
 
   wire axi_uartlite_0_UART_RxD;
   wire axi_uartlite_0_UART_TxD;
@@ -1160,11 +1160,11 @@ module mb_block
   assign gpio_usb_int_GPIO_TRI_I = gpio_usb_int_tri_i[0];
   assign gpio_usb_rst_tri_o[0] = gpio_usb_rst_GPIO_TRI_O;
   assign reset_rtl_0_1 = reset_rtl_0;
+  assign spi_usb_mosi = spi_usb_io0_o;
+  assign spi_usb_sclk = spi_usb_sck_o;
+  assign spi_usb_ss[0] = spi_usb_ss_o;
   assign uart_rtl_0_txd = axi_uartlite_0_UART_TxD;
-  assign usb_spi_miso_1 = usb_spi_miso;
-  assign usb_spi_mosi = spi_usb_io0_o;
-  assign usb_spi_sclk = spi_usb_sck_o;
-  assign usb_spi_ss[0] = spi_usb_ss_o;
+  assign usb_spi_miso_1 = spi_usb_miso;
   mb_block_axi_uartlite_0_0 axi_uartlite_0
        (.interrupt(axi_uartlite_0_interrupt),
         .rx(axi_uartlite_0_UART_RxD),
