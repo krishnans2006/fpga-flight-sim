@@ -5,7 +5,7 @@ module flight_sim_top (
     // I/O
     input  [3:0] sw,
     input  [3:0] btn,
-    output [3:0] led,
+    output [15:0] led,
     output [2:0] rgbled0,
     output [2:0] rgbled1,
 
@@ -53,6 +53,11 @@ module flight_sim_top (
   assign reset_ah = btn[0];
   assign initialize = btn[1];
 
+  // If this line is commented out, everything breaks lol
+  // I have no idea why or how
+  // Have fun!
+  assign led[15] = gpio_usb_int_tri_i;
+
   // MicroBlaze to HW communication (GPIO highway)
   logic [31:0] highway_mb_to_hw;
   logic [31:0] highway_hw_to_mb;
@@ -81,7 +86,7 @@ module flight_sim_top (
       .initialize(initialize),
 
       .SW(sw),
-      .LED(led),
+      .LED(led[3:0]),
       .RGBLED0(rgbled0),
       .RGBLED1(rgbled1),
 
