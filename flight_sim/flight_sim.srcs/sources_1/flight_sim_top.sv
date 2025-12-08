@@ -56,7 +56,7 @@ module flight_sim_top (
   // If this line is commented out, everything breaks lol
   // I have no idea why or how
   // Have fun!
-  assign led[15] = gpio_usb_int_tri_i;
+  // assign led[15] = gpio_usb_int_tri_i;
 
   // MicroBlaze to HW communication (GPIO highway)
   logic [31:0] highway_mb_to_hw;
