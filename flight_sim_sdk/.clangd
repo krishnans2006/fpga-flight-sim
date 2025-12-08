@@ -1,0 +1,4 @@
+CompileFlags:
+  Add:
+    - -I/Users/krishnan/Documents/fpga-flight-sim/flight_sim_sdk/flight_sim_top/export/flight_sim_top/sw/flight_sim_top/standalone_microblaze_0/bspinclude/include
+    - -I/Xilinx/Vitis/2022.2/gnu/microblaze/nt/microblazeeb-xilinx-elf/usr/include
