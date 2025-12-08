@@ -6,7 +6,7 @@
 #include "GenericMacros.h"
 #include "GenericTypeDefs.h"
 #include "MAX3421E.h"
-#include "USB.h"
+#include "USB_params.h"
 #include "usb_ch9.h"
 #include "transfer.h"
 #include "HID.h"

@@ -1,4 +1,8 @@
 /* USB transfers    */
+#ifndef __MICROBLAZE__
+#define __MICROBLAZE__
+#endif
+
 #define _transfer_c_
 
 #include "project_config.h"

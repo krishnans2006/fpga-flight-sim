@@ -1,18 +1,37 @@
-#include "lw_usb/GenericMacros.h"
-#include "lw_usb/GenericTypeDefs.h"
-#include "lw_usb/HID.h"
-#include "lw_usb/MAX3421E.h"
-#include "lw_usb/USB.h"
-#include "lw_usb/transfer.h"
-#include "lw_usb/usb_ch9.h"
+#ifndef __MICROBLAZE__
+#define __MICROBLAZE__
+#endif
+
+#include <xgpio.h>
 #include "platform.h"
 #include "xil_printf.h"
-#include <xgpio.h>
+#include "xil_types.h"
+#include "usb.h"
 
 int main() {
     init_platform();
-    xil_printf("Hello World\n\r");
-    xil_printf("Successfully ran Hello World application");
+    usb_setup();
+    
+    xil_printf("Starting flight sim software...\n");
+
+    usb_report report = {0};
+
+    while (TRUE) {
+        // Populate USB report
+        u8 rcode = usb_get_inputs(&report);
+
+        xil_printf("USB report - Throttle Up: %d, Throttle Down: %d, Pitch Up: %d, Pitch Down: %d, Roll Left: %d, Roll Right: %d, Yaw Left: %d, Yaw Right: %d\n",
+            report.is_throttle_up,
+            report.is_throttle_down,
+            report.is_pitch_up,
+            report.is_pitch_down,
+            report.is_roll_left,
+            report.is_roll_right,
+            report.is_yaw_left,
+            report.is_yaw_right
+        );
+    }
+
     cleanup_platform();
     return 0;
 }

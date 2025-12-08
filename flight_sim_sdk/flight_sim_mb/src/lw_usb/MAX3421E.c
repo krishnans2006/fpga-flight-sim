@@ -2,6 +2,9 @@
 /* reading, writing registers, reset, host transfer, etc.   */
 /* GPIN, GPOUT are as per tutorial, reassign if necessary   */
 /* USB power on is GPOUT7, USB power overload is GPIN7      */
+#ifndef __MICROBLAZE__
+#define __MICROBLAZE__
+#endif
 
 #define _MAX3421E_C_
 
@@ -35,13 +38,15 @@ void SPI_init() {
 
 	ConfigPtr = XSpi_LookupConfig(XPAR_SPI_USB_DEVICE_ID);
 	if (ConfigPtr == NULL) {
-		return XST_DEVICE_NOT_FOUND;
+		// return XST_DEVICE_NOT_FOUND;
+        return;
 	}
 
 	Status = XSpi_CfgInitialize(&SpiInstance, ConfigPtr,
 				  ConfigPtr->BaseAddress);
 	if (Status != XST_SUCCESS) {
-		return XST_FAILURE;
+		// return XST_FAILURE;
+        return;
 	}
 
 	if (Status != XST_SUCCESS)
@@ -290,8 +295,8 @@ void MAX3421E_init(void) {
 	MAX3421E_reset();                                //stop/start the oscillator
 
 	//start USB timer
-	Status = XTmrCtr_Initialize(&Usb_timer, XPAR_TIMER_USB_AXI_DEVICE_ID);
-	if (Status != XST_SUCCESS) {
+    Status = XTmrCtr_Initialize(&Usb_timer, XPAR_TIMER_USB_DEVICE_ID);
+    if (Status != XST_SUCCESS) {
 			xil_printf ("Timer instantiation failed\n");
 	}
 	XTmrCtr_Start(&Usb_timer, 0);

@@ -1,4 +1,6 @@
 /* HID support header */
+#include "GenericMacros.h"
+#include "GenericTypeDefs.h"
 
 #ifndef _HID_h_
 #define _HID_h

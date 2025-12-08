@@ -1,4 +1,6 @@
 /* USB transfers support header */
+#include "GenericMacros.h"
+#include "GenericTypeDefs.h"
 
 #ifndef _transfer_h_
 #define _transfer_h_

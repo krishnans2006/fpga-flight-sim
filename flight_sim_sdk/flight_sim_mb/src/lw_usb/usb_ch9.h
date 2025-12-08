@@ -5,10 +5,12 @@
  This file defines data structures, constants, and macros that are used to
  to support the USB Device Framework protocol described in Chapter 9 of the
  USB 2.0 specification.
- 
+
  In addition to that, class-specific descriptors are typedef'd here as well to keep descriptors together.
  They are typedefs anyway and won't take any real code space.
  */
+#include "GenericMacros.h"
+#include "GenericTypeDefs.h"
 
 #ifndef _USB_CH9_H_
 #define _USB_CH9_H_

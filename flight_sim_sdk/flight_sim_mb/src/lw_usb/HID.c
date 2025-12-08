@@ -1,4 +1,7 @@
 /* HID class support functions */
+#ifndef __MICROBLAZE__
+#define __MICROBLAZE__
+#endif
 
 #include <stdio.h>
 #include "project_config.h"

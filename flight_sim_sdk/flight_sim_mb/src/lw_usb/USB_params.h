@@ -1,4 +1,6 @@
 /* USB task support header */
+#include "GenericMacros.h"
+#include "GenericTypeDefs.h"
 
 #ifndef _USB_h_
 #define _USB_h_

@@ -1,4 +1,7 @@
 /* MAX3421E support header												*/
+#include "GenericMacros.h"
+#include "GenericTypeDefs.h"
+
 /* Register names and bit masks for MAX3421 in host mode				*/
 /* Function prototypes in MAX3421E.c									*/
 #ifndef _MAX3421E_H_
