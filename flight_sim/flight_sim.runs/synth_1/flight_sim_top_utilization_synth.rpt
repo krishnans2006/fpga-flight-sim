@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-| Date         : Sun Dec  7 16:35:15 2025
+| Date         : Sun Dec  7 20:15:25 2025
 | Host         : Krishnan-Win running 64-bit major release  (build 9200)
 | Command      : report_utilization -file flight_sim_top_utilization_synth.rpt -pb flight_sim_top_utilization_synth.pb
 | Design       : flight_sim_top
@@ -95,7 +95,7 @@ Warning! LUT value is adjusted to account for LUT combining.
 +-----------------------------+------+-------+------------+-----------+-------+
 |          Site Type          | Used | Fixed | Prohibited | Available | Util% |
 +-----------------------------+------+-------+------------+-----------+-------+
-| Bonded IOB                  |   69 |     0 |          0 |       210 | 32.86 |
+| Bonded IOB                  |   81 |     0 |          0 |       210 | 38.57 |
 | Bonded IPADs                |    0 |     0 |          0 |         2 |  0.00 |
 | PHY_CONTROL                 |    0 |     0 |          0 |         5 |  0.00 |
 | PHASER_REF                  |    0 |     0 |          0 |         5 |  0.00 |
@@ -164,13 +164,13 @@ Warning! LUT value is adjusted to account for LUT combining.
 | MUXF7      |   75 |               MuxFx |
 | LUT1       |   73 |                 LUT |
 | OSERDESE2  |   41 |                  IO |
-| OBUF       |   37 |                  IO |
+| OBUF       |   38 |                  IO |
 | MUXF8      |   36 |               MuxFx |
 | FDSE       |   34 |        Flop & Latch |
+| OBUFT      |   30 |                  IO |
 | IBUF       |   23 |                  IO |
 | FDCE       |   22 |        Flop & Latch |
 | DSP48E1    |   22 |    Block Arithmetic |
-| OBUFT      |   19 |                  IO |
 | IDELAYE2   |   18 |                  IO |
 | ISERDESE2  |   16 |                  IO |
 | OBUFTDS    |    4 |                  IO |
