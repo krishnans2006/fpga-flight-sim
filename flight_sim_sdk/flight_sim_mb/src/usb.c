@@ -72,7 +72,7 @@ void usb_setup() {
 
 // The mouse stuff is left in, but for now, only keyboard inputs are processed and put into usb_report
 // Returns 1 if new data is available, 0 otherwise
-u8 usb_get_inputs(usb_report* report) {
+u8 usb_get_inputs(struct usb_report* report) {
     MAX3421E_Task();
     USB_Task();
 
