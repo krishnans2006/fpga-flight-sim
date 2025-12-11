@@ -83,7 +83,7 @@ module flight_sim_top (
   ddr_renderer_top ddr_renderer_top_inst (
       .DDR3_CLK100(clk),
       .reset_ah(reset_ah),
-      .initialize(initialize),
+      //.initialize(initialize),
 
       .SW(sw),
       .LED(led[3:0]),

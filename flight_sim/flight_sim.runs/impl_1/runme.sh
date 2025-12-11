@@ -24,7 +24,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.runs/impl_1'
+HD_PWD='C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/impl_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

@@ -48,6 +48,7 @@ module zbuffer(
 );
 
 localparam VRAM_UBOUND = 27'h0096000;
+localparam ZMIN = -8'b0100_0000;
  
 // Stage 1 -> read from cache (and if necessary, ddr3)
 typedef struct packed {
@@ -76,6 +77,7 @@ typedef struct packed {
   logic [26:0] addr;
   logic [15:0] data;
   logic [15:0] zbuff_val_out;
+  logic [15:0] q2_diff;
 } zbuf_q3_t;
 
 zbuf_q3_t zbuf_q3, zbuf_q3_d, zbuf_q3_q;
@@ -86,16 +88,20 @@ typedef enum {
 
 cache_state_e cache_state_d, cache_state_q;
 logic signed [63:0] tmp0, tmp1, tmp2, sum;
+logic replace;
 logic mem_req_q3, cache_fetch_stall;
 //logic [3:0] delay_q, delay_d;
 
 always_ff @(posedge clk) begin
- if (rst) begin
-   cache_state_q <= StIdle;
-//   delay_q <= 3'b000;
+  if (rst) begin
+    cache_state_q <= StIdle;
  end else begin
-   cache_state_q <= cache_state_d;
-//   delay_q <= delay_d;
+  cache_state_q <= cache_state_d;
+
+  // read in data from cache
+  if (cache_state_q == StReq && zbuf_valid) begin
+    zbuf_q2.zbuff_val_stored <= zbuf_din;
+  end
  end
 end
 
@@ -137,12 +143,9 @@ always_comb begin
       end
     end
     StDone: begin
+      // extra state to allow zbuff_val_stored to be written in properly
       cache_fetch_stall = 1'b1;
-//      delay_d = delay_q + 1;
-      // 8 cycle delay
-//      if (delay_d == 3'b111) begin
       cache_state_d = StIdle;
-//      end
     end
   endcase
 end
@@ -161,13 +164,25 @@ always_ff @(posedge clk) begin
     zbuf_q2.data <= zbuf_q.data;
 
     zbuf_q2.zbuff_val_in <= zbuf_q.zbuff_val;
-    zbuf_q2.zbuff_val_stored <= 16'b0;
 
     // Stage 3
+//    if (zbuf_q2.valid) begin
+//      if (zbuf_q2.should_replace) begin
+//        zbuf_q3.valid <= 1'b1;
+//      end else begin
+//        zbuf_q3.valid <= 1'b0;
+//      end
+//    end else begin
+//        zbuf_q3.valid <= 1'b0;
+//    end
+
     zbuf_q3.valid <= zbuf_q2.valid;
     zbuf_q3.addr <= zbuf_q2.addr;
     zbuf_q3.data <= zbuf_q2.data;
     zbuf_q3.zbuff_val_out <= zbuf_q2.zbuff_val_in;
+    
+    //(*use_dsp = "yes" *) 
+    // zbuf_q3.q2_diff <= zbuf_q2.zbuff_val_in - zbuf_q2.zbuff_val_stored;
   end
 end
 
@@ -177,6 +192,7 @@ assign mem_addr_out = zbuf_q3.addr;
 assign mem_data_out = zbuf_q3.data;
 assign ready = wb_ready && ~cache_fetch_stall;
 
+endmodule
 // always_comb begin
 //   /* we don't infer latches in this town, boy */
 //   gstall = 1'b0;
@@ -276,6 +292,3 @@ assign ready = wb_ready && ~cache_fetch_stall;
 // end
 
 // // assign output signals
-
-
-endmodule

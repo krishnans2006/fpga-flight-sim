@@ -133,6 +133,27 @@ always_comb begin
   endcase
 end
 
+// Projector Signals
+logic signed [31:0] proj_p_x [3];
+logic signed [31:0] proj_p_y [3];
+logic signed [31:0] proj_p_z [3];
+logic [31:0]        proj_dr;      // again, in Q8.24 format. NOT Q16.16
+logic               proj_out_valid;
+logic               proj_ready;
+
+// test inputs
+logic signed [31:0] test_t_x [3];
+logic signed [31:0] test_t_y [3];
+logic signed [31:0] test_t_z [3];
+    
+// small helper function, shouldnt get synthesized to anything substantial
+function logic [31:0] f2q(input real v); return $rtoi(v * 65536.0); endfunction
+
+// should be relatively small on the screen
+assign test_t_x[0] = f2q(-1.0); assign test_t_y[0] = f2q(-1.0); assign test_t_z[0] = f2q(20.0);
+assign test_t_x[1] = f2q( 1.0); assign test_t_y[1] = f2q(-1.0); assign test_t_z[1] = f2q(20.0);
+assign test_t_x[2] = f2q( 0.0); assign test_t_y[2] = f2q( 1.0); assign test_t_z[2] = f2q(20.0);
+
 // Rasterizer I/O
 logic [15:0] color;
 logic [31:0] alpha, beta, gamma;
@@ -192,18 +213,18 @@ rasterizer rasterizer_inst (
   .rst(rst),
   .stall(1'b0),
   
-  .vertex_valid(1'b1),
+  .vertex_valid(proj_out_valid),
   .rasterizer_done(rasterizer_done),
   
-  .x0(10'd200), // 320
-  .y0(10'd100), // 240
-  .x1(10'd250), // 330 
-  .y1(10'd150), // 260 
-  .x2(10'd270), // 340
-  .y2(10'd110), // 250
+  .x0(proj_p_x[0][25:16]), // 320
+  .y0(proj_p_y[0][25:16]), // 240
+  .x1(proj_p_x[1][25:16]), // 330 
+  .y1(proj_p_y[1][25:16]), // 260 
+  .x2(proj_p_x[2][25:16]), // 340
+  .y2(proj_p_y[2][25:16]), // 250
   
   // note "area" isnt actually the area of the triangle. rather its the magnitude of the cross product of the vectors defined by the triangle
-  .inv_area(32'hFFFFEA28),
+  .inv_area(proj_dr),
   .color(color), // changes color :D
   .wb_ready(zbuf_ready), // memory has to be write-w
   .mem_valid(mem_valid),
@@ -272,6 +293,31 @@ zbuffer_initializer init_inst (
   .dout_burst_128(init_dout_burst_128),
   .dout_burst_valid(init_dout_burst_valid)
 );
+
+projector projector_inst (
+  .clk(clk),
+  .rst(rst),
+
+  // should be in Q16.16 format
+  .t_x(test_t_x),
+  .t_y(test_t_y),
+  .t_z(test_t_z),
+    
+  .in_valid(1'b1),
+  .ready(proj_ready),
+
+  // projected vertices
+  .p_x(proj_p_x),
+  .p_y(proj_p_y),
+  .p_z(proj_p_z),
+    
+  // 32-bit reciprocal determinant in Q8.24
+  .dr(proj_dr),
+  .out_valid(proj_out_valid),
+    
+  .stall(1'b0)
+);
+
 
 
 endmodule

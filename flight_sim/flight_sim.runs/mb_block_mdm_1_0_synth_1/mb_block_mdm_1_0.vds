@@ -2,18 +2,18 @@
 # Vivado v2022.2 (64-bit)
 # SW Build 3671981 on Fri Oct 14 05:00:03 MDT 2022
 # IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
-# Start of session at: Sun Dec  7 13:42:21 2025
-# Process ID: 28856
-# Current directory: C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.runs/mb_block_mdm_1_0_synth_1
+# Start of session at: Wed Dec 10 03:03:23 2025
+# Process ID: 11700
+# Current directory: C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/mb_block_mdm_1_0_synth_1
 # Command line: vivado.exe -log mb_block_mdm_1_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source mb_block_mdm_1_0.tcl
-# Log file: C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.runs/mb_block_mdm_1_0_synth_1/mb_block_mdm_1_0.vds
-# Journal file: C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.runs/mb_block_mdm_1_0_synth_1\vivado.jou
-# Running On: Krishnan-Win, OS: Windows, CPU Frequency: 3793 MHz, CPU Physical cores: 16, Host memory: 33651 MB
+# Log file: C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/mb_block_mdm_1_0_synth_1/mb_block_mdm_1_0.vds
+# Journal file: C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/mb_block_mdm_1_0_synth_1\vivado.jou
+# Running On: Aniketh_x86-64, OS: Windows, CPU Frequency: 3294 MHz, CPU Physical cores: 16, Host memory: 16438 MB
 #-----------------------------------------------------------
 source mb_block_mdm_1_0.tcl -notrace
-create_project: Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 373.219 ; gain = 60.285
+create_project: Time (s): cpu = 00:00:04 ; elapsed = 00:00:08 . Memory (MB): peak = 1002.438 ; gain = 118.672
 INFO: [IP_Flow 19-234] Refreshing IP repositories
-INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/krishnan/Documents/fpga-flight-sim/IP'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/anike/fpga-flight-sim/IP'.
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2022.2/data/ip'.
 INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: mb_block_mdm_1_0
 Command: synth_design -top mb_block_mdm_1_0 -part xc7s50csga324-1 -incremental_mode off -mode out_of_context
@@ -23,12 +23,12 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7s50'
 INFO: [Device 21-403] Loading part xc7s50csga324-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 11580
+INFO: [Synth 8-7075] Helper process launched with PID 18440
 INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [C:/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:11 . Memory (MB): peak = 1191.625 ; gain = 408.000
+Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:12 . Memory (MB): peak = 1825.520 ; gain = 408.961
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'mb_block_mdm_1_0' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_mdm_1_0/synth/mb_block_mdm_1_0.vhd:74]
+INFO: [Synth 8-638] synthesizing module 'mb_block_mdm_1_0' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_mdm_1_0/synth/mb_block_mdm_1_0.vhd:74]
 	Parameter C_FAMILY bound to: spartan7 - type: string 
 	Parameter C_DEVICE bound to: xc7s50 - type: string 
 	Parameter C_REVISION bound to: (null) - type: string 
@@ -63,29 +63,29 @@ INFO: [Synth 8-638] synthesizing module 'mb_block_mdm_1_0' [c:/Users/krishnan/Do
 	Parameter C_LMB_PROTOCOL bound to: 0 - type: integer 
 	Parameter C_M_AXIS_DATA_WIDTH bound to: 32 - type: integer 
 	Parameter C_M_AXIS_ID_WIDTH bound to: 7 - type: integer 
-INFO: [Synth 8-3491] module 'MDM' declared at 'c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:12674' bound to instance 'U0' of component 'MDM' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_mdm_1_0/synth/mb_block_mdm_1_0.vhd:1657]
-INFO: [Synth 8-638] synthesizing module 'MDM' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:14358]
+INFO: [Synth 8-3491] module 'MDM' declared at 'c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:12674' bound to instance 'U0' of component 'MDM' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_mdm_1_0/synth/mb_block_mdm_1_0.vhd:1657]
+INFO: [Synth 8-638] synthesizing module 'MDM' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:14358]
 	Parameter C_TARGET bound to: 9 - type: integer 
 	Parameter DISABLE_JTAG bound to: FALSE - type: string 
 	Parameter JTAG_CHAIN bound to: 2 - type: integer 
-INFO: [Synth 8-3491] module 'MB_BSCANE2' declared at 'c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:324' bound to instance 'BSCAN_I' of component 'MB_BSCANE2' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:15976]
-INFO: [Synth 8-638] synthesizing module 'MB_BSCANE2' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:348]
+INFO: [Synth 8-3491] module 'MB_BSCANE2' declared at 'c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:324' bound to instance 'BSCAN_I' of component 'MB_BSCANE2' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:15976]
+INFO: [Synth 8-638] synthesizing module 'MB_BSCANE2' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:348]
 	Parameter DISABLE_JTAG bound to: FALSE - type: string 
 	Parameter JTAG_CHAIN bound to: 2 - type: integer 
-INFO: [Synth 8-113] binding component instance 'BSCANE2_I' to cell 'BSCANE2' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:358]
-INFO: [Synth 8-256] done synthesizing module 'MB_BSCANE2' (0#1) [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:348]
+INFO: [Synth 8-113] binding component instance 'BSCANE2_I' to cell 'BSCANE2' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:358]
+INFO: [Synth 8-256] done synthesizing module 'MB_BSCANE2' (0#1) [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:348]
 	Parameter C_TARGET bound to: 9 - type: integer 
 	Parameter INIT bound to: 2'b10 
-INFO: [Synth 8-3491] module 'MB_LUT1' declared at 'c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:1527' bound to instance 'LUT1_I' of component 'MB_LUT1' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:15994]
-INFO: [Synth 8-638] synthesizing module 'MB_LUT1' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:1541]
+INFO: [Synth 8-3491] module 'MB_LUT1' declared at 'c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:1527' bound to instance 'LUT1_I' of component 'MB_LUT1' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:15994]
+INFO: [Synth 8-638] synthesizing module 'MB_LUT1' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:1541]
 	Parameter INIT bound to: 2'b10 
-INFO: [Synth 8-113] binding component instance 'Native' to cell 'LUT1' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:1563]
-INFO: [Synth 8-256] done synthesizing module 'MB_LUT1' (0#1) [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:1541]
+INFO: [Synth 8-113] binding component instance 'Native' to cell 'LUT1' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:1563]
+INFO: [Synth 8-256] done synthesizing module 'MB_LUT1' (0#1) [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:1541]
 	Parameter C_TARGET bound to: 9 - type: integer 
-INFO: [Synth 8-3491] module 'MB_BUFGCE_1' declared at 'c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:426' bound to instance 'BUFG_DRCK' of component 'MB_BUFGCE_1' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:16505]
-INFO: [Synth 8-638] synthesizing module 'MB_BUFGCE_1' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:440]
-INFO: [Synth 8-113] binding component instance 'Native' to cell 'BUFGCE_1' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:450]
-INFO: [Synth 8-256] done synthesizing module 'MB_BUFGCE_1' (0#1) [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:440]
+INFO: [Synth 8-3491] module 'MB_BUFGCE_1' declared at 'c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:426' bound to instance 'BUFG_DRCK' of component 'MB_BUFGCE_1' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:16505]
+INFO: [Synth 8-638] synthesizing module 'MB_BUFGCE_1' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:440]
+INFO: [Synth 8-113] binding component instance 'Native' to cell 'BUFGCE_1' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:450]
+INFO: [Synth 8-256] done synthesizing module 'MB_BUFGCE_1' (0#1) [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:440]
 	Parameter C_TARGET bound to: 9 - type: integer 
 	Parameter C_JTAG_CHAIN bound to: 2 - type: integer 
 	Parameter C_USE_BSCAN bound to: 0 - type: integer 
@@ -115,13 +115,13 @@ INFO: [Synth 8-256] done synthesizing module 'MB_BUFGCE_1' (0#1) [c:/Users/krish
 	Parameter C_TRACE_ID bound to: 110 - type: integer 
 	Parameter C_M_AXIS_DATA_WIDTH bound to: 32 - type: integer 
 	Parameter C_M_AXIS_ID_WIDTH bound to: 7 - type: integer 
-INFO: [Synth 8-3491] module 'MDM_Core' declared at 'c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:5792' bound to instance 'MDM_Core_I1' of component 'MDM_Core' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:16607]
-INFO: [Synth 8-638] synthesizing module 'MDM_Core' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:7029]
-INFO: [Synth 8-3491] module 'xil_scan_reset_control' declared at 'c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:300' bound to instance 'config_scan_reset_i' of component 'xil_scan_reset_control' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:7712]
-INFO: [Synth 8-638] synthesizing module 'xil_scan_reset_control' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:309]
-INFO: [Synth 8-256] done synthesizing module 'xil_scan_reset_control' (0#1) [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:309]
-INFO: [Synth 8-3491] module 'xil_scan_reset_control' declared at 'c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:300' bound to instance 'sel_n_reset_i' of component 'xil_scan_reset_control' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:7722]
-INFO: [Synth 8-3491] module 'xil_scan_reset_control' declared at 'c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:300' bound to instance 'shift_n_reset_i' of component 'xil_scan_reset_control' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:7732]
+INFO: [Synth 8-3491] module 'MDM_Core' declared at 'c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:5792' bound to instance 'MDM_Core_I1' of component 'MDM_Core' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:16607]
+INFO: [Synth 8-638] synthesizing module 'MDM_Core' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:7029]
+INFO: [Synth 8-3491] module 'xil_scan_reset_control' declared at 'c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:300' bound to instance 'config_scan_reset_i' of component 'xil_scan_reset_control' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:7712]
+INFO: [Synth 8-638] synthesizing module 'xil_scan_reset_control' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:309]
+INFO: [Synth 8-256] done synthesizing module 'xil_scan_reset_control' (0#1) [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:309]
+INFO: [Synth 8-3491] module 'xil_scan_reset_control' declared at 'c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:300' bound to instance 'sel_n_reset_i' of component 'xil_scan_reset_control' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:7722]
+INFO: [Synth 8-3491] module 'xil_scan_reset_control' declared at 'c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:300' bound to instance 'shift_n_reset_i' of component 'xil_scan_reset_control' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:7732]
 	Parameter C_TARGET bound to: 9 - type: integer 
 	Parameter C_USE_BSCAN bound to: 0 - type: integer 
 	Parameter C_MB_DBG_PORTS bound to: 1 - type: integer 
@@ -139,63 +139,63 @@ INFO: [Synth 8-3491] module 'xil_scan_reset_control' declared at 'c:/Users/krish
 	Parameter C_TRACE_OUTPUT bound to: 0 - type: integer 
 	Parameter C_TRACE_PROTOCOL bound to: 1 - type: integer 
 	Parameter C_EN_WIDTH bound to: 1 - type: integer 
-INFO: [Synth 8-3491] module 'JTAG_CONTROL' declared at 'c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:3075' bound to instance 'JTAG_CONTROL_I' of component 'JTAG_CONTROL' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:10423]
-INFO: [Synth 8-638] synthesizing module 'JTAG_CONTROL' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:3348]
-INFO: [Synth 8-3491] module 'xil_scan_reset_control' declared at 'c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:300' bound to instance 'config_with_scan_reset_i' of component 'xil_scan_reset_control' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:3657]
-INFO: [Synth 8-3491] module 'xil_scan_reset_control' declared at 'c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:300' bound to instance 'sel_with_scan_reset_i' of component 'xil_scan_reset_control' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:3665]
+INFO: [Synth 8-3491] module 'JTAG_CONTROL' declared at 'c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:3075' bound to instance 'JTAG_CONTROL_I' of component 'JTAG_CONTROL' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:10423]
+INFO: [Synth 8-638] synthesizing module 'JTAG_CONTROL' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:3348]
+INFO: [Synth 8-3491] module 'xil_scan_reset_control' declared at 'c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:300' bound to instance 'config_with_scan_reset_i' of component 'xil_scan_reset_control' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:3657]
+INFO: [Synth 8-3491] module 'xil_scan_reset_control' declared at 'c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:300' bound to instance 'sel_with_scan_reset_i' of component 'xil_scan_reset_control' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:3665]
 	Parameter C_TARGET bound to: 9 - type: integer 
-INFO: [Synth 8-3491] module 'MB_FDC_1' declared at 'c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:740' bound to instance 'FDC_I' of component 'MB_FDC_1' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:3722]
-INFO: [Synth 8-638] synthesizing module 'MB_FDC_1' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:756]
+INFO: [Synth 8-3491] module 'MB_FDC_1' declared at 'c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:740' bound to instance 'FDC_I' of component 'MB_FDC_1' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:3722]
+INFO: [Synth 8-638] synthesizing module 'MB_FDC_1' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:756]
 	Parameter INIT bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'Native' to cell 'FDC_1' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:777]
-INFO: [Synth 8-256] done synthesizing module 'MB_FDC_1' (0#1) [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:756]
+INFO: [Synth 8-113] binding component instance 'Native' to cell 'FDC_1' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:777]
+INFO: [Synth 8-256] done synthesizing module 'MB_FDC_1' (0#1) [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:756]
 	Parameter C_TARGET bound to: 9 - type: integer 
-INFO: [Synth 8-3491] module 'MB_FDRE_1' declared at 'c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:799' bound to instance 'SYNC_FDRE' of component 'MB_FDRE_1' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:3732]
-INFO: [Synth 8-638] synthesizing module 'MB_FDRE_1' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:816]
+INFO: [Synth 8-3491] module 'MB_FDRE_1' declared at 'c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:799' bound to instance 'SYNC_FDRE' of component 'MB_FDRE_1' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:3732]
+INFO: [Synth 8-638] synthesizing module 'MB_FDRE_1' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:816]
 	Parameter INIT bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'Native' to cell 'FDRE_1' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:839]
-INFO: [Synth 8-256] done synthesizing module 'MB_FDRE_1' (0#1) [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:816]
+INFO: [Synth 8-113] binding component instance 'Native' to cell 'FDRE_1' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:839]
+INFO: [Synth 8-256] done synthesizing module 'MB_FDRE_1' (0#1) [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:816]
 	Parameter C_TARGET bound to: 9 - type: integer 
 	Parameter C_STATIC bound to: 1 - type: bool 
 	Parameter C_USE_SRL16 bound to: yes - type: string 
 	Parameter INIT bound to: 16'b0000000101100111 
-INFO: [Synth 8-3491] module 'MB_SRL16E' declared at 'c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:862' bound to instance 'SRL16E_1' of component 'MB_SRL16E' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:3926]
-INFO: [Synth 8-638] synthesizing module 'MB_SRL16E' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:886]
+INFO: [Synth 8-3491] module 'MB_SRL16E' declared at 'c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:862' bound to instance 'SRL16E_1' of component 'MB_SRL16E' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:3926]
+INFO: [Synth 8-638] synthesizing module 'MB_SRL16E' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:886]
 	Parameter INIT bound to: 16'b0000000101100111 
-INFO: [Synth 8-113] binding component instance 'MB_SRL16E_I1' to cell 'SRL16E' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:890]
-INFO: [Synth 8-256] done synthesizing module 'MB_SRL16E' (0#1) [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:886]
+INFO: [Synth 8-113] binding component instance 'MB_SRL16E_I1' to cell 'SRL16E' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:890]
+INFO: [Synth 8-256] done synthesizing module 'MB_SRL16E' (0#1) [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:886]
 	Parameter C_TARGET bound to: 9 - type: integer 
 	Parameter C_STATIC bound to: 1 - type: bool 
 	Parameter C_USE_SRL16 bound to: yes - type: string 
 	Parameter INIT bound to: 16'b0100001010000111 
-INFO: [Synth 8-3491] module 'MB_SRL16E' declared at 'c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:862' bound to instance 'SRL16E_2' of component 'MB_SRL16E' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:3944]
-INFO: [Synth 8-638] synthesizing module 'MB_SRL16E__parameterized1' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:886]
+INFO: [Synth 8-3491] module 'MB_SRL16E' declared at 'c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:862' bound to instance 'SRL16E_2' of component 'MB_SRL16E' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:3944]
+INFO: [Synth 8-638] synthesizing module 'MB_SRL16E__parameterized1' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:886]
 	Parameter INIT bound to: 16'b0100001010000111 
-INFO: [Synth 8-113] binding component instance 'MB_SRL16E_I1' to cell 'SRL16E' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:890]
-INFO: [Synth 8-256] done synthesizing module 'MB_SRL16E__parameterized1' (0#1) [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:886]
+INFO: [Synth 8-113] binding component instance 'MB_SRL16E_I1' to cell 'SRL16E' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:890]
+INFO: [Synth 8-256] done synthesizing module 'MB_SRL16E__parameterized1' (0#1) [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:886]
 	Parameter C_TARGET bound to: 9 - type: integer 
 	Parameter C_STATIC bound to: 1 - type: bool 
 	Parameter C_USE_SRL16 bound to: yes - type: string 
 	Parameter INIT bound to: 16'b0100010001000011 
-INFO: [Synth 8-3491] module 'MB_SRL16E' declared at 'c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:862' bound to instance 'SRL16E_ID_1' of component 'MB_SRL16E' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:4015]
-INFO: [Synth 8-638] synthesizing module 'MB_SRL16E__parameterized3' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:886]
+INFO: [Synth 8-3491] module 'MB_SRL16E' declared at 'c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:862' bound to instance 'SRL16E_ID_1' of component 'MB_SRL16E' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:4015]
+INFO: [Synth 8-638] synthesizing module 'MB_SRL16E__parameterized3' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:886]
 	Parameter INIT bound to: 16'b0100010001000011 
-INFO: [Synth 8-113] binding component instance 'MB_SRL16E_I1' to cell 'SRL16E' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:890]
-INFO: [Synth 8-256] done synthesizing module 'MB_SRL16E__parameterized3' (0#1) [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:886]
+INFO: [Synth 8-113] binding component instance 'MB_SRL16E_I1' to cell 'SRL16E' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:890]
+INFO: [Synth 8-256] done synthesizing module 'MB_SRL16E__parameterized3' (0#1) [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:886]
 	Parameter C_TARGET bound to: 9 - type: integer 
 	Parameter C_STATIC bound to: 1 - type: bool 
 	Parameter C_USE_SRL16 bound to: yes - type: string 
 	Parameter INIT bound to: 16'b0101100001001101 
-INFO: [Synth 8-3491] module 'MB_SRL16E' declared at 'c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:862' bound to instance 'SRL16E_ID_2' of component 'MB_SRL16E' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:4033]
-INFO: [Synth 8-638] synthesizing module 'MB_SRL16E__parameterized5' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:886]
+INFO: [Synth 8-3491] module 'MB_SRL16E' declared at 'c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:862' bound to instance 'SRL16E_ID_2' of component 'MB_SRL16E' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:4033]
+INFO: [Synth 8-638] synthesizing module 'MB_SRL16E__parameterized5' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:886]
 	Parameter INIT bound to: 16'b0101100001001101 
-INFO: [Synth 8-113] binding component instance 'MB_SRL16E_I1' to cell 'SRL16E' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:890]
-INFO: [Synth 8-256] done synthesizing module 'MB_SRL16E__parameterized5' (0#1) [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:886]
-INFO: [Synth 8-256] done synthesizing module 'JTAG_CONTROL' (0#1) [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:3348]
-INFO: [Synth 8-256] done synthesizing module 'MDM_Core' (0#1) [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:7029]
-INFO: [Synth 8-256] done synthesizing module 'MDM' (0#1) [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:14358]
-INFO: [Synth 8-256] done synthesizing module 'mb_block_mdm_1_0' (0#1) [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_mdm_1_0/synth/mb_block_mdm_1_0.vhd:74]
-WARNING: [Synth 8-6014] Unused sequential element set_Ext_BRK_reg was removed.  [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:4121]
+INFO: [Synth 8-113] binding component instance 'MB_SRL16E_I1' to cell 'SRL16E' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:890]
+INFO: [Synth 8-256] done synthesizing module 'MB_SRL16E__parameterized5' (0#1) [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:886]
+INFO: [Synth 8-256] done synthesizing module 'JTAG_CONTROL' (0#1) [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:3348]
+INFO: [Synth 8-256] done synthesizing module 'MDM_Core' (0#1) [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:7029]
+INFO: [Synth 8-256] done synthesizing module 'MDM' (0#1) [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:14358]
+INFO: [Synth 8-256] done synthesizing module 'mb_block_mdm_1_0' (0#1) [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_mdm_1_0/synth/mb_block_mdm_1_0.vhd:74]
+WARNING: [Synth 8-6014] Unused sequential element set_Ext_BRK_reg was removed.  [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/b8f4/hdl/mdm_v3_2_vh_rfs.vhd:4121]
 WARNING: [Synth 8-7129] Port Config_Reset in module MB_SRL16E__parameterized5 is either unconnected or has no load
 WARNING: [Synth 8-7129] Port Config_Reset in module MB_SRL16E__parameterized3 is either unconnected or has no load
 WARNING: [Synth 8-7129] Port Config_Reset in module MB_SRL16E__parameterized1 is either unconnected or has no load
@@ -298,63 +298,63 @@ WARNING: [Synth 8-7129] Port Dbg_Trig_In_3[1] in module JTAG_CONTROL is either u
 WARNING: [Synth 8-7129] Port Dbg_Trig_In_3[2] in module JTAG_CONTROL is either unconnected or has no load
 INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:16 ; elapsed = 00:00:27 . Memory (MB): peak = 1314.094 ; gain = 530.469
+Finished RTL Elaboration : Time (s): cpu = 00:00:13 ; elapsed = 00:00:23 . Memory (MB): peak = 1948.207 ; gain = 531.648
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:16 ; elapsed = 00:00:27 . Memory (MB): peak = 1314.094 ; gain = 530.469
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:13 ; elapsed = 00:00:23 . Memory (MB): peak = 1948.207 ; gain = 531.648
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:16 ; elapsed = 00:00:27 . Memory (MB): peak = 1314.094 ; gain = 530.469
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:23 . Memory (MB): peak = 1948.207 ; gain = 531.648
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.107 . Memory (MB): peak = 1314.094 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.044 . Memory (MB): peak = 1948.207 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 3 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.runs/mb_block_mdm_1_0_synth_1/dont_touch.xdc]
-Finished Parsing XDC File [C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.runs/mb_block_mdm_1_0_synth_1/dont_touch.xdc]
-Parsing XDC File [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_mdm_1_0/mb_block_mdm_1_0_ooc_trace.xdc] for cell 'U0'
-Finished Parsing XDC File [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_mdm_1_0/mb_block_mdm_1_0_ooc_trace.xdc] for cell 'U0'
-Parsing XDC File [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_mdm_1_0/mb_block_mdm_1_0.xdc] for cell 'U0'
-Finished Parsing XDC File [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_mdm_1_0/mb_block_mdm_1_0.xdc] for cell 'U0'
-INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_mdm_1_0/mb_block_mdm_1_0.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/mb_block_mdm_1_0_propImpl.xdc].
+Parsing XDC File [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/mb_block_mdm_1_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/mb_block_mdm_1_0_synth_1/dont_touch.xdc]
+Parsing XDC File [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_mdm_1_0/mb_block_mdm_1_0_ooc_trace.xdc] for cell 'U0'
+Finished Parsing XDC File [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_mdm_1_0/mb_block_mdm_1_0_ooc_trace.xdc] for cell 'U0'
+Parsing XDC File [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_mdm_1_0/mb_block_mdm_1_0.xdc] for cell 'U0'
+Finished Parsing XDC File [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_mdm_1_0/mb_block_mdm_1_0.xdc] for cell 'U0'
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_mdm_1_0/mb_block_mdm_1_0.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/mb_block_mdm_1_0_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/mb_block_mdm_1_0_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1367.883 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2016.352 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 3 instances were transformed.
   BUFGCE_1 => BUFGCTRL: 1 instance 
   FDC_1 => FDCE (inverted pins: C): 1 instance 
   FDRE_1 => FDRE (inverted pins: C): 1 instance 
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.068 . Memory (MB): peak = 1370.445 ; gain = 2.562
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.017 . Memory (MB): peak = 2021.141 ; gain = 4.789
 INFO: [Designutils 20-5008] Incremental synthesis strategy off
 INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [C:/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:28 ; elapsed = 00:00:48 . Memory (MB): peak = 1370.445 ; gain = 586.820
+Finished Constraint Validation : Time (s): cpu = 00:00:22 ; elapsed = 00:00:33 . Memory (MB): peak = 2021.141 ; gain = 604.582
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7s50csga324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:28 ; elapsed = 00:00:48 . Memory (MB): peak = 1370.445 ; gain = 586.820
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:22 ; elapsed = 00:00:33 . Memory (MB): peak = 2021.141 ; gain = 604.582
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
-Applied set_property KEEP_HIERARCHY = SOFT for U0. (constraint file  C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.runs/mb_block_mdm_1_0_synth_1/dont_touch.xdc, line 9).
+Applied set_property KEEP_HIERARCHY = SOFT for U0. (constraint file  C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/mb_block_mdm_1_0_synth_1/dont_touch.xdc, line 9).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:28 ; elapsed = 00:00:48 . Memory (MB): peak = 1370.445 ; gain = 586.820
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:22 ; elapsed = 00:00:33 . Memory (MB): peak = 2021.141 ; gain = 604.582
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:29 ; elapsed = 00:00:49 . Memory (MB): peak = 1370.445 ; gain = 586.820
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:22 ; elapsed = 00:00:34 . Memory (MB): peak = 2021.141 ; gain = 604.582
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -403,25 +403,25 @@ Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:32 ; elapsed = 00:00:54 . Memory (MB): peak = 1370.445 ; gain = 586.820
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:25 ; elapsed = 00:00:36 . Memory (MB): peak = 2021.141 ; gain = 604.582
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:39 ; elapsed = 00:01:02 . Memory (MB): peak = 1370.445 ; gain = 586.820
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:29 ; elapsed = 00:00:41 . Memory (MB): peak = 2021.141 ; gain = 604.582
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:40 ; elapsed = 00:01:03 . Memory (MB): peak = 1370.445 ; gain = 586.820
+Finished Timing Optimization : Time (s): cpu = 00:00:30 ; elapsed = 00:00:42 . Memory (MB): peak = 2021.141 ; gain = 604.582
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:40 ; elapsed = 00:01:04 . Memory (MB): peak = 1370.445 ; gain = 586.820
+Finished Technology Mapping : Time (s): cpu = 00:00:30 ; elapsed = 00:00:42 . Memory (MB): peak = 2021.141 ; gain = 604.582
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -439,37 +439,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:49 ; elapsed = 00:01:14 . Memory (MB): peak = 1370.445 ; gain = 586.820
+Finished IO Insertion : Time (s): cpu = 00:00:33 ; elapsed = 00:00:45 . Memory (MB): peak = 2021.141 ; gain = 604.582
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:49 ; elapsed = 00:01:14 . Memory (MB): peak = 1370.445 ; gain = 586.820
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:33 ; elapsed = 00:00:45 . Memory (MB): peak = 2021.141 ; gain = 604.582
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:49 ; elapsed = 00:01:14 . Memory (MB): peak = 1370.445 ; gain = 586.820
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:34 ; elapsed = 00:00:45 . Memory (MB): peak = 2021.141 ; gain = 604.582
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:49 ; elapsed = 00:01:14 . Memory (MB): peak = 1370.445 ; gain = 586.820
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:34 ; elapsed = 00:00:45 . Memory (MB): peak = 2021.141 ; gain = 604.582
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:49 ; elapsed = 00:01:14 . Memory (MB): peak = 1370.445 ; gain = 586.820
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:34 ; elapsed = 00:00:45 . Memory (MB): peak = 2021.141 ; gain = 604.582
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:49 ; elapsed = 00:01:14 . Memory (MB): peak = 1370.445 ; gain = 586.820
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:34 ; elapsed = 00:00:45 . Memory (MB): peak = 2021.141 ; gain = 604.582
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -516,18 +516,18 @@ Report Cell Usage:
 |13    |FDRE    |    74|
 +------+--------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:49 ; elapsed = 00:01:14 . Memory (MB): peak = 1370.445 ; gain = 586.820
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:34 ; elapsed = 00:00:45 . Memory (MB): peak = 2021.141 ; gain = 604.582
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 4312 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:30 ; elapsed = 00:01:08 . Memory (MB): peak = 1370.445 ; gain = 530.469
-Synthesis Optimization Complete : Time (s): cpu = 00:00:49 ; elapsed = 00:01:14 . Memory (MB): peak = 1370.445 ; gain = 586.820
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:19 ; elapsed = 00:00:43 . Memory (MB): peak = 2021.141 ; gain = 531.648
+Synthesis Optimization Complete : Time (s): cpu = 00:00:34 ; elapsed = 00:00:46 . Memory (MB): peak = 2021.141 ; gain = 604.582
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.027 . Memory (MB): peak = 1370.445 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.021 . Memory (MB): peak = 2021.141 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 3 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1370.445 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2021.141 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 3 instances were transformed.
   BUFGCE_1 => BUFGCTRL: 1 instance 
@@ -538,10 +538,10 @@ Synth Design complete, checksum: b887833e
 INFO: [Common 17-83] Releasing license: Synthesis
 79 Infos, 102 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:55 ; elapsed = 00:01:23 . Memory (MB): peak = 1370.445 ; gain = 955.375
-INFO: [Common 17-1381] The checkpoint 'C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.runs/mb_block_mdm_1_0_synth_1/mb_block_mdm_1_0.dcp' has been generated.
+synth_design: Time (s): cpu = 00:00:39 ; elapsed = 00:00:53 . Memory (MB): peak = 2021.141 ; gain = 977.223
+INFO: [Common 17-1381] The checkpoint 'C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/mb_block_mdm_1_0_synth_1/mb_block_mdm_1_0.dcp' has been generated.
 INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP mb_block_mdm_1_0, cache-ID = 7ba594287a66c4c3
 INFO: [Coretcl 2-1174] Renamed 12 cell refs.
-INFO: [Common 17-1381] The checkpoint 'C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.runs/mb_block_mdm_1_0_synth_1/mb_block_mdm_1_0.dcp' has been generated.
+INFO: [Common 17-1381] The checkpoint 'C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/mb_block_mdm_1_0_synth_1/mb_block_mdm_1_0.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file mb_block_mdm_1_0_utilization_synth.rpt -pb mb_block_mdm_1_0_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sun Dec  7 13:44:02 2025...
+INFO: [Common 17-206] Exiting Vivado at Wed Dec 10 03:04:39 2025...
