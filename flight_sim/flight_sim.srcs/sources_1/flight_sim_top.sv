@@ -10,8 +10,8 @@ module flight_sim_top (
     output [2:0] rgbled1,
 
     // UART
-    input  uart_rtl_0_rxd,
-    output uart_rtl_0_txd,
+    input  uartlite_rxd,
+    output uartlite_txd,
     
     // USB
     input gpio_usb_int_tri_i,
@@ -58,19 +58,12 @@ module flight_sim_top (
   // Have fun!
   // assign led[15] = gpio_usb_int_tri_i;
 
-  // MicroBlaze to HW communication (GPIO highway)
-  logic [31:0] highway_mb_to_hw;
-  logic [31:0] highway_hw_to_mb;
-
   mb_block mb_block_inst (
       .clk_100MHz(clk),
       .reset_rtl_0(~reset_ah),  // block design needs active low
 
-      .uart_rtl_0_rxd(uart_rtl_0_rxd),
-      .uart_rtl_0_txd(uart_rtl_0_txd),
-      
-      .gpio_highway_to_hw_tri_o(highway_mb_to_hw),
-      .gpio_highway_to_mb_tri_i(highway_hw_to_mb),
+      .uartlite_rxd(uartlite_rxd),
+      .uartlite_txd(uartlite_txd),
 
       .gpio_usb_int_tri_i(gpio_usb_int_tri_i),
       .gpio_usb_rst_tri_o(gpio_usb_rst_tri_o),

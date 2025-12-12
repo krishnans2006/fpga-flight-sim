@@ -2,7 +2,7 @@
   "schema": "xilinx.com:schema:json_instance:1.0",
   "ip_inst": {
     "xci_name": "mb_block_axi_timer_0_0",
-    "cell_name": "timer_usb",
+    "cell_name": "timer",
     "component_reference": "xilinx.com:ip:axi_timer:2.0",
     "ip_revision": "29",
     "gen_directory": "../../../../../../flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_axi_timer_0_0",
@@ -10,17 +10,17 @@
       "component_parameters": {
         "Component_Name": [ { "value": "mb_block_axi_timer_0_0", "resolve_type": "user", "usage": "all" } ],
         "TRIG0_ASSERT": [ { "value": "Active_High", "resolve_type": "user", "usage": "all" } ],
-        "TRIG1_ASSERT": [ { "value": "Active_High", "resolve_type": "user", "enabled": false, "usage": "all" } ],
+        "TRIG1_ASSERT": [ { "value": "Active_High", "resolve_type": "user", "usage": "all" } ],
         "GEN0_ASSERT": [ { "value": "Active_High", "resolve_type": "user", "usage": "all" } ],
-        "GEN1_ASSERT": [ { "value": "Active_High", "resolve_type": "user", "enabled": false, "usage": "all" } ],
+        "GEN1_ASSERT": [ { "value": "Active_High", "resolve_type": "user", "usage": "all" } ],
         "COUNT_WIDTH": [ { "value": "32", "resolve_type": "user", "format": "long", "usage": "all" } ],
-        "mode_64bit": [ { "value": "0", "resolve_type": "user", "format": "long", "usage": "all" } ],
-        "enable_timer2": [ { "value": "0", "value_src": "user", "resolve_type": "user", "format": "long", "usage": "all" } ]
+        "mode_64bit": [ { "value": "0", "value_src": "user", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "enable_timer2": [ { "value": "1", "value_src": "user", "resolve_type": "user", "format": "long", "usage": "all" } ]
       },
       "model_parameters": {
         "C_FAMILY": [ { "value": "spartan7", "resolve_type": "generated", "usage": "all" } ],
         "C_COUNT_WIDTH": [ { "value": "32", "resolve_type": "generated", "format": "long", "usage": "all" } ],
-        "C_ONE_TIMER_ONLY": [ { "value": "1", "resolve_type": "generated", "format": "long", "usage": "all" } ],
+        "C_ONE_TIMER_ONLY": [ { "value": "0", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "C_TRIG0_ASSERT": [ { "value": "1", "resolve_type": "generated", "format": "bitString", "usage": "all" } ],
         "C_TRIG1_ASSERT": [ { "value": "1", "resolve_type": "generated", "format": "bitString", "usage": "all" } ],
         "C_GEN0_ASSERT": [ { "value": "1", "resolve_type": "generated", "format": "bitString", "usage": "all" } ],

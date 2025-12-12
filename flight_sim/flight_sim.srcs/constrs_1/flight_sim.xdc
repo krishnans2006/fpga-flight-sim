@@ -68,12 +68,12 @@ set_property -dict {PACKAGE_PIN B11 IOSTANDARD LVCMOS33} [get_ports {rgbled1[2]}
 ############## NET - IOSTANDARD ##################
 
 # UART
-set_property IOSTANDARD LVCMOS33 [get_ports uart_rtl_0_rxd]
-set_property PACKAGE_PIN B16 [get_ports uart_rtl_0_rxd]
+set_property IOSTANDARD LVCMOS33 [get_ports uartlite_rxd]
+set_property PACKAGE_PIN B16 [get_ports uartlite_rxd]
 
-set_property SLEW SLOW [get_ports uart_rtl_0_txd]
-set_property IOSTANDARD LVCMOS33 [get_ports uart_rtl_0_txd]
-set_property PACKAGE_PIN A16 [get_ports uart_rtl_0_txd]
+set_property SLEW SLOW [get_ports uartlite_txd]
+set_property IOSTANDARD LVCMOS33 [get_ports uartlite_txd]
+set_property PACKAGE_PIN A16 [get_ports uartlite_txd]
 
 
 # USB

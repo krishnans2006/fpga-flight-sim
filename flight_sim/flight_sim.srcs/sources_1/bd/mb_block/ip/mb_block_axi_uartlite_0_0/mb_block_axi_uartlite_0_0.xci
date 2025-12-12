@@ -2,7 +2,7 @@
   "schema": "xilinx.com:schema:json_instance:1.0",
   "ip_inst": {
     "xci_name": "mb_block_axi_uartlite_0_0",
-    "cell_name": "axi_uartlite_0",
+    "cell_name": "uartlite",
     "component_reference": "xilinx.com:ip:axi_uartlite:2.0",
     "ip_revision": "31",
     "gen_directory": "../../../../../../flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_axi_uartlite_0_0",
