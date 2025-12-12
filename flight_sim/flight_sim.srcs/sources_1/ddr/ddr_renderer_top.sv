@@ -139,7 +139,7 @@ clk_wiz_0 clk_wiz (
 );
 
   //VGA Sync signal generator
-  vga_controller vga (
+  vga_controller vga_controller_inst (
    .pixel_clk    (clk_25MHz),
    .reset        (reset_ah),
    .hs           (hsync),
