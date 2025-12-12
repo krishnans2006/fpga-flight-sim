@@ -28,6 +28,7 @@ module projector(
   input logic signed [31:0]  t_x [3],
   input logic signed [31:0]  t_y [3], 
   input logic signed [31:0]  t_z [3],
+  input logic        [15:0]  color,
     
   input  logic        in_valid,
   output logic        ready,
@@ -40,11 +41,13 @@ module projector(
   // 32-bit reciprocal determinant
   output logic [31:0] dr,
   output logic        out_valid,
+  output logic [15:0] color_out,
     
   input  logic        stall
 );
 
 localparam signed [31:0] FIXED_1_0  = 32'h00010000;
+localparam signed [31:0] FIXED_240 = 32'h00F00000;
 localparam signed [31:0] SCALE_X = 32'd320;
 localparam signed [31:0] SCALE_Y = 32'd240;
 
@@ -61,7 +64,7 @@ typedef struct packed {
 } p4d_t;
 
 typedef enum logic [3:0] {
-  IDLE, X, Y, Z, R1, R2, R3, R4
+  IDLE, X, Y, Z, R1, R2, R3, R4, R5, WAIT_DIV
 } state_t;
 
 state_t state_q, state_d;
@@ -81,20 +84,23 @@ logic signed [31:0] a_q, a_d;
 logic signed [31:0] b_q, b_d;
 logic signed [31:0] c_q, c_d;
 logic signed [31:0] d_q, d_d;
+logic signed [63:0] mul0_q, mul0_d, mul1_q, mul1_d;
 logic signed [63:0] mul_q, mul_d;
 logic [1:0] pt_ct_q, pt_ct_d;
 
 /* Xilinx Divide IP*/
 logic        div_s_valid;
-logic [31:0] div_dividend;
-logic [31:0] div_divisor;
+logic signed [31:0] div_dividend;
+logic signed [31:0] div_divisor;
 logic [3:0]  div_s_user; // tracks which operation is which
 logic        div_s_ready;
 
 // Outputs
 logic        div_m_valid;
-logic [55:0] div_m_data;
+logic signed [55:0] div_m_data;
 logic [3:0]  div_m_user;
+
+logic [15:0] face_color;
 
 /* Instantiate Xilinx Divider IP
 High-Level Specs:
@@ -140,7 +146,14 @@ always_comb begin
   odr_d       = odr_q;
   out_ready_d = out_ready_q;
         
-  a_d = a_q; b_d = b_q; c_d = c_q; d_d = d_q; mul_d = mul_q;
+  a_d = a_q; 
+  b_d = b_q; 
+  c_d = c_q; 
+  d_d = d_q; 
+
+  mul0_d = mul0_q;
+  mul1_d = mul1_q;
+  mul_d = mul_q;
 
   if (!stall) out_ready_d = 1'b0;
 
@@ -159,10 +172,10 @@ always_comb begin
     // decode tuser
     case (div_m_user[1:0]) 
       2'd0: begin // X Component
-        op_x_d[div_m_user[3:2]] = (result_q16 + FIXED_1_0) * SCALE_X; 
+        op_x_d[div_m_user[3:2]] = ((result_q16 + FIXED_1_0) << 8) + ((result_q16 + FIXED_1_0) << 6); 
       end
       2'd1: begin // Y Component
-        op_y_d[div_m_user[3:2]] = (FIXED_1_0 - result_q16) * SCALE_Y;
+        op_y_d[div_m_user[3:2]] = (FIXED_240) - (result_q16 * SCALE_Y);
       end
       2'd2: begin // Z Component
         op_z_d[div_m_user[3:2]] = result_q16;
@@ -180,7 +193,7 @@ always_comb begin
                 
       if (in_valid) begin
         // matrix multiplication by projection matrix
-        for (int i = 0; i < 3; i++) begin
+        for (integer i = 0; i < 3; i = i + 1) begin
           // X
           tmp = $signed(t_x[i]) * $signed(PROJ_MAT[0][0]);
           dp_d[i].x = tmp[55:24];
@@ -189,12 +202,10 @@ always_comb begin
           tmp = $signed(t_y[i]) * $signed(PROJ_MAT[1][1]);
           dp_d[i].y = tmp[55:24];
 
-          // Z
-          tmp = $signed(t_z[i]) * $signed(PROJ_MAT[2][2]);
-          dp_d[i].z = tmp[55:24] + ($signed(PROJ_MAT[2][3] >>> 8)); 
-
           // W
           dp_d[i].w = t_z[i];
+
+          // splitting Z between X and Y to reduce WNS
         end
                     
         state_d = X;
@@ -208,6 +219,13 @@ always_comb begin
       div_divisor  = dp_q[pt_ct_q].w;
 
       if (div_ready_handshake) begin
+        // apply translation to Z here ~ happens once
+        for (integer i = 0; i < 3; i = i + 1) begin
+           // Z
+          tmp = $signed(t_z[i]) * $signed(PROJ_MAT[2][2]);
+          dp_d[i].z = tmp[55:24];
+        end
+
         div_s_valid = 1'b1;
         state_d = Y;
       end
@@ -220,6 +238,10 @@ always_comb begin
       div_divisor  = dp_q[pt_ct_q].w;
 
       if (div_ready_handshake) begin
+        for (integer i = 0; i < 3; i = i + 1) begin
+          dp_d[i].z = dp_q[i].z + ($signed(PROJ_MAT[2][3] >>> 8)); 
+        end
+
         div_s_valid = 1'b1;
         state_d = Z;
       end
@@ -260,11 +282,15 @@ always_comb begin
     end
 
     R3: begin
-      mul_d = ($signed(a_q) * $signed(b_q)) + ($signed(c_q) * $signed(d_q));
+      mul0_d = ($signed(a_q) * $signed(b_q));
+      mul1_d = ($signed(c_q) * $signed(d_q));
       state_d = R4;
     end
-
     R4: begin
+      mul_d = mul0_q + mul1_q;
+      state_d = R5;
+    end
+    R5: begin
       // Calculate 1/Area
       div_s_user   = 4'b1111;
       div_dividend = 32'h01000000; // 1.0 in Q8.24
@@ -272,7 +298,12 @@ always_comb begin
                 
       if (div_ready_handshake) begin
         div_s_valid = 1'b1;
-        state_d     = IDLE;
+        state_d     = WAIT_DIV;
+      end
+    end
+    WAIT_DIV: begin
+      if (out_ready_q && !stall) begin
+        state_d = IDLE;
       end
     end
   endcase
@@ -297,6 +328,12 @@ always_ff @(posedge clk) begin
             
     a_q <= a_d; b_q <= b_d; c_q <= c_d; d_q <= d_d;
     mul_q <= mul_d;
+    mul0_q <= mul0_d;
+    mul1_q <= mul1_d;
+    
+    if (in_valid) begin
+        face_color <= color;
+    end
   end
 end
 
@@ -307,6 +344,7 @@ assign p_x       = op_x_q;
 assign p_y       = op_y_q;
 assign p_z       = op_z_q;
 assign dr        = odr_q;
+assign color_out = face_color;
 
 
 endmodule

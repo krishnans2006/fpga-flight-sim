@@ -38,7 +38,8 @@ module rasterizer(
   output logic [26:0] mem_addr,
   output logic [15:0] mem_data,
 
-  output logic [31:0] alpha, beta, gamma
+  output logic [31:0] alpha, beta, gamma,
+  output logic        stall_out
 ); 
 
 localparam lp_HORIZ_PIXEL_WIDTH = 27'h0000280;
@@ -64,11 +65,13 @@ assign beta = beta_o;
 assign gamma = gamma_o;
 
 // hold address of each element being processed in the pipeline. addr_pipe_q[6] holds the "curr" mem_addr
-logic [26:0] addr_pipe_d [0:6];
-logic [26:0] addr_pipe_q [0:6];
+logic [26:0] addr_pipe_d [0:7];
+logic [26:0] addr_pipe_q [0:7];
 logic [2:0] ctr_d, ctr_q;
 logic internal_stall;
-logic [6:0] v_pipe_d, v_pipe_q;
+logic [7:0] v_pipe_d, v_pipe_q;
+
+assign stall_out = stall || !wb_ready || internal_stall;
  
 barycentric_calc barycentric_calc_inst (
   .clk(clk),
@@ -102,7 +105,7 @@ always_ff @(posedge clk) begin
     curr_x_q <= 'b0;
     curr_y_q <= 'b0;
 
-    for (integer i = 0; i < 7; i = i + 1) begin
+    for (integer i = 0; i < 8; i = i + 1) begin
       addr_pipe_q[i] <= 27'b0;
       v_pipe_q[i] <= 1'b0; 
     end
@@ -150,12 +153,12 @@ always_comb begin
 
   rasterizer_done = 1'b0;
   mem_data = color;
-  mem_addr = addr_pipe_q[6]; // 7th value in pipeline
+  mem_addr = addr_pipe_q[7]; // 8th value in pipeline
   internal_stall = 1'b0;
   ctr_d = ctr_q;
 
-  // within triangle inherently has 7 cycles of latency, so we dont have to pipeline it here, same thing with abg
-  if (v_pipe_q[6] && within_triangle)
+  // within triangle inherently has 8 cycles of latency, so we dont have to pipeline it here, same thing with abg
+  if (v_pipe_q[7] && within_triangle)
     mem_valid = 1'b1;
   else
     mem_valid = 1'b0;
@@ -215,7 +218,7 @@ always_comb begin
       // writes values into the pipeline
       if (wb_ready) begin
         // propagate new values within local address/valid pipeline
-        for (integer i = 1; i < 7; i = i + 1) begin
+        for (integer i = 1; i < 8; i = i + 1) begin
           addr_pipe_d[i] = addr_pipe_q[i - 1];
           v_pipe_d[i] = v_pipe_q[i - 1];
         end
@@ -245,7 +248,7 @@ always_comb begin
     StFlush: begin
       if (wb_ready) begin
         // clear out pipelines
-        for (integer j = 1; j < 7; j = j + 1) begin
+        for (integer j = 1; j < 8; j = j + 1) begin
           addr_pipe_d[j] = addr_pipe_q[j - 1];
           v_pipe_d[j] = v_pipe_q[j - 1];
         end

@@ -149,7 +149,7 @@ OPTRACE "add files" START { }
   read_ip -quiet C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/hdmi_tx_0/hdmi_tx_0.xci
   read_ip -quiet C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci
   read_ip -quiet C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/blk_mem_gen_1/blk_mem_gen_1.xci
-  read_ip -quiet c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/div_gen_0/div_gen_0.xci
+  read_ip -quiet C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/div_gen_0/div_gen_0.xci
   set_param project.isImplRun false
 OPTRACE "read constraints: implementation" START { }
   read_xdc C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/constrs_1/flight_sim.xdc

@@ -90,6 +90,8 @@ set_property ip_output_repo c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
+add_files c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/model/cube_faces.coe
+add_files c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/model/cube_vertices.coe
 read_verilog C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/imports/ddr3_controller/ddr3_x16_phy_params.vh
 read_verilog -library xil_defaultlib -sv {
   C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/imports/VGA_controller.sv
@@ -174,7 +176,7 @@ set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-fl
 read_ip -quiet C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/blk_mem_gen_1/blk_mem_gen_1.xci
 set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/blk_mem_gen_1/blk_mem_gen_1_ooc.xdc]
 
-read_ip -quiet c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/div_gen_0/div_gen_0.xci
+read_ip -quiet C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/div_gen_0/div_gen_0.xci
 set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/div_gen_0/div_gen_0_ooc.xdc]
 
 OPTRACE "Adding files" END { }

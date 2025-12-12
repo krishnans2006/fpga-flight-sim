@@ -77,22 +77,6 @@ logic               within_tri_6;
 logic signed [31:0] alpha_o, beta_o, gamma_o;
 logic               within_tri_7;
 
-// we can setup initial values combinationally
-assign a_1 = $signed({t1_y, 16'b0}) - $signed({t2_y, 16'b0});
-assign b_1 = $signed({t2_x, 16'b0}) - $signed({t1_x, 16'b0});
-assign c_1 = $signed({t2_y, 16'b0}) - $signed({t0_y, 16'b0});
-assign d_1 = $signed({t0_x, 16'b0}) - $signed({t2_x, 16'b0});
-assign e_1 = $signed({point_x, 16'b0}) - $signed({t2_x, 16'b0});
-assign f_1 = $signed({point_y, 16'b0}) - $signed({t2_y, 16'b0});
-
-// area calculation
-assign ara_1 = $signed({t1_y, 16'b0}) - $signed({t2_y, 16'b0});
-assign arb_1 = $signed({t0_x, 16'b0}) - $signed({t2_x, 16'b0});
-assign arc_1 = $signed({t2_x, 16'b0}) - $signed({t1_x, 16'b0});
-assign ard_1 = $signed({t0_y, 16'b0}) - $signed({t2_y, 16'b0});
-
-assign dp_1 = inv_area;
-
 // stage 5 intermediate calculation
 always_comb begin
   tmp1 = $signed(m1_4[47:16]) * $signed(dp_4);
@@ -101,6 +85,21 @@ end
 
 always_ff @(posedge clk) begin
   if (~stall) begin
+    // Stage 1 -> 1
+    a_1 <= ($signed(t1_y) - $signed(t2_y)) <<< 16;
+    b_1 <= ($signed(t2_x) - $signed(t1_x)) <<< 16;
+    c_1 <= ($signed(t2_y) - $signed(t0_y)) <<< 16;
+    d_1 <= ($signed(t0_x) - $signed(t2_x)) <<< 16;
+    e_1 <= ($signed(point_x) - $signed(t2_x)) <<< 16;
+    f_1 <= ($signed(point_y) - $signed(t2_y)) <<< 16;
+    
+    ara_1 <= ($signed(t1_y) - $signed(t2_y)) <<< 16;
+    arb_1 <= ($signed(t0_x) - $signed(t2_x)) <<< 16;
+    arc_1 <= ($signed(t2_x) - $signed(t1_x)) <<< 16;
+    ard_1 <= ($signed(t0_y) - $signed(t2_y)) <<< 16;
+
+    dp_1 <= inv_area;
+
     // Stage 1 -> 2
     mr1_2 <= a_1 * e_1;
     mr2_2 <= b_1 * f_1;

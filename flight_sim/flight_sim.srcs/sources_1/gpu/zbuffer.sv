@@ -135,12 +135,12 @@ always_comb begin
     end
     StReq: begin
       cache_fetch_stall = 1'b1;
-      zbuf_rw_n = 1'b1;
-      zbuf_req = 1'b1;
+      // zbuf_rw_n = 1'b1;
+      // zbuf_req = 1'b1;
 
-      if (zbuf_valid) begin
+      // if (zbuf_valid) begin
         cache_state_d = StDone;
-      end
+      // end
     end
     StDone: begin
       // extra state to allow zbuff_val_stored to be written in properly

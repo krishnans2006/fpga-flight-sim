@@ -2,8 +2,8 @@
 # Vivado v2022.2 (64-bit)
 # SW Build 3671981 on Fri Oct 14 05:00:03 MDT 2022
 # IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
-# Start of session at: Thu Dec 11 01:47:11 2025
-# Process ID: 28648
+# Start of session at: Fri Dec 12 14:42:17 2025
+# Process ID: 7880
 # Current directory: C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1
 # Command line: vivado.exe -log flight_sim_top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source flight_sim_top.tcl
 # Log file: C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/flight_sim_top.vds
@@ -28,7 +28,7 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 29492
+INFO: [Synth 8-7075] Helper process launched with PID 33480
 INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [C:/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
 INFO: [Synth 8-11241] undeclared symbol 'w_phy_cmd_en', assumed default net type 'wire' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ddr/ddr3_arbiter.sv:172]
 INFO: [Synth 8-11241] undeclared symbol 'w_phy_cmd_sel', assumed default net type 'wire' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ddr/ddr3_arbiter.sv:173]
@@ -85,7 +85,7 @@ WARNING: [Synth 8-8895] 'zbuf_valid' is already implicitly declared on line 393 
 WARNING: [Synth 8-8895] 'cache_ddr3_wrdm' is already implicitly declared on line 93 [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ddr/ddr_renderer_top.sv:414]
 WARNING: [Synth 8-8895] 'cache_active' is already implicitly declared on line 93 [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ddr/ddr_renderer_top.sv:417]
 WARNING: [Synth 8-6901] identifier 'old_vga_vsync' is used before its declaration [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ddr/ddr_renderer_top.sv:329]
-WARNING: [Synth 8-6901] identifier 'init_active' is used before its declaration [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/graphics_top.sv:177]
+WARNING: [Synth 8-6901] identifier 'init_active' is used before its declaration [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/graphics_top.sv:185]
 WARNING: [Synth 8-10835] illegal leading underscore character in based number '__0__0__0__0__0__0__0__1__1__0__0__1__0__0__0__0__0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/imports/ddr3_controller/ddr3_x16_phy_params.vh:21]
 WARNING: [Synth 8-10835] illegal leading underscore character in based number '__0__0__1__0__0__0__0__0__0__0__0__0__0__0__0__0__0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/imports/ddr3_controller/ddr3_x16_phy_params.vh:22]
 WARNING: [Synth 8-10835] illegal leading underscore character in based number '__0__1__0__0__0__0__0__0__0__0__0__0__0__1__0__0__0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/imports/ddr3_controller/ddr3_x16_phy_params.vh:23]
@@ -118,26 +118,26 @@ WARNING: [Synth 8-6901] identifier 'lp_CCD' is used before its declaration [C:/U
 WARNING: [Synth 8-6901] identifier 'lp_BL' is used before its declaration [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/imports/ddr3_controller/ddr3_x16_phy_params.vh:77]
 WARNING: [Synth 8-6901] identifier 'lp_BL' is used before its declaration [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/imports/ddr3_controller/ddr3_x16_phy_params.vh:78]
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1853.246 ; gain = 408.348
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1853.719 ; gain = 408.859
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'flight_sim_top' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/flight_sim_top.sv:1]
 INFO: [Synth 8-6157] synthesizing module 'mb_block' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/synth/mb_block.v:936]
-INFO: [Synth 8-6157] synthesizing module 'mb_block_axi_uartlite_0_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/mb_block_axi_uartlite_0_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'mb_block_axi_uartlite_0_0' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/mb_block_axi_uartlite_0_0_stub.v:5]
-INFO: [Synth 8-6157] synthesizing module 'mb_block_clk_wiz_1_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/mb_block_clk_wiz_1_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'mb_block_clk_wiz_1_0' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/mb_block_clk_wiz_1_0_stub.v:5]
-INFO: [Synth 8-6157] synthesizing module 'mb_block_axi_gpio_0_1' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/mb_block_axi_gpio_0_1_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'mb_block_axi_gpio_0_1' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/mb_block_axi_gpio_0_1_stub.v:5]
-INFO: [Synth 8-6157] synthesizing module 'mb_block_axi_gpio_0_3' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/mb_block_axi_gpio_0_3_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'mb_block_axi_gpio_0_3' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/mb_block_axi_gpio_0_3_stub.v:5]
-INFO: [Synth 8-6157] synthesizing module 'mb_block_axi_gpio_0_2' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/mb_block_axi_gpio_0_2_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'mb_block_axi_gpio_0_2' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/mb_block_axi_gpio_0_2_stub.v:5]
-INFO: [Synth 8-6157] synthesizing module 'mb_block_mdm_1_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/mb_block_mdm_1_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'mb_block_mdm_1_0' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/mb_block_mdm_1_0_stub.v:5]
-INFO: [Synth 8-6157] synthesizing module 'mb_block_microblaze_0_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/mb_block_microblaze_0_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'mb_block_microblaze_0_0' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/mb_block_microblaze_0_0_stub.v:5]
-INFO: [Synth 8-6157] synthesizing module 'mb_block_microblaze_0_axi_intc_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/mb_block_microblaze_0_axi_intc_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'mb_block_microblaze_0_axi_intc_0' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/mb_block_microblaze_0_axi_intc_0_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'mb_block_axi_uartlite_0_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/mb_block_axi_uartlite_0_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'mb_block_axi_uartlite_0_0' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/mb_block_axi_uartlite_0_0_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'mb_block_clk_wiz_1_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/mb_block_clk_wiz_1_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'mb_block_clk_wiz_1_0' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/mb_block_clk_wiz_1_0_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'mb_block_axi_gpio_0_1' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/mb_block_axi_gpio_0_1_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'mb_block_axi_gpio_0_1' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/mb_block_axi_gpio_0_1_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'mb_block_axi_gpio_0_3' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/mb_block_axi_gpio_0_3_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'mb_block_axi_gpio_0_3' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/mb_block_axi_gpio_0_3_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'mb_block_axi_gpio_0_2' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/mb_block_axi_gpio_0_2_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'mb_block_axi_gpio_0_2' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/mb_block_axi_gpio_0_2_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'mb_block_mdm_1_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/mb_block_mdm_1_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'mb_block_mdm_1_0' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/mb_block_mdm_1_0_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'mb_block_microblaze_0_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/mb_block_microblaze_0_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'mb_block_microblaze_0_0' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/mb_block_microblaze_0_0_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'mb_block_microblaze_0_axi_intc_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/mb_block_microblaze_0_axi_intc_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'mb_block_microblaze_0_axi_intc_0' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/mb_block_microblaze_0_axi_intc_0_stub.v:5]
 INFO: [Synth 8-6157] synthesizing module 'mb_block_microblaze_0_axi_periph_0' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/synth/mb_block.v:1602]
 INFO: [Synth 8-6157] synthesizing module 'm00_couplers_imp_1TK4492' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/synth/mb_block.v:12]
 INFO: [Synth 8-6155] done synthesizing module 'm00_couplers_imp_1TK4492' (0#1) [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/synth/mb_block.v:12]
@@ -155,27 +155,27 @@ INFO: [Synth 8-6157] synthesizing module 'm06_couplers_imp_1QRRYF7' [c:/Users/an
 INFO: [Synth 8-6155] done synthesizing module 'm06_couplers_imp_1QRRYF7' (0#1) [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/synth/mb_block.v:804]
 INFO: [Synth 8-6157] synthesizing module 's00_couplers_imp_5YIJ0K' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/synth/mb_block.v:2926]
 INFO: [Synth 8-6155] done synthesizing module 's00_couplers_imp_5YIJ0K' (0#1) [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/synth/mb_block.v:2926]
-INFO: [Synth 8-6157] synthesizing module 'mb_block_xbar_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/mb_block_xbar_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'mb_block_xbar_0' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/mb_block_xbar_0_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'mb_block_xbar_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/mb_block_xbar_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'mb_block_xbar_0' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/mb_block_xbar_0_stub.v:5]
 WARNING: [Synth 8-7071] port 'm_axi_awprot' of module 'mb_block_xbar_0' is unconnected for instance 'xbar' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/synth/mb_block.v:2651]
 WARNING: [Synth 8-7071] port 'm_axi_arprot' of module 'mb_block_xbar_0' is unconnected for instance 'xbar' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/synth/mb_block.v:2651]
 WARNING: [Synth 8-7023] instance 'xbar' of module 'mb_block_xbar_0' has 40 connections declared, but only 38 given [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/synth/mb_block.v:2651]
 INFO: [Synth 8-6155] done synthesizing module 'mb_block_microblaze_0_axi_periph_0' (0#1) [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/synth/mb_block.v:1602]
 INFO: [Synth 8-6157] synthesizing module 'microblaze_0_local_memory_imp_G5BFEQ' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/synth/mb_block.v:2692]
-INFO: [Synth 8-6157] synthesizing module 'mb_block_dlmb_bram_if_cntlr_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/mb_block_dlmb_bram_if_cntlr_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'mb_block_dlmb_bram_if_cntlr_0' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/mb_block_dlmb_bram_if_cntlr_0_stub.v:5]
-INFO: [Synth 8-6157] synthesizing module 'mb_block_dlmb_v10_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/mb_block_dlmb_v10_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'mb_block_dlmb_v10_0' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/mb_block_dlmb_v10_0_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'mb_block_dlmb_bram_if_cntlr_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/mb_block_dlmb_bram_if_cntlr_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'mb_block_dlmb_bram_if_cntlr_0' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/mb_block_dlmb_bram_if_cntlr_0_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'mb_block_dlmb_v10_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/mb_block_dlmb_v10_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'mb_block_dlmb_v10_0' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/mb_block_dlmb_v10_0_stub.v:5]
 WARNING: [Synth 8-7071] port 'LMB_Rst' of module 'mb_block_dlmb_v10_0' is unconnected for instance 'dlmb_v10' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/synth/mb_block.v:2838]
 WARNING: [Synth 8-7023] instance 'dlmb_v10' of module 'mb_block_dlmb_v10_0' has 25 connections declared, but only 24 given [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/synth/mb_block.v:2838]
-INFO: [Synth 8-6157] synthesizing module 'mb_block_ilmb_bram_if_cntlr_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/mb_block_ilmb_bram_if_cntlr_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'mb_block_ilmb_bram_if_cntlr_0' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/mb_block_ilmb_bram_if_cntlr_0_stub.v:5]
-INFO: [Synth 8-6157] synthesizing module 'mb_block_ilmb_v10_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/mb_block_ilmb_v10_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'mb_block_ilmb_v10_0' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/mb_block_ilmb_v10_0_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'mb_block_ilmb_bram_if_cntlr_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/mb_block_ilmb_bram_if_cntlr_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'mb_block_ilmb_bram_if_cntlr_0' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/mb_block_ilmb_bram_if_cntlr_0_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'mb_block_ilmb_v10_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/mb_block_ilmb_v10_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'mb_block_ilmb_v10_0' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/mb_block_ilmb_v10_0_stub.v:5]
 WARNING: [Synth 8-7071] port 'LMB_Rst' of module 'mb_block_ilmb_v10_0' is unconnected for instance 'ilmb_v10' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/synth/mb_block.v:2884]
 WARNING: [Synth 8-7023] instance 'ilmb_v10' of module 'mb_block_ilmb_v10_0' has 25 connections declared, but only 24 given [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/synth/mb_block.v:2884]
-INFO: [Synth 8-6157] synthesizing module 'mb_block_lmb_bram_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/mb_block_lmb_bram_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'mb_block_lmb_bram_0' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/mb_block_lmb_bram_0_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'mb_block_lmb_bram_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/mb_block_lmb_bram_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'mb_block_lmb_bram_0' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/mb_block_lmb_bram_0_stub.v:5]
 WARNING: [Synth 8-7071] port 'rsta_busy' of module 'mb_block_lmb_bram_0' is unconnected for instance 'lmb_bram' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/synth/mb_block.v:2909]
 WARNING: [Synth 8-7071] port 'rstb_busy' of module 'mb_block_lmb_bram_0' is unconnected for instance 'lmb_bram' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/synth/mb_block.v:2909]
 WARNING: [Synth 8-7023] instance 'lmb_bram' of module 'mb_block_lmb_bram_0' has 16 connections declared, but only 14 given [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/synth/mb_block.v:2909]
@@ -184,21 +184,21 @@ INFO: [Synth 8-6157] synthesizing module 'mb_block_microblaze_0_xlconcat_0' [c:/
 INFO: [Synth 8-6157] synthesizing module 'xlconcat_v2_1_4_xlconcat' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/4b67/hdl/xlconcat_v2_1_vl_rfs.v:14]
 INFO: [Synth 8-6155] done synthesizing module 'xlconcat_v2_1_4_xlconcat' (0#1) [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ipshared/4b67/hdl/xlconcat_v2_1_vl_rfs.v:14]
 INFO: [Synth 8-6155] done synthesizing module 'mb_block_microblaze_0_xlconcat_0' (0#1) [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_microblaze_0_xlconcat_0/synth/mb_block_microblaze_0_xlconcat_0.v:53]
-INFO: [Synth 8-6157] synthesizing module 'mb_block_rst_clk_wiz_1_100M_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/mb_block_rst_clk_wiz_1_100M_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'mb_block_rst_clk_wiz_1_100M_0' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/mb_block_rst_clk_wiz_1_100M_0_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'mb_block_rst_clk_wiz_1_100M_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/mb_block_rst_clk_wiz_1_100M_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'mb_block_rst_clk_wiz_1_100M_0' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/mb_block_rst_clk_wiz_1_100M_0_stub.v:5]
 WARNING: [Synth 8-7071] port 'peripheral_reset' of module 'mb_block_rst_clk_wiz_1_100M_0' is unconnected for instance 'rst_clk_wiz_1_100M' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/synth/mb_block.v:1538]
 WARNING: [Synth 8-7071] port 'interconnect_aresetn' of module 'mb_block_rst_clk_wiz_1_100M_0' is unconnected for instance 'rst_clk_wiz_1_100M' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/synth/mb_block.v:1538]
 WARNING: [Synth 8-7023] instance 'rst_clk_wiz_1_100M' of module 'mb_block_rst_clk_wiz_1_100M_0' has 10 connections declared, but only 8 given [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/synth/mb_block.v:1538]
-INFO: [Synth 8-6157] synthesizing module 'mb_block_axi_quad_spi_0_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/mb_block_axi_quad_spi_0_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'mb_block_axi_quad_spi_0_0' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/mb_block_axi_quad_spi_0_0_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'mb_block_axi_quad_spi_0_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/mb_block_axi_quad_spi_0_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'mb_block_axi_quad_spi_0_0' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/mb_block_axi_quad_spi_0_0_stub.v:5]
 WARNING: [Synth 8-7071] port 'io0_t' of module 'mb_block_axi_quad_spi_0_0' is unconnected for instance 'spi_usb' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/synth/mb_block.v:1547]
 WARNING: [Synth 8-7071] port 'io1_o' of module 'mb_block_axi_quad_spi_0_0' is unconnected for instance 'spi_usb' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/synth/mb_block.v:1547]
 WARNING: [Synth 8-7071] port 'io1_t' of module 'mb_block_axi_quad_spi_0_0' is unconnected for instance 'spi_usb' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/synth/mb_block.v:1547]
 WARNING: [Synth 8-7071] port 'sck_t' of module 'mb_block_axi_quad_spi_0_0' is unconnected for instance 'spi_usb' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/synth/mb_block.v:1547]
 WARNING: [Synth 8-7071] port 'ss_t' of module 'mb_block_axi_quad_spi_0_0' is unconnected for instance 'spi_usb' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/synth/mb_block.v:1547]
 WARNING: [Synth 8-7023] instance 'spi_usb' of module 'mb_block_axi_quad_spi_0_0' has 33 connections declared, but only 28 given [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/synth/mb_block.v:1547]
-INFO: [Synth 8-6157] synthesizing module 'mb_block_axi_timer_0_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/mb_block_axi_timer_0_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'mb_block_axi_timer_0_0' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/mb_block_axi_timer_0_0_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'mb_block_axi_timer_0_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/mb_block_axi_timer_0_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'mb_block_axi_timer_0_0' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/mb_block_axi_timer_0_0_stub.v:5]
 WARNING: [Synth 8-7071] port 'generateout0' of module 'mb_block_axi_timer_0_0' is unconnected for instance 'timer_usb' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/synth/mb_block.v:1576]
 WARNING: [Synth 8-7071] port 'generateout1' of module 'mb_block_axi_timer_0_0' is unconnected for instance 'timer_usb' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/synth/mb_block.v:1576]
 WARNING: [Synth 8-7071] port 'pwm0' of module 'mb_block_axi_timer_0_0' is unconnected for instance 'timer_usb' [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/synth/mb_block.v:1576]
@@ -206,8 +206,8 @@ WARNING: [Synth 8-7023] instance 'timer_usb' of module 'mb_block_axi_timer_0_0' 
 INFO: [Synth 8-6155] done synthesizing module 'mb_block' (0#1) [c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/synth/mb_block.v:936]
 INFO: [Synth 8-6157] synthesizing module 'ddr_renderer_top' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ddr/ddr_renderer_top.sv:22]
 INFO: [Synth 8-6157] synthesizing module 'ddr3_arbiter' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ddr/ddr3_arbiter.sv:24]
-INFO: [Synth 8-6157] synthesizing module 'clk_wiz_1' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/clk_wiz_1_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'clk_wiz_1' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/clk_wiz_1_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'clk_wiz_1' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/clk_wiz_1_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'clk_wiz_1' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/clk_wiz_1_stub.v:5]
 WARNING: [Synth 8-7071] port 'clk_out1_ddr_n' of module 'clk_wiz_1' is unconnected for instance 'clkgen_ddr3ctrl_instance' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ddr/ddr3_arbiter.sv:75]
 WARNING: [Synth 8-7071] port 'clk_out4_div_n' of module 'clk_wiz_1' is unconnected for instance 'clkgen_ddr3ctrl_instance' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ddr/ddr3_arbiter.sv:75]
 WARNING: [Synth 8-7023] instance 'clkgen_ddr3ctrl_instance' of module 'clk_wiz_1' has 9 connections declared, but only 7 given [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ddr/ddr3_arbiter.sv:75]
@@ -261,8 +261,8 @@ INFO: [Synth 8-6157] synthesizing module 'OBUFDS' [C:/Xilinx/Vivado/2022.2/scrip
 INFO: [Synth 8-6155] done synthesizing module 'OBUFDS' (0#1) [C:/Xilinx/Vivado/2022.2/scripts/rt/data/unisim_comp.v:90676]
 INFO: [Synth 8-6157] synthesizing module 'IDELAYCTRL' [C:/Xilinx/Vivado/2022.2/scripts/rt/data/unisim_comp.v:73432]
 INFO: [Synth 8-6155] done synthesizing module 'IDELAYCTRL' (0#1) [C:/Xilinx/Vivado/2022.2/scripts/rt/data/unisim_comp.v:73432]
-INFO: [Synth 8-6157] synthesizing module 'fifo_generator_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/fifo_generator_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'fifo_generator_0' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/fifo_generator_0_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'fifo_generator_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/fifo_generator_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'fifo_generator_0' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/fifo_generator_0_stub.v:5]
 INFO: [Synth 8-6155] done synthesizing module 'ddr3_x16_phy_cust' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/imports/ddr3_controller/ddr3_x16_phy_cust.v:9]
 INFO: [Synth 8-6157] synthesizing module 'ddr3_rdcal' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/imports/ddr3_controller/ddr3_rdcal.v:7]
 	Parameter p_RDCAL_ROW bound to: 14 - type: integer 
@@ -272,26 +272,26 @@ WARNING: [Synth 8-689] width (1) of port connection 'o8_phy_wrdm' does not match
 INFO: [Synth 8-6155] done synthesizing module 'ddr3_arbiter' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ddr/ddr3_arbiter.sv:24]
 INFO: [Synth 8-6157] synthesizing module 'BUFG' [C:/Xilinx/Vivado/2022.2/scripts/rt/data/unisim_comp.v:1082]
 INFO: [Synth 8-6155] done synthesizing module 'BUFG' (0#1) [C:/Xilinx/Vivado/2022.2/scripts/rt/data/unisim_comp.v:1082]
-INFO: [Synth 8-6157] synthesizing module 'clk_wiz_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/clk_wiz_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'clk_wiz_0' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/clk_wiz_0_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'clk_wiz_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/clk_wiz_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'clk_wiz_0' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/clk_wiz_0_stub.v:5]
 INFO: [Synth 8-6157] synthesizing module 'vga_controller' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/imports/VGA_controller.sv:1]
 INFO: [Synth 8-6155] done synthesizing module 'vga_controller' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/imports/VGA_controller.sv:1]
 WARNING: [Synth 8-7071] port 'sync' of module 'vga_controller' is unconnected for instance 'vga' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ddr/ddr_renderer_top.sv:142]
 WARNING: [Synth 8-7023] instance 'vga' of module 'vga_controller' has 8 connections declared, but only 7 given [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ddr/ddr_renderer_top.sv:142]
-INFO: [Synth 8-6157] synthesizing module 'hdmi_tx_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/hdmi_tx_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'hdmi_tx_0' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/hdmi_tx_0_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'hdmi_tx_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/hdmi_tx_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'hdmi_tx_0' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/hdmi_tx_0_stub.v:5]
 INFO: [Synth 8-6157] synthesizing module 'frame_buffer' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ddr/frame_buffer.sv:23]
-INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/blk_mem_gen_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_0' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/blk_mem_gen_0_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/blk_mem_gen_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_0' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/blk_mem_gen_0_stub.v:5]
 INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ddr/frame_buffer.sv:84]
 INFO: [Synth 8-6155] done synthesizing module 'frame_buffer' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ddr/frame_buffer.sv:23]
 INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ddr/ddr_renderer_top.sv:249]
 INFO: [Synth 8-6157] synthesizing module 'graphics_top' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/graphics_top.sv:32]
-INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/graphics_top.sv:97]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/graphics_top.sv:100]
 INFO: [Synth 8-6157] synthesizing module 'rasterizer' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/rasterizer.sv:24]
 INFO: [Synth 8-6157] synthesizing module 'barycentric_calc' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/barycentric_calc.sv:26]
 INFO: [Synth 8-6155] done synthesizing module 'barycentric_calc' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/barycentric_calc.sv:26]
-INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/rasterizer.sv:163]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/rasterizer.sv:166]
 INFO: [Synth 8-6155] done synthesizing module 'rasterizer' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/rasterizer.sv:24]
 INFO: [Synth 8-6157] synthesizing module 'zbuffer' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/zbuffer.sv:23]
 INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/zbuffer.sv:129]
@@ -303,15 +303,15 @@ INFO: [Synth 8-6157] synthesizing module 'zbuffer_initializer' [C:/Users/anike/f
 INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/zbuffer_initializer.sv:79]
 INFO: [Synth 8-6155] done synthesizing module 'zbuffer_initializer' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/zbuffer_initializer.sv:24]
 INFO: [Synth 8-6157] synthesizing module 'projector' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/new/projector.sv:23]
-INFO: [Synth 8-6157] synthesizing module 'div_gen_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/div_gen_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'div_gen_0' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/div_gen_0_stub.v:5]
-WARNING: [Synth 8-689] width (4) of port connection 'm_axis_dout_tuser' does not match port width (8) of module 'div_gen_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/new/projector.sv:112]
-INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/new/projector.sv:175]
+INFO: [Synth 8-6157] synthesizing module 'div_gen_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/div_gen_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'div_gen_0' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/div_gen_0_stub.v:5]
+WARNING: [Synth 8-689] width (4) of port connection 'm_axis_dout_tuser' does not match port width (8) of module 'div_gen_0' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/new/projector.sv:126]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/new/projector.sv:190]
 INFO: [Synth 8-6155] done synthesizing module 'projector' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/new/projector.sv:23]
 INFO: [Synth 8-6155] done synthesizing module 'graphics_top' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/graphics_top.sv:32]
 INFO: [Synth 8-6157] synthesizing module 'cache' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ddr/cache.sv:24]
-INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_1' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/blk_mem_gen_1_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_1' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-28648-Aniketh_x86-64/realtime/blk_mem_gen_1_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_1' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/blk_mem_gen_1_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_1' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/.Xil/Vivado-7880-Aniketh_x86-64/realtime/blk_mem_gen_1_stub.v:5]
 INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ddr/cache.sv:186]
 INFO: [Synth 8-6155] done synthesizing module 'cache' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ddr/cache.sv:24]
 WARNING: [Synth 8-689] width (1) of port connection 'cache_ddr3_wrdm' does not match port width (8) of module 'cache' [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ddr/ddr_renderer_top.sv:435]
@@ -323,7 +323,7 @@ WARNING: [Synth 8-7071] port 'UART_RXD_OUT' of module 'ddr_renderer_top' is unco
 WARNING: [Synth 8-7023] instance 'ddr_renderer_top_inst' of module 'ddr_renderer_top' has 27 connections declared, but only 24 given [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/flight_sim_top.sv:83]
 INFO: [Synth 8-6155] done synthesizing module 'flight_sim_top' (0#1) [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/flight_sim_top.sv:1]
 WARNING: [Synth 8-6014] Unused sequential element r_dq_delay_ld_reg was removed.  [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/imports/ddr3_controller/ddr3_rdcal.v:75]
-WARNING: [Synth 8-6014] Unused sequential element start_y_q_reg was removed.  [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/rasterizer.sv:111]
+WARNING: [Synth 8-6014] Unused sequential element start_y_q_reg was removed.  [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/rasterizer.sv:114]
 WARNING: [Synth 8-6014] Unused sequential element zbuf_q2_reg[zbuff_val_stored] was removed.  [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/zbuffer.sv:103]
 WARNING: [Synth 8-6014] Unused sequential element zbuf_q_reg[zbuff_val] was removed.  [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/zbuffer.sv:156]
 WARNING: [Synth 8-6014] Unused sequential element zbuf_q2_reg[zbuff_val_in] was removed.  [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/zbuffer.sv:162]
@@ -432,18 +432,18 @@ WARNING: [Synth 8-7129] Port alpha[29] in module zbuffer is either unconnected o
 WARNING: [Synth 8-7129] Port alpha[28] in module zbuffer is either unconnected or has no load
 INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1988.176 ; gain = 543.277
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1989.977 ; gain = 545.117
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1988.176 ; gain = 543.277
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1989.977 ; gain = 545.117
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1988.176 ; gain = 543.277
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1989.977 ; gain = 545.117
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.098 . Memory (MB): peak = 1988.176 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.094 . Memory (MB): peak = 1989.977 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 53 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -508,14 +508,14 @@ Parsing XDC File [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synt
 Finished Parsing XDC File [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 2077.527 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 2096.297 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 19 instances were transformed.
   IOBUF => IOBUF (IBUF, OBUFT): 16 instances
   IOBUFDS => IOBUFDS (IBUFDS, INV, OBUFTDS(x2)): 2 instances
   OBUFDS => OBUFDS_DUAL_BUF (INV, OBUFDS(x2)): 1 instance 
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.037 . Memory (MB): peak = 2077.527 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.036 . Memory (MB): peak = 2096.297 ; gain = 0.000
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'ddr_renderer_top_inst/ddr3_arbiter_inst/phy_instance/cmdfifo_inst' at clock pin 'clk' is different from the actual clock period '5.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'ddr_renderer_top_inst/dmc_inst/bram1' at clock pin 'clka' is different from the actual clock period '5.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'ddr_renderer_top_inst/frame_buffer_inst/bram0' at clock pin 'clka' is different from the actual clock period '5.000', this can lead to different synthesis results.
@@ -526,14 +526,14 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [C:/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 2079.531 ; gain = 634.633
+Finished Constraint Validation : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 2097.086 ; gain = 652.227
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7s50csga324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 2079.531 ; gain = 634.633
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 2097.086 ; gain = 652.227
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -584,7 +584,7 @@ Applied set_property KEEP_HIERARCHY = SOFT for ddr_renderer_top_inst/frame_buffe
 Applied set_property KEEP_HIERARCHY = SOFT for ddr_renderer_top_inst/dmc_inst/bram1. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for ddr_renderer_top_inst/graphics_inst/projector_inst/divider. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 2079.531 ; gain = 634.633
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 2097.086 ; gain = 652.227
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'r3_dqs_state_reg' in module 'ddr3_x16_phy_cust'
 INFO: [Synth 8-802] inferred FSM for state register 'r3_calib_state_reg' in module 'ddr3_rdcal'
@@ -680,7 +680,7 @@ INFO: [Synth 8-3354] encoded FSM with state register 'fbuf_wr_state_q_reg' using
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'ddr3_wr_state_q_reg' using encoding 'sequential' in module 'ddr_renderer_top'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 2079.531 ; gain = 634.633
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 2097.086 ; gain = 652.227
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -691,7 +691,7 @@ Detailed RTL Component Info :
 	   4 Input   64 Bit       Adders := 1     
 	   2 Input   49 Bit       Adders := 2     
 	   3 Input   32 Bit       Adders := 12    
-	   2 Input   32 Bit       Adders := 7     
+	   2 Input   32 Bit       Adders := 8     
 	   3 Input   27 Bit       Adders := 3     
 	   2 Input   27 Bit       Adders := 4     
 	   3 Input   21 Bit       Adders := 1     
@@ -705,20 +705,20 @@ Detailed RTL Component Info :
 +---Registers : 
 	              512 Bit    Registers := 1     
 	              128 Bit    Registers := 10    
-	               64 Bit    Registers := 20    
+	               64 Bit    Registers := 22    
 	               56 Bit    Registers := 6     
-	               32 Bit    Registers := 29    
-	               27 Bit    Registers := 15    
+	               32 Bit    Registers := 37    
+	               27 Bit    Registers := 16    
 	               24 Bit    Registers := 2     
 	               18 Bit    Registers := 20    
-	               16 Bit    Registers := 6     
+	               16 Bit    Registers := 7     
 	               15 Bit    Registers := 6     
 	               14 Bit    Registers := 3     
 	               11 Bit    Registers := 2     
 	               10 Bit    Registers := 11    
 	                9 Bit    Registers := 2     
-	                8 Bit    Registers := 8     
-	                7 Bit    Registers := 2     
+	                8 Bit    Registers := 9     
+	                7 Bit    Registers := 1     
 	                5 Bit    Registers := 9     
 	                4 Bit    Registers := 9     
 	                3 Bit    Registers := 8     
@@ -728,7 +728,6 @@ Detailed RTL Component Info :
 	              32x32  Multipliers := 8     
 	              28x32  Multipliers := 6     
 	              18x32  Multipliers := 3     
-	              10x32  Multipliers := 1     
 	               9x32  Multipliers := 1     
 +---Muxes : 
 	   2 Input  512 Bit        Muxes := 3     
@@ -740,9 +739,9 @@ Detailed RTL Component Info :
 	   5 Input   64 Bit        Muxes := 1     
 	   2 Input   64 Bit        Muxes := 3     
 	  10 Input   64 Bit        Muxes := 1     
-	   2 Input   32 Bit        Muxes := 5     
-	   8 Input   32 Bit        Muxes := 2     
+	  11 Input   32 Bit        Muxes := 5     
 	   3 Input   32 Bit        Muxes := 4     
+	   2 Input   32 Bit        Muxes := 3     
 	   7 Input   32 Bit        Muxes := 2     
 	   2 Input   27 Bit        Muxes := 9     
 	   5 Input   27 Bit        Muxes := 2     
@@ -761,35 +760,36 @@ Detailed RTL Component Info :
 	   8 Input    9 Bit        Muxes := 1     
 	   8 Input    8 Bit        Muxes := 1     
 	   2 Input    8 Bit        Muxes := 13    
+	   5 Input    8 Bit        Muxes := 1     
 	   4 Input    8 Bit        Muxes := 2     
 	  10 Input    8 Bit        Muxes := 1     
-	   5 Input    7 Bit        Muxes := 1     
 	   7 Input    7 Bit        Muxes := 2     
 	   2 Input    7 Bit        Muxes := 6     
 	   2 Input    6 Bit        Muxes := 1     
 	   8 Input    5 Bit        Muxes := 7     
 	   2 Input    5 Bit        Muxes := 2     
-	   2 Input    4 Bit        Muxes := 13    
+	   2 Input    4 Bit        Muxes := 11    
 	   5 Input    4 Bit        Muxes := 4     
 	   4 Input    4 Bit        Muxes := 1     
-	   8 Input    4 Bit        Muxes := 2     
+	  11 Input    4 Bit        Muxes := 1     
 	   2 Input    3 Bit        Muxes := 19    
 	   3 Input    3 Bit        Muxes := 2     
 	  10 Input    3 Bit        Muxes := 2     
 	   5 Input    3 Bit        Muxes := 3     
 	   6 Input    3 Bit        Muxes := 1     
 	   8 Input    3 Bit        Muxes := 1     
-	   2 Input    2 Bit        Muxes := 7     
-	   8 Input    2 Bit        Muxes := 1     
+	   2 Input    2 Bit        Muxes := 6     
+	  11 Input    2 Bit        Muxes := 1     
 	   4 Input    2 Bit        Muxes := 1     
 	  10 Input    2 Bit        Muxes := 2     
-	   2 Input    1 Bit        Muxes := 97    
+	   2 Input    1 Bit        Muxes := 91    
 	  10 Input    1 Bit        Muxes := 8     
 	   5 Input    1 Bit        Muxes := 11    
 	   6 Input    1 Bit        Muxes := 1     
-	   8 Input    1 Bit        Muxes := 16    
+	   8 Input    1 Bit        Muxes := 10    
 	   3 Input    1 Bit        Muxes := 3     
 	   4 Input    1 Bit        Muxes := 20    
+	  11 Input    1 Bit        Muxes := 8     
 	   7 Input    1 Bit        Muxes := 3     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
@@ -807,87 +807,135 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
-DSP Report: Generating DSP mar2_20, operation Mode is: A*B.
+DSP Report: Generating DSP mar2_20, operation Mode is: A2*B2.
+DSP Report: register b_1_reg is absorbed into DSP mar2_20.
+DSP Report: register mar2_20 is absorbed into DSP mar2_20.
 DSP Report: operator mar2_20 is absorbed into DSP mar2_20.
 DSP Report: operator mar2_20 is absorbed into DSP mar2_20.
-DSP Report: Generating DSP mar2_2_reg, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: Generating DSP mar2_2_reg, operation Mode is: (PCIN>>17)+A2*B2.
+DSP Report: register ard_1_reg is absorbed into DSP mar2_2_reg.
+DSP Report: register b_1_reg is absorbed into DSP mar2_2_reg.
 DSP Report: register mar2_2_reg is absorbed into DSP mar2_2_reg.
 DSP Report: operator mar2_20 is absorbed into DSP mar2_2_reg.
 DSP Report: operator mar2_20 is absorbed into DSP mar2_2_reg.
-DSP Report: Generating DSP mar2_20, operation Mode is: A*B.
+DSP Report: Generating DSP mar2_20, operation Mode is: A2*B2.
+DSP Report: register mar2_20 is absorbed into DSP mar2_20.
+DSP Report: register mar2_20 is absorbed into DSP mar2_20.
 DSP Report: operator mar2_20 is absorbed into DSP mar2_20.
 DSP Report: operator mar2_20 is absorbed into DSP mar2_20.
-DSP Report: Generating DSP mar2_2_reg, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: Generating DSP mar2_2_reg, operation Mode is: (PCIN>>17)+A2*B2.
+DSP Report: register ard_1_reg is absorbed into DSP mar2_2_reg.
+DSP Report: register mar2_2_reg is absorbed into DSP mar2_2_reg.
 DSP Report: register mar2_2_reg is absorbed into DSP mar2_2_reg.
 DSP Report: operator mar2_20 is absorbed into DSP mar2_2_reg.
 DSP Report: operator mar2_20 is absorbed into DSP mar2_2_reg.
-DSP Report: Generating DSP mar1_20, operation Mode is: A*B.
+DSP Report: Generating DSP mar1_20, operation Mode is: A2*B2.
+DSP Report: register a_1_reg is absorbed into DSP mar1_20.
+DSP Report: register mar1_20 is absorbed into DSP mar1_20.
 DSP Report: operator mar1_20 is absorbed into DSP mar1_20.
 DSP Report: operator mar1_20 is absorbed into DSP mar1_20.
-DSP Report: Generating DSP mar1_2_reg, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: Generating DSP mar1_2_reg, operation Mode is: (PCIN>>17)+A2*B2.
+DSP Report: register d_1_reg is absorbed into DSP mar1_2_reg.
+DSP Report: register a_1_reg is absorbed into DSP mar1_2_reg.
 DSP Report: register mar1_2_reg is absorbed into DSP mar1_2_reg.
 DSP Report: operator mar1_20 is absorbed into DSP mar1_2_reg.
 DSP Report: operator mar1_20 is absorbed into DSP mar1_2_reg.
-DSP Report: Generating DSP mar1_20, operation Mode is: A*B.
+DSP Report: Generating DSP mar1_20, operation Mode is: A2*B2.
+DSP Report: register mar1_20 is absorbed into DSP mar1_20.
+DSP Report: register mar1_20 is absorbed into DSP mar1_20.
 DSP Report: operator mar1_20 is absorbed into DSP mar1_20.
 DSP Report: operator mar1_20 is absorbed into DSP mar1_20.
-DSP Report: Generating DSP mar1_2_reg, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: Generating DSP mar1_2_reg, operation Mode is: (PCIN>>17)+A2*B2.
+DSP Report: register d_1_reg is absorbed into DSP mar1_2_reg.
+DSP Report: register mar1_2_reg is absorbed into DSP mar1_2_reg.
 DSP Report: register mar1_2_reg is absorbed into DSP mar1_2_reg.
 DSP Report: operator mar1_20 is absorbed into DSP mar1_2_reg.
 DSP Report: operator mar1_20 is absorbed into DSP mar1_2_reg.
-DSP Report: Generating DSP mr4_20, operation Mode is: A*B.
+DSP Report: Generating DSP mr4_20, operation Mode is: A2*B2.
+DSP Report: register d_1_reg is absorbed into DSP mr4_20.
+DSP Report: register mr4_20 is absorbed into DSP mr4_20.
 DSP Report: operator mr4_20 is absorbed into DSP mr4_20.
 DSP Report: operator mr4_20 is absorbed into DSP mr4_20.
-DSP Report: Generating DSP mr4_2_reg, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: Generating DSP mr4_2_reg, operation Mode is: (PCIN>>17)+A2*B2.
+DSP Report: register f_1_reg is absorbed into DSP mr4_2_reg.
+DSP Report: register d_1_reg is absorbed into DSP mr4_2_reg.
 DSP Report: register mr4_2_reg is absorbed into DSP mr4_2_reg.
 DSP Report: operator mr4_20 is absorbed into DSP mr4_2_reg.
 DSP Report: operator mr4_20 is absorbed into DSP mr4_2_reg.
-DSP Report: Generating DSP mr4_20, operation Mode is: A*B.
+DSP Report: Generating DSP mr4_20, operation Mode is: A2*B2.
+DSP Report: register mr4_20 is absorbed into DSP mr4_20.
+DSP Report: register mr4_20 is absorbed into DSP mr4_20.
 DSP Report: operator mr4_20 is absorbed into DSP mr4_20.
 DSP Report: operator mr4_20 is absorbed into DSP mr4_20.
-DSP Report: Generating DSP mr4_2_reg, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: Generating DSP mr4_2_reg, operation Mode is: (PCIN>>17)+A2*B2.
+DSP Report: register f_1_reg is absorbed into DSP mr4_2_reg.
+DSP Report: register mr4_2_reg is absorbed into DSP mr4_2_reg.
 DSP Report: register mr4_2_reg is absorbed into DSP mr4_2_reg.
 DSP Report: operator mr4_20 is absorbed into DSP mr4_2_reg.
 DSP Report: operator mr4_20 is absorbed into DSP mr4_2_reg.
-DSP Report: Generating DSP mr3_20, operation Mode is: A*B.
+DSP Report: Generating DSP mr3_20, operation Mode is: A2*B2.
+DSP Report: register c_1_reg is absorbed into DSP mr3_20.
+DSP Report: register mr3_20 is absorbed into DSP mr3_20.
 DSP Report: operator mr3_20 is absorbed into DSP mr3_20.
 DSP Report: operator mr3_20 is absorbed into DSP mr3_20.
-DSP Report: Generating DSP mr3_2_reg, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: Generating DSP mr3_2_reg, operation Mode is: (PCIN>>17)+A2*B2.
+DSP Report: register e_1_reg is absorbed into DSP mr3_2_reg.
+DSP Report: register c_1_reg is absorbed into DSP mr3_2_reg.
 DSP Report: register mr3_2_reg is absorbed into DSP mr3_2_reg.
 DSP Report: operator mr3_20 is absorbed into DSP mr3_2_reg.
 DSP Report: operator mr3_20 is absorbed into DSP mr3_2_reg.
-DSP Report: Generating DSP mr3_20, operation Mode is: A*B.
+DSP Report: Generating DSP mr3_20, operation Mode is: A2*B2.
+DSP Report: register mr3_20 is absorbed into DSP mr3_20.
+DSP Report: register mr3_20 is absorbed into DSP mr3_20.
 DSP Report: operator mr3_20 is absorbed into DSP mr3_20.
 DSP Report: operator mr3_20 is absorbed into DSP mr3_20.
-DSP Report: Generating DSP mr3_2_reg, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: Generating DSP mr3_2_reg, operation Mode is: (PCIN>>17)+A2*B2.
+DSP Report: register e_1_reg is absorbed into DSP mr3_2_reg.
+DSP Report: register mr3_2_reg is absorbed into DSP mr3_2_reg.
 DSP Report: register mr3_2_reg is absorbed into DSP mr3_2_reg.
 DSP Report: operator mr3_20 is absorbed into DSP mr3_2_reg.
 DSP Report: operator mr3_20 is absorbed into DSP mr3_2_reg.
-DSP Report: Generating DSP mr2_20, operation Mode is: A*B.
+DSP Report: Generating DSP mr2_20, operation Mode is: A2*B2.
+DSP Report: register b_1_reg is absorbed into DSP mr2_20.
+DSP Report: register mr2_20 is absorbed into DSP mr2_20.
 DSP Report: operator mr2_20 is absorbed into DSP mr2_20.
 DSP Report: operator mr2_20 is absorbed into DSP mr2_20.
-DSP Report: Generating DSP mr2_2_reg, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: Generating DSP mr2_2_reg, operation Mode is: (PCIN>>17)+A2*B2.
+DSP Report: register f_1_reg is absorbed into DSP mr2_2_reg.
+DSP Report: register b_1_reg is absorbed into DSP mr2_2_reg.
 DSP Report: register mr2_2_reg is absorbed into DSP mr2_2_reg.
 DSP Report: operator mr2_20 is absorbed into DSP mr2_2_reg.
 DSP Report: operator mr2_20 is absorbed into DSP mr2_2_reg.
-DSP Report: Generating DSP mr2_20, operation Mode is: A*B.
+DSP Report: Generating DSP mr2_20, operation Mode is: A2*B2.
+DSP Report: register mr2_20 is absorbed into DSP mr2_20.
+DSP Report: register mr2_20 is absorbed into DSP mr2_20.
 DSP Report: operator mr2_20 is absorbed into DSP mr2_20.
 DSP Report: operator mr2_20 is absorbed into DSP mr2_20.
-DSP Report: Generating DSP mr2_2_reg, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: Generating DSP mr2_2_reg, operation Mode is: (PCIN>>17)+A2*B2.
+DSP Report: register f_1_reg is absorbed into DSP mr2_2_reg.
+DSP Report: register mr2_2_reg is absorbed into DSP mr2_2_reg.
 DSP Report: register mr2_2_reg is absorbed into DSP mr2_2_reg.
 DSP Report: operator mr2_20 is absorbed into DSP mr2_2_reg.
 DSP Report: operator mr2_20 is absorbed into DSP mr2_2_reg.
-DSP Report: Generating DSP mr1_20, operation Mode is: A*B.
+DSP Report: Generating DSP mr1_20, operation Mode is: A2*B2.
+DSP Report: register a_1_reg is absorbed into DSP mr1_20.
+DSP Report: register mr1_20 is absorbed into DSP mr1_20.
 DSP Report: operator mr1_20 is absorbed into DSP mr1_20.
 DSP Report: operator mr1_20 is absorbed into DSP mr1_20.
-DSP Report: Generating DSP mr1_2_reg, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: Generating DSP mr1_2_reg, operation Mode is: (PCIN>>17)+A2*B2.
+DSP Report: register e_1_reg is absorbed into DSP mr1_2_reg.
+DSP Report: register a_1_reg is absorbed into DSP mr1_2_reg.
 DSP Report: register mr1_2_reg is absorbed into DSP mr1_2_reg.
 DSP Report: operator mr1_20 is absorbed into DSP mr1_2_reg.
 DSP Report: operator mr1_20 is absorbed into DSP mr1_2_reg.
-DSP Report: Generating DSP mr1_20, operation Mode is: A*B.
+DSP Report: Generating DSP mr1_20, operation Mode is: A2*B2.
+DSP Report: register mr1_20 is absorbed into DSP mr1_20.
+DSP Report: register mr1_20 is absorbed into DSP mr1_20.
 DSP Report: operator mr1_20 is absorbed into DSP mr1_20.
 DSP Report: operator mr1_20 is absorbed into DSP mr1_20.
-DSP Report: Generating DSP mr1_2_reg, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: Generating DSP mr1_2_reg, operation Mode is: (PCIN>>17)+A2*B2.
+DSP Report: register e_1_reg is absorbed into DSP mr1_2_reg.
+DSP Report: register mr1_2_reg is absorbed into DSP mr1_2_reg.
 DSP Report: register mr1_2_reg is absorbed into DSP mr1_2_reg.
 DSP Report: operator mr1_20 is absorbed into DSP mr1_2_reg.
 DSP Report: operator mr1_20 is absorbed into DSP mr1_2_reg.
@@ -939,95 +987,59 @@ DSP Report: register r_norm2_51 is absorbed into DSP r_norm2_51.
 DSP Report: register dp_4_reg is absorbed into DSP r_norm2_51.
 DSP Report: operator r_norm2_51 is absorbed into DSP r_norm2_51.
 DSP Report: operator r_norm2_51 is absorbed into DSP r_norm2_51.
-WARNING: [Synth 8-3936] Found unconnected internal register 'mul_q_reg' and it is trimmed from '64' to '50' bits. [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/new/projector.sv:300]
-WARNING: [Synth 8-6014] Unused sequential element dp_q_reg[2][y] was removed.  [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/new/projector.sv:293]
-WARNING: [Synth 8-6014] Unused sequential element dp_q_reg[1][y] was removed.  [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/new/projector.sv:293]
-WARNING: [Synth 8-6014] Unused sequential element dp_q_reg[0][y] was removed.  [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/new/projector.sv:293]
-WARNING: [Synth 8-6014] Unused sequential element dp_q_reg[2][x] was removed.  [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/new/projector.sv:293]
-WARNING: [Synth 8-6014] Unused sequential element dp_q_reg[1][x] was removed.  [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/new/projector.sv:293]
-WARNING: [Synth 8-6014] Unused sequential element dp_q_reg[0][x] was removed.  [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/new/projector.sv:293]
-DSP Report: Generating DSP mul_q1, operation Mode is: A2*B2.
-DSP Report: register c_q_reg is absorbed into DSP mul_q1.
-DSP Report: register mul_q1 is absorbed into DSP mul_q1.
-DSP Report: operator mul_q1 is absorbed into DSP mul_q1.
-DSP Report: operator mul_q1 is absorbed into DSP mul_q1.
-DSP Report: Generating DSP mul_q1, operation Mode is: (PCIN>>17)+A2*B2.
-DSP Report: register d_q_reg is absorbed into DSP mul_q1.
-DSP Report: register c_q_reg is absorbed into DSP mul_q1.
-DSP Report: operator mul_q1 is absorbed into DSP mul_q1.
-DSP Report: operator mul_q1 is absorbed into DSP mul_q1.
-DSP Report: Generating DSP mul_q1, operation Mode is: A2*B2.
-DSP Report: register mul_q1 is absorbed into DSP mul_q1.
-DSP Report: register mul_q1 is absorbed into DSP mul_q1.
-DSP Report: operator mul_q1 is absorbed into DSP mul_q1.
-DSP Report: operator mul_q1 is absorbed into DSP mul_q1.
-DSP Report: Generating DSP mul_q1, operation Mode is: (PCIN>>17)+A2*B2.
-DSP Report: register d_q_reg is absorbed into DSP mul_q1.
-DSP Report: register mul_q1 is absorbed into DSP mul_q1.
-DSP Report: operator mul_q1 is absorbed into DSP mul_q1.
-DSP Report: operator mul_q1 is absorbed into DSP mul_q1.
-DSP Report: Generating DSP mul_q1, operation Mode is: A2*B2.
-DSP Report: register a_q_reg is absorbed into DSP mul_q1.
-DSP Report: register mul_q1 is absorbed into DSP mul_q1.
-DSP Report: operator mul_q1 is absorbed into DSP mul_q1.
-DSP Report: operator mul_q1 is absorbed into DSP mul_q1.
-DSP Report: Generating DSP mul_q1, operation Mode is: (PCIN>>17)+A2*B2.
-DSP Report: register b_q_reg is absorbed into DSP mul_q1.
-DSP Report: register a_q_reg is absorbed into DSP mul_q1.
-DSP Report: operator mul_q1 is absorbed into DSP mul_q1.
-DSP Report: operator mul_q1 is absorbed into DSP mul_q1.
-DSP Report: Generating DSP mul_q1, operation Mode is: A2*B2.
-DSP Report: register mul_q1 is absorbed into DSP mul_q1.
-DSP Report: register mul_q1 is absorbed into DSP mul_q1.
-DSP Report: operator mul_q1 is absorbed into DSP mul_q1.
-DSP Report: operator mul_q1 is absorbed into DSP mul_q1.
-DSP Report: Generating DSP mul_q1, operation Mode is: (PCIN>>17)+A2*B2.
-DSP Report: register b_q_reg is absorbed into DSP mul_q1.
-DSP Report: register mul_q1 is absorbed into DSP mul_q1.
-DSP Report: operator mul_q1 is absorbed into DSP mul_q1.
-DSP Report: operator mul_q1 is absorbed into DSP mul_q1.
-DSP Report: Generating DSP p_0_out, operation Mode is: A*(B:0x0).
-DSP Report: operator p_0_out is absorbed into DSP p_0_out.
-DSP Report: operator p_0_out is absorbed into DSP p_0_out.
-DSP Report: Generating DSP dp_q_reg[2][y], operation Mode is: (PCIN>>17)+A*B.
-DSP Report: register dp_q_reg[2][y] is absorbed into DSP dp_q_reg[2][y].
-DSP Report: operator p_0_out is absorbed into DSP dp_q_reg[2][y].
-DSP Report: operator p_0_out is absorbed into DSP dp_q_reg[2][y].
-DSP Report: Generating DSP p_0_out, operation Mode is: A*(B:0x0).
-DSP Report: operator p_0_out is absorbed into DSP p_0_out.
-DSP Report: operator p_0_out is absorbed into DSP p_0_out.
-DSP Report: Generating DSP dp_q_reg[2][y], operation Mode is: (PCIN>>17)+A*B.
-DSP Report: register dp_q_reg[2][y] is absorbed into DSP dp_q_reg[2][y].
-DSP Report: operator p_0_out is absorbed into DSP dp_q_reg[2][y].
-DSP Report: operator p_0_out is absorbed into DSP dp_q_reg[2][y].
-DSP Report: Generating DSP p_0_out, operation Mode is: A*(B:0x0).
-DSP Report: operator p_0_out is absorbed into DSP p_0_out.
-DSP Report: operator p_0_out is absorbed into DSP p_0_out.
-DSP Report: Generating DSP dp_q_reg[1][y], operation Mode is: (PCIN>>17)+A*B.
-DSP Report: register dp_q_reg[1][y] is absorbed into DSP dp_q_reg[1][y].
-DSP Report: operator p_0_out is absorbed into DSP dp_q_reg[1][y].
-DSP Report: operator p_0_out is absorbed into DSP dp_q_reg[1][y].
-DSP Report: Generating DSP p_0_out, operation Mode is: A*(B:0x0).
-DSP Report: operator p_0_out is absorbed into DSP p_0_out.
-DSP Report: operator p_0_out is absorbed into DSP p_0_out.
-DSP Report: Generating DSP dp_q_reg[1][y], operation Mode is: (PCIN>>17)+A*B.
-DSP Report: register dp_q_reg[1][y] is absorbed into DSP dp_q_reg[1][y].
-DSP Report: operator p_0_out is absorbed into DSP dp_q_reg[1][y].
-DSP Report: operator p_0_out is absorbed into DSP dp_q_reg[1][y].
-DSP Report: Generating DSP p_0_out, operation Mode is: A*(B:0x0).
-DSP Report: operator p_0_out is absorbed into DSP p_0_out.
-DSP Report: operator p_0_out is absorbed into DSP p_0_out.
-DSP Report: Generating DSP dp_q_reg[0][y], operation Mode is: (PCIN>>17)+A*B.
-DSP Report: register dp_q_reg[0][y] is absorbed into DSP dp_q_reg[0][y].
-DSP Report: operator p_0_out is absorbed into DSP dp_q_reg[0][y].
-DSP Report: operator p_0_out is absorbed into DSP dp_q_reg[0][y].
-DSP Report: Generating DSP p_0_out, operation Mode is: A*(B:0x0).
-DSP Report: operator p_0_out is absorbed into DSP p_0_out.
-DSP Report: operator p_0_out is absorbed into DSP p_0_out.
-DSP Report: Generating DSP dp_q_reg[0][y], operation Mode is: (PCIN>>17)+A*B.
-DSP Report: register dp_q_reg[0][y] is absorbed into DSP dp_q_reg[0][y].
-DSP Report: operator p_0_out is absorbed into DSP dp_q_reg[0][y].
-DSP Report: operator p_0_out is absorbed into DSP dp_q_reg[0][y].
+WARNING: [Synth 8-3936] Found unconnected internal register 'mul_q_reg' and it is trimmed from '64' to '50' bits. [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/new/projector.sv:330]
+WARNING: [Synth 8-3936] Found unconnected internal register 'mul0_q_reg' and it is trimmed from '64' to '50' bits. [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/new/projector.sv:331]
+WARNING: [Synth 8-3936] Found unconnected internal register 'mul1_q_reg' and it is trimmed from '64' to '50' bits. [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/new/projector.sv:332]
+WARNING: [Synth 8-6014] Unused sequential element dp_q_reg[2][x] was removed.  [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/new/projector.sv:323]
+WARNING: [Synth 8-6014] Unused sequential element dp_q_reg[1][x] was removed.  [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/new/projector.sv:323]
+WARNING: [Synth 8-6014] Unused sequential element dp_q_reg[0][x] was removed.  [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/new/projector.sv:323]
+WARNING: [Synth 8-6014] Unused sequential element dp_q_reg[2][y] was removed.  [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/new/projector.sv:323]
+WARNING: [Synth 8-6014] Unused sequential element dp_q_reg[1][y] was removed.  [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/new/projector.sv:323]
+WARNING: [Synth 8-6014] Unused sequential element dp_q_reg[0][y] was removed.  [C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/new/projector.sv:323]
+DSP Report: Generating DSP mul1_q0, operation Mode is: A2*B2.
+DSP Report: register c_q_reg is absorbed into DSP mul1_q0.
+DSP Report: register mul1_q0 is absorbed into DSP mul1_q0.
+DSP Report: operator mul1_q0 is absorbed into DSP mul1_q0.
+DSP Report: operator mul1_q0 is absorbed into DSP mul1_q0.
+DSP Report: Generating DSP mul1_q_reg, operation Mode is: (PCIN>>17)+A2*B2.
+DSP Report: register d_q_reg is absorbed into DSP mul1_q_reg.
+DSP Report: register c_q_reg is absorbed into DSP mul1_q_reg.
+DSP Report: register mul1_q_reg is absorbed into DSP mul1_q_reg.
+DSP Report: operator mul1_q0 is absorbed into DSP mul1_q_reg.
+DSP Report: operator mul1_q0 is absorbed into DSP mul1_q_reg.
+DSP Report: Generating DSP mul1_q0, operation Mode is: A2*B2.
+DSP Report: register mul1_q0 is absorbed into DSP mul1_q0.
+DSP Report: register mul1_q0 is absorbed into DSP mul1_q0.
+DSP Report: operator mul1_q0 is absorbed into DSP mul1_q0.
+DSP Report: operator mul1_q0 is absorbed into DSP mul1_q0.
+DSP Report: Generating DSP mul1_q_reg, operation Mode is: (PCIN>>17)+A2*B2.
+DSP Report: register d_q_reg is absorbed into DSP mul1_q_reg.
+DSP Report: register mul1_q_reg is absorbed into DSP mul1_q_reg.
+DSP Report: register mul1_q_reg is absorbed into DSP mul1_q_reg.
+DSP Report: operator mul1_q0 is absorbed into DSP mul1_q_reg.
+DSP Report: operator mul1_q0 is absorbed into DSP mul1_q_reg.
+DSP Report: Generating DSP mul0_q0, operation Mode is: A2*B2.
+DSP Report: register a_q_reg is absorbed into DSP mul0_q0.
+DSP Report: register mul0_q0 is absorbed into DSP mul0_q0.
+DSP Report: operator mul0_q0 is absorbed into DSP mul0_q0.
+DSP Report: operator mul0_q0 is absorbed into DSP mul0_q0.
+DSP Report: Generating DSP mul0_q_reg, operation Mode is: (PCIN>>17)+A2*B2.
+DSP Report: register b_q_reg is absorbed into DSP mul0_q_reg.
+DSP Report: register a_q_reg is absorbed into DSP mul0_q_reg.
+DSP Report: register mul0_q_reg is absorbed into DSP mul0_q_reg.
+DSP Report: operator mul0_q0 is absorbed into DSP mul0_q_reg.
+DSP Report: operator mul0_q0 is absorbed into DSP mul0_q_reg.
+DSP Report: Generating DSP mul0_q0, operation Mode is: A2*B2.
+DSP Report: register mul0_q0 is absorbed into DSP mul0_q0.
+DSP Report: register mul0_q0 is absorbed into DSP mul0_q0.
+DSP Report: operator mul0_q0 is absorbed into DSP mul0_q0.
+DSP Report: operator mul0_q0 is absorbed into DSP mul0_q0.
+DSP Report: Generating DSP mul0_q_reg, operation Mode is: (PCIN>>17)+A2*B2.
+DSP Report: register b_q_reg is absorbed into DSP mul0_q_reg.
+DSP Report: register mul0_q_reg is absorbed into DSP mul0_q_reg.
+DSP Report: register mul0_q_reg is absorbed into DSP mul0_q_reg.
+DSP Report: operator mul0_q0 is absorbed into DSP mul0_q_reg.
+DSP Report: operator mul0_q0 is absorbed into DSP mul0_q_reg.
 DSP Report: Generating DSP p_0_out, operation Mode is: A*(B:0x0).
 DSP Report: operator p_0_out is absorbed into DSP p_0_out.
 DSP Report: operator p_0_out is absorbed into DSP p_0_out.
@@ -1070,6 +1082,48 @@ DSP Report: Generating DSP dp_q_reg[0][x], operation Mode is: (PCIN>>17)+A*B.
 DSP Report: register dp_q_reg[0][x] is absorbed into DSP dp_q_reg[0][x].
 DSP Report: operator p_0_out is absorbed into DSP dp_q_reg[0][x].
 DSP Report: operator p_0_out is absorbed into DSP dp_q_reg[0][x].
+DSP Report: Generating DSP p_0_out, operation Mode is: A*(B:0x0).
+DSP Report: operator p_0_out is absorbed into DSP p_0_out.
+DSP Report: operator p_0_out is absorbed into DSP p_0_out.
+DSP Report: Generating DSP dp_q_reg[2][y], operation Mode is: (PCIN>>17)+A*B.
+DSP Report: register dp_q_reg[2][y] is absorbed into DSP dp_q_reg[2][y].
+DSP Report: operator p_0_out is absorbed into DSP dp_q_reg[2][y].
+DSP Report: operator p_0_out is absorbed into DSP dp_q_reg[2][y].
+DSP Report: Generating DSP p_0_out, operation Mode is: A*(B:0x0).
+DSP Report: operator p_0_out is absorbed into DSP p_0_out.
+DSP Report: operator p_0_out is absorbed into DSP p_0_out.
+DSP Report: Generating DSP dp_q_reg[2][y], operation Mode is: (PCIN>>17)+A*B.
+DSP Report: register dp_q_reg[2][y] is absorbed into DSP dp_q_reg[2][y].
+DSP Report: operator p_0_out is absorbed into DSP dp_q_reg[2][y].
+DSP Report: operator p_0_out is absorbed into DSP dp_q_reg[2][y].
+DSP Report: Generating DSP p_0_out, operation Mode is: A*(B:0x0).
+DSP Report: operator p_0_out is absorbed into DSP p_0_out.
+DSP Report: operator p_0_out is absorbed into DSP p_0_out.
+DSP Report: Generating DSP dp_q_reg[1][y], operation Mode is: (PCIN>>17)+A*B.
+DSP Report: register dp_q_reg[1][y] is absorbed into DSP dp_q_reg[1][y].
+DSP Report: operator p_0_out is absorbed into DSP dp_q_reg[1][y].
+DSP Report: operator p_0_out is absorbed into DSP dp_q_reg[1][y].
+DSP Report: Generating DSP p_0_out, operation Mode is: A*(B:0x0).
+DSP Report: operator p_0_out is absorbed into DSP p_0_out.
+DSP Report: operator p_0_out is absorbed into DSP p_0_out.
+DSP Report: Generating DSP dp_q_reg[1][y], operation Mode is: (PCIN>>17)+A*B.
+DSP Report: register dp_q_reg[1][y] is absorbed into DSP dp_q_reg[1][y].
+DSP Report: operator p_0_out is absorbed into DSP dp_q_reg[1][y].
+DSP Report: operator p_0_out is absorbed into DSP dp_q_reg[1][y].
+DSP Report: Generating DSP p_0_out, operation Mode is: A*(B:0x0).
+DSP Report: operator p_0_out is absorbed into DSP p_0_out.
+DSP Report: operator p_0_out is absorbed into DSP p_0_out.
+DSP Report: Generating DSP dp_q_reg[0][y], operation Mode is: (PCIN>>17)+A*B.
+DSP Report: register dp_q_reg[0][y] is absorbed into DSP dp_q_reg[0][y].
+DSP Report: operator p_0_out is absorbed into DSP dp_q_reg[0][y].
+DSP Report: operator p_0_out is absorbed into DSP dp_q_reg[0][y].
+DSP Report: Generating DSP p_0_out, operation Mode is: A*(B:0x0).
+DSP Report: operator p_0_out is absorbed into DSP p_0_out.
+DSP Report: operator p_0_out is absorbed into DSP p_0_out.
+DSP Report: Generating DSP dp_q_reg[0][y], operation Mode is: (PCIN>>17)+A*B.
+DSP Report: register dp_q_reg[0][y] is absorbed into DSP dp_q_reg[0][y].
+DSP Report: operator p_0_out is absorbed into DSP dp_q_reg[0][y].
+DSP Report: operator p_0_out is absorbed into DSP dp_q_reg[0][y].
 WARNING: [Synth 8-3332] Sequential element (barycentric_calc_inst/mar2_2_reg[47]) is unused and will be removed from module rasterizer.
 WARNING: [Synth 8-3332] Sequential element (barycentric_calc_inst/mar2_2_reg[46]) is unused and will be removed from module rasterizer.
 WARNING: [Synth 8-3332] Sequential element (barycentric_calc_inst/mar2_2_reg[45]) is unused and will be removed from module rasterizer.
@@ -1172,7 +1226,7 @@ WARNING: [Synth 8-3332] Sequential element (barycentric_calc_inst/mar1_2_reg[42]
 WARNING: [Synth 8-3332] Sequential element (barycentric_calc_inst/mar1_2_reg[41]__0) is unused and will be removed from module rasterizer.
 INFO: [Common 17-14] Message 'Synth 8-3332' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 2079.531 ; gain = 634.633
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 2097.086 ; gain = 652.227
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -1182,30 +1236,30 @@ DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding R
 +-----------------+-------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
 |Module Name      | DSP Mapping       | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
 +-----------------+-------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|barycentric_calc | A*B               | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|barycentric_calc | (PCIN>>17)+A*B    | 15     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|barycentric_calc | A*B               | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|barycentric_calc | (PCIN>>17)+A*B    | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|barycentric_calc | A*B               | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|barycentric_calc | (PCIN>>17)+A*B    | 15     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|barycentric_calc | A*B               | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|barycentric_calc | (PCIN>>17)+A*B    | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|barycentric_calc | A*B               | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|barycentric_calc | (PCIN>>17)+A*B    | 15     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|barycentric_calc | A*B               | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|barycentric_calc | (PCIN>>17)+A*B    | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|barycentric_calc | A*B               | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|barycentric_calc | (PCIN>>17)+A*B    | 15     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|barycentric_calc | A*B               | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|barycentric_calc | (PCIN>>17)+A*B    | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|barycentric_calc | A*B               | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|barycentric_calc | (PCIN>>17)+A*B    | 15     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|barycentric_calc | A*B               | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|barycentric_calc | (PCIN>>17)+A*B    | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|barycentric_calc | A*B               | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|barycentric_calc | (PCIN>>17)+A*B    | 15     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|barycentric_calc | A*B               | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|barycentric_calc | (PCIN>>17)+A*B    | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|barycentric_calc | A2*B2             | 18     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|barycentric_calc | (PCIN>>17)+A2*B2  | 15     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
+|barycentric_calc | A2*B2             | 18     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|barycentric_calc | (PCIN>>17)+A2*B2  | 18     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
+|barycentric_calc | A2*B2             | 18     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|barycentric_calc | (PCIN>>17)+A2*B2  | 15     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
+|barycentric_calc | A2*B2             | 18     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|barycentric_calc | (PCIN>>17)+A2*B2  | 18     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
+|barycentric_calc | A2*B2             | 18     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|barycentric_calc | (PCIN>>17)+A2*B2  | 15     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
+|barycentric_calc | A2*B2             | 18     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|barycentric_calc | (PCIN>>17)+A2*B2  | 18     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
+|barycentric_calc | A2*B2             | 18     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|barycentric_calc | (PCIN>>17)+A2*B2  | 15     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
+|barycentric_calc | A2*B2             | 18     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|barycentric_calc | (PCIN>>17)+A2*B2  | 18     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
+|barycentric_calc | A2*B2             | 18     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|barycentric_calc | (PCIN>>17)+A2*B2  | 15     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
+|barycentric_calc | A2*B2             | 18     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|barycentric_calc | (PCIN>>17)+A2*B2  | 18     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
+|barycentric_calc | A2*B2             | 18     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|barycentric_calc | (PCIN>>17)+A2*B2  | 15     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
+|barycentric_calc | A2*B2             | 18     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|barycentric_calc | (PCIN>>17)+A2*B2  | 18     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
 |barycentric_calc | A''*B2            | 18     | 15     | -      | -      | 48     | 2    | 1    | -    | -    | -     | 0    | 0    | 
 |barycentric_calc | (PCIN>>17)+A2*B'' | 15     | 15     | -      | -      | 15     | 1    | 2    | -    | -    | -     | 0    | 0    | 
 |barycentric_calc | A2*B''            | 18     | 18     | -      | -      | 48     | 1    | 2    | -    | -    | -     | 0    | 0    | 
@@ -1215,13 +1269,13 @@ DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding R
 |barycentric_calc | A2*B''            | 18     | 18     | -      | -      | 48     | 1    | 2    | -    | -    | -     | 0    | 0    | 
 |barycentric_calc | (PCIN>>17)+A2*B'' | 18     | 15     | -      | -      | 32     | 1    | 2    | -    | -    | -     | 0    | 0    | 
 |projector        | A2*B2             | 18     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|projector        | (PCIN>>17)+A2*B2  | 15     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|projector        | (PCIN>>17)+A2*B2  | 15     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
 |projector        | A2*B2             | 18     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|projector        | (PCIN>>17)+A2*B2  | 18     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|projector        | (PCIN>>17)+A2*B2  | 18     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
 |projector        | A2*B2             | 18     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|projector        | (PCIN>>17)+A2*B2  | 15     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|projector        | (PCIN>>17)+A2*B2  | 15     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
 |projector        | A2*B2             | 18     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|projector        | (PCIN>>17)+A2*B2  | 18     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|projector        | (PCIN>>17)+A2*B2  | 18     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
 |projector        | A*(B:0x0)         | 15     | 2      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
 |projector        | (PCIN>>17)+A*B    | 15     | 11     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
 |projector        | A*(B:0x0)         | 18     | 2      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
@@ -1258,19 +1312,19 @@ Start Applying XDC Timing Constraints
 WARNING: [Synth 8-565] redefining clock 'clk'
 WARNING: [Synth 8-565] redefining clock 'clk'
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 2079.531 ; gain = 634.633
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 2097.086 ; gain = 652.227
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 2079.531 ; gain = 634.633
+Finished Timing Optimization : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 2097.086 ; gain = 652.227
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 2083.156 ; gain = 638.258
+Finished Technology Mapping : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 2097.086 ; gain = 652.227
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -1304,37 +1358,37 @@ CRITICAL WARNING: [Synth 8-4442] BlackBox module \ddr_renderer_top_inst/frame_bu
 CRITICAL WARNING: [Synth 8-4442] BlackBox module \ddr_renderer_top_inst/frame_buffer_inst/bram0  has unconnected pin dinb[1]
 CRITICAL WARNING: [Synth 8-4442] BlackBox module \ddr_renderer_top_inst/frame_buffer_inst/bram0  has unconnected pin dinb[0]
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:37 ; elapsed = 00:00:39 . Memory (MB): peak = 2094.941 ; gain = 650.043
+Finished IO Insertion : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 2097.086 ; gain = 652.227
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:37 ; elapsed = 00:00:39 . Memory (MB): peak = 2094.941 ; gain = 650.043
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 2097.086 ; gain = 652.227
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:38 ; elapsed = 00:00:40 . Memory (MB): peak = 2094.941 ; gain = 650.043
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2097.086 ; gain = 652.227
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:38 ; elapsed = 00:00:40 . Memory (MB): peak = 2094.941 ; gain = 650.043
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2097.086 ; gain = 652.227
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:38 ; elapsed = 00:00:40 . Memory (MB): peak = 2094.941 ; gain = 650.043
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2097.086 ; gain = 652.227
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:38 ; elapsed = 00:00:40 . Memory (MB): peak = 2094.941 ; gain = 650.043
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2097.086 ; gain = 652.227
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -1348,9 +1402,9 @@ Static Shift Register Report:
 |flight_sim_top | ddr_renderer_top_inst/ddr3_arbiter_inst/phy_instance/rn_col_pipe_reg[0][9]   | 3      | 10    | NO           | NO                 | YES               | 10     | 0       | 
 |flight_sim_top | ddr_renderer_top_inst/ddr3_arbiter_inst/phy_instance/r8_wrm_pipe_reg[0][7]   | 3      | 8     | NO           | NO                 | NO                | 8      | 0       | 
 |flight_sim_top | ddr_renderer_top_inst/ddr3_arbiter_inst/phy_instance/rn_wrd_pipe_reg[0][127] | 3      | 128   | NO           | NO                 | NO                | 128    | 0       | 
-|flight_sim_top | ddr_renderer_top_inst/graphics_inst/zbuffer_inst/zbuf_q3_reg[data][11]       | 3      | 8     | NO           | NO                 | YES               | 8      | 0       | 
-|flight_sim_top | ddr_renderer_top_inst/graphics_inst/rasterizer_inst/v_pipe_q_reg[6]          | 7      | 1     | YES          | NO                 | YES               | 1      | 0       | 
-|flight_sim_top | ddr_renderer_top_inst/graphics_inst/rasterizer_inst/addr_pipe_q_reg[6][26]   | 7      | 27    | YES          | NO                 | YES               | 27     | 0       | 
+|flight_sim_top | ddr_renderer_top_inst/graphics_inst/zbuffer_inst/zbuf_q3_reg[addr][26]       | 3      | 35    | NO           | NO                 | YES               | 35     | 0       | 
+|flight_sim_top | ddr_renderer_top_inst/graphics_inst/rasterizer_inst/v_pipe_q_reg[7]          | 8      | 1     | YES          | NO                 | YES               | 1      | 0       | 
+|flight_sim_top | ddr_renderer_top_inst/graphics_inst/rasterizer_inst/addr_pipe_q_reg[7][26]   | 8      | 27    | YES          | NO                 | YES               | 27     | 0       | 
 +---------------+------------------------------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
 
 ---------------------------------------------------------------------------------
@@ -1361,62 +1415,66 @@ Start Writing Synthesis Report
 ---------------------------------------------------------------------------------
 
 DSP Final Report (the ' indicates corresponding REG is set)
-+-----------------+-----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|Module Name      | DSP Mapping     | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
-+-----------------+-----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|projector        | (A*B)'          | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 1    | 0    | 
-|projector        | PCIN>>17+(A*B)' | 30     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 1    | 0    | 
-|projector        | (A*B)'          | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 1    | 0    | 
-|projector        | PCIN>>17+(A*B)' | 0      | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 1    | 0    | 
-|projector        | (A*B)'          | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 1    | 0    | 
-|projector        | PCIN>>17+(A*B)' | 30     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 1    | 0    | 
-|projector        | (A*B)'          | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 1    | 0    | 
-|projector        | PCIN>>17+(A*B)' | 0      | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 1    | 0    | 
-|projector        | (A*B)'          | 0      | 10     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|projector        | A*B             | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|projector        | (PCIN>>17+A*B)' | 0      | 10     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|projector        | A*B             | 30     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|projector        | (PCIN>>17+A*B)' | 0      | 10     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|projector        | A*B             | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|projector        | (PCIN>>17+A*B)' | 0      | 10     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|projector        | A*B             | 30     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|projector        | (PCIN>>17+A*B)' | 0      | 10     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|projector        | A*B             | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|projector        | (PCIN>>17+A*B)' | 0      | 10     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|projector        | (A*B)'          | 0      | 10     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|projector        | (A*B)'          | 0      | 10     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|projector        | (A*B)'          | 0      | 10     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|projector        | A*B             | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|projector        | (PCIN>>17+A*B)' | 0      | 10     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|projector        | A*B             | 30     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|projector        | (PCIN>>17+A*B)' | 0      | 10     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|projector        | A*B             | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|projector        | (PCIN>>17+A*B)' | 0      | 10     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|barycentric_calc | A*B             | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|barycentric_calc | (PCIN>>17+A*B)' | 30     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|barycentric_calc | A*B             | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|barycentric_calc | (PCIN>>17+A*B)' | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|barycentric_calc | A*B             | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|barycentric_calc | (PCIN>>17+A*B)' | 30     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|barycentric_calc | A*B             | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|barycentric_calc | (PCIN>>17+A*B)' | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|barycentric_calc | A*B             | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|barycentric_calc | (PCIN>>17+A*B)' | 30     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|barycentric_calc | A*B             | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|barycentric_calc | (PCIN>>17+A*B)' | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|barycentric_calc | A*B             | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|barycentric_calc | (PCIN>>17+A*B)' | 30     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|barycentric_calc | A*B             | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|barycentric_calc | (PCIN>>17+A*B)' | 0      | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|barycentric_calc | A*B             | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|barycentric_calc | (PCIN>>17+A*B)' | 30     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|barycentric_calc | A*B             | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|barycentric_calc | (PCIN>>17+A*B)' | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|barycentric_calc | A*B             | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|barycentric_calc | (PCIN>>17+A*B)' | 30     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|barycentric_calc | A*B             | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|barycentric_calc | (PCIN>>17+A*B)' | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-+-----------------+-----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
++-----------------+--------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name      | DSP Mapping        | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++-----------------+--------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|projector        | (A*B)'             | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|projector        | (PCIN>>17+A'*B')'  | 30     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
+|projector        | (A*B)'             | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|projector        | (PCIN>>17+(A*B)')' | 0      | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 1    | 1    | 
+|projector        | (A*B)'             | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|projector        | (PCIN>>17+A'*B')'  | 30     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
+|projector        | (A*B)'             | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|projector        | (PCIN>>17+(A*B)')' | 0      | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 1    | 1    | 
+|projector        | A*B                | 0      | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|projector        | (PCIN>>17+A*B)'    | 0      | 10     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|projector        | A*B                | 0      | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|projector        | (PCIN>>17+A*B)'    | 0      | 10     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|projector        | A*B                | 0      | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|projector        | (PCIN>>17+A*B)'    | 0      | 10     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|projector        | A*B                | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|projector        | (PCIN>>17+A*B)'    | 0      | 10     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|projector        | A*B                | 30     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|projector        | (PCIN>>17+A*B)'    | 0      | 10     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|projector        | A*B                | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|projector        | (PCIN>>17+A*B)'    | 0      | 10     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|projector        | A*B                | 0      | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|projector        | (PCIN>>17+A*B)'    | 0      | 10     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|projector        | A*B                | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|projector        | (PCIN>>17+A*B)'    | 0      | 10     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|projector        | A*B                | 30     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|projector        | (PCIN>>17+A*B)'    | 0      | 10     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|projector        | A*B                | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|projector        | (PCIN>>17+A*B)'    | 0      | 10     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|projector        | A*B                | 30     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|projector        | (PCIN>>17+A*B)'    | 0      | 10     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|projector        | A*B                | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|projector        | (PCIN>>17+A*B)'    | 0      | 10     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|barycentric_calc | (A*B)'             | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|barycentric_calc | (PCIN>>17+A'*B')'  | 30     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
+|barycentric_calc | (A*B)'             | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|barycentric_calc | (PCIN>>17+A'*B')'  | 17     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
+|barycentric_calc | (A*B)'             | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|barycentric_calc | (PCIN>>17+A'*B')'  | 30     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
+|barycentric_calc | (A*B)'             | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|barycentric_calc | (PCIN>>17+A'*B')'  | 17     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
+|barycentric_calc | (A*B)'             | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|barycentric_calc | (PCIN>>17+A'*B')'  | 30     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
+|barycentric_calc | (A*B)'             | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|barycentric_calc | (PCIN>>17+A'*B')'  | 17     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
+|barycentric_calc | (A*B)'             | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|barycentric_calc | (PCIN>>17+A'*B')'  | 30     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
+|barycentric_calc | (A*B)'             | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|barycentric_calc | (PCIN>>17+A'*B')'  | 17     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
+|barycentric_calc | (A*B)'             | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|barycentric_calc | (PCIN>>17+A'*B')'  | 30     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
+|barycentric_calc | (A*B)'             | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|barycentric_calc | (PCIN>>17+A'*B')'  | 17     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
+|barycentric_calc | (A*B)'             | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|barycentric_calc | (PCIN>>17+A'*B')'  | 30     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
+|barycentric_calc | (A*B)'             | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|barycentric_calc | (PCIN>>17+A'*B')'  | 17     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
++-----------------+--------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
 
 
 Report BlackBoxes: 
@@ -1474,57 +1532,55 @@ Report Cell Usage:
 |23    |mb_block_rst_clk_wiz_1_100M    |     1|
 |24    |mb_block_xbar                  |     1|
 |25    |BUFG                           |     1|
-|26    |CARRY4                         |   417|
-|27    |DSP48E1                        |    52|
+|26    |CARRY4                         |   435|
+|27    |DSP48E1                        |    56|
 |32    |IDELAYCTRL                     |     1|
 |33    |IDELAYE2                       |    18|
 |35    |ISERDESE2                      |    16|
-|36    |LUT1                           |   144|
-|37    |LUT2                           |  1273|
-|38    |LUT3                           |   300|
-|39    |LUT4                           |   614|
-|40    |LUT5                           |   129|
-|41    |LUT6                           |  1007|
-|42    |MUXF7                          |    75|
-|43    |MUXF8                          |    36|
-|44    |OSERDESE2                      |    41|
-|45    |SRL16E                         |   183|
-|46    |FDCE                           |    22|
-|47    |FDRE                           |  3461|
-|48    |FDSE                           |    30|
-|49    |IBUF                           |     5|
-|50    |IOBUF                          |    16|
-|51    |IOBUFDS                        |     2|
-|52    |OBUF                           |    37|
-|53    |OBUFDS                         |     1|
-|54    |OBUFT                          |    15|
+|36    |LUT1                           |   158|
+|37    |LUT2                           |  1312|
+|38    |LUT3                           |   298|
+|39    |LUT4                           |   468|
+|40    |LUT5                           |   236|
+|41    |LUT6                           |   682|
+|42    |OSERDESE2                      |    41|
+|43    |SRL16E                         |   210|
+|44    |FDCE                           |    22|
+|45    |FDRE                           |  3247|
+|46    |FDSE                           |    48|
+|47    |IBUF                           |     5|
+|48    |IOBUF                          |    16|
+|49    |IOBUFDS                        |     2|
+|50    |OBUF                           |    37|
+|51    |OBUFDS                         |     1|
+|52    |OBUFT                          |    15|
 +------+-------------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:38 ; elapsed = 00:00:40 . Memory (MB): peak = 2094.941 ; gain = 650.043
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2097.086 ; gain = 652.227
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 16 critical warnings and 911 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:30 ; elapsed = 00:00:37 . Memory (MB): peak = 2094.941 ; gain = 558.688
-Synthesis Optimization Complete : Time (s): cpu = 00:00:38 ; elapsed = 00:00:40 . Memory (MB): peak = 2094.941 ; gain = 650.043
+Synthesis finished with 0 errors, 16 critical warnings and 1037 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:25 ; elapsed = 00:00:30 . Memory (MB): peak = 2097.086 ; gain = 545.117
+Synthesis Optimization Complete : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2097.086 ; gain = 652.227
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.087 . Memory (MB): peak = 2094.941 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 633 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.061 . Memory (MB): peak = 2097.086 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 544 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-140] Inserted 1 IBUFs to IO ports without IO buffers.
 INFO: [Opt 31-138] Pushed 3 inverter(s) to 32 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 2113.617 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 2110.168 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 19 instances were transformed.
   IOBUF => IOBUF (IBUF, OBUFT): 16 instances
   IOBUFDS => IOBUFDS (IBUFDS, INV, OBUFTDS(x2)): 2 instances
   OBUFDS => OBUFDS_DUAL_BUF (INV, OBUFDS(x2)): 1 instance 
 
-Synth Design complete, checksum: 52ad74f2
+Synth Design complete, checksum: e11d8e85
 INFO: [Common 17-83] Releasing license: Synthesis
-211 Infos, 321 Warnings, 16 Critical Warnings and 0 Errors encountered.
+211 Infos, 323 Warnings, 16 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:43 ; elapsed = 00:00:45 . Memory (MB): peak = 2113.617 ; gain = 1047.797
+synth_design: Time (s): cpu = 00:00:35 ; elapsed = 00:00:37 . Memory (MB): peak = 2110.168 ; gain = 1043.672
 INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
 INFO: [Common 17-1381] The checkpoint 'C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/flight_sim_top.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file flight_sim_top_utilization_synth.rpt -pb flight_sim_top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Thu Dec 11 01:48:06 2025...
+INFO: [Common 17-206] Exiting Vivado at Fri Dec 12 14:43:02 2025...

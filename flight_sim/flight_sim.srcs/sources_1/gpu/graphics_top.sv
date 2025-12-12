@@ -71,6 +71,8 @@ logic [7:0]   background_wrdm;
 logic [127:0] background_burst_128;
 logic         background_burst_valid;
 
+logic         model_engine_start;
+
 logic int_graphics_stall; // asserted when we're drawing background and we need to stall graphics pipeline
 
 always_ff @(posedge clk) begin
@@ -86,6 +88,7 @@ end
 always_comb begin
   graphics_state_d = graphics_state_q;
   addr_curr_d = addr_curr_q;
+  model_engine_start = 1'b0;
   int_graphics_stall = 1'b0;
 
   // output data
@@ -116,6 +119,7 @@ always_comb begin
       end
 
       if (addr_curr_d >= VRAM_UBOUND) begin
+        model_engine_start = 1'b1;
         graphics_state_d = StDrawGraphics;
       end
     end
@@ -139,20 +143,24 @@ logic signed [31:0] proj_p_y [3];
 logic signed [31:0] proj_p_z [3];
 logic [31:0]        proj_dr;      // again, in Q8.24 format. NOT Q16.16
 logic               proj_out_valid;
+logic               model_data_valid;
 logic               proj_ready;
 
 // test inputs
 logic signed [31:0] test_t_x [3];
 logic signed [31:0] test_t_y [3];
 logic signed [31:0] test_t_z [3];
+
+logic model_done;
+logic [15:0] model_face_color, proj_face_color;
     
 // small helper function, shouldnt get synthesized to anything substantial
-function logic [31:0] f2q(input real v); return $rtoi(v * 65536.0); endfunction
+ function logic [31:0] f2q(input real v); return $rtoi(v * 65536.0); endfunction
 
-// should be relatively small on the screen
-assign test_t_x[0] = f2q(-1.0); assign test_t_y[0] = f2q(-1.0); assign test_t_z[0] = f2q(20.0);
-assign test_t_x[1] = f2q( 1.0); assign test_t_y[1] = f2q(-1.0); assign test_t_z[1] = f2q(20.0);
-assign test_t_x[2] = f2q( 0.0); assign test_t_y[2] = f2q( 1.0); assign test_t_z[2] = f2q(20.0);
+ // should be relatively small on the screen
+ assign test_t_x[0] = f2q(-1.0); assign test_t_y[0] = f2q(-1.0); assign test_t_z[0] = f2q(20.0);
+ assign test_t_x[1] = f2q( 1.0); assign test_t_y[1] = f2q(-1.0); assign test_t_z[1] = f2q(20.0);
+ assign test_t_x[2] = f2q( 0.0); assign test_t_y[2] = f2q( 1.0); assign test_t_z[2] = f2q(20.0);
 
 // Rasterizer I/O
 logic [15:0] color;
@@ -181,6 +189,8 @@ logic [26:0] init_dout_burst_addr;
 logic [7:0] init_dout_wrdm;
 logic [127:0] init_dout_burst_128;
 logic init_dout_burst_valid;
+
+logic rasterizer_stall;
 
 logic init_active;
 
@@ -225,7 +235,7 @@ rasterizer rasterizer_inst (
   
   // note "area" isnt actually the area of the triangle. rather its the magnitude of the cross product of the vectors defined by the triangle
   .inv_area(proj_dr),
-  .color(color), // changes color :D
+  .color(proj_face_color), // changes color :D
   .wb_ready(zbuf_ready), // memory has to be write-w
   .mem_valid(mem_valid),
   .mem_addr(mem_addr),
@@ -233,7 +243,8 @@ rasterizer rasterizer_inst (
 
   .alpha(alpha),
   .beta(beta),
-  .gamma(gamma)
+  .gamma(gamma),
+  .stall_out(rasterizer_stall)
 );
 
 zbuffer zbuffer_inst (
@@ -302,6 +313,7 @@ projector projector_inst (
   .t_x(test_t_x),
   .t_y(test_t_y),
   .t_z(test_t_z),
+  .color(color), //  should be model_face_color
     
   .in_valid(1'b1),
   .ready(proj_ready),
@@ -314,10 +326,24 @@ projector projector_inst (
   // 32-bit reciprocal determinant in Q8.24
   .dr(proj_dr),
   .out_valid(proj_out_valid),
+  .color_out(proj_face_color),
     
-  .stall(1'b0)
+  .stall(rasterizer_stall)
 );
 
+//model_engine model_engine_inst (
+//  .clk(clk), 
+//  .rst(rst),
+//  .start_frame(model_engine_start),
+//  .model_done(model_done),
 
+//  // projector interface
+//  .proj_ready(proj_ready),
+//  .proj_valid(model_data_valid),
+//  .t_x(test_t_x),
+//  .t_y(test_t_y),
+//  .t_z(test_t_z),
+//  .face_color(model_face_color)
+//);
 
 endmodule
