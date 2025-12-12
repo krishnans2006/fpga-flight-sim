@@ -1,9 +1,0 @@
-; This coe file is generated using third party script 
-; maintained at the github repository
-; By using this script, you are considered
-; as accepted the disclaimer and MIT license specified on
-; https://github.com/kooltzh/xilinx-coe-generator
-
-memory_initialization_radix=16;
-memory_initialization_vector=0F000210 0F000320 00F00651 00F00261 000F0745 000F0675 0FF00304 0FF00734 00FF0623 00FF0763
-0F0F0154 0F0F0014 0 0 0 ;
