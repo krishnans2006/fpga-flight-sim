@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/flight_sim_top.tcl"
+  variable script "C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/flight_sim_top.tcl"
   variable category "vivado_synth"
 }
 
@@ -70,6 +70,8 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
+set_param chipscope.maxJobs 4
+set_param xicom.use_bs_reader 1
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7s50csga324-1
 
@@ -77,102 +79,112 @@ set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
 set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
-set_property webtalk.parent_dir C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.cache/wt [current_project]
-set_property parent.project_path C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.xpr [current_project]
+set_property webtalk.parent_dir C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.cache/wt [current_project]
+set_property parent.project_path C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.xpr [current_project]
 set_property XPM_LIBRARIES {XPM_CDC XPM_FIFO XPM_MEMORY} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
-set_property ip_repo_paths c:/Users/krishnan/Documents/fpga-flight-sim/IP [current_project]
+set_property ip_repo_paths {
+  c:/Users/anike/fpga-flight-sim/IP/bridge_1_0
+  c:/Users/anike/fpga-flight-sim/IP
+} [current_project]
 update_ip_catalog
-set_property ip_output_repo c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.cache/ip [current_project]
+set_property ip_output_repo c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-add_files C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/model/cube_faces.coe
-add_files C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/model/cube_vertices.coe
-read_verilog C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/imports/ddr3_controller/ddr3_x16_phy_params.vh
+add_files C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/model/cube_faces.coe
+add_files C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/model/cube_vertices.coe
+read_verilog C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/imports/ddr3_controller/ddr3_x16_phy_params.vh
 read_verilog -library xil_defaultlib -sv {
-  C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/imports/VGA_controller.sv
-  C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/barycentric_calc.sv
-  C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ddr/cache.sv
-  C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ddr/ddr3_arbiter.sv
-  C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ddr/ddr_renderer_top.sv
-  C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ddr/frame_buffer.sv
-  C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/gpu_wb_controller.sv
-  C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/graphics_top.sv
-  C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/projector.sv
-  C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/rasterizer.sv
-  C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/zbuffer.sv
-  C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/zbuffer_initializer.sv
-  C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/flight_sim_top.sv
+  C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/imports/VGA_controller.sv
+  C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/barycentric_calc.sv
+  C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ddr/cache.sv
+  C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ddr/ddr3_arbiter.sv
+  C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ddr/ddr_renderer_top.sv
+  C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ddr/frame_buffer.sv
+  C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/gpu_wb_controller.sv
+  C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/graphics_top.sv
+  C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/model_engine.sv
+  C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/projector.sv
+  C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/rasterizer.sv
+  C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/zbuffer.sv
+  C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/zbuffer_initializer.sv
+  C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/flight_sim_top.sv
 }
 read_verilog -library xil_defaultlib {
-  C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/imports/ddr3_controller/ddr3_rdcal.v
-  C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/imports/ddr3_controller/ddr3_x16_phy_cust.v
+  C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/imports/ddr3_controller/ddr3_rdcal.v
+  C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/imports/ddr3_controller/ddr3_x16_phy_cust.v
 }
-add_files C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/bd/mb_block/mb_block.bd
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_microblaze_0_0/mb_block_microblaze_0_0.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_microblaze_0_0/mb_block_microblaze_0_0_ooc_debug.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_microblaze_0_0/mb_block_microblaze_0_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_dlmb_v10_0/mb_block_dlmb_v10_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_ilmb_v10_0/mb_block_ilmb_v10_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_dlmb_bram_if_cntlr_0/mb_block_dlmb_bram_if_cntlr_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_ilmb_bram_if_cntlr_0/mb_block_ilmb_bram_if_cntlr_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_lmb_bram_0/mb_block_lmb_bram_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_xbar_0/mb_block_xbar_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_microblaze_0_axi_intc_0/mb_block_microblaze_0_axi_intc_0.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_microblaze_0_axi_intc_0/mb_block_microblaze_0_axi_intc_0_clocks.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_microblaze_0_axi_intc_0/mb_block_microblaze_0_axi_intc_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_mdm_1_0/mb_block_mdm_1_0.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_mdm_1_0/mb_block_mdm_1_0_ooc_trace.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_clk_wiz_1_0/mb_block_clk_wiz_1_0_board.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_clk_wiz_1_0/mb_block_clk_wiz_1_0.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_clk_wiz_1_0/mb_block_clk_wiz_1_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_rst_clk_wiz_1_100M_0/mb_block_rst_clk_wiz_1_100M_0_board.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_rst_clk_wiz_1_100M_0/mb_block_rst_clk_wiz_1_100M_0.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_rst_clk_wiz_1_100M_0/mb_block_rst_clk_wiz_1_100M_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_axi_uartlite_0_0/mb_block_axi_uartlite_0_0_board.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_axi_uartlite_0_0/mb_block_axi_uartlite_0_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_axi_uartlite_0_0/mb_block_axi_uartlite_0_0.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_axi_gpio_0_2/mb_block_axi_gpio_0_2_board.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_axi_gpio_0_2/mb_block_axi_gpio_0_2_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_axi_gpio_0_2/mb_block_axi_gpio_0_2.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_axi_gpio_0_3/mb_block_axi_gpio_0_3_board.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_axi_gpio_0_3/mb_block_axi_gpio_0_3_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_axi_gpio_0_3/mb_block_axi_gpio_0_3.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_axi_timer_0_0/mb_block_axi_timer_0_0.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_axi_timer_0_0/mb_block_axi_timer_0_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_axi_quad_spi_0_0/mb_block_axi_quad_spi_0_0_board.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_axi_quad_spi_0_0/mb_block_axi_quad_spi_0_0.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_axi_quad_spi_0_0/mb_block_axi_quad_spi_0_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_axi_quad_spi_0_0/mb_block_axi_quad_spi_0_0_clocks.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/mb_block_ooc.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_microblaze_0_0/data/mb_bootloop_le.elf]
+add_files C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/bd/mb_block/mb_block.bd
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_microblaze_0_0/mb_block_microblaze_0_0.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_microblaze_0_0/mb_block_microblaze_0_0_ooc_debug.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_microblaze_0_0/mb_block_microblaze_0_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_dlmb_v10_0/mb_block_dlmb_v10_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_ilmb_v10_0/mb_block_ilmb_v10_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_dlmb_bram_if_cntlr_0/mb_block_dlmb_bram_if_cntlr_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_ilmb_bram_if_cntlr_0/mb_block_ilmb_bram_if_cntlr_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_lmb_bram_0/mb_block_lmb_bram_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_xbar_0/mb_block_xbar_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_microblaze_0_axi_intc_0/mb_block_microblaze_0_axi_intc_0.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_microblaze_0_axi_intc_0/mb_block_microblaze_0_axi_intc_0_clocks.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_microblaze_0_axi_intc_0/mb_block_microblaze_0_axi_intc_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_mdm_1_0/mb_block_mdm_1_0.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_mdm_1_0/mb_block_mdm_1_0_ooc_trace.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_clk_wiz_1_0/mb_block_clk_wiz_1_0_board.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_clk_wiz_1_0/mb_block_clk_wiz_1_0.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_clk_wiz_1_0/mb_block_clk_wiz_1_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_rst_clk_wiz_1_100M_0/mb_block_rst_clk_wiz_1_100M_0_board.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_rst_clk_wiz_1_100M_0/mb_block_rst_clk_wiz_1_100M_0.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_rst_clk_wiz_1_100M_0/mb_block_rst_clk_wiz_1_100M_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_axi_uartlite_0_0/mb_block_axi_uartlite_0_0_board.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_axi_uartlite_0_0/mb_block_axi_uartlite_0_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_axi_uartlite_0_0/mb_block_axi_uartlite_0_0.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_axi_gpio_0_2/mb_block_axi_gpio_0_2_board.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_axi_gpio_0_2/mb_block_axi_gpio_0_2_ooc.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_axi_gpio_0_2/mb_block_axi_gpio_0_2.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_axi_gpio_0_3/mb_block_axi_gpio_0_3_board.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_axi_gpio_0_3/mb_block_axi_gpio_0_3_ooc.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_axi_gpio_0_3/mb_block_axi_gpio_0_3.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_axi_timer_0_0/mb_block_axi_timer_0_0.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_axi_timer_0_0/mb_block_axi_timer_0_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_axi_quad_spi_0_0/mb_block_axi_quad_spi_0_0_board.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_axi_quad_spi_0_0/mb_block_axi_quad_spi_0_0.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_axi_quad_spi_0_0/mb_block_axi_quad_spi_0_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_axi_quad_spi_0_0/mb_block_axi_quad_spi_0_0_clocks.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/mb_block_ooc.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_microblaze_0_0/data/mb_bootloop_le.elf]
 
-read_ip -quiet C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/fifo_generator_0/fifo_generator_0.xci
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/fifo_generator_0/fifo_generator_0.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/fifo_generator_0/fifo_generator_0_ooc.xdc]
+read_ip -quiet C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/fifo_generator_0/fifo_generator_0.xci
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/fifo_generator_0/fifo_generator_0.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/fifo_generator_0/fifo_generator_0_ooc.xdc]
 
-read_ip -quiet C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1.xci
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/clk_wiz_1/clk_wiz_1_board.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/clk_wiz_1/clk_wiz_1.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/clk_wiz_1/clk_wiz_1_ooc.xdc]
+read_ip -quiet C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1.xci
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/clk_wiz_1/clk_wiz_1_board.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/clk_wiz_1/clk_wiz_1.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/clk_wiz_1/clk_wiz_1_ooc.xdc]
 
-read_ip -quiet C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_board.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_ooc.xdc]
+read_ip -quiet C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_board.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_ooc.xdc]
 
-read_ip -quiet C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/hdmi_tx_0/hdmi_tx_0.xci
+read_ip -quiet C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/hdmi_tx_0/hdmi_tx_0.xci
 
-read_ip -quiet C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0_ooc.xdc]
+read_ip -quiet C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0_ooc.xdc]
 
-read_ip -quiet C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/blk_mem_gen_1/blk_mem_gen_1.xci
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/blk_mem_gen_1/blk_mem_gen_1_ooc.xdc]
+read_ip -quiet C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/blk_mem_gen_1/blk_mem_gen_1.xci
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/blk_mem_gen_1/blk_mem_gen_1_ooc.xdc]
 
-read_ip -quiet C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/div_gen_0/div_gen_0.xci
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/div_gen_0/div_gen_0_ooc.xdc]
+read_ip -quiet C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/div_gen_0/div_gen_0.xci
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/div_gen_0/div_gen_0_ooc.xdc]
+
+read_ip -quiet C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/vertices_rom_1/vertices_rom.xci
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/vertices_rom_1/vertices_rom_ooc.xdc]
+
+read_ip -quiet C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/faces_rom_1/faces_rom.xci
+set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/faces_rom_1/faces_rom_ooc.xdc]
 
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -183,14 +195,14 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/constrs_1/flight_sim.xdc
-set_property used_in_implementation false [get_files C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/constrs_1/flight_sim.xdc]
+read_xdc C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/constrs_1/flight_sim.xdc
+set_property used_in_implementation false [get_files C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/constrs_1/flight_sim.xdc]
 
 read_xdc dont_touch.xdc
 set_property used_in_implementation false [get_files dont_touch.xdc]
 set_param ips.enableIPCacheLiteLoad 1
 
-read_checkpoint -auto_incremental -incremental C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/utils_1/imports/synth_1/ddr_renderer_top.dcp
+read_checkpoint -auto_incremental -incremental C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/utils_1/imports/synth_1/ddr_renderer_top.dcp
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }

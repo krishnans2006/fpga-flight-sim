@@ -92,7 +92,7 @@ always_ff @(posedge clk) begin
     d_1 <= ($signed(t0_x) - $signed(t2_x)) <<< 16;
     e_1 <= ($signed(point_x) - $signed(t2_x)) <<< 16;
     f_1 <= ($signed(point_y) - $signed(t2_y)) <<< 16;
-    
+
     ara_1 <= ($signed(t1_y) - $signed(t2_y)) <<< 16;
     arb_1 <= ($signed(t0_x) - $signed(t2_x)) <<< 16;
     arc_1 <= ($signed(t2_x) - $signed(t1_x)) <<< 16;
@@ -133,17 +133,14 @@ always_ff @(posedge clk) begin
 
     r_unnorm1_5 <= m1_4;
     r_unnorm2_5 <= m2_4;
-    neg_area <= mar_4[63];
+    //neg_area <= mar_4[63];
     r_unnorm3_5 <= mar_4 - m1_4 - m2_4;
 
     // Stage 5 -> 6
     r_norm1_6 <= r_norm1_5;
     r_norm2_6 <= r_norm2_5;
     
-    if (neg_area)
-        within_tri_6 <= (r_unnorm1_5[63] && r_unnorm2_5[63] && r_unnorm3_5[63]);
-    else 
-        within_tri_6 <= (~r_unnorm1_5[63] && ~r_unnorm2_5[63] && ~r_unnorm3_5[63]);
+    within_tri_6 <= (r_unnorm1_5[63] == r_unnorm2_5[63]) && (r_unnorm2_5[63] == r_unnorm3_5[63]);
 
     // Stage 6 -> 7
     alpha_o <= r_norm1_6;

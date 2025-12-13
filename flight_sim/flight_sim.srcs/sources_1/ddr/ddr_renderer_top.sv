@@ -23,7 +23,7 @@ module ddr_renderer_top(
 
 	input 	DDR3_CLK100,
 	input   reset_ah,
-	input 	[3:0]	SW,
+	input 	[7:0]	SW,
 	input	[3:0]	BTN,
 	output	[3:0]	LED,
 	output	[2:0]	RGBLED0,
@@ -64,7 +64,7 @@ localparam lp_HORIZ_PIXEL_WIDTH = 640;
 
 ddr3_arbiter ddr3_arbiter_inst (
   .DDR3_CLK100(DDR3_CLK100),
-  .SW(SW),
+  .SW(SW[3:0]),
   .LED(LED),
   .RGBLED0(RGBLED0[0]),
 
@@ -394,7 +394,8 @@ graphics_top graphics_inst (
   
   // this is for cool graphics :)
   .vsync_cntr(vga_vsync_counter),
-	.swap((~vsync && old_vga_vsync))
+  .swap((~vsync && old_vga_vsync)),
+  .fselect(SW[7:4])
 );
 
 // Z-buffer cache

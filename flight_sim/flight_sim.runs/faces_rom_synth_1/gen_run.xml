@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="faces_rom_synth_1" LaunchPart="xc7s50csga324-1" LaunchTime="1765503950">
+<GenRun Id="faces_rom_synth_1" LaunchPart="xc7s50csga324-1" LaunchTime="1765656594">
   <File Type="PA-TCL" Name="faces_rom.tcl"/>
+  <File Type="RDS-PROPCONSTRS" Name="faces_rom_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="faces_rom_reports.tcl"/>
   <File Type="RDS-RDS" Name="faces_rom.vds"/>
   <File Type="RDS-UTIL" Name="faces_rom_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="faces_rom_utilization_synth.pb"/>
   <File Type="RDS-DCP" Name="faces_rom.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="faces_rom_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="faces_rom_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="BlockSrcs" RelSrcDir="$PSRCDIR/faces_rom">
-    <File Path="$PSRCDIR/sources_1/ip/faces_rom/faces_rom.xci">
+    <File Path="$PSRCDIR/sources_1/ip/faces_rom_1/faces_rom.xci">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -20,7 +23,7 @@
     </Config>
   </FileSet>
   <FileSet Name="constrs_in" Type="BlockSrcs" RelSrcDir="$PSRCDIR/faces_rom">
-    <File Path="$PSRCDIR/sources_1/ip/faces_rom/faces_rom.xci">
+    <File Path="$PSRCDIR/sources_1/ip/faces_rom_1/faces_rom.xci">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -49,7 +52,9 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2022"/>
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2022">
+      <Desc>Vivado Synthesis Defaults</Desc>
+    </StratHandle>
     <Step Id="synth_design"/>
   </Strategy>
 </GenRun>

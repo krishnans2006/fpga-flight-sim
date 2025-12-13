@@ -1,10 +1,10 @@
 // Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-// Date        : Thu Dec 11 19:47:42 2025
+// Date        : Sat Dec 13 11:54:48 2025
 // Host        : Aniketh_x86-64 running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode synth_stub -rename_top vertices_rom -prefix
-//               vertices_rom_ vertices_rom_stub.v
+// Command     : write_verilog -force -mode synth_stub
+//               c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/vertices_rom_1/vertices_rom_stub.v
 // Design      : vertices_rom
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7s50csga324-1
@@ -15,11 +15,11 @@
 // Please paste the declaration into a Verilog source file or add the file as an additional source.
 (* x_core_info = "blk_mem_gen_v8_4_5,Vivado 2022.2" *)
 module vertices_rom(clka, ena, wea, addra, dina, douta)
-/* synthesis syn_black_box black_box_pad_pin="clka,ena,wea[0:0],addra[4:0],dina[31:0],douta[31:0]" */;
+/* synthesis syn_black_box black_box_pad_pin="clka,ena,wea[0:0],addra[3:0],dina[95:0],douta[95:0]" */;
   input clka;
   input ena;
   input [0:0]wea;
-  input [4:0]addra;
-  input [31:0]dina;
-  output [31:0]douta;
+  input [3:0]addra;
+  input [95:0]dina;
+  output [95:0]douta;
 endmodule

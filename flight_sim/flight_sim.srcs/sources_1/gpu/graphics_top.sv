@@ -53,7 +53,8 @@ module graphics_top(
   
   // cool graphics test :)
   input logic [7:0]     vsync_cntr,
-  input logic           swap
+  input logic           swap,
+  input logic [3:0]     fselect
 );
 
 localparam VRAM_BACKGROUND = 16'h0133; // skibidi color
@@ -154,13 +155,13 @@ logic signed [31:0] test_t_z [3];
 logic model_done;
 logic [15:0] model_face_color, proj_face_color;
     
-// small helper function, shouldnt get synthesized to anything substantial
- function logic [31:0] f2q(input real v); return $rtoi(v * 65536.0); endfunction
+// // small helper function, shouldnt get synthesized to anything substantial
+//  function logic [31:0] f2q(input real v); return $rtoi(v * 65536.0); endfunction
 
- // should be relatively small on the screen
- assign test_t_x[0] = f2q(-1.0); assign test_t_y[0] = f2q(-1.0); assign test_t_z[0] = f2q(20.0);
- assign test_t_x[1] = f2q( 1.0); assign test_t_y[1] = f2q(-1.0); assign test_t_z[1] = f2q(20.0);
- assign test_t_x[2] = f2q( 0.0); assign test_t_y[2] = f2q( 1.0); assign test_t_z[2] = f2q(20.0);
+//  // should be relatively small on the screen
+//  assign test_t_x[0] = f2q(-1.0); assign test_t_y[0] = f2q(-1.0); assign test_t_z[0] = f2q(20.0);
+//  assign test_t_x[1] = f2q( 1.0); assign test_t_y[1] = f2q(-1.0); assign test_t_z[1] = f2q(20.0);
+//  assign test_t_x[2] = f2q( 0.0); assign test_t_y[2] = f2q( 1.0); assign test_t_z[2] = f2q(20.0);
 
 // Rasterizer I/O
 logic [15:0] color;
@@ -226,12 +227,12 @@ rasterizer rasterizer_inst (
   .vertex_valid(proj_out_valid),
   .rasterizer_done(rasterizer_done),
   
-  .x0(proj_p_x[0][25:16]), // 320
-  .y0(proj_p_y[0][25:16]), // 240
-  .x1(proj_p_x[1][25:16]), // 330 
-  .y1(proj_p_y[1][25:16]), // 260 
-  .x2(proj_p_x[2][25:16]), // 340
-  .y2(proj_p_y[2][25:16]), // 250
+  .x0(proj_p_x[0][31:16]), // 320
+  .y0(proj_p_y[0][31:16]), // 240
+  .x1(proj_p_x[1][31:16]), // 330 
+  .y1(proj_p_y[1][31:16]), // 260 
+  .x2(proj_p_x[2][31:16]), // 340
+  .y2(proj_p_y[2][31:16]), // 250
   
   // note "area" isnt actually the area of the triangle. rather its the magnitude of the cross product of the vectors defined by the triangle
   .inv_area(proj_dr),
@@ -313,9 +314,9 @@ projector projector_inst (
   .t_x(test_t_x),
   .t_y(test_t_y),
   .t_z(test_t_z),
-  .color(color), //  should be model_face_color
+  .color(model_face_color), //  should be model_face_color
     
-  .in_valid(1'b1),
+  .in_valid(model_data_valid),
   .ready(proj_ready),
 
   // projected vertices
@@ -331,19 +332,20 @@ projector projector_inst (
   .stall(rasterizer_stall)
 );
 
-//model_engine model_engine_inst (
-//  .clk(clk), 
-//  .rst(rst),
-//  .start_frame(model_engine_start),
-//  .model_done(model_done),
+model_engine model_engine_inst (
+ .clk(clk), 
+ .rst(rst),
+ .start_frame(model_engine_start),
+ .model_done(model_done),
 
-//  // projector interface
-//  .proj_ready(proj_ready),
-//  .proj_valid(model_data_valid),
-//  .t_x(test_t_x),
-//  .t_y(test_t_y),
-//  .t_z(test_t_z),
-//  .face_color(model_face_color)
-//);
+ // projector interface
+ .proj_ready(proj_ready),
+ .proj_valid(model_data_valid),
+ .t_x(test_t_x),
+ .t_y(test_t_y),
+ .t_z(test_t_z),
+ .face_color(model_face_color),
+ .sel(fselect)
+);
 
 endmodule

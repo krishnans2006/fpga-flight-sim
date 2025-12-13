@@ -1,8 +1,8 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-| Date         : Fri Dec 12 16:10:09 2025
-| Host         : Krishnan-Win running 64-bit major release  (build 9200)
+| Date         : Sat Dec 13 15:38:47 2025
+| Host         : Aniketh_x86-64 running 64-bit major release  (build 9200)
 | Command      : report_utilization -file flight_sim_top_utilization_synth.rpt -pb flight_sim_top_utilization_synth.pb
 | Design       : flight_sim_top
 | Device       : xc7s50csga324-1
@@ -31,15 +31,15 @@ Table of Contents
 +----------------------------+------+-------+------------+-----------+-------+
 |          Site Type         | Used | Fixed | Prohibited | Available | Util% |
 +----------------------------+------+-------+------------+-----------+-------+
-| Slice LUTs*                | 2927 |     0 |          0 |     32600 |  8.98 |
-|   LUT as Logic             | 2717 |     0 |          0 |     32600 |  8.33 |
-|   LUT as Memory            |  210 |     0 |          0 |      9600 |  2.19 |
+| Slice LUTs*                | 4040 |     0 |          0 |     32600 | 12.39 |
+|   LUT as Logic             | 3822 |     0 |          0 |     32600 | 11.72 |
+|   LUT as Memory            |  218 |     0 |          0 |      9600 |  2.27 |
 |     LUT as Distributed RAM |    0 |     0 |            |           |       |
-|     LUT as Shift Register  |  210 |     0 |            |           |       |
-| Slice Registers            | 3317 |     0 |          0 |     65200 |  5.09 |
-|   Register as Flip Flop    | 3317 |     0 |          0 |     65200 |  5.09 |
+|     LUT as Shift Register  |  218 |     0 |            |           |       |
+| Slice Registers            | 3634 |     0 |          0 |     65200 |  5.57 |
+|   Register as Flip Flop    | 3634 |     0 |          0 |     65200 |  5.57 |
 |   Register as Latch        |    0 |     0 |          0 |     65200 |  0.00 |
-| F7 Muxes                   |    0 |     0 |          0 |     16300 |  0.00 |
+| F7 Muxes                   |    1 |     0 |          0 |     16300 | <0.01 |
 | F8 Muxes                   |    0 |     0 |          0 |      8150 |  0.00 |
 +----------------------------+------+-------+------------+-----------+-------+
 * Warning! The Final LUT count, after physical optimizations and full implementation, is typically lower. Run opt_design after synthesis, if not already completed, for a more realistic count.
@@ -60,8 +60,8 @@ Warning! LUT value is adjusted to account for LUT combining.
 | 0     |          Yes |           - |            - |
 | 0     |          Yes |           - |          Set |
 | 22    |          Yes |           - |        Reset |
-| 48    |          Yes |         Set |            - |
-| 3247  |          Yes |       Reset |            - |
+| 31    |          Yes |         Set |            - |
+| 3581  |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -153,20 +153,20 @@ Warning! LUT value is adjusted to account for LUT combining.
 +------------+------+---------------------+
 |  Ref Name  | Used | Functional Category |
 +------------+------+---------------------+
-| FDRE       | 3247 |        Flop & Latch |
-| LUT2       | 1312 |                 LUT |
-| LUT6       |  682 |                 LUT |
-| LUT4       |  468 |                 LUT |
-| CARRY4     |  435 |          CarryLogic |
-| LUT3       |  298 |                 LUT |
-| LUT5       |  236 |                 LUT |
-| SRL16E     |  210 |  Distributed Memory |
-| LUT1       |  155 |                 LUT |
+| FDRE       | 3581 |        Flop & Latch |
+| LUT2       | 1671 |                 LUT |
+| LUT6       | 1100 |                 LUT |
+| CARRY4     |  628 |          CarryLogic |
+| LUT4       |  604 |                 LUT |
+| LUT3       |  590 |                 LUT |
+| LUT1       |  298 |                 LUT |
+| SRL16E     |  218 |  Distributed Memory |
+| LUT5       |  129 |                 LUT |
 | DSP48E1    |   56 |    Block Arithmetic |
-| FDSE       |   48 |        Flop & Latch |
 | OSERDESE2  |   41 |                  IO |
 | OBUF       |   37 |                  IO |
 | OBUFT      |   31 |                  IO |
+| FDSE       |   31 |        Flop & Latch |
 | IBUF       |   22 |                  IO |
 | FDCE       |   22 |        Flop & Latch |
 | IDELAYE2   |   18 |                  IO |
@@ -175,6 +175,7 @@ Warning! LUT value is adjusted to account for LUT combining.
 | INV        |    3 |                 LUT |
 | OBUFDS     |    2 |                  IO |
 | IBUFDS     |    2 |                  IO |
+| MUXF7      |    1 |               MuxFx |
 | IDELAYCTRL |    1 |                  IO |
 | BUFG       |    1 |               Clock |
 +------------+------+---------------------+
@@ -186,6 +187,7 @@ Warning! LUT value is adjusted to account for LUT combining.
 +----------------------------------+------+
 |             Ref Name             | Used |
 +----------------------------------+------+
+| vertices_rom                     |    1 |
 | mb_block_xbar_0                  |    1 |
 | mb_block_rst_clk_wiz_1_100M_0    |    1 |
 | mb_block_microblaze_0_axi_intc_0 |    1 |
@@ -197,6 +199,7 @@ Warning! LUT value is adjusted to account for LUT combining.
 | mb_block_dlmb_v10_0              |    1 |
 | mb_block_dlmb_bram_if_cntlr_0    |    1 |
 | mb_block_clk_wiz_1_0             |    1 |
+| mb_block_bridge_0_0              |    1 |
 | mb_block_axi_uartlite_0_0        |    1 |
 | mb_block_axi_timer_0_0           |    1 |
 | mb_block_axi_quad_spi_0_0        |    1 |
@@ -204,6 +207,7 @@ Warning! LUT value is adjusted to account for LUT combining.
 | mb_block_axi_gpio_0_2            |    1 |
 | hdmi_tx_0                        |    1 |
 | fifo_generator_0                 |    1 |
+| faces_rom                        |    1 |
 | div_gen_0                        |    1 |
 | clk_wiz_1                        |    1 |
 | clk_wiz_0                        |    1 |

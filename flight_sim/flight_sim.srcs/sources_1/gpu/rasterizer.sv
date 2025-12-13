@@ -29,8 +29,8 @@ module rasterizer(
   output logic        rasterizer_done,
   // currently we're working with a "box" rasterizer ~ this will be updated to do triangles
   input logic         vertex_valid,
-  input logic [9:0]   x0, x1, x2, y0, y1, y2,
-  input logic [31:0]  inv_area, // 1/Area in Q8.24 format
+  input logic [15:0]   x0, x1, x2, y0, y1, y2,
+  input logic signed [31:0]  inv_area, // 1/Area in Q8.24 format
   input logic [15:0]  color,
   // interface with writeback controller
   input logic         wb_ready,
@@ -63,6 +63,7 @@ logic [31:0] alpha_o, beta_o, gamma_o;
 assign alpha = alpha_o;
 assign beta = beta_o;
 assign gamma = gamma_o;
+assign stall_out = (rasterizer_state_q != StIdle);
 
 // hold address of each element being processed in the pipeline. addr_pipe_q[6] holds the "curr" mem_addr
 logic [26:0] addr_pipe_d [0:7];
@@ -70,20 +71,18 @@ logic [26:0] addr_pipe_q [0:7];
 logic [2:0] ctr_d, ctr_q;
 logic internal_stall;
 logic [7:0] v_pipe_d, v_pipe_q;
-
-assign stall_out = stall || !wb_ready || internal_stall;
  
 barycentric_calc barycentric_calc_inst (
   .clk(clk),
   .stall((stall || !wb_ready || internal_stall)),
 
   // three triangle vertices, padded to 16-bit
-  .t0_x({6'b0, x0}), 
-  .t0_y({6'b0, y0}),
-  .t1_x({6'b0, x1}), 
-  .t1_y({6'b0, y1}),
-  .t2_x({6'b0, x2}), 
-  .t2_y({6'b0, y2}),
+  .t0_x(x0), 
+  .t0_y(y0),
+  .t1_x(x1), 
+  .t1_y(y1),
+  .t2_x(x2), 
+  .t2_y(y2),
 
   // inverse triangle area in Q8.24
   .inv_area(inv_area),

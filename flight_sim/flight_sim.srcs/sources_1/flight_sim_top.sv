@@ -3,7 +3,7 @@ module flight_sim_top (
     // input reset_ah,  // instead provided by btn[0]
 
     // I/O
-    input  [3:0] sw,
+    input  [7:0] sw,
     input  [3:0] btn,
     output [15:0] led,
     output [2:0] rgbled0,

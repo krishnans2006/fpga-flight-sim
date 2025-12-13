@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7s50csga324-1" LaunchTime="1765577272" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/ddr_renderer_top.dcp">
+<GenRun Id="synth_1" LaunchPart="xc7s50csga324-1" LaunchTime="1765661865" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/ddr_renderer_top.dcp">
   <File Type="PA-TCL" Name="flight_sim_top.tcl"/>
+  <File Type="RDS-PROPCONSTRS" Name="flight_sim_top_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="flight_sim_top_reports.tcl"/>
   <File Type="RDS-RDS" Name="flight_sim_top.vds"/>
   <File Type="RDS-UTIL" Name="flight_sim_top_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="flight_sim_top_utilization_synth.pb"/>
   <File Type="RDS-DCP" Name="flight_sim_top.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="flight_sim_top_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="flight_sim_top_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/bd/mb_block/mb_block.bd">
@@ -100,6 +103,13 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/sources_1/gpu/model_engine.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/gpu/projector.sv">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -130,30 +140,6 @@
     </File>
     <File Path="$PSRCDIR/sources_1/flight_sim_top.sv">
       <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/ip/vertices_rom_1/vertices_rom.xci">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/ip/faces_rom_1/faces_rom.xci">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/gpu/model_engine.sv">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -217,27 +203,16 @@
     <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2022"/>
     <Step Id="synth_design"/>
   </Strategy>
-  <BlockFileSet Type="BlockSrcs" Name="fifo_generator_0"/>
   <BlockFileSet Type="BlockSrcs" Name="blk_mem_gen_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="mb_block_axi_gpio_0_3"/>
+  <BlockFileSet Type="BlockSrcs" Name="fifo_generator_0"/>
   <BlockFileSet Type="BlockSrcs" Name="clk_wiz_1"/>
-  <BlockFileSet Type="BlockSrcs" Name="mb_block_axi_gpio_0_2"/>
+  <BlockFileSet Type="BlockSrcs" Name="hdmi_tx_0"/>
   <BlockFileSet Type="BlockSrcs" Name="mb_block_microblaze_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="clk_wiz_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="hdmi_tx_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="mb_block_clk_wiz_1_0"/>
   <BlockFileSet Type="BlockSrcs" Name="blk_mem_gen_1"/>
-  <BlockFileSet Type="BlockSrcs" Name="mb_block_rst_clk_wiz_1_100M_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="mb_block_axi_uartlite_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="mb_block_dlmb_bram_if_cntlr_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="mb_block_mdm_1_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="mb_block_microblaze_0_axi_intc_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="mb_block_ilmb_v10_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="mb_block_dlmb_v10_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="mb_block_axi_quad_spi_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="mb_block_axi_timer_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="mb_block_lmb_bram_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="mb_block_xbar_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="mb_block_ilmb_bram_if_cntlr_0"/>
   <BlockFileSet Type="BlockSrcs" Name="div_gen_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="mb_block_xbar_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="faces_rom"/>
+  <BlockFileSet Type="BlockSrcs" Name="mb_block_bridge_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="vertices_rom"/>
 </GenRun>
