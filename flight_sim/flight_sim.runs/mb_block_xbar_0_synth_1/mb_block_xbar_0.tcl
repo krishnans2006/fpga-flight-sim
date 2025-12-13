@@ -84,7 +84,10 @@ set_property parent.project_path C:/Users/krishnan/Documents/fpga-flight-sim/fli
 set_property XPM_LIBRARIES {XPM_CDC XPM_FIFO XPM_MEMORY} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
-set_property ip_repo_paths c:/Users/krishnan/Documents/fpga-flight-sim/IP [current_project]
+set_property ip_repo_paths {
+  c:/Users/krishnan/Documents/fpga-flight-sim/IP/bridge_1_0
+  c:/Users/krishnan/Documents/fpga-flight-sim/IP
+} [current_project]
 update_ip_catalog
 set_property ip_output_repo c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]

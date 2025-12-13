@@ -1,10 +1,10 @@
 -- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
--- Date        : Wed Dec 10 03:04:37 2025
--- Host        : Aniketh_x86-64 running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim
---               c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/ip/mb_block_ilmb_v10_0/mb_block_ilmb_v10_0_sim_netlist.vhdl
+-- Date        : Sun Dec  7 13:43:48 2025
+-- Host        : Krishnan-Win running 64-bit major release  (build 9200)
+-- Command     : write_vhdl -force -mode funcsim -rename_top mb_block_ilmb_v10_0 -prefix
+--               mb_block_ilmb_v10_0_ mb_block_ilmb_v10_0_sim_netlist.vhdl
 -- Design      : mb_block_ilmb_v10_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -52,8 +52,6 @@ entity mb_block_ilmb_v10_0_lmb_v10 is
   attribute C_LMB_NUM_SLAVES of mb_block_ilmb_v10_0_lmb_v10 : entity is 1;
   attribute C_LMB_PROTOCOL : integer;
   attribute C_LMB_PROTOCOL of mb_block_ilmb_v10_0_lmb_v10 : entity is 0;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of mb_block_ilmb_v10_0_lmb_v10 : entity is "lmb_v10";
 end mb_block_ilmb_v10_0_lmb_v10;
 
 architecture STRUCTURE of mb_block_ilmb_v10_0_lmb_v10 is
