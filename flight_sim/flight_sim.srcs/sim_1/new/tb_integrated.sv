@@ -19,172 +19,242 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
 `timescale 1ns / 1ps
 
 module tb_integrated;
 
-  // -------------------------------------------------------------------------
-  // 1. Signal Declarations
-  // -------------------------------------------------------------------------
-  logic clk;
-  logic rst;
-
-  // Control Signals
-  logic start_frame;
-  logic model_done;
-  logic [3:0] sel;
-
-  // Interconnect: Model Engine -> Projector
-  logic        link_valid; // proj_valid from engine
-  logic        link_ready; // ready from projector
-  logic signed [31:0] t_x [3];
-  logic signed [31:0] t_y [3];
-  logic signed [31:0] t_z [3];
-  logic [15:0] face_color;
-
-  // Projector Outputs
-  logic signed [31:0] p_x [3];
-  logic signed [31:0] p_y [3];
-  logic signed [31:0] p_z [3];
-  logic [31:0] dr; // 1/Area
-  logic        out_valid;
-  logic [15:0] color_out;
-  
-  // Stall emulation (optional, held low for max throughput)
-  logic        stall_rasterizer;
-
-  // -------------------------------------------------------------------------
-  // 2. DUT Instantiations
-  // -------------------------------------------------------------------------
-
-  model_engine u_engine (
-    .clk        (clk),
-    .rst        (rst),
-    .start_frame(start_frame),
-    .model_done (model_done),
+    // =========================================================================
+    // 1. CLOCK & RESET
+    // =========================================================================
+    logic clk;
+    logic rst;
     
-    // Handshake & Data
-    .proj_ready (link_ready),
-    .proj_valid (link_valid),
-    .t_x        (t_x),
-    .t_y        (t_y),
-    .t_z        (t_z),
-    .face_color (face_color)
-  );
+    // We modify these to be driven by our chaos generator
+    logic stall_in; 
+    logic wb_ready_in; 
 
-  projector u_projector (
-    .clk      (clk),
-    .rst      (rst),
-    
-    // Inputs from Engine
-    .t_x      (t_x),
-    .t_y      (t_y),
-    .t_z      (t_z),
-    .color    (face_color),
-    .in_valid (link_valid),
-    .ready    (link_ready),
-    
-    // Outputs to Rasterizer (monitored by TB)
-    .p_x      (p_x),
-    .p_y      (p_y),
-    .p_z      (p_z),
-    .dr       (dr),
-    .out_valid(out_valid),
-    .color_out(color_out),
-    
-    // Backpressure input
-    .stall    (stall_rasterizer)
-  );
-
-  // -------------------------------------------------------------------------
-  // 3. Clock & Helper Functions
-  // -------------------------------------------------------------------------
-  
-  initial begin
-    clk = 0;
-    forever #5 clk = ~clk; // 100MHz
-  end
-
-  // Helper to display Q16.16 as float
-  function real to_real(input signed [31:0] val);
-    return real'(val) / 65536.0;
-  endfunction
-
-  // -------------------------------------------------------------------------
-  // 4. Main Stimulus
-  // -------------------------------------------------------------------------
-  initial begin
-    // Init
-    rst = 1;
-    start_frame = 0;
-    sel = 0;
-    stall_rasterizer = 0; // Simulate an always-ready Rasterizer
-
-    // Reset Sequence
-    #100;
-    rst = 0;
-    #20;
-
-    $display("--- Starting Simulation ---");
-
-    // TEST CASE 1: Process 2 Faces (Indices 0 to 1)
-    // 'sel' in model_engine is the *stop index*.
-    // If logic is `if (face_ctr_q == sel) done`, setting sel=1 processes faces 0 and 1.
-    sel = 4'd1; 
-    
-    @(posedge clk);
-    start_frame = 1;
-    @(posedge clk);
-    start_frame = 0;
-
-    $display("[%0t] Frame Started. Requesting Faces 0 to %0d...", $time, sel);
-
-    // Wait for Model Engine to finish fetching
-    wait(model_done);
-    $display("[%0t] Model Engine DONE. Waiting for Projector to drain...", $time);
-
-    // Wait extra time for the Projector pipeline (Divider latency) to finish
-    // A safe margin is ~100 cycles per face
-    repeat(200) @(posedge clk);
-
-    $display("--- Simulation Finished ---");
-    $finish;
-  end
-
-  // -------------------------------------------------------------------------
-  // 5. Output Monitor
-  // -------------------------------------------------------------------------
-  
-  // Monitor the link between Engine and Projector
-  always @(posedge clk) begin
-    if (link_valid && link_ready) begin
-      $display("[%0t] HANDSHAKE: Engine sent Face to Projector.", $time);
-      $display("        Raw V0: (%f, %f, %f)", to_real(t_x[0]), to_real(t_y[0]), to_real(t_z[0]));
-      // Note: Since we don't know ROM contents, we just print the raw values to verify movement.
+    initial begin
+        clk = 0;
+        forever #5 clk = ~clk; // 100 MHz
     end
-  end
 
-  // Monitor the output of the Projector
-  integer face_count = 0;
-  
-  always @(posedge clk) begin
-    if (out_valid) begin
-      $display("---------------------------------------------------------------");
-      $display("[%0t] PROJECTOR OUTPUT VALID (Face %0d)", $time, face_count);
-      $display("        Color: 0x%h", color_out);
-      $display("        InvArea (dr): %f", to_real(dr));
-      
-      // Display projected points
-      // Note: These values depend on your scaling logic in the projector
-      // If they look like huge integers, it's because of the bit-shifts in the projector module.
-      $display("        P0: x=%f, y=%f, z=%f", to_real(p_x[0]), to_real(p_y[0]), to_real(p_z[0]));
-      $display("        P1: x=%f, y=%f, z=%f", to_real(p_x[1]), to_real(p_y[1]), to_real(p_z[1]));
-      $display("        P2: x=%f, y=%f, z=%f", to_real(p_x[2]), to_real(p_y[2]), to_real(p_z[2]));
-      
-      face_count++;
-      $display("---------------------------------------------------------------");
+    // =========================================================================
+    // 2. INTERCONNECT SIGNALS
+    // =========================================================================
+    logic signed [31:0] t_x [3];
+    logic signed [31:0] t_y [3];
+    logic signed [31:0] t_z [3];
+    logic [15:0] color_in;
+    logic proj_in_valid;
+    logic proj_ready;
+
+    logic signed [31:0] p_x_out [3];
+    logic signed [31:0] p_y_out [3];
+    logic signed [31:0] p_z_out [3];
+    logic [31:0] inv_area_out;
+    logic proj_out_valid;
+    logic [15:0] color_proj_out;
+
+    logic [15:0] rast_x0, rast_x1, rast_x2;
+    logic [15:0] rast_y0, rast_y1, rast_y2;
+
+    logic rast_done;
+    logic mem_valid;
+    logic [26:0] mem_addr;
+    logic [15:0] mem_data;
+    logic [31:0] alpha, beta, gamma;
+    logic stall_out;
+
+    // =========================================================================
+    // 3. CHAOS GENERATOR (Random Stalls)
+    // =========================================================================
+    // This process simulates a busy DDR3 controller and random system pressure.
+    initial begin
+        wb_ready_in = 1;
+        stall_in = 0;
+        
+        // Wait for reset to finish
+        wait(!rst); 
+        
+        forever begin
+            @(posedge clk);
+            
+            // 30% chance to stall the Writeback (Memory busy)
+            // $urandom returns unsigned 32-bit int.
+            if (($urandom % 100) < 30) 
+                wb_ready_in <= 0;
+            else 
+                wb_ready_in <= 1;
+
+            // 10% chance to assert global stall (Pipeline freeze)
+            if (($urandom % 100) < 10) 
+                stall_in <= 1;
+            else 
+                stall_in <= 0;
+        end
     end
-  end
+
+    // =========================================================================
+    // 4. MODULES
+    // =========================================================================
+
+    projector u_projector (
+        .clk(clk),
+        .rst(rst),
+        .stall(stall_in), // Connected to chaos signal
+        
+        .t_x(t_x), .t_y(t_y), .t_z(t_z),
+        .color(color_in),
+        .in_valid(proj_in_valid),
+        .ready(proj_ready),
+        
+        .p_x(p_x_out), .p_y(p_y_out), .p_z(p_z_out),
+        .dr(inv_area_out),
+        .out_valid(proj_out_valid),
+        .color_out(color_proj_out)
+    );
+
+    // GLUE LOGIC
+    function logic [15:0] q16_to_screen(input logic signed [31:0] val, input int max_val);
+        logic signed [31:0] int_val;
+        int_val = val >>> 16; 
+        if (int_val < 0) return 16'd0;
+        if (int_val > max_val) return max_val[15:0];
+        return int_val[15:0];
+    endfunction
+
+    always_comb begin
+        rast_x0 = q16_to_screen(p_x_out[0], 639);
+        rast_x1 = q16_to_screen(p_x_out[1], 639);
+        rast_x2 = q16_to_screen(p_x_out[2], 639);
+        rast_y0 = q16_to_screen(p_y_out[0], 479);
+        rast_y1 = q16_to_screen(p_y_out[1], 479);
+        rast_y2 = q16_to_screen(p_y_out[2], 479);
+    end
+
+    rasterizer u_rasterizer (
+        .clk(clk),
+        .rst(rst),
+        .stall(stall_in), // Connected to chaos signal
+        .rasterizer_done(rast_done),
+        .vertex_valid(proj_out_valid), 
+        
+        .x0(rast_x0), .x1(rast_x1), .x2(rast_x2),
+        .y0(rast_y0), .y1(rast_y1), .y2(rast_y2),
+        .inv_area(inv_area_out),
+        .color(color_proj_out),
+        
+        .wb_ready(wb_ready_in), // Connected to chaos signal
+        .mem_valid(mem_valid),
+        .mem_addr(mem_addr),
+        .mem_data(mem_data),
+        
+        .alpha(alpha), .beta(beta), .gamma(gamma),
+        .stall_out(stall_out)
+    );
+
+    // =========================================================================
+    // 5. MEMORY
+    // =========================================================================
+    logic [15:0] framebuffer [0:307199]; 
+    integer pixels_drawn;
+
+    always @(posedge clk) begin
+        if (rst) begin
+            pixels_drawn <= 0;
+        end else if (wb_ready_in && mem_valid && !stall_in) begin
+            // Write only happens if Ready=1 AND Valid=1 AND not Stalled
+            framebuffer[mem_addr] <= mem_data;
+            pixels_drawn <= pixels_drawn + 1;
+        end
+    end
+
+    // =========================================================================
+    // 6. TASKS
+    // =========================================================================
+    task send_triangle_raw(
+        input signed [31:0] x0, y0, z0,
+        input signed [31:0] x1, y1, z1,
+        input signed [31:0] x2, y2, z2,
+        input [15:0] col
+    );
+        // Wait for ready, but also check that we aren't stalling input externally
+        wait(proj_ready && !stall_in);
+        @(posedge clk);
+        
+        // Add random input delay to simulate irregular CPU feeding
+        repeat($urandom % 5) @(posedge clk);
+
+        t_x[0] <= x0; t_y[0] <= y0; t_z[0] <= z0;
+        t_x[1] <= x1; t_y[1] <= y1; t_z[1] <= z1;
+        t_x[2] <= x2; t_y[2] <= y2; t_z[2] <= z2;
+        color_in <= col;
+        proj_in_valid <= 1'b1;
+
+        @(posedge clk);
+        proj_in_valid <= 1'b0;
+
+        // Debug Output
+        wait(proj_out_valid);
+        $display("[TB] Tri Sent. Screen: (%0d,%0d) -> (%0d,%0d) -> (%0d,%0d)", 
+             rast_x0, rast_y0, rast_x1, rast_y1, rast_x2, rast_y2);
+        
+        wait(rast_done);
+        @(posedge clk);
+    endtask
+
+    task dump_ascii_buffer;
+        integer y, x, addr;
+        logic [15:0] pixel;
+        string line;
+        
+        $display("\n======== ASCII DUMP (Chaos Mode Enabled) ========");
+        for (y = 0; y < 480; y = y + 10) begin
+            line = "";
+            for (x = 0; x < 640; x = x + 10) begin
+                addr = (y * 640) + x; 
+                pixel = framebuffer[addr];
+                if (pixel != 16'h0000) line = {line, "#"}; 
+                else line = {line, "."};                   
+            end
+            $display(line); 
+        end
+        $display("=================================================");
+    endtask
+
+    // =========================================================================
+    // 7. MAIN (Chaos Mode)
+    // =========================================================================
+    initial begin
+        rst = 1;
+        proj_in_valid = 0;
+        #100;
+        rst = 0;
+        #100;
+        
+        $display("Starting Robustness Test (Random Stalls & Memory Pressure)...");
+        
+        // Cube at Z=15 (Same data as before)
+        
+        // Front Face
+        send_triangle_raw(32'hFFFF0000, 32'hFFFF0000, 32'h000E0000, 32'h00010000, 32'hFFFF0000, 32'h000E0000, 32'h00010000, 32'h00010000, 32'h000E0000, 16'hF00F);
+        send_triangle_raw(32'hFFFF0000, 32'hFFFF0000, 32'h000E0000, 32'h00010000, 32'h00010000, 32'h000E0000, 32'hFFFF0000, 32'h00010000, 32'h000E0000, 16'hF00F);
+
+        // Right Face
+        send_triangle_raw(32'h00010000, 32'hFFFF0000, 32'h000E0000, 32'h00010000, 32'hFFFF0000, 32'h00100000, 32'h00010000, 32'h00010000, 32'h00100000, 16'h0F00);
+        send_triangle_raw(32'h00010000, 32'hFFFF0000, 32'h000E0000, 32'h00010000, 32'h00010000, 32'h00100000, 32'h00010000, 32'h00010000, 32'h000E0000, 16'h0F00);
+
+        // Top Face
+        send_triangle_raw(32'hFFFF0000, 32'h00010000, 32'h000E0000, 32'h00010000, 32'h00010000, 32'h000E0000, 32'h00010000, 32'h00010000, 32'h00100000, 16'h00F0);
+        send_triangle_raw(32'hFFFF0000, 32'h00010000, 32'h000E0000, 32'h00010000, 32'h00010000, 32'h00100000, 32'hFFFF0000, 32'h00010000, 32'h00100000, 16'h00F0);
+
+        // Allow time to drain (might take longer due to stalls)
+        #2000;
+        
+        $display("Robustness Test Complete. Total Pixels: %0d", pixels_drawn);
+        dump_ascii_buffer();
+        
+        $finish;
+    end
 
 endmodule

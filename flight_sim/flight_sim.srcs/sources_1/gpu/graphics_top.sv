@@ -43,13 +43,13 @@ module graphics_top(
   output logic          wb_active,
   output logic          init,
 
-  // Z-bufer <-> Cache
-  output logic [26:0]   zbuf_cache_addr,
-  output logic          zbuf_cache_req,
-  output logic          zbuf_cache_rw_n, // 1 = Read, 0 = Write
-  output logic [15:0]   zbuf_cache_dout,
-  input  logic [15:0]   zbuf_cache_din,
-  input  logic          zbuf_cache_valid,
+  // // Z-bufer <-> Cache
+  // output logic [26:0]   zbuf_cache_addr,
+  // output logic          zbuf_cache_req,
+  // output logic          zbuf_cache_rw_n, // 1 = Read, 0 = Write
+  // output logic [15:0]   zbuf_cache_dout,
+  // input  logic [15:0]   zbuf_cache_din,
+  // input  logic          zbuf_cache_valid,
   
   // cool graphics test :)
   input logic [7:0]     vsync_cntr,
@@ -155,13 +155,13 @@ logic signed [31:0] test_t_z [3];
 logic model_done;
 logic [15:0] model_face_color, proj_face_color;
     
-// // small helper function, shouldnt get synthesized to anything substantial
-//  function logic [31:0] f2q(input real v); return $rtoi(v * 65536.0); endfunction
+// small helper function, shouldnt get synthesized to anything substantial
+ function logic [31:0] f2q(input real v); return $rtoi(v * 65536.0); endfunction
 
-//  // should be relatively small on the screen
-//  assign test_t_x[0] = f2q(-1.0); assign test_t_y[0] = f2q(-1.0); assign test_t_z[0] = f2q(20.0);
-//  assign test_t_x[1] = f2q( 1.0); assign test_t_y[1] = f2q(-1.0); assign test_t_z[1] = f2q(20.0);
-//  assign test_t_x[2] = f2q( 0.0); assign test_t_y[2] = f2q( 1.0); assign test_t_z[2] = f2q(20.0);
+ // should be relatively small on the screen
+ assign test_t_x[0] = f2q(-1.0); assign test_t_y[0] = f2q(-1.0); assign test_t_z[0] = f2q(20.0);
+ assign test_t_x[1] = f2q( 1.0); assign test_t_y[1] = f2q(-1.0); assign test_t_z[1] = f2q(20.0);
+ assign test_t_x[2] = f2q( 0.0); assign test_t_y[2] = f2q(0.5); assign test_t_z[2] = f2q(20.0);
 
 // Rasterizer I/O
 logic [15:0] color;
@@ -206,17 +206,11 @@ logic        zbuf_req; // cache request
 logic        zbuf_rw_n; // 1 = Read, 0 = Write
 logic [15:0] zbuf_mem_dout;
 
-assign zbuf_cache_addr = zbuf_addr;
-assign zbuf_cache_req  = zbuf_req;
-assign zbuf_cache_rw_n = zbuf_rw_n;
-assign zbuf_cache_dout = zbuf_mem_dout;
-
 assign burst_valid =    (init_active) ? init_dout_burst_valid : ((int_graphics_stall) ? background_burst_valid : dout_burst_valid);
 assign burst_mem_addr = (init_active) ? init_dout_burst_addr :  ((int_graphics_stall) ? background_burst_addr : dout_burst_addr);
 assign burst_mem_128 =  (init_active) ? init_dout_burst_128 :   ((int_graphics_stall) ? background_burst_128 : dout_burst_128);
 assign burst_mem_wrdm = (init_active) ? init_dout_wrdm :        ((int_graphics_stall) ? background_wrdm : dout_wrdm);
 assign init = init_active;
-
 
 // Instantiate Modules
 rasterizer rasterizer_inst (
@@ -226,7 +220,7 @@ rasterizer rasterizer_inst (
   
   .vertex_valid(proj_out_valid),
   .rasterizer_done(rasterizer_done),
-  
+
   .x0(proj_p_x[0][31:16]), // 320
   .y0(proj_p_y[0][31:16]), // 240
   .x1(proj_p_x[1][31:16]), // 330 
@@ -248,26 +242,20 @@ rasterizer rasterizer_inst (
   .stall_out(rasterizer_stall)
 );
 
+logic [31:0] z0_r, z1_r, z2_r;
+
 zbuffer zbuffer_inst (
   .clk(clk),
   .rst(rst),
   /* Interface with rasterizer */
-  .z0(32'h01000000), // I think this is +1 in Q8.24
-  .z1(32'h01000000), 
-  .z2(32'h01000000), 
+  .z0(z0_r),
+  .z1(z1_r), 
+  .z2(z2_r), 
   .alpha(alpha), .beta(beta), .gamma(gamma), // barycentric coords in Q8.24
   .mem_valid(mem_valid),
   .mem_addr(mem_addr),
   .mem_data(mem_data),
   .ready(zbuf_ready),
-
-  /* BEGIN interface with memory (cache) */
-  .zbuf_addr(zbuf_addr),
-  .zbuf_req(zbuf_req), // cache request
-  .zbuf_rw_n(zbuf_rw_n), // 1 = Read, 0 = Write
-  .zbuf_dout(zbuf_mem_dout),
-  .zbuf_din(zbuf_cache_din),
-  .zbuf_valid(zbuf_cache_valid), 
 
   /* Interface with Writeback Controller */
   .wb_ready(wb_ready),
@@ -314,9 +302,9 @@ projector projector_inst (
   .t_x(test_t_x),
   .t_y(test_t_y),
   .t_z(test_t_z),
-  .color(model_face_color), //  should be model_face_color
+  .color(16'h0F2F), //  should be model_face_color
     
-  .in_valid(model_data_valid),
+  .in_valid(1'b1),
   .ready(proj_ready),
 
   // projected vertices
@@ -332,20 +320,20 @@ projector projector_inst (
   .stall(rasterizer_stall)
 );
 
-model_engine model_engine_inst (
- .clk(clk), 
- .rst(rst),
- .start_frame(model_engine_start),
- .model_done(model_done),
+// model_engine model_engine_inst (
+//  .clk(clk), 
+//  .rst(rst),
+//  .start_frame(model_engine_start),
+//  .model_done(model_done),
 
- // projector interface
- .proj_ready(proj_ready),
- .proj_valid(model_data_valid),
- .t_x(test_t_x),
- .t_y(test_t_y),
- .t_z(test_t_z),
- .face_color(model_face_color),
- .sel(fselect)
-);
+//  // projector interface
+//  .proj_ready(proj_ready),
+//  .proj_valid(model_data_valid),
+//  .t_x(test_t_x),
+//  .t_y(test_t_y),
+//  .t_z(test_t_z),
+//  .face_color(model_face_color),
+//  .sel(fselect)
+// );
 
 endmodule

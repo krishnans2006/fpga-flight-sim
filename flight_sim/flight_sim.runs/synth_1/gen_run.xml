@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <GenRun Id="synth_1" LaunchPart="xc7s50csga324-1" LaunchTime="1765684931" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/flight_sim_top.dcp">
+=======
+<GenRun Id="synth_1" LaunchPart="xc7s50csga324-1" LaunchTime="1765724438" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/ddr_renderer_top.dcp">
+>>>>>>> 0284568 (add transformation matrix module)
   <File Type="PA-TCL" Name="flight_sim_top.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="flight_sim_top_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="flight_sim_top_reports.tcl"/>
@@ -59,13 +63,6 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/ddr/cache.sv">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
     <File Path="$PSRCDIR/sources_1/ddr/ddr3_arbiter.sv">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -98,13 +95,6 @@
       <FileInfo>
         <Attr Name="ImportPath" Val="$PPRDIR/../ddr3_renderer/ddr3_renderer.srcs/sources_1/gpu/graphics_top.sv"/>
         <Attr Name="ImportTime" Val="1765122160"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/gpu/model_engine.sv">
-      <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -145,6 +135,33 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+<<<<<<< HEAD
+=======
+    <File Path="$PSRCDIR/sources_1/gpu/model_engine.sv">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/ddr/cache.sv">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PGENDIR/sources_1/bd/mb_block/hdl/mb_block_wrapper.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+>>>>>>> 0284568 (add transformation matrix module)
     <File Path="$PSRCDIR/sources_1/gpu/model/cube_faces.coe">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -213,6 +230,7 @@
     </StratHandle>
     <Step Id="synth_design"/>
   </Strategy>
+<<<<<<< HEAD
   <BlockFileSet Type="BlockSrcs" Name="clk_wiz_0"/>
   <BlockFileSet Type="BlockSrcs" Name="mb_block_axi_gpio_0_2"/>
   <BlockFileSet Type="BlockSrcs" Name="mb_block_microblaze_0_0"/>
@@ -242,4 +260,15 @@
   <BlockFileSet Type="BlockSrcs" Name="div_gen_0"/>
   <BlockFileSet Type="BlockSrcs" Name="vertices_rom"/>
   <BlockFileSet Type="BlockSrcs" Name="blk_mem_gen_1"/>
+=======
+  <BlockFileSet Type="BlockSrcs" Name="blk_mem_gen_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="fifo_generator_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="clk_wiz_1"/>
+  <BlockFileSet Type="BlockSrcs" Name="clk_wiz_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="mb_block_microblaze_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="hdmi_tx_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="div_gen_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="mb_block_xbar_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="mb_block_bridge_0_0"/>
+>>>>>>> 0284568 (add transformation matrix module)
 </GenRun>

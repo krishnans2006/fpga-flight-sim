@@ -35,13 +35,13 @@ module model_engine(
   input logic [3:0] sel
 );
 
-  localparam NUM_VERTICES = 8; 
+  localparam NUM_VERTICES = 5; 
   localparam NUM_FACES    = 12;
 
   logic [3:0] face_rom_addr;
   logic [31:0] face_rom_dout;
 
-  // 96-bit vertex data (X, Y, Z packed)
+  // 96-bit vertex data
   logic [4:0]  vertex_rom_addr;
   logic [95:0] vertex_rom_dout;
 
@@ -52,8 +52,8 @@ module model_engine(
 
   typedef enum {
     StIdle, 
-    StReqFace, StWait0, StWait1, // Face Fetch States
-    StReqVertex, StWait2, StWait3, StWait4, // Vertex Fetch States
+    StReqFace, StWait0, StWait1, // face fetch
+    StReqVertex, StWait2, StWait3, StWait4, // vertex fetch states
     StPropagate, 
     StDone
   } model_engine_state_e;
@@ -158,27 +158,23 @@ module model_engine(
 
       // faces
       StReqFace: begin
-        // Addr setup in `face_rom_addr` (comb)
-        model_engine_state_d = StWait0; // Edge 1: Addr sampled
+        model_engine_state_d = StWait0;
       end
       StWait0: begin
-        model_engine_state_d = StWait1; // Edge 2: Latency
+        model_engine_state_d = StWait1;
       end
       StWait1: begin
-        // Data latched on transition out of StWait1
         model_engine_state_d = StReqVertex;
       end
 
       // vertices
       StReqVertex: begin
-        // Addr setup in `vertex_rom_addr` (comb based on vertex_ctr_q)
-        model_engine_state_d = StWait2; // Edge 1: Addr sampled
+        model_engine_state_d = StWait2;
       end
       StWait2: begin
-        model_engine_state_d = StWait3; // Edge 2: Latency
+        model_engine_state_d = StWait3;
       end
       StWait3: begin
-        // loop through three vertices of triangle
         if (vertex_ctr_q == 2) begin
           model_engine_state_d = StWait4;
         end else begin

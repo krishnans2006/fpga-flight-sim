@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <GenRun Id="mb_block_microblaze_0_0_synth_1" LaunchPart="xc7s50csga324-1" LaunchTime="1765678028">
+=======
+<GenRun Id="mb_block_microblaze_0_0_synth_1" LaunchPart="xc7s50csga324-1" LaunchTime="1765724438">
+>>>>>>> 0284568 (add transformation matrix module)
   <File Type="PA-TCL" Name="mb_block_microblaze_0_0.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="mb_block_microblaze_0_0_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="mb_block_microblaze_0_0_reports.tcl"/>
@@ -62,9 +66,7 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2022">
-      <Desc>Vivado Synthesis Defaults</Desc>
-    </StratHandle>
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2022"/>
     <Step Id="synth_design"/>
   </Strategy>
 </GenRun>

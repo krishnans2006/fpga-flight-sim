@@ -90,7 +90,7 @@ ddr3_arbiter ddr3_arbiter_inst (
 
   /* ### BEGIN DDR3 R/W Signals ### */
   .r128_wrdata(r128_wrdata),
-	.wrdm(((cache_active) ? cache_ddr3_wrdm : gpu_wrdm)), // as per controller documentation, wrdm is effectively high-Z during read ops
+    .wrdm(gpu_wrdm), // as per controller documentation, wrdm is effectively high-Z during read ops
   .app_addr(app_addr),
 
   .r_phy_cmd_en(r_phy_cmd_en),
@@ -223,6 +223,7 @@ logic old_vga_vde;
 logic [6:0] curr_counter_d, curr_counter_q;
 logic rd_cmd_en, rd_cmd_sel, rd_flag;
 fbuf_wr_state_e fbuf_wr_state_d, fbuf_wr_state_q;
+logic swap_toggle;
 
 assign RGBLED0[2] = rd_flag;
 
@@ -320,6 +321,8 @@ always_ff @(posedge w_uart_clk) begin
 		// initialize buffer addresses
 		staging_buffer_addr <= 27'h004B000;
 		output_buffer_addr  <= 27'h0000000;
+
+		swap_toggle <= 1'b0;
 	end else begin
 		fbuf_wr_state_q <= fbuf_wr_state_d;
 		curr_counter_q <= curr_counter_d;
@@ -329,8 +332,13 @@ always_ff @(posedge w_uart_clk) begin
 		if (~vsync && old_vga_vsync) begin
 		  rd_addr_offset <= 27'b0;
 		  // on falling edge of vsync, swap buffers
-		  staging_buffer_addr <= output_buffer_addr;
-		  output_buffer_addr  <= staging_buffer_addr;
+			if (swap_toggle) begin
+				staging_buffer_addr <= output_buffer_addr;
+				output_buffer_addr  <= staging_buffer_addr;
+			end
+
+			swap_toggle <= ~swap_toggle;
+
 		end else if (fbuf_wr_state_q == StWrite1 && fbuf_wr_state_d == StIdle) 
 		  rd_addr_offset <= rd_addr_offset + lp_HORIZ_PIXEL_WIDTH;
 	end
@@ -357,7 +365,7 @@ typedef enum {
 } ddr3_wr_state_e;
 
 ddr3_wr_state_e ddr3_wr_state_d, ddr3_wr_state_q;
-logic 				ddr3_mem_wrdy, gpu_burst_valid;
+logic 		ddr3_mem_wrdy, gpu_burst_valid;
 logic [127:0] ddr3_wr_data;
 logic [26:0]  wr_addr;
 logic [7:0] 	gpu_wrdm;
@@ -385,70 +393,70 @@ graphics_top graphics_inst (
   .init(init_active),
 	.wb_active(wb_active),
 
-	.zbuf_cache_addr(zbuf_addr),
-  .zbuf_cache_req(zbuf_req),
-  .zbuf_cache_rw_n(zbuf_rw_n), // 1 = Read, 0 = Write
-  .zbuf_cache_dout(zbuf_din),
-  .zbuf_cache_din(zbuf_dout),
-  .zbuf_cache_valid(zbuf_valid),
+	// .zbuf_cache_addr(zbuf_addr),
+  // .zbuf_cache_req(zbuf_req),
+  // .zbuf_cache_rw_n(zbuf_rw_n), // 1 = Read, 0 = Write
+  // .zbuf_cache_dout(zbuf_din),
+  // .zbuf_cache_din(zbuf_dout),
+  // .zbuf_cache_valid(zbuf_valid),
   
   // this is for cool graphics :)
   .vsync_cntr(vga_vsync_counter),
-  .swap((~vsync && old_vga_vsync)),
+  .swap((~vsync && old_vga_vsync && swap_toggle)),
   .fselect(SW[7:4])
 );
 
-// Z-buffer cache
-logic [26:0] zbuf_addr;
-logic        zbuf_req; // cache request
-logic        zbuf_rw_n; // 1 = Read, 0 = Write
-logic [15:0] zbuf_dout;
-logic [15:0] zbuf_din;
-logic        zbuf_valid;
+// // Z-buffer cache
+// logic [26:0] zbuf_addr;
+// logic        zbuf_req; // cache request
+// logic        zbuf_rw_n; // 1 = Read, 0 = Write
+// logic [15:0] zbuf_dout;
+// logic [15:0] zbuf_din;
+// logic        zbuf_valid;
 
-logic [26:0] cache_ddr3_addr;
-logic 			 cache_ddr3_req;
-logic				 cache_ddr3_rw_n; // 1 = Read, 0 = Write
+// logic [26:0] cache_ddr3_addr;
+// logic 			 cache_ddr3_req;
+// logic				 cache_ddr3_rw_n; // 1 = Read, 0 = Write
 
-  // W
-logic [127:0]	cache_ddr3_dout;
-logic					cache_ddr3_wrdm;
+//   // W
+// logic [127:0]	cache_ddr3_dout;
+// logic					cache_ddr3_wrdm;
 
-// control
-logic 				cache_active;
-logic               ddr3_cache_ready;
+// // control
+// logic 				cache_active;
+// logic               ddr3_cache_ready;
 
-cache dmc_inst (
-  .clk(w_uart_clk),
-  .rst(reset_ah),
+// cache dmc_inst (
+//   .clk(w_uart_clk),
+//   .rst(reset_ah),
 
-  /* BEGIN interface with DDR3 arbiter */
-  // R/W
-  .cache_ddr3_addr(cache_ddr3_addr),
-  .cache_ddr3_req(cache_ddr3_req),
-  .cache_ddr3_rw_n(cache_ddr3_rw_n), // 1 = Read, 0 = Write
-  .cache_ddr3_ready(ddr3_cache_ready),
-  // R
-  .cache_ddr3_din(w128_phy_rddata),
-  .cache_ddr3_din_valid(w_phy_rddata_valid),
-  // W
-  .cache_ddr3_dout(cache_ddr3_dout),
-  .cache_ddr3_wrdm(cache_ddr3_wrdm),
-  // output logic          cache_ddr3_dout_valid,
-  /* END interface with DDR3 arbiter */
+//   /* BEGIN interface with DDR3 arbiter */
+//   // R/W
+//   .cache_ddr3_addr(cache_ddr3_addr),
+//   .cache_ddr3_req(cache_ddr3_req),
+//   .cache_ddr3_rw_n(cache_ddr3_rw_n), // 1 = Read, 0 = Write
+//   .cache_ddr3_ready(ddr3_cache_ready),
+//   // R
+//   .cache_ddr3_din(w128_phy_rddata),
+//   .cache_ddr3_din_valid(w_phy_rddata_valid),
+//   // W
+//   .cache_ddr3_dout(cache_ddr3_dout),
+//   .cache_ddr3_wrdm(cache_ddr3_wrdm),
+//   // output logic          cache_ddr3_dout_valid,
+//   /* END interface with DDR3 arbiter */
 
-  /* BEGIN interface with Z-buffer */
-  .zbuf_addr(zbuf_addr),
-  .zbuf_req(zbuf_req),
-  .zbuf_rw_n(zbuf_rw_n), // 1 = Read, 0 = Write
-  .zbuf_din(zbuf_din),
-  .zbuf_dout(zbuf_dout),
-  .zbuf_dout_valid(zbuf_valid), // asserted when read value is valid OR value has been successfully written
+//   /* BEGIN interface with Z-buffer */
+//   .zbuf_addr(zbuf_addr),
+//   .zbuf_req(zbuf_req),
+//   .zbuf_rw_n(zbuf_rw_n), // 1 = Read, 0 = Write
+//   .zbuf_din(zbuf_din),
+//   .zbuf_dout(zbuf_dout),
+//   .zbuf_dout_valid(zbuf_valid), // asserted when read value is valid OR value has been successfully written
 
-	.cache_is_active(cache_active)
-);
+// 	.cache_is_active(cache_active)
+// );
 
-//// write enable logic ~ only write when we are in active mode & ddr3 controller FIFO is able to recieve new commands
+// write enable logic ~ only write when we are in active mode & ddr3 controller FIFO is able to recieve new commands
 //assign ddr3_mem_wrdy = vde && !w_phy_cmd_full;
 
 //logic wr_success;
@@ -559,31 +567,23 @@ always_comb begin
  	Because cache is further in the pipline, its given priority because wb_controller is more resistant to pipeline stalls
  	*/
 	if (fbuf_active) begin
-    ddr3_mem_wrdy = 1'b0;
-    ddr3_cache_ready = 1'b0;
-    app_addr = rd_addr;
-    r_phy_cmd_en = rd_cmd_en;
-    r_phy_cmd_sel = rd_cmd_sel;
-    r128_wrdata = 'b0;
+        ddr3_mem_wrdy = 1'b0;
+    //    ddr3_cache_ready = 1'b0;
+        app_addr = rd_addr;
+        r_phy_cmd_en = rd_cmd_en;
+        r_phy_cmd_sel = rd_cmd_sel;
+        r128_wrdata = 'b0;
 	end else if (init_active) begin
 	// if initialization is active, frame buffer CAN interrupt it in order to display
-		ddr3_cache_ready = 1'b0;
+//		ddr3_cache_ready = 1'b0;
 		ddr3_mem_wrdy = ~wr_cmd_en;
 		app_addr = staging_buffer_addr + wr_addr;
 		r_phy_cmd_en = wr_cmd_en;
 		r_phy_cmd_sel = wr_cmd_sel;
 		r128_wrdata = ddr3_wr_data;
-	end else if (cache_active) begin
-	// cache is uninterruptable
-	  ddr3_cache_ready = !w_phy_cmd_full;
-		ddr3_mem_wrdy = 1'b0;
-		app_addr = cache_ddr3_addr;
-		r_phy_cmd_en = cache_ddr3_req;
-		r_phy_cmd_sel = cache_ddr3_rw_n;
-		r128_wrdata = cache_ddr3_dout;
 	end else begin
 		ddr3_mem_wrdy = ~wr_cmd_en;
-		ddr3_cache_ready = 1'b0;
+//		ddr3_cache_ready = 1'b0;
 		app_addr = staging_buffer_addr + wr_addr;
 		r_phy_cmd_en = wr_cmd_en;
 		r_phy_cmd_sel = wr_cmd_sel;
