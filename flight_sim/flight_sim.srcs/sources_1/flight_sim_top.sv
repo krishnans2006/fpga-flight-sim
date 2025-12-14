@@ -56,7 +56,9 @@ module flight_sim_top (
   // If this line is commented out, everything breaks lol
   // I have no idea why or how
   // Have fun!
-  // assign led[15] = gpio_usb_int_tri_i;
+  assign led[15] = gpio_usb_int_tri_i;
+
+  logic [255:0] mb_data;
 
   mb_block mb_block_inst (
       .clk_100MHz(clk),
@@ -64,6 +66,8 @@ module flight_sim_top (
 
       .uartlite_rxd(uartlite_rxd),
       .uartlite_txd(uartlite_txd),
+
+      .data(mb_data),
 
       .gpio_usb_int_tri_i(gpio_usb_int_tri_i),
       .gpio_usb_rst_tri_o(gpio_usb_rst_tri_o),

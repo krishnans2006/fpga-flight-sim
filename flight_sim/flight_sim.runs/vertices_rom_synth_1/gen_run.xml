@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="vertices_rom_synth_1" LaunchPart="xc7s50csga324-1" LaunchTime="1765648434">
+<GenRun Id="vertices_rom_synth_1" LaunchPart="xc7s50csga324-1" LaunchTime="1765679714">
   <File Type="PA-TCL" Name="vertices_rom.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="vertices_rom_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="vertices_rom_reports.tcl"/>
@@ -41,6 +41,14 @@
       <FileInfo>
         <Attr Name="ImportPath" Val="$PPRDIR/../ddr3_renderer/ddr3_renderer.srcs/utils_1/imports/synth_1/ddr_renderer_top.dcp"/>
         <Attr Name="ImportTime" Val="1765122932"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedInSteps" Val="synth_1"/>
+        <Attr Name="AutoDcp" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/utils_1/imports/synth_1/flight_sim_top.dcp">
+      <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedInSteps" Val="synth_1"/>
