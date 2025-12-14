@@ -71,7 +71,9 @@ struct plane_state {
 
     // Velocity (in the forward direction)
     float airspeed;
-    // Note: vertical speed does not need to be stored - it can be derived from pitch and airspeed
+    float climb_rate;
+    // Note: vertical speed (climb rate) does not need to be stored for recalculation since it can
+    // be derived from pitch and airspeed; however, we store it for export purposes
 };
 
 // We want to use an AXI IP to export these values to hardware
@@ -110,13 +112,21 @@ struct plane_state_export {
 
     // We also need to tell the hardware how to draw the artificial horizon
     // This will use a y-displacement (for pitch) and a rotation (for roll)
-    // The artificial horizon is drawn as a 64x64 square, so max displacement is 32 pixels
-    int8_t ah_y_disp;
+    // The artificial horizon is drawn as a 64x64 square, and 64 pixels can span 64 degrees
+    // So, we use 1 pixel per degree for pitch displacement, which means this can be calculated
+    // in hardware (by parsing the first two digits of the pitch value above)
+    // For roll, we can use 1 degree = 1 pixel of rotation, so a similar situation applies
 };
+
+// Bit flags for plane_state_export.status
+#define PSE_READY (1 << 0)
 
 void init_plane_state(struct plane_state* state);
 void update_plane_state(struct plane_state* state, struct usb_report* report, float time_step);
+void init_plane_export(struct plane_state_export* export_state);
 void export_plane_state(struct plane_state* state, struct plane_state_export* export_state);
 
 float d_sin(float degrees);
 float d_cos(float degrees);
+uint8_t get_nth_digit_d(double num, int n);
+uint8_t get_nth_digit(float num, int n);

@@ -3,7 +3,6 @@
 #define __MICROBLAZE__
 #endif
 
-#include <stdio.h>
 #include "project_config.h"
 
 BYTE bigbuf[256];   //256 bytes

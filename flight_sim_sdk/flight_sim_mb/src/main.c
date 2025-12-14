@@ -3,7 +3,7 @@
 #endif
 
 #include <xgpio.h>
-#include "flight_sim.h"
+#include "gpio.h"
 #include "platform.h"
 #include "sys/unistd.h"
 #include "xil_printf.h"
@@ -19,6 +19,9 @@ int main() {
 
     struct plane_state plane;
     init_plane_state(&plane);
+
+    struct plane_state_export plane_export;
+    init_plane_export(&plane_export);
 
     while (TRUE) {
         // Populate USB report
@@ -55,6 +58,12 @@ int main() {
             (int)(plane.airspeed * 1000),
             (int)(plane.mass)
         );
+
+        // Export plane state to plane_state_export struct
+        export_plane_state(&plane, &plane_export);
+
+        // Write exported state to GPIO MMIO
+        write_plane_export_to_gpio(&plane_export);
 
         sleep(1);
     }

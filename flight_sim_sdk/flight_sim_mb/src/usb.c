@@ -2,7 +2,6 @@
 #define __MICROBLAZE__
 #endif
 
-#include <stdio.h>
 #include "lw_usb/GenericMacros.h"
 #include "lw_usb/GenericTypeDefs.h"
 #include "lw_usb/HID.h"

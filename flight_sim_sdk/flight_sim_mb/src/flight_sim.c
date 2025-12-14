@@ -1,5 +1,9 @@
 #include "flight_sim.h"
 #include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MSB_8 (1 << 7)
 
 // First, define default plane characteristics
 
@@ -180,6 +184,7 @@ void update_plane_state(struct plane_state* state, struct usb_report* report, fl
     // Update altitude
     float d_altitude = state->airspeed * d_sin(state->pitch);
     state->altitude += d_altitude * time_step;
+    state->climb_rate = d_altitude;  // for export purposes
 
     // Altitude-based pitch and roll limits
     if (state->altitude < 5) {
@@ -192,6 +197,100 @@ void update_plane_state(struct plane_state* state, struct usb_report* report, fl
     }
 }
 
+// Set all fields to zero
+// Note - the struct is NOT memory-mapped or volatile
+// Writing to MMIO is handled in gpio.c
+void init_plane_export(struct plane_state_export* export_state) {
+    *export_state = (struct plane_state_export){0};
+}
+
+void export_plane_state(struct plane_state* state, struct plane_state_export* export_state) {
+    // We assume all fields are initialized, either to zero or to valid values from the previous iteration
+
+    // Latitude: [][][].[][][][][]
+    double lat = state->latitude;
+    uint8_t lat3 = (get_nth_digit_d(lat, 2) << 4) | get_nth_digit_d(lat, 1);
+    uint8_t lat2 = (get_nth_digit_d(lat, 0) << 4) | get_nth_digit_d(lat, -1);
+    uint8_t lat1 = (get_nth_digit_d(lat, -2) << 4) | get_nth_digit_d(lat, -3);
+    uint8_t lat0 = (get_nth_digit_d(lat, -4) << 4) | get_nth_digit_d(lat, -5);
+    if (lat < 0) {
+        lat3 |= MSB_8;
+    }
+    export_state->latitude = (lat3 << 24) | (lat2 << 16) | (lat1 << 8) | lat0;
+
+    // Longitude: [][][].[][][][][]
+    double lon = state->longitude;
+    uint8_t lon3 = (get_nth_digit_d(lon, 2) << 4) | get_nth_digit_d(lon, 1);
+    uint8_t lon2 = (get_nth_digit_d(lon, 0) << 4) | get_nth_digit_d(lon, -1);
+    uint8_t lon1 = (get_nth_digit_d(lon, -2) << 4) | get_nth_digit_d(lon, -3);
+    uint8_t lon0 = (get_nth_digit_d(lon, -4) << 4) | get_nth_digit_d(lon, -5);
+    if (lon < 0) {
+        lon3 |= MSB_8;
+    }
+    export_state->longitude = (lon3 << 24) | (lon2 << 16) | (lon1 << 8) | lon0;
+
+    // Altitude: [][][][][].[][][]
+    float alt = state->altitude;
+    uint8_t alt3 = (get_nth_digit(alt, 4) << 4) | get_nth_digit(alt, 3);
+    uint8_t alt2 = (get_nth_digit(alt, 2) << 4) | get_nth_digit(alt, 1);
+    uint8_t alt1 = (get_nth_digit(alt, 0) << 4) | get_nth_digit(alt, -1);
+    uint8_t alt0 = (get_nth_digit(alt, -2) << 4) | get_nth_digit(alt, -3);
+    export_state->altitude = (alt3 << 24) | (alt2 << 16) | (alt1 << 8) | alt0;
+    // Altitude is always positive
+
+    // Airspeed: [][][].[]
+    float airspeed = state->airspeed;
+    uint8_t airspeed1 = (get_nth_digit(airspeed, 2) << 4) | get_nth_digit(airspeed, 1);
+    uint8_t airspeed0 = (get_nth_digit(airspeed, 0) << 4) | get_nth_digit(airspeed, -1);
+    export_state->airspeed = (airspeed1 << 8) | airspeed0;
+    // Airspeed is always positive
+
+    // Pitch: [][].[][]
+    float pitch = state->pitch;
+    uint8_t pitch1 = (get_nth_digit(pitch, 1) << 4) | get_nth_digit(pitch, 0);
+    uint8_t pitch0 = (get_nth_digit(pitch, -1) << 4) | get_nth_digit(pitch, -2);
+    if (pitch < 0) {
+        pitch1 |= MSB_8;
+    }
+    export_state->pitch = (pitch1 << 8) | pitch0;
+
+    // Roll: [][].[][]
+    float roll = state->roll;
+    uint8_t roll1 = (get_nth_digit(roll, 1) << 4) | get_nth_digit(roll, 0);
+    uint8_t roll0 = (get_nth_digit(roll, -1) << 4) | get_nth_digit(roll, -2);
+    if (roll < 0) {
+        roll1 |= MSB_8;
+    }
+    export_state->roll = (roll1 << 8) | roll0;
+
+    // Yaw: [][].[][]
+    float yaw = state->yaw;
+    uint8_t yaw1 = (get_nth_digit(yaw, 1) << 4) | get_nth_digit(yaw, 0);
+    uint8_t yaw0 = (get_nth_digit(yaw, -1) << 4) | get_nth_digit(yaw, -2);
+    if (yaw < 0) {
+        yaw1 |= MSB_8;
+    }
+    export_state->yaw = (yaw1 << 8) | yaw0;
+
+    // Throttle: [][][].[]
+    float throttle = state->throttle;
+    uint8_t throttle1 = (get_nth_digit(throttle, 2) << 4) | get_nth_digit(throttle, 1);
+    uint8_t throttle0 = (get_nth_digit(throttle, 0) << 4) | get_nth_digit(throttle, -1);
+    export_state->throttle = (throttle1 << 8) | throttle0;
+    // Throttle is always positive
+
+    // Climb rate: [][][][].
+    float climb_rate = state->climb_rate;
+    uint8_t climb_rate1 = (get_nth_digit(climb_rate, 3) << 4) | get_nth_digit(climb_rate, 2);
+    uint8_t climb_rate0 = (get_nth_digit(climb_rate, 1) << 4) | get_nth_digit(climb_rate, 0);
+    if (climb_rate < 0) {
+        climb_rate1 |= MSB_8;
+    }
+    export_state->climb_rate = (climb_rate1 << 8) | climb_rate0;
+
+    // Do not set ready bit here; it is handled in gpio.c
+}
+
 float d_sin(float degrees) {
     return sin(degrees * M_PI / 180);
 }
@@ -199,4 +298,16 @@ float d_sin(float degrees) {
 
 float d_cos(float degrees) {
     return cos(degrees * M_PI / 180);
+}
+
+// digit 0 is the ones place, digit 1 is the tens place,
+// digit -1 is the tenths place, digit -2 is the hundredths place, etc.
+uint8_t get_nth_digit_d(double num, int n) {
+    float shifted = fabs(num) / pow(10, n);
+    return ((uint8_t) shifted) % 10;
+}
+
+uint8_t get_nth_digit(float num, int n) {
+    float shifted = fabs(num) / pow(10, n);
+    return ((uint8_t) shifted) % 10;
 }

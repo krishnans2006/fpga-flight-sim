@@ -8,12 +8,9 @@
 
 #define _MAX3421E_C_
 
-#include "stdlib.h"
-#include "stdio.h"
 #include "string.h"
 #include "project_config.h"
 #include "xparameters.h"
-#include <unistd.h>
 #include <xspi.h>
 #include <xgpio.h>
 #include <xtmrctr.h>
