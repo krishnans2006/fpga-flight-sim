@@ -14,7 +14,6 @@
 #include <xspi.h>
 #include <xgpio.h>
 #include <xtmrctr.h>
-#include "xintc.h"
 
 /* variables and data structures */
 
@@ -292,7 +291,7 @@ void MAX3421E_init(void) {
 	MAX3421E_reset();                                //stop/start the oscillator
 
 	//start USB timer
-    Status = XTmrCtr_Initialize(&Usb_timer, XPAR_TIMER_USB_DEVICE_ID);
+    Status = XTmrCtr_Initialize(&Usb_timer, XPAR_TIMER_DEVICE_ID);
     if (Status != XST_SUCCESS) {
 			xil_printf ("Timer instantiation failed\n");
 	}
@@ -327,7 +326,7 @@ void MAX3421E_init(void) {
 
 /* MAX3421 state change task and interrupt handler */
 void MAX3421E_Task(void) {
-	if (XGpio_DiscreteRead(&Gpio_int, 1) & 0x01 == 0) {
+	if ((XGpio_DiscreteRead(&Gpio_int, 1) & 0x01) == 0) {
 		xil_printf("MAX interrupt\n\r");
 		MaxIntHandler();
 	}

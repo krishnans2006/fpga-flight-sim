@@ -28,3 +28,13 @@ platform generate -domains
 platform active {flight_sim_top}
 platform config -updatehw {C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim_top.xsa}
 platform generate -domains 
+platform active {flight_sim_top}
+platform config -updatehw {C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim_top.xsa}
+platform generate -domains standalone_microblaze_0 
+platform generate
+platform config -updatehw {C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim_top.xsa}
+platform generate -domains 
+platform config -updatehw {C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim_top.xsa}
+platform generate -domains 
+platform config -updatehw {C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim_top.xsa}
+platform generate -domains 

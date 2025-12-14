@@ -1,7 +1,5 @@
 #include "flight_sim.h"
 #include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 #define MSB_8 (1 << 7)
 
