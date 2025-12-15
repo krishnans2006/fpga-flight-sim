@@ -25,7 +25,7 @@ module ddr_renderer_top(
 	input   reset_ah,
 	input 	[7:0]	SW,
 	input	[3:0]	BTN,
-	output	[3:0]	LED,
+	// output	[3:0]	LED,
 	output	[2:0]	RGBLED0,
 	output	[2:0]	RGBLED1,
 	
@@ -56,7 +56,9 @@ module ddr_renderer_top(
     output logic       hdmi_tmds_clk_n,
     output logic       hdmi_tmds_clk_p,
     output logic [2:0] hdmi_tmds_data_n,
-    output logic [2:0] hdmi_tmds_data_p
+    output logic [2:0] hdmi_tmds_data_p,
+
+    input logic [127:0] mb_data
 );
 
 localparam lp_DDR_FREQ = 400;
@@ -65,7 +67,7 @@ localparam lp_HORIZ_PIXEL_WIDTH = 640;
 ddr3_arbiter ddr3_arbiter_inst (
   .DDR3_CLK100(DDR3_CLK100),
   .SW(SW[3:0]),
-  .LED(LED),
+  // .LED(LED),
   .RGBLED0(RGBLED0[0]),
 
   // ### BEGIN DDR3 IO ###
@@ -332,10 +334,10 @@ always_ff @(posedge w_uart_clk) begin
 		if (~vsync && old_vga_vsync) begin
 		  rd_addr_offset <= 27'b0;
 		  // on falling edge of vsync, swap buffers
-			if (swap_toggle) begin
+			// if (swap_toggle) begin
 				staging_buffer_addr <= output_buffer_addr;
 				output_buffer_addr  <= staging_buffer_addr;
-			end
+			// end
 
 			swap_toggle <= ~swap_toggle;
 
@@ -393,6 +395,8 @@ graphics_top graphics_inst (
   .init(init_active),
 	.wb_active(wb_active),
 
+  .mb_data(mb_data),
+
 	// .zbuf_cache_addr(zbuf_addr),
   // .zbuf_cache_req(zbuf_req),
   // .zbuf_cache_rw_n(zbuf_rw_n), // 1 = Read, 0 = Write
@@ -402,7 +406,7 @@ graphics_top graphics_inst (
   
   // this is for cool graphics :)
   .vsync_cntr(vga_vsync_counter),
-  .swap((~vsync && old_vga_vsync && swap_toggle)),
+  .swap((~vsync && old_vga_vsync)),
   .fselect(SW[7:4])
 );
 

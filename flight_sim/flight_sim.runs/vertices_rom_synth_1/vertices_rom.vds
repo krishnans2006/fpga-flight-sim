@@ -2,21 +2,16 @@
 # Vivado v2022.2 (64-bit)
 # SW Build 3671981 on Fri Oct 14 05:00:03 MDT 2022
 # IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
-<<<<<<< HEAD
-# Start of session at: Sat Dec 13 20:35:23 2025
-# Process ID: 34784
+# Start of session at: Sun Dec 14 17:27:52 2025
+# Process ID: 5416
 # Current directory: C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.runs/vertices_rom_synth_1
-=======
-# Start of session at: Sun Dec 14 08:52:28 2025
-# Process ID: 1792
-# Current directory: C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/vertices_rom_synth_1
->>>>>>> 0284568 (add transformation matrix module)
 # Command line: vivado.exe -log vertices_rom.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source vertices_rom.tcl
 # Log file: C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.runs/vertices_rom_synth_1/vertices_rom.vds
 # Journal file: C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.runs/vertices_rom_synth_1\vivado.jou
 # Running On: Krishnan-Win, OS: Windows, CPU Frequency: 3793 MHz, CPU Physical cores: 16, Host memory: 33651 MB
 #-----------------------------------------------------------
 source vertices_rom.tcl -notrace
+create_project: Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 372.848 ; gain = 51.781
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/krishnan/Documents/fpga-flight-sim/IP'.
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2022.2/data/ip'.
@@ -28,17 +23,10 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7s50'
 INFO: [Device 21-403] Loading part xc7s50csga324-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-<<<<<<< HEAD
-INFO: [Synth 8-7075] Helper process launched with PID 16248
+INFO: [Synth 8-7075] Helper process launched with PID 23956
 INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [C:/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1186.641 ; gain = 407.629
-=======
-INFO: [Synth 8-7075] Helper process launched with PID 30888
-INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [C:/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
----------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1815.945 ; gain = 406.781
->>>>>>> 0284568 (add transformation matrix module)
+Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1186.441 ; gain = 408.203
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'vertices_rom' [c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/vertices_rom_1/synth/vertices_rom.vhd:70]
 	Parameter C_FAMILY bound to: spartan7 - type: string 
@@ -220,31 +208,18 @@ WARNING: [Synth 8-7129] Port DBITERR_I in module blk_mem_output_block is either 
 WARNING: [Synth 8-7129] Port RDADDRECC_I[3] in module blk_mem_output_block is either unconnected or has no load
 INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-<<<<<<< HEAD
-Finished RTL Elaboration : Time (s): cpu = 00:00:17 ; elapsed = 00:00:19 . Memory (MB): peak = 1522.602 ; gain = 743.590
-=======
-Finished RTL Elaboration : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 2154.941 ; gain = 745.777
->>>>>>> 0284568 (add transformation matrix module)
+Finished RTL Elaboration : Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 1523.328 ; gain = 745.090
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-<<<<<<< HEAD
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:17 ; elapsed = 00:00:19 . Memory (MB): peak = 1522.602 ; gain = 743.590
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1523.328 ; gain = 745.090
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:17 ; elapsed = 00:00:19 . Memory (MB): peak = 1522.602 ; gain = 743.590
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1523.328 ; gain = 745.090
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.013 . Memory (MB): peak = 1522.602 ; gain = 0.000
-=======
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 2154.941 ; gain = 745.777
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 2154.941 ; gain = 745.777
----------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.011 . Memory (MB): peak = 2154.941 ; gain = 0.000
->>>>>>> 0284568 (add transformation matrix module)
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.012 . Memory (MB): peak = 1523.328 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 2 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -257,55 +232,32 @@ Parsing XDC File [C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_
 Finished Parsing XDC File [C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.runs/vertices_rom_synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-<<<<<<< HEAD
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1522.602 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1523.328 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.027 . Memory (MB): peak = 1522.602 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.021 . Memory (MB): peak = 1523.328 ; gain = 0.000
 INFO: [Designutils 20-5008] Incremental synthesis strategy off
 INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [C:/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:24 ; elapsed = 00:00:27 . Memory (MB): peak = 1522.602 ; gain = 743.590
-=======
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2154.941 ; gain = 0.000
-INFO: [Project 1-111] Unisim Transformation Summary:
-No Unisim elements were transformed.
-
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.024 . Memory (MB): peak = 2154.941 ; gain = 0.000
-INFO: [Designutils 20-5008] Incremental synthesis strategy off
-INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [C:/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
----------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 2154.941 ; gain = 745.777
->>>>>>> 0284568 (add transformation matrix module)
+Finished Constraint Validation : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1523.328 ; gain = 745.090
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7s50csga324-1
 ---------------------------------------------------------------------------------
-<<<<<<< HEAD
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:24 ; elapsed = 00:00:27 . Memory (MB): peak = 1522.602 ; gain = 743.590
-=======
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 2154.941 ; gain = 745.777
->>>>>>> 0284568 (add transformation matrix module)
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1523.328 ; gain = 745.090
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 Applied set_property KEEP_HIERARCHY = SOFT for U0. (constraint file  C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.runs/vertices_rom_synth_1/dont_touch.xdc, line 9).
 ---------------------------------------------------------------------------------
-<<<<<<< HEAD
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:24 ; elapsed = 00:00:27 . Memory (MB): peak = 1522.602 ; gain = 743.590
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1523.328 ; gain = 745.090
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:25 ; elapsed = 00:00:27 . Memory (MB): peak = 1522.602 ; gain = 743.590
-=======
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 2154.941 ; gain = 745.777
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 2154.941 ; gain = 745.777
->>>>>>> 0284568 (add transformation matrix module)
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 1523.328 ; gain = 745.090
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -328,41 +280,25 @@ Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 ---------------------------------------------------------------------------------
-<<<<<<< HEAD
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:26 ; elapsed = 00:00:29 . Memory (MB): peak = 1522.602 ; gain = 743.590
-=======
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 2154.941 ; gain = 745.777
->>>>>>> 0284568 (add transformation matrix module)
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1523.328 ; gain = 745.090
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-<<<<<<< HEAD
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:30 ; elapsed = 00:00:33 . Memory (MB): peak = 1522.602 ; gain = 743.590
-=======
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 2154.941 ; gain = 745.777
->>>>>>> 0284568 (add transformation matrix module)
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:28 ; elapsed = 00:00:30 . Memory (MB): peak = 1523.328 ; gain = 745.090
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-<<<<<<< HEAD
-Finished Timing Optimization : Time (s): cpu = 00:00:30 ; elapsed = 00:00:33 . Memory (MB): peak = 1522.602 ; gain = 743.590
-=======
-Finished Timing Optimization : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 2154.941 ; gain = 745.777
->>>>>>> 0284568 (add transformation matrix module)
+Finished Timing Optimization : Time (s): cpu = 00:00:28 ; elapsed = 00:00:30 . Memory (MB): peak = 1523.328 ; gain = 745.090
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-<<<<<<< HEAD
-Finished Technology Mapping : Time (s): cpu = 00:00:30 ; elapsed = 00:00:33 . Memory (MB): peak = 1522.602 ; gain = 743.590
-=======
-Finished Technology Mapping : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 2154.941 ; gain = 745.777
->>>>>>> 0284568 (add transformation matrix module)
+Finished Technology Mapping : Time (s): cpu = 00:00:28 ; elapsed = 00:00:30 . Memory (MB): peak = 1523.328 ; gain = 745.090
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -380,61 +316,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-<<<<<<< HEAD
-Finished IO Insertion : Time (s): cpu = 00:00:34 ; elapsed = 00:00:37 . Memory (MB): peak = 1522.602 ; gain = 743.590
-=======
-Finished IO Insertion : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 2154.941 ; gain = 745.777
->>>>>>> 0284568 (add transformation matrix module)
+Finished IO Insertion : Time (s): cpu = 00:00:31 ; elapsed = 00:00:33 . Memory (MB): peak = 1523.328 ; gain = 745.090
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-<<<<<<< HEAD
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:34 ; elapsed = 00:00:37 . Memory (MB): peak = 1522.602 ; gain = 743.590
-=======
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 2154.941 ; gain = 745.777
->>>>>>> 0284568 (add transformation matrix module)
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:31 ; elapsed = 00:00:33 . Memory (MB): peak = 1523.328 ; gain = 745.090
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-<<<<<<< HEAD
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:34 ; elapsed = 00:00:37 . Memory (MB): peak = 1522.602 ; gain = 743.590
-=======
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 2154.941 ; gain = 745.777
->>>>>>> 0284568 (add transformation matrix module)
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:31 ; elapsed = 00:00:33 . Memory (MB): peak = 1523.328 ; gain = 745.090
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-<<<<<<< HEAD
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:34 ; elapsed = 00:00:37 . Memory (MB): peak = 1522.602 ; gain = 743.590
-=======
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 2154.941 ; gain = 745.777
->>>>>>> 0284568 (add transformation matrix module)
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:31 ; elapsed = 00:00:33 . Memory (MB): peak = 1523.328 ; gain = 745.090
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-<<<<<<< HEAD
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:34 ; elapsed = 00:00:37 . Memory (MB): peak = 1522.602 ; gain = 743.590
-=======
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 2154.941 ; gain = 745.777
->>>>>>> 0284568 (add transformation matrix module)
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:31 ; elapsed = 00:00:33 . Memory (MB): peak = 1523.328 ; gain = 745.090
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-<<<<<<< HEAD
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:34 ; elapsed = 00:00:37 . Memory (MB): peak = 1522.602 ; gain = 743.590
-=======
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 2154.941 ; gain = 745.777
->>>>>>> 0284568 (add transformation matrix module)
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:31 ; elapsed = 00:00:33 . Memory (MB): peak = 1523.328 ; gain = 745.090
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -454,32 +366,18 @@ Report Cell Usage:
 |2     |RAMB36E1 |     1|
 +------+---------+------+
 ---------------------------------------------------------------------------------
-<<<<<<< HEAD
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:34 ; elapsed = 00:00:37 . Memory (MB): peak = 1522.602 ; gain = 743.590
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:31 ; elapsed = 00:00:33 . Memory (MB): peak = 1523.328 ; gain = 745.090
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 319 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:15 ; elapsed = 00:00:35 . Memory (MB): peak = 1522.602 ; gain = 743.590
-Synthesis Optimization Complete : Time (s): cpu = 00:00:34 ; elapsed = 00:00:38 . Memory (MB): peak = 1522.602 ; gain = 743.590
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:13 ; elapsed = 00:00:32 . Memory (MB): peak = 1523.328 ; gain = 745.090
+Synthesis Optimization Complete : Time (s): cpu = 00:00:31 ; elapsed = 00:00:34 . Memory (MB): peak = 1523.328 ; gain = 745.090
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.009 . Memory (MB): peak = 1522.602 ; gain = 0.000
-=======
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 2154.941 ; gain = 745.777
----------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 319 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:12 ; elapsed = 00:00:26 . Memory (MB): peak = 2154.941 ; gain = 745.777
-Synthesis Optimization Complete : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 2154.941 ; gain = 745.777
-INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 2154.941 ; gain = 0.000
->>>>>>> 0284568 (add transformation matrix module)
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1523.328 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 2 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-<<<<<<< HEAD
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1522.602 ; gain = 0.000
-=======
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2154.941 ; gain = 0.000
->>>>>>> 0284568 (add transformation matrix module)
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1523.328 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
@@ -487,20 +385,10 @@ Synth Design complete, checksum: 9fc73ef
 INFO: [Common 17-83] Releasing license: Synthesis
 27 Infos, 101 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-<<<<<<< HEAD
-synth_design: Time (s): cpu = 00:00:37 ; elapsed = 00:00:42 . Memory (MB): peak = 1522.602 ; gain = 1118.828
+synth_design: Time (s): cpu = 00:00:35 ; elapsed = 00:00:38 . Memory (MB): peak = 1523.328 ; gain = 1119.645
 INFO: [Common 17-1381] The checkpoint 'C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.runs/vertices_rom_synth_1/vertices_rom.dcp' has been generated.
 INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP vertices_rom, cache-ID = fbdb8beb98834528
-=======
-synth_design: Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 2154.941 ; gain = 1120.316
-INFO: [Common 17-1381] The checkpoint 'C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.runs/vertices_rom_synth_1/vertices_rom.dcp' has been generated.
-INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP vertices_rom, cache-ID = 55c569679cedd15d
->>>>>>> 0284568 (add transformation matrix module)
 INFO: [Coretcl 2-1174] Renamed 8 cell refs.
 INFO: [Common 17-1381] The checkpoint 'C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.runs/vertices_rom_synth_1/vertices_rom.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file vertices_rom_utilization_synth.rpt -pb vertices_rom_utilization_synth.pb
-<<<<<<< HEAD
-INFO: [Common 17-206] Exiting Vivado at Sat Dec 13 20:36:13 2025...
-=======
-INFO: [Common 17-206] Exiting Vivado at Sun Dec 14 08:53:07 2025...
->>>>>>> 0284568 (add transformation matrix module)
+INFO: [Common 17-206] Exiting Vivado at Sun Dec 14 17:28:39 2025...

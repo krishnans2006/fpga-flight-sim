@@ -1,13 +1,8 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-<<<<<<< HEAD
-| Date             : Sat Dec 13 22:07:32 2025
+| Date             : Sun Dec 14 22:38:46 2025
 | Host             : Krishnan-Win running 64-bit major release  (build 9200)
-=======
-| Date             : Sun Dec 14 09:03:40 2025
-| Host             : Aniketh_x86-64 running 64-bit major release  (build 9200)
->>>>>>> 0284568 (add transformation matrix module)
 | Command          : report_power -file flight_sim_top_power_routed.rpt -pb flight_sim_top_power_summary_routed.pb -rpx flight_sim_top_power_routed.rpx
 | Design           : flight_sim_top
 | Device           : xc7s50csga324-1
@@ -35,25 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-<<<<<<< HEAD
-| Total On-Chip Power (W)  | 1.085        |
+| Total On-Chip Power (W)  | 1.030        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 1.008        |
-| Device Static (W)        | 0.078        |
+| Dynamic (W)              | 0.953        |
+| Device Static (W)        | 0.077        |
 | Effective TJA (C/W)      | 4.9          |
-| Max Ambient (C)          | 79.6         |
-| Junction Temperature (C) | 30.4         |
-=======
-| Total On-Chip Power (W)  | 0.980        |
-| Design Power Budget (W)  | Unspecified* |
-| Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.903        |
-| Device Static (W)        | 0.076        |
-| Effective TJA (C/W)      | 4.9          |
-| Max Ambient (C)          | 80.2         |
-| Junction Temperature (C) | 29.8         |
->>>>>>> 0284568 (add transformation matrix module)
+| Max Ambient (C)          | 79.9         |
+| Junction Temperature (C) | 30.1         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -68,41 +52,22 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-<<<<<<< HEAD
-| Clocks                   |     0.056 |       18 |       --- |             --- |
-| Slice Logic              |     0.040 |    19141 |       --- |             --- |
-|   LUT as Logic           |     0.031 |     6926 |     32600 |           21.25 |
-|   CARRY4                 |     0.004 |      733 |      8150 |            8.99 |
-|   Register               |     0.002 |     8283 |     65200 |           12.70 |
-|   LUT as Shift Register  |     0.001 |      327 |      9600 |            3.41 |
+| Clocks                   |     0.054 |       18 |       --- |             --- |
+| Slice Logic              |     0.041 |    18038 |       --- |             --- |
+|   LUT as Logic           |     0.032 |     6596 |     32600 |           20.23 |
+|   CARRY4                 |     0.004 |      729 |      8150 |            8.94 |
+|   Register               |     0.002 |     7493 |     65200 |           11.49 |
+|   LUT as Shift Register  |     0.001 |      328 |      9600 |            3.42 |
 |   LUT as Distributed RAM |    <0.001 |      172 |      9600 |            1.79 |
 |   F7/F8 Muxes            |    <0.001 |       37 |     32600 |            0.11 |
-|   Others                 |     0.000 |     1123 |       --- |             --- |
-| Signals                  |     0.067 |    18014 |       --- |             --- |
-| Block RAM                |     0.096 |     45.5 |        75 |           60.67 |
+|   Others                 |     0.000 |     1107 |       --- |             --- |
+| Signals                  |     0.069 |    16390 |       --- |             --- |
+| Block RAM                |     0.039 |     37.5 |        75 |           50.00 |
 | MMCM                     |     0.311 |        3 |         5 |           60.00 |
-| DSPs                     |     0.054 |       71 |       120 |           59.17 |
-| I/O                      |     0.383 |       88 |       210 |           41.90 |
-| Static Power             |     0.078 |          |           |                 |
-| Total                    |     1.085 |          |           |                 |
-=======
-| Clocks                   |     0.053 |       18 |       --- |             --- |
-| Slice Logic              |     0.030 |    15772 |       --- |             --- |
-|   LUT as Logic           |     0.023 |     5286 |     32600 |           16.21 |
-|   CARRY4                 |     0.003 |      541 |      8150 |            6.64 |
-|   Register               |     0.002 |     6978 |     65200 |           10.70 |
-|   LUT as Shift Register  |     0.001 |      324 |      9600 |            3.38 |
-|   LUT as Distributed RAM |    <0.001 |      172 |      9600 |            1.79 |
-|   F7/F8 Muxes            |    <0.001 |       36 |     32600 |            0.11 |
-|   Others                 |     0.000 |     1027 |       --- |             --- |
-| Signals                  |     0.048 |    14841 |       --- |             --- |
-| Block RAM                |     0.023 |     19.5 |        75 |           26.00 |
-| MMCM                     |     0.311 |        3 |         5 |           60.00 |
-| DSPs                     |     0.056 |       71 |       120 |           59.17 |
-| I/O                      |     0.382 |       88 |       210 |           41.90 |
-| Static Power             |     0.076 |          |           |                 |
-| Total                    |     0.980 |          |           |                 |
->>>>>>> 0284568 (add transformation matrix module)
+| DSPs                     |     0.055 |       71 |       120 |           59.17 |
+| I/O                      |     0.384 |       88 |       210 |           41.90 |
+| Static Power             |     0.077 |          |           |                 |
+| Total                    |     1.030 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -112,11 +77,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-<<<<<<< HEAD
-| Vccint    |       1.000 |     0.333 |       0.320 |      0.013 |       NA    | Unspecified | NA         |
-=======
-| Vccint    |       1.000 |     0.235 |       0.223 |      0.012 |       NA    | Unspecified | NA         |
->>>>>>> 0284568 (add transformation matrix module)
+| Vccint    |       1.000 |     0.282 |       0.270 |      0.012 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.232 |       0.220 |      0.013 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.042 |       0.041 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -125,11 +86,7 @@ Table of Contents
 | Vcco135   |       1.350 |     0.112 |       0.111 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-<<<<<<< HEAD
-| Vccbram   |       1.000 |     0.009 |       0.008 |      0.001 |       NA    | Unspecified | NA         |
-=======
-| Vccbram   |       1.000 |     0.002 |       0.001 |      0.001 |       NA    | Unspecified | NA         |
->>>>>>> 0284568 (add transformation matrix module)
+| Vccbram   |       1.000 |     0.003 |       0.002 |      0.001 |       NA    | Unspecified | NA         |
 | Vccadc    |       1.800 |     0.020 |       0.000 |      0.020 |       NA    | Unspecified | NA         |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 
@@ -201,46 +158,26 @@ Table of Contents
 +--------------------------------+-----------+
 | Name                           | Power (W) |
 +--------------------------------+-----------+
-<<<<<<< HEAD
-| flight_sim_top                 |     1.008 |
-|   ddr_renderer_top_inst        |     0.812 |
-=======
-| flight_sim_top                 |     0.903 |
-|   ddr_renderer_top_inst        |     0.719 |
->>>>>>> 0284568 (add transformation matrix module)
+| flight_sim_top                 |     0.953 |
+|   ddr_renderer_top_inst        |     0.758 |
 |     clk_wiz                    |     0.107 |
 |       inst                     |     0.107 |
-|     ddr3_arbiter_inst          |     0.330 |
+|     ddr3_arbiter_inst          |     0.329 |
 |       clkgen_ddr3ctrl_instance |     0.100 |
-|       phy_instance             |     0.229 |
+|       phy_instance             |     0.228 |
 |     frame_buffer_inst          |     0.004 |
 |       bram0                    |     0.003 |
-<<<<<<< HEAD
-|     graphics_inst              |     0.173 |
-|       model_engine_inst        |     0.030 |
-|       projector_inst           |     0.115 |
-|       rasterizer_inst          |     0.025 |
-|       wb_controller_inst       |     0.002 |
-=======
-|     graphics_inst              |     0.143 |
-|       projector_inst           |     0.104 |
-|       rasterizer_inst          |     0.033 |
+|     graphics_inst              |     0.183 |
+|       model_engine_inst        |     0.033 |
+|       projector_inst           |     0.116 |
+|       rasterizer_inst          |     0.030 |
 |       wb_controller_inst       |     0.003 |
->>>>>>> 0284568 (add transformation matrix module)
-|       zbuffer_inst             |     0.001 |
+|       zbuffer_inst             |     0.002 |
 |     vga_to_hdmi                |     0.133 |
 |       inst                     |     0.133 |
-|   mb_block_inst                |     0.141 |
+|   mb_block_inst                |     0.139 |
 |     clk_wiz_1                  |     0.106 |
 |       inst                     |     0.106 |
-|     gpio_data_0                |     0.001 |
-|       U0                       |     0.001 |
-|     gpio_data_1                |     0.001 |
-|       U0                       |     0.001 |
-|     gpio_data_2                |     0.001 |
-|       U0                       |     0.001 |
-|     gpio_data_3                |     0.001 |
-|       U0                       |     0.001 |
 |     microblaze_0               |     0.017 |
 |       U0                       |     0.017 |
 |     microblaze_0_axi_intc      |     0.001 |

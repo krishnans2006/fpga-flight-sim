@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-<GenRun Id="impl_1" LaunchPart="xc7s50csga324-1" LaunchTime="1765684931">
-=======
-<GenRun Id="impl_1" LaunchPart="xc7s50csga324-1" LaunchTime="1765724438">
->>>>>>> 0284568 (add transformation matrix module)
+<GenRun Id="impl_1" LaunchPart="xc7s50csga324-1" LaunchTime="1765773207">
   <File Type="ROUTE-PWR" Name="flight_sim_top_power_routed.rpt"/>
   <File Type="PA-TCL" Name="flight_sim_top.tcl"/>
   <File Type="BITSTR-MMI" Name="flight_sim_top.mmi"/>
@@ -154,6 +150,13 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/sources_1/new/gpio.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/gpu/gpu_wb_controller.sv">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -170,6 +173,13 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/sources_1/gpu/model_engine.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/gpu/projector.sv">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -178,6 +188,13 @@
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/gpu/rasterizer.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/transformation.sv">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -205,16 +222,6 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-<<<<<<< HEAD
-=======
-    <File Path="$PSRCDIR/sources_1/gpu/model_engine.sv">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
     <File Path="$PSRCDIR/sources_1/ddr/cache.sv">
       <FileInfo>
         <Attr Name="AutoDisabled" Val="1"/>
@@ -223,15 +230,6 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PGENDIR/sources_1/bd/mb_block/hdl/mb_block_wrapper.v">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
->>>>>>> 0284568 (add transformation matrix module)
     <File Path="$PSRCDIR/sources_1/gpu/model/cube_faces.coe">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -308,45 +306,13 @@
     <Step Id="post_route_phys_opt_design"/>
     <Step Id="write_bitstream"/>
   </Strategy>
-<<<<<<< HEAD
+  <BlockFileSet Type="BlockSrcs" Name="clk_wiz_1"/>
+  <BlockFileSet Type="BlockSrcs" Name="cordic_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="blk_mem_gen_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="fifo_generator_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="hdmi_tx_0"/>
   <BlockFileSet Type="BlockSrcs" Name="clk_wiz_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="mb_block_axi_gpio_0_2"/>
-  <BlockFileSet Type="BlockSrcs" Name="mb_block_microblaze_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="mb_block_xbar_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="mb_block_gpio_data_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="mb_block_dlmb_v10_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="mb_block_dlmb_bram_if_cntlr_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="mb_block_ilmb_v10_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="mb_block_microblaze_0_axi_intc_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="mb_block_ilmb_bram_if_cntlr_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="div_gen_0"/>
   <BlockFileSet Type="BlockSrcs" Name="faces_rom"/>
-  <BlockFileSet Type="BlockSrcs" Name="mb_block_lmb_bram_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="mb_block_mdm_1_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="mb_block_clk_wiz_1_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="mb_block_rst_clk_wiz_1_100M_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="mb_block_axi_uartlite_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="clk_wiz_1"/>
-  <BlockFileSet Type="BlockSrcs" Name="mb_block_axi_gpio_0_3"/>
-  <BlockFileSet Type="BlockSrcs" Name="mb_block_axi_timer_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="mb_block_axi_quad_spi_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="mb_block_axi_gpio_0_4"/>
-  <BlockFileSet Type="BlockSrcs" Name="mb_block_gpio_data_1_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="mb_block_gpio_data_2_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="hdmi_tx_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="fifo_generator_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="blk_mem_gen_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="div_gen_0"/>
   <BlockFileSet Type="BlockSrcs" Name="vertices_rom"/>
-  <BlockFileSet Type="BlockSrcs" Name="blk_mem_gen_1"/>
-=======
-  <BlockFileSet Type="BlockSrcs" Name="blk_mem_gen_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="fifo_generator_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="clk_wiz_1"/>
-  <BlockFileSet Type="BlockSrcs" Name="clk_wiz_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="mb_block_microblaze_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="hdmi_tx_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="div_gen_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="mb_block_xbar_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="mb_block_bridge_0_0"/>
->>>>>>> 0284568 (add transformation matrix module)
 </GenRun>

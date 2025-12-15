@@ -1,4 +1,5 @@
 #include "usb.h"
+#include <stdint.h>
 
 // This file forms the templating for a lot of physics
 // These calculations are actually simplified greatly (turns out aircraft dynamics is hard!)

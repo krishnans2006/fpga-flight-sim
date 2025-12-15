@@ -1,7 +1,7 @@
 //Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-//Date        : Sat Dec 13 21:37:34 2025
+//Date        : Sun Dec 14 19:04:13 2025
 //Host        : Krishnan-Win running 64-bit major release  (build 9200)
 //Command     : generate_target mb_block.bd
 //Design      : mb_block
@@ -1329,10 +1329,13 @@ module m09_couplers_imp_5MFQLN
   assign m09_couplers_to_m09_couplers_WVALID = S_AXI_wvalid;
 endmodule
 
-(* CORE_GENERATION_INFO = "mb_block,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=mb_block,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=35,numReposBlks=22,numNonXlnxBlks=0,numHierBlks=13,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=13,da_board_cnt=22,da_clkrst_cnt=2,da_mb_cnt=1,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "mb_block.hwdef" *) 
+(* CORE_GENERATION_INFO = "mb_block,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=mb_block,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=34,numReposBlks=21,numNonXlnxBlks=0,numHierBlks=13,maxHierDepth=1,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=13,da_board_cnt=26,da_clkrst_cnt=2,da_mb_cnt=1,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "mb_block.hwdef" *) 
 module mb_block
    (clk_100MHz,
-    data,
+    gpio_data_0_tri_o,
+    gpio_data_1_tri_o,
+    gpio_data_2_tri_o,
+    gpio_data_3_tri_o,
     gpio_usb_int_tri_i,
     gpio_usb_rst_tri_o,
     reset_rtl_0,
@@ -1343,7 +1346,10 @@ module mb_block
     uartlite_rxd,
     uartlite_txd);
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.CLK_100MHZ CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.CLK_100MHZ, CLK_DOMAIN mb_block_clk_100MHz, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.0" *) input clk_100MHz;
-  output [255:0]data;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 gpio_data_0 " *) output [31:0]gpio_data_0_tri_o;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 gpio_data_1 " *) output [31:0]gpio_data_1_tri_o;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 gpio_data_2 " *) output [31:0]gpio_data_2_tri_o;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 gpio_data_3 " *) output [31:0]gpio_data_3_tri_o;
   (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 gpio_usb_int TRI_I" *) input [0:0]gpio_usb_int_tri_i;
   (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 gpio_usb_rst TRI_O" *) output [0:0]gpio_usb_rst_tri_o;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.RESET_RTL_0 RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.RESET_RTL_0, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) input reset_rtl_0;
@@ -1359,15 +1365,10 @@ module mb_block
   wire axi_uartlite_0_interrupt;
   wire clk_100MHz_1;
   wire clk_wiz_1_locked;
-  wire [255:0]concat_data_dout;
-  wire [31:0]gpio_data_0_gpio2_io_o;
-  wire [31:0]gpio_data_0_gpio_io_o;
-  wire [31:0]gpio_data_1_gpio2_io_o;
-  wire [31:0]gpio_data_1_gpio_io_o;
-  wire [31:0]gpio_data_2_gpio2_io_o;
-  wire [31:0]gpio_data_2_gpio_io_o;
-  wire [31:0]gpio_data_3_gpio2_io_o;
-  wire [31:0]gpio_data_3_gpio_io_o;
+  wire [31:0]gpio_data_0_GPIO_TRI_O;
+  wire [31:0]gpio_data_1_GPIO_TRI_O;
+  wire [31:0]gpio_data_2_GPIO_TRI_O;
+  wire [31:0]gpio_data_3_GPIO_TRI_O;
   wire [0:0]gpio_usb_int_GPIO_TRI_I;
   wire gpio_usb_int_ip2intc_irpt;
   wire [0:0]gpio_usb_rst_GPIO_TRI_O;
@@ -1607,7 +1608,10 @@ module mb_block
 
   assign axi_uartlite_0_UART_RxD = uartlite_rxd;
   assign clk_100MHz_1 = clk_100MHz;
-  assign data[255:0] = concat_data_dout;
+  assign gpio_data_0_tri_o[31:0] = gpio_data_0_GPIO_TRI_O;
+  assign gpio_data_1_tri_o[31:0] = gpio_data_1_GPIO_TRI_O;
+  assign gpio_data_2_tri_o[31:0] = gpio_data_2_GPIO_TRI_O;
+  assign gpio_data_3_tri_o[31:0] = gpio_data_3_GPIO_TRI_O;
   assign gpio_usb_int_GPIO_TRI_I = gpio_usb_int_tri_i[0];
   assign gpio_usb_rst_tri_o[0] = gpio_usb_rst_GPIO_TRI_O;
   assign reset_rtl_0_1 = reset_rtl_0;
@@ -1621,19 +1625,8 @@ module mb_block
         .clk_out1(microblaze_0_Clk),
         .locked(clk_wiz_1_locked),
         .reset(mdm_1_debug_sys_rst));
-  mb_block_xlconcat_0_0 concat_data
-       (.In0(gpio_data_0_gpio_io_o),
-        .In1(gpio_data_0_gpio2_io_o),
-        .In2(gpio_data_1_gpio_io_o),
-        .In3(gpio_data_1_gpio2_io_o),
-        .In4(gpio_data_2_gpio_io_o),
-        .In5(gpio_data_2_gpio2_io_o),
-        .In6(gpio_data_3_gpio_io_o),
-        .In7(gpio_data_3_gpio2_io_o),
-        .dout(concat_data_dout));
   mb_block_axi_gpio_0_4 gpio_data_0
-       (.gpio2_io_o(gpio_data_0_gpio2_io_o),
-        .gpio_io_o(gpio_data_0_gpio_io_o),
+       (.gpio_io_o(gpio_data_0_GPIO_TRI_O),
         .s_axi_aclk(microblaze_0_Clk),
         .s_axi_araddr(microblaze_0_axi_periph_M06_AXI_ARADDR[8:0]),
         .s_axi_aresetn(rst_clk_wiz_1_100M_peripheral_aresetn),
@@ -1654,8 +1647,7 @@ module mb_block
         .s_axi_wstrb(microblaze_0_axi_periph_M06_AXI_WSTRB),
         .s_axi_wvalid(microblaze_0_axi_periph_M06_AXI_WVALID));
   mb_block_gpio_data_0_0 gpio_data_1
-       (.gpio2_io_o(gpio_data_1_gpio2_io_o),
-        .gpio_io_o(gpio_data_1_gpio_io_o),
+       (.gpio_io_o(gpio_data_1_GPIO_TRI_O),
         .s_axi_aclk(microblaze_0_Clk),
         .s_axi_araddr(microblaze_0_axi_periph_M07_AXI_ARADDR[8:0]),
         .s_axi_aresetn(rst_clk_wiz_1_100M_peripheral_aresetn),
@@ -1676,8 +1668,7 @@ module mb_block
         .s_axi_wstrb(microblaze_0_axi_periph_M07_AXI_WSTRB),
         .s_axi_wvalid(microblaze_0_axi_periph_M07_AXI_WVALID));
   mb_block_gpio_data_1_0 gpio_data_2
-       (.gpio2_io_o(gpio_data_2_gpio2_io_o),
-        .gpio_io_o(gpio_data_2_gpio_io_o),
+       (.gpio_io_o(gpio_data_2_GPIO_TRI_O),
         .s_axi_aclk(microblaze_0_Clk),
         .s_axi_araddr(microblaze_0_axi_periph_M08_AXI_ARADDR[8:0]),
         .s_axi_aresetn(rst_clk_wiz_1_100M_peripheral_aresetn),
@@ -1698,8 +1689,7 @@ module mb_block
         .s_axi_wstrb(microblaze_0_axi_periph_M08_AXI_WSTRB),
         .s_axi_wvalid(microblaze_0_axi_periph_M08_AXI_WVALID));
   mb_block_gpio_data_2_0 gpio_data_3
-       (.gpio2_io_o(gpio_data_3_gpio2_io_o),
-        .gpio_io_o(gpio_data_3_gpio_io_o),
+       (.gpio_io_o(gpio_data_3_GPIO_TRI_O),
         .s_axi_aclk(microblaze_0_Clk),
         .s_axi_araddr(microblaze_0_axi_periph_M09_AXI_ARADDR[8:0]),
         .s_axi_aresetn(rst_clk_wiz_1_100M_peripheral_aresetn),

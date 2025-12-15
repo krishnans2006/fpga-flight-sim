@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-<GenRun Id="faces_rom_synth_1" LaunchPart="xc7s50csga324-1" LaunchTime="1765679777">
-=======
-<GenRun Id="faces_rom_synth_1" LaunchPart="xc7s50csga324-1" LaunchTime="1765723977">
->>>>>>> 0284568 (add transformation matrix module)
+<GenRun Id="faces_rom_synth_1" LaunchPart="xc7s50csga324-1" LaunchTime="1765754836">
   <File Type="PA-TCL" Name="faces_rom.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="faces_rom_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="faces_rom_reports.tcl"/>

@@ -71,11 +71,6 @@ proc create_report { reportName command } {
 }
 OPTRACE "vertices_rom_synth_1" START { ROLLUP_AUTO }
 set_param chipscope.maxJobs 4
-<<<<<<< HEAD
-=======
-set_param xicom.use_bs_reader 1
-set_msg_config -id {Common 17-41} -limit 10000000
->>>>>>> 0284568 (add transformation matrix module)
 set_param project.vivado.isBlockSynthRun true
 set_msg_config -msgmgr_mode ooc_run
 OPTRACE "Creating in-memory project" START { }

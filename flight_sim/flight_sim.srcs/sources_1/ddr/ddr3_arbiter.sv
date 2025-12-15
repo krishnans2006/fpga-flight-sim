@@ -24,7 +24,6 @@
 module ddr3_arbiter (
   input logic           DDR3_CLK100,
   input logic  [3:0]    SW,
-  output logic [3:0]    LED,
   output logic          RGBLED0,
 
   // ### BEGIN DDR3 IO ###
@@ -135,10 +134,10 @@ wire [9:0] w_col;
 
 wire [63:0]	w64_iserdes, w64_iserdes_shift;
 
-assign LED[0] = w_phy_init_done;
-assign LED[1] = w_pll_locked;
-assign LED[2] = w_idelay_rdy;
-assign LED[3] = w_rdcal_done;
+// assign LED[0] = w_phy_init_done;
+// assign LED[1] = w_pll_locked;
+// assign LED[2] = w_idelay_rdy;
+// assign LED[3] = w_rdcal_done;
 
 assign rddata_valid = w_phy_rddata_valid;
 assign w128_rddata = w128_phy_rddata;

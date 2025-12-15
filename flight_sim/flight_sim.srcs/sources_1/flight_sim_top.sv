@@ -58,7 +58,29 @@ module flight_sim_top (
   // Have fun!
   assign led[15] = gpio_usb_int_tri_i;
 
-  logic [255:0] mb_data;
+  logic [31:0] mb_data_gpio0;
+  logic [31:0] mb_data_gpio1;
+  logic [31:0] mb_data_gpio2;
+  logic [31:0] mb_data_gpio3;
+
+  logic [127:0] mb_data;
+  assign mb_data = {mb_data_gpio3, mb_data_gpio2, mb_data_gpio1, mb_data_gpio0};
+
+  logic [31:0] mb_altitude;
+  logic [15:0] mb_airspeed;
+  logic [15:0] mb_pitch;
+  logic [15:0] mb_roll;
+  logic [15:0] mb_yaw;
+  logic [15:0] mb_throttle;
+  logic [15:0] mb_climb_rate;
+
+  assign mb_altitude = mb_data[31:0];
+  assign mb_airspeed = mb_data[47:32];
+  assign mb_pitch    = mb_data[63:48];
+  assign mb_roll     = mb_data[79:64];
+  assign mb_yaw      = mb_data[95:80];
+  assign mb_throttle = mb_data[111:96];
+  assign mb_climb_rate = mb_data[127:112];
 
   mb_block mb_block_inst (
       .clk_100MHz(clk),
@@ -67,7 +89,10 @@ module flight_sim_top (
       .uartlite_rxd(uartlite_rxd),
       .uartlite_txd(uartlite_txd),
 
-      .data(mb_data),
+      .gpio_data_0_tri_o(mb_data_gpio0),
+      .gpio_data_1_tri_o(mb_data_gpio1),
+      .gpio_data_2_tri_o(mb_data_gpio2),
+      .gpio_data_3_tri_o(mb_data_gpio3),
 
       .gpio_usb_int_tri_i(gpio_usb_int_tri_i),
       .gpio_usb_rst_tri_o(gpio_usb_rst_tri_o),
@@ -83,7 +108,6 @@ module flight_sim_top (
       //.initialize(initialize),
 
       .SW(sw),
-      .LED(led[3:0]),
       .RGBLED0(rgbled0),
       .RGBLED1(rgbled1),
 
@@ -105,7 +129,9 @@ module flight_sim_top (
       .hdmi_tmds_clk_n(hdmi_tmds_clk_n),
       .hdmi_tmds_clk_p(hdmi_tmds_clk_p),
       .hdmi_tmds_data_n(hdmi_tmds_data_n),
-      .hdmi_tmds_data_p(hdmi_tmds_data_p)
+      .hdmi_tmds_data_p(hdmi_tmds_data_p),
+
+      .mb_data(mb_data)
   );
 
 endmodule

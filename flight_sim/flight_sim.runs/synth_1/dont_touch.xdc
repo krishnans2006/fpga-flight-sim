@@ -72,7 +72,4 @@ set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==mb_block_gp
 # IP: bd/mb_block/ip/mb_block_gpio_data_2_0/mb_block_gpio_data_2_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==mb_block_gpio_data_2_0 || ORIG_REF_NAME==mb_block_gpio_data_2_0} -quiet] -quiet
 
-# IP: bd/mb_block/ip/mb_block_xlconcat_0_0/mb_block_xlconcat_0_0.xci
-set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==mb_block_xlconcat_0_0 || ORIG_REF_NAME==mb_block_xlconcat_0_0} -quiet] -quiet
-
 # XDC: c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/bd/mb_block/mb_block_ooc.xdc

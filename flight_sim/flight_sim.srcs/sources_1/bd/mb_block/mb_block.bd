@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x46BB18EF9123D101",
+      "boundary_crc": "0xF764855F671E95EE",
       "device": "xc7s50csga324-1",
       "gen_directory": "../../../../flight_sim.gen/sources_1/bd/mb_block",
       "name": "mb_block",
@@ -46,8 +46,7 @@
       "gpio_data_0": "",
       "gpio_data_1": "",
       "gpio_data_2": "",
-      "gpio_data_3": "",
-      "concat_data": ""
+      "gpio_data_3": ""
     },
     "interface_ports": {
       "uartlite": {
@@ -87,6 +86,58 @@
             "physical_name": "gpio_usb_int_tri_i",
             "direction": "I",
             "left": "0",
+            "right": "0"
+          }
+        }
+      },
+      "gpio_data_0": {
+        "mode": "Master",
+        "vlnv_bus_definition": "xilinx.com:interface:gpio:1.0",
+        "vlnv": "xilinx.com:interface:gpio_rtl:1.0",
+        "port_maps": {
+          "TRI_O": {
+            "physical_name": "gpio_data_0_tri_o",
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          }
+        }
+      },
+      "gpio_data_1": {
+        "mode": "Master",
+        "vlnv_bus_definition": "xilinx.com:interface:gpio:1.0",
+        "vlnv": "xilinx.com:interface:gpio_rtl:1.0",
+        "port_maps": {
+          "TRI_O": {
+            "physical_name": "gpio_data_1_tri_o",
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          }
+        }
+      },
+      "gpio_data_2": {
+        "mode": "Master",
+        "vlnv_bus_definition": "xilinx.com:interface:gpio:1.0",
+        "vlnv": "xilinx.com:interface:gpio_rtl:1.0",
+        "port_maps": {
+          "TRI_O": {
+            "physical_name": "gpio_data_2_tri_o",
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          }
+        }
+      },
+      "gpio_data_3": {
+        "mode": "Master",
+        "vlnv_bus_definition": "xilinx.com:interface:gpio:1.0",
+        "vlnv": "xilinx.com:interface:gpio_rtl:1.0",
+        "port_maps": {
+          "TRI_O": {
+            "physical_name": "gpio_data_3_tri_o",
+            "direction": "O",
+            "left": "31",
             "right": "0"
           }
         }
@@ -144,17 +195,6 @@
         "direction": "O",
         "left": "0",
         "right": "0"
-      },
-      "data": {
-        "direction": "O",
-        "left": "255",
-        "right": "0",
-        "parameters": {
-          "PortWidth": {
-            "value": "256",
-            "value_src": "ip_prop"
-          }
-        }
       }
     },
     "components": {
@@ -1623,11 +1663,8 @@
           "C_ALL_OUTPUTS": {
             "value": "1"
           },
-          "C_ALL_OUTPUTS_2": {
-            "value": "1"
-          },
           "C_IS_DUAL": {
-            "value": "1"
+            "value": "0"
           }
         }
       },
@@ -1640,11 +1677,8 @@
           "C_ALL_OUTPUTS": {
             "value": "1"
           },
-          "C_ALL_OUTPUTS_2": {
-            "value": "1"
-          },
           "C_IS_DUAL": {
-            "value": "1"
+            "value": "0"
           }
         }
       },
@@ -1657,11 +1691,8 @@
           "C_ALL_OUTPUTS": {
             "value": "1"
           },
-          "C_ALL_OUTPUTS_2": {
-            "value": "1"
-          },
           "C_IS_DUAL": {
-            "value": "1"
+            "value": "0"
           }
         }
       },
@@ -1674,46 +1705,8 @@
           "C_ALL_OUTPUTS": {
             "value": "1"
           },
-          "C_ALL_OUTPUTS_2": {
-            "value": "1"
-          },
           "C_IS_DUAL": {
-            "value": "1"
-          }
-        }
-      },
-      "concat_data": {
-        "vlnv": "xilinx.com:ip:xlconcat:2.1",
-        "xci_name": "mb_block_xlconcat_0_0",
-        "xci_path": "ip\\mb_block_xlconcat_0_0\\mb_block_xlconcat_0_0.xci",
-        "inst_hier_path": "concat_data",
-        "parameters": {
-          "IN0_WIDTH": {
-            "value": "32"
-          },
-          "IN1_WIDTH": {
-            "value": "32"
-          },
-          "IN2_WIDTH": {
-            "value": "32"
-          },
-          "IN3_WIDTH": {
-            "value": "32"
-          },
-          "IN4_WIDTH": {
-            "value": "32"
-          },
-          "IN5_WIDTH": {
-            "value": "32"
-          },
-          "IN6_WIDTH": {
-            "value": "32"
-          },
-          "IN7_WIDTH": {
-            "value": "32"
-          },
-          "NUM_PORTS": {
-            "value": "8"
+            "value": "0"
           }
         }
       }
@@ -1723,6 +1716,30 @@
         "interface_ports": [
           "uartlite",
           "uartlite/UART"
+        ]
+      },
+      "gpio_data_0_GPIO": {
+        "interface_ports": [
+          "gpio_data_0",
+          "gpio_data_0/GPIO"
+        ]
+      },
+      "gpio_data_1_GPIO": {
+        "interface_ports": [
+          "gpio_data_1",
+          "gpio_data_1/GPIO"
+        ]
+      },
+      "gpio_data_2_GPIO": {
+        "interface_ports": [
+          "gpio_data_2",
+          "gpio_data_2/GPIO"
+        ]
+      },
+      "gpio_data_3_GPIO": {
+        "interface_ports": [
+          "gpio_data_3",
+          "gpio_data_3/GPIO"
         ]
       },
       "gpio_usb_int_GPIO": {
@@ -1845,60 +1862,6 @@
         "ports": [
           "clk_wiz_1/locked",
           "rst_clk_wiz_1_100M/dcm_locked"
-        ]
-      },
-      "concat_data_dout": {
-        "ports": [
-          "concat_data/dout",
-          "data"
-        ]
-      },
-      "gpio_data_0_gpio2_io_o": {
-        "ports": [
-          "gpio_data_0/gpio2_io_o",
-          "concat_data/In1"
-        ]
-      },
-      "gpio_data_0_gpio_io_o": {
-        "ports": [
-          "gpio_data_0/gpio_io_o",
-          "concat_data/In0"
-        ]
-      },
-      "gpio_data_1_gpio2_io_o": {
-        "ports": [
-          "gpio_data_1/gpio2_io_o",
-          "concat_data/In3"
-        ]
-      },
-      "gpio_data_1_gpio_io_o": {
-        "ports": [
-          "gpio_data_1/gpio_io_o",
-          "concat_data/In2"
-        ]
-      },
-      "gpio_data_2_gpio2_io_o": {
-        "ports": [
-          "gpio_data_2/gpio2_io_o",
-          "concat_data/In5"
-        ]
-      },
-      "gpio_data_2_gpio_io_o": {
-        "ports": [
-          "gpio_data_2/gpio_io_o",
-          "concat_data/In4"
-        ]
-      },
-      "gpio_data_3_gpio2_io_o": {
-        "ports": [
-          "gpio_data_3/gpio2_io_o",
-          "concat_data/In7"
-        ]
-      },
-      "gpio_data_3_gpio_io_o": {
-        "ports": [
-          "gpio_data_3/gpio_io_o",
-          "concat_data/In6"
         ]
       },
       "gpio_usb_int_ip2intc_irpt": {

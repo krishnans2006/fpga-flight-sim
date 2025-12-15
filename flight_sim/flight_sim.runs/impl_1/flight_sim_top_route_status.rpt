@@ -1,21 +1,12 @@
 Design Route Status
                                                :      # nets :
    ------------------------------------------- : ----------- :
-<<<<<<< HEAD
-   # of logical nets.......................... :       27484 :
-       # of nets not needing routing.......... :        9442 :
-           # of internally routed nets........ :        9400 :
+   # of logical nets.......................... :       25862 :
+       # of nets not needing routing.......... :        9444 :
+           # of internally routed nets........ :        9402 :
            # of nets with no loads............ :          42 :
-       # of routable nets..................... :       18042 :
-           # of fully routed nets............. :       18042 :
-=======
-   # of logical nets.......................... :       22549 :
-       # of nets not needing routing.......... :        7680 :
-           # of internally routed nets........ :        7638 :
-           # of nets with no loads............ :          42 :
-       # of routable nets..................... :       14869 :
-           # of fully routed nets............. :       14869 :
->>>>>>> 0284568 (add transformation matrix module)
+       # of routable nets..................... :       16418 :
+           # of fully routed nets............. :       16418 :
        # of nets with routing errors.......... :           0 :
    ------------------------------------------- : ----------- :
 

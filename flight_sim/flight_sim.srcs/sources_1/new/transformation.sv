@@ -26,6 +26,7 @@ module transformation (
     input  logic signed [31:0] t_x [3], t_y [3], t_z [3],
     input  logic        [15:0] color,
     input  logic               in_valid,
+    input  logic               data_read,
     input  logic signed [9:0]  model_matrix[3][4],
     input  logic               stall,
 
@@ -85,7 +86,7 @@ always_comb begin
     P6: begin
       valid = 1'b1;
       
-      if (!stall) 
+      if (data_read && !stall) 
         state_d = IDLE;
     end
     default: state_d = IDLE;
@@ -107,7 +108,9 @@ always_ff @(posedge clk) begin
       IDLE: begin
         if (in_valid && !stall) begin
           matrix <= model_matrix;
-          model_r_x <= t_x; model_r_y <= t_y; model_r_z <= t_z;
+          model_r_x <= t_x; 
+          model_r_y <= t_y; 
+          model_r_z <= t_z;
           color_r <= color;
 
           pt_x <= t_x[0]; 

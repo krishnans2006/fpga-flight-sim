@@ -71,11 +71,7 @@ proc create_report { reportName command } {
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param chipscope.maxJobs 4
-<<<<<<< HEAD
-=======
 set_param xicom.use_bs_reader 1
-set_msg_config -id {Common 17-41} -limit 10000000
->>>>>>> 0284568 (add transformation matrix module)
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7s50csga324-1
 
@@ -98,35 +94,21 @@ add_files C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs
 add_files C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/model/cube_vertices.coe
 read_verilog C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/imports/ddr3_controller/ddr3_x16_phy_params.vh
 read_verilog -library xil_defaultlib -sv {
-<<<<<<< HEAD
   C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/imports/VGA_controller.sv
   C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/barycentric_calc.sv
-  C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ddr/cache.sv
   C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ddr/ddr3_arbiter.sv
   C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ddr/ddr_renderer_top.sv
   C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ddr/frame_buffer.sv
+  C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/new/gpio.sv
   C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/gpu_wb_controller.sv
   C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/graphics_top.sv
   C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/model_engine.sv
   C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/projector.sv
   C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/rasterizer.sv
+  C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/new/transformation.sv
   C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/zbuffer.sv
   C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/zbuffer_initializer.sv
   C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/flight_sim_top.sv
-=======
-  C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/imports/VGA_controller.sv
-  C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/barycentric_calc.sv
-  C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ddr/ddr3_arbiter.sv
-  C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ddr/ddr_renderer_top.sv
-  C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ddr/frame_buffer.sv
-  C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/gpu_wb_controller.sv
-  C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/graphics_top.sv
-  C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/projector.sv
-  C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/rasterizer.sv
-  C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/zbuffer.sv
-  C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/gpu/zbuffer_initializer.sv
-  C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/flight_sim_top.sv
->>>>>>> 0284568 (add transformation matrix module)
 }
 read_verilog -library xil_defaultlib {
   C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/imports/ddr3_controller/ddr3_rdcal.v
@@ -188,11 +170,16 @@ set_property used_in_implementation false [get_files -all c:/Users/krishnan/Docu
 set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/clk_wiz_1/clk_wiz_1.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/clk_wiz_1/clk_wiz_1_ooc.xdc]
 
-read_ip -quiet C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/hdmi_tx_0/hdmi_tx_0.xci
-
 read_ip -quiet C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/fifo_generator_0/fifo_generator_0.xci
 set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/fifo_generator_0/fifo_generator_0.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/fifo_generator_0/fifo_generator_0_ooc.xdc]
+
+read_ip -quiet C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
+set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_board.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_ooc.xdc]
+
+read_ip -quiet C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/hdmi_tx_0/hdmi_tx_0.xci
 
 read_ip -quiet C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci
 set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0_ooc.xdc]
@@ -200,26 +187,15 @@ set_property used_in_implementation false [get_files -all c:/Users/krishnan/Docu
 read_ip -quiet C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/div_gen_0/div_gen_0.xci
 set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/div_gen_0/div_gen_0_ooc.xdc]
 
-<<<<<<< HEAD
-read_ip -quiet C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_board.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_ooc.xdc]
+read_ip -quiet C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/faces_rom_1/faces_rom.xci
+set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/faces_rom_1/faces_rom_ooc.xdc]
 
 read_ip -quiet C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/vertices_rom_1/vertices_rom.xci
 set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/vertices_rom_1/vertices_rom_ooc.xdc]
 
-read_ip -quiet C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/faces_rom_1/faces_rom.xci
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/faces_rom_1/faces_rom_ooc.xdc]
+read_ip -quiet c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/cordic_0/cordic_0.xci
+set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/cordic_0/cordic_0_ooc.xdc]
 
-read_ip -quiet C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/blk_mem_gen_1/blk_mem_gen_1.xci
-set_property used_in_implementation false [get_files -all c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/blk_mem_gen_1/blk_mem_gen_1_ooc.xdc]
-
-=======
-read_ip -quiet C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/div_gen_0/div_gen_0.xci
-set_property used_in_implementation false [get_files -all c:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.gen/sources_1/ip/div_gen_0/div_gen_0_ooc.xdc]
-
->>>>>>> 0284568 (add transformation matrix module)
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
@@ -235,8 +211,6 @@ set_property used_in_implementation false [get_files C:/Users/krishnan/Documents
 read_xdc dont_touch.xdc
 set_property used_in_implementation false [get_files dont_touch.xdc]
 set_param ips.enableIPCacheLiteLoad 1
-
-read_checkpoint -auto_incremental -incremental C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/utils_1/imports/synth_1/flight_sim_top.dcp
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }

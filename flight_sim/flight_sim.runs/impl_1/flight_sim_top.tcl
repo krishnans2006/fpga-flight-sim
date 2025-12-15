@@ -115,7 +115,6 @@ proc step_failed { step } {
 OPTRACE "impl_1" END { }
 }
 
-set_msg_config -id {Common 17-41} -limit 10000000
 
 OPTRACE "impl_1" START { ROLLUP_1 }
 OPTRACE "Phase: Init Design" START { ROLLUP_AUTO }
@@ -124,6 +123,7 @@ set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
   set_param chipscope.maxJobs 4
+  set_param xicom.use_bs_reader 1
 OPTRACE "create in-memory project" START { }
   create_project -in_memory -part xc7s50csga324-1
   set_property design_mode GateLvl [current_fileset]
@@ -142,26 +142,16 @@ OPTRACE "add files" START { }
   add_files -quiet C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.runs/synth_1/flight_sim_top.dcp
   set_msg_config -source 4 -id {BD 41-1661} -limit 0
   set_param project.isImplRun true
-<<<<<<< HEAD
   add_files C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/bd/mb_block/mb_block.bd
   read_ip -quiet C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1.xci
-  read_ip -quiet C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/hdmi_tx_0/hdmi_tx_0.xci
   read_ip -quiet C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/fifo_generator_0/fifo_generator_0.xci
+  read_ip -quiet C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
+  read_ip -quiet C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/hdmi_tx_0/hdmi_tx_0.xci
   read_ip -quiet C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci
   read_ip -quiet C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/div_gen_0/div_gen_0.xci
-  read_ip -quiet C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
-  read_ip -quiet C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/vertices_rom_1/vertices_rom.xci
   read_ip -quiet C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/faces_rom_1/faces_rom.xci
-  read_ip -quiet C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/blk_mem_gen_1/blk_mem_gen_1.xci
-=======
-  add_files C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/bd/mb_block/mb_block.bd
-  read_ip -quiet C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/fifo_generator_0/fifo_generator_0.xci
-  read_ip -quiet C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1.xci
-  read_ip -quiet C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
-  read_ip -quiet C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/hdmi_tx_0/hdmi_tx_0.xci
-  read_ip -quiet C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci
-  read_ip -quiet C:/Users/anike/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/div_gen_0/div_gen_0.xci
->>>>>>> 0284568 (add transformation matrix module)
+  read_ip -quiet C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/vertices_rom_1/vertices_rom.xci
+  read_ip -quiet c:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/sources_1/ip/cordic_0/cordic_0.xci
   set_param project.isImplRun false
 OPTRACE "read constraints: implementation" START { }
   read_xdc C:/Users/krishnan/Documents/fpga-flight-sim/flight_sim/flight_sim.srcs/constrs_1/flight_sim.xdc

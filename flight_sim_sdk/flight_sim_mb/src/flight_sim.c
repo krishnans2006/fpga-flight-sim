@@ -157,17 +157,17 @@ void update_plane_state(struct plane_state* state, struct usb_report* report, fl
     state->yaw += d_yaw * time_step;
 
     // Overflow corrections for pitch, roll, yaw
-    if (state->pitch > 90) {
-        state->pitch = 90;
-    } else if (state->pitch < -90) {
-        state->pitch = -90;
+    if (state->pitch > 20) {
+        state->pitch = 20;
+    } else if (state->pitch < -20) {
+        state->pitch = -20;
     }
-    if (state->roll > 180) {
-        state->roll -= 360;
-    } else if (state->roll < -180) {
-        state->roll += 360;
+    if (state->roll > 20) {
+        state->roll = 20;
+    } else if (state->roll < -20) {
+        state->roll = -20;
     }
-    if (state->yaw > 360) {
+    if (state->yaw >= 360) {
         state->yaw -= 360;
     } else if (state->yaw < 0) {
         state->yaw += 360;
@@ -183,6 +183,11 @@ void update_plane_state(struct plane_state* state, struct usb_report* report, fl
     float d_altitude = state->airspeed * d_sin(state->pitch);
     state->altitude += d_altitude * time_step;
     state->climb_rate = d_altitude;  // for export purposes
+
+    // Prevent negative altitude
+    if (state->altitude < 0) {
+        state->altitude = 0;
+    }
 
     // Altitude-based pitch and roll limits
     if (state->altitude < 5) {
@@ -228,13 +233,14 @@ void export_plane_state(struct plane_state* state, struct plane_state_export* ex
     export_state->longitude = (lon3 << 24) | (lon2 << 16) | (lon1 << 8) | lon0;
 
     // Altitude: [][][][][].[][][]
-    float alt = state->altitude;
-    uint8_t alt3 = (get_nth_digit(alt, 4) << 4) | get_nth_digit(alt, 3);
-    uint8_t alt2 = (get_nth_digit(alt, 2) << 4) | get_nth_digit(alt, 1);
-    uint8_t alt1 = (get_nth_digit(alt, 0) << 4) | get_nth_digit(alt, -1);
-    uint8_t alt0 = (get_nth_digit(alt, -2) << 4) | get_nth_digit(alt, -3);
-    export_state->altitude = (alt3 << 24) | (alt2 << 16) | (alt1 << 8) | alt0;
+    // float alt = state->altitude;
+    // uint8_t alt3 = (get_nth_digit(alt, 4) << 4) | get_nth_digit(alt, 3);
+    // uint8_t alt2 = (get_nth_digit(alt, 2) << 4) | get_nth_digit(alt, 1);
+    // uint8_t alt1 = (get_nth_digit(alt, 0) << 4) | get_nth_digit(alt, -1);
+    // uint8_t alt0 = (get_nth_digit(alt, -2) << 4) | get_nth_digit(alt, -3);
+    // export_state->altitude = (alt3 << 24) | (alt2 << 16) | (alt1 << 8) | alt0;
     // Altitude is always positive
+    export_state->altitude = (uint32_t)(state->altitude);
 
     // Airspeed: [][][].[]
     float airspeed = state->airspeed;

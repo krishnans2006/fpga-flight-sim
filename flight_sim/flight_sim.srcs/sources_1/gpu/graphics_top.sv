@@ -43,6 +43,9 @@ module graphics_top(
   output logic          wb_active,
   output logic          init,
 
+  input logic [127:0] mb_data,
+  input logic         vsync,
+
   // // Z-bufer <-> Cache
   // output logic [26:0]   zbuf_cache_addr,
   // output logic          zbuf_cache_req,
@@ -57,7 +60,9 @@ module graphics_top(
   input logic [3:0]     fselect
 );
 
-localparam VRAM_BACKGROUND = 16'h0133; // skibidi color
+// localparam VRAM_BACKGROUND = 16'h0133; // skibidi color
+localparam BG_SKY = 16'h00DF;
+localparam BG_GROUND = 16'h03C0;
 localparam VRAM_UBOUND = 27'h004B000;
 
 typedef enum {
@@ -76,15 +81,26 @@ logic         model_engine_start;
 
 logic int_graphics_stall; // asserted when we're drawing background and we need to stall graphics pipeline
 
+logic [15:0] altitude;
+
+logic [15:0] frame_counter;
+
 always_ff @(posedge clk) begin
   if (rst) begin
     graphics_state_q <= StIdle;
     addr_curr_q <= 27'b0;
+    altitude <= 16'd20;
+    frame_counter <= 10'b0;
   end else begin
     graphics_state_q <= graphics_state_d;
     addr_curr_q <= addr_curr_d;
   end
 end
+
+// always_ff @(posedge swap) begin
+//   altitude <= 16'd20 + (frame_counter);
+//   frame_counter <= frame_counter + 1;
+// end
 
 always_comb begin
   graphics_state_d = graphics_state_q;
@@ -93,7 +109,7 @@ always_comb begin
   int_graphics_stall = 1'b0;
 
   // output data
-  background_burst_128 = {8{VRAM_BACKGROUND}};
+  // background_burst_128 = {8{VRAM_BACKGROUND}};
   background_wrdm = 8'h0;
   background_burst_valid = 1'b0;
   background_burst_addr = addr_curr_q;
@@ -117,6 +133,12 @@ always_comb begin
       if (mem_wrdy) begin
         background_burst_valid = 1'b1;
         addr_curr_d = addr_curr_q + 8;
+      end
+
+      if (addr_curr_d < (altitude << 12)) begin
+        background_burst_128 = {8{BG_SKY}};
+      end else begin
+        background_burst_128 = {8{BG_GROUND}};
       end
 
       if (addr_curr_d >= VRAM_UBOUND) begin
@@ -155,13 +177,13 @@ logic signed [31:0] test_t_z [3];
 logic model_done;
 logic [15:0] model_face_color, proj_face_color;
     
-// small helper function, shouldnt get synthesized to anything substantial
- function logic [31:0] f2q(input real v); return $rtoi(v * 65536.0); endfunction
+// // small helper function, shouldnt get synthesized to anything substantial
+//  function logic [31:0] f2q(input real v); return $rtoi(v * 65536.0); endfunction
 
- // should be relatively small on the screen
- assign test_t_x[0] = f2q(-1.0); assign test_t_y[0] = f2q(-1.0); assign test_t_z[0] = f2q(20.0);
- assign test_t_x[1] = f2q( 1.0); assign test_t_y[1] = f2q(-1.0); assign test_t_z[1] = f2q(20.0);
- assign test_t_x[2] = f2q( 0.0); assign test_t_y[2] = f2q(0.5); assign test_t_z[2] = f2q(20.0);
+//  // should be relatively small on the screen
+//  assign test_t_x[0] = f2q(-1.0); assign test_t_y[0] = f2q(-1.0); assign test_t_z[0] = f2q(20.0);
+//  assign test_t_x[1] = f2q( 1.0); assign test_t_y[1] = f2q(-1.0); assign test_t_z[1] = f2q(20.0);
+//  assign test_t_x[2] = f2q( 0.0); assign test_t_y[2] = f2q(0.5); assign test_t_z[2] = f2q(20.0);
 
 // Rasterizer I/O
 logic [15:0] color;
@@ -294,6 +316,28 @@ zbuffer_initializer init_inst (
   .dout_burst_valid(init_dout_burst_valid)
 );
 
+logic signed [31:0] transformed_t_x [3];
+logic signed [31:0] transformed_t_y [3];
+logic signed [31:0] transformed_t_z [3];
+logic gpio_is_ready;
+
+gpio gpio_inst (
+  .clk(clk),
+  .rst(rst),
+  .mb_data(mb_data),
+  .mb_data_valid(1'b1),
+
+  .initial_t_x(test_t_x),
+  .initial_t_y(test_t_y),
+  .initial_t_z(test_t_z),
+
+  .transformed_t_x(transformed_t_x),
+  .transformed_t_y(transformed_t_y),
+  .transformed_t_z(transformed_t_z),
+  .proj_ready(1'b1),
+  .proj_out_valid(gpio_is_ready)
+);
+
 projector projector_inst (
   .clk(clk),
   .rst(rst),
@@ -302,9 +346,9 @@ projector projector_inst (
   .t_x(test_t_x),
   .t_y(test_t_y),
   .t_z(test_t_z),
-  .color(16'h0F2F), //  should be model_face_color
+  .color(model_face_color), //  should be model_face_color
     
-  .in_valid(1'b1),
+  .in_valid(model_data_valid),
   .ready(proj_ready),
 
   // projected vertices
@@ -320,20 +364,20 @@ projector projector_inst (
   .stall(rasterizer_stall)
 );
 
-// model_engine model_engine_inst (
-//  .clk(clk), 
-//  .rst(rst),
-//  .start_frame(model_engine_start),
-//  .model_done(model_done),
+model_engine model_engine_inst (
+ .clk(clk), 
+ .rst(rst),
+ .start_frame(model_engine_start),
+ .model_done(model_done),
 
-//  // projector interface
-//  .proj_ready(proj_ready),
-//  .proj_valid(model_data_valid),
-//  .t_x(test_t_x),
-//  .t_y(test_t_y),
-//  .t_z(test_t_z),
-//  .face_color(model_face_color),
-//  .sel(fselect)
-// );
+ // projector interface
+ .proj_ready(proj_out_valid),
+ .proj_valid(model_data_valid),
+ .t_x(test_t_x),
+ .t_y(test_t_y),
+ .t_z(test_t_z),
+ .face_color(model_face_color),
+ .sel(fselect)
+);
 
 endmodule
