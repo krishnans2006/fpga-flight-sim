@@ -65,7 +65,7 @@ int main() {
         // Write exported state to GPIO MMIO
         write_plane_export_to_gpio(&plane_export);
 
-        sleep(1);
+        // sleep(1);
     }
 
     cleanup_platform();
