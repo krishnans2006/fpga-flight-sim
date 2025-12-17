@@ -265,6 +265,50 @@ To support the features described above, the MicroBlaze and required peripherals
 
 == Summary of Block Design Components
 
+=== Clocking Wizard
+
+The clocking wizard generates arbitrary clock frequencies using a PLL. The block design clocking wizard is redundant in this design, since the block design just needs a single 100MHz clock, which is already provided by the RealDigital Urbana board. However, we kept it in the design for potential future use.
+
+=== MicroBlaze Processor
+
+The MicroBlaze is a 32-bit RISC processor designed by AMD for Xilinx FPGAs. It's a soft-core processor, meaning it can be fully implemented using the programmable logic resources of the FPGA. It uses the AXI Interface as an I/O bus, allowing it to communicate with various peripherals and memory components within the FPGA design. It also supports local memory (LMB), JTAG-based debugging through the MicroBlaze Debug Module (MDM), and interrupt handling through the AXI Interrupt Controller.
+
+=== MicroBlaze Debug Module (MDM)
+
+The MicroBlaze Debug Module (MDM) is a dedicated hardware block that provides debugging capabilities for the MicroBlaze. For example, it allows for setting breakpoints in code, stepping through lines of code, and other standard debugging features---all while the code runs on the MicroBlaze processor within the FPGA. It interfaces with the MicroBlaze via a dedicated debug interface, and connects to the JTAG port on the FPGA board for communication with external debugging tools. Specifically, the "PROG UART" port on the RealDigital Urbana board, which is normally used for programming the FPGA, is also used for this JTAG communication.
+
+=== MicroBlaze Local Memory
+
+The MicroBlaze Local Memory is a small, fast memory block that is directly connected to the MicroBlaze processor. It implements the Local Memory Bus (LMB) interface, which is a simple, low-latency bus designed for high-speed access to memory. This local memory is typically used for storing instructions, which are very frequently accessed. In our design, we configured the local memory to be 128KB in size.
+
+=== AXI Interconnect
+
+The AXI Interconnect facilitates communication between the MicroBlaze processor and various AXI peripherals in the design. It uses the AXI protocol, with the MicroBlaze acting as the master and the peripherals as slaves. It also handles properly routing transactions to the correct peripheral based on the address being accessed. In our design, the AXI Interconnect connects the MicroBlaze to nine peripherals: the AXI Interrupt Controller, AXI Uartlite, AXI Timer, two GPIO modules for USB communication, and four GPIO modules for plane state transfer to the hardware design.
+
+=== AXI Interrupt Controller
+
+The AXI Interrupt Controller manages interrupt signals from various peripherals and forwards them to the MicroBlaze processor. It's very similar to the Platform-Level Interrupt Controller (PLIC) used in RISC-V systems. It supports interrupt priorities, enabling/disabling interrupts, and claiming/acknowledging interrupts from the MicroBlaze. In our design, it connects to four interrupt sources: the AXI Uartlite, AXI Timer, AXI Quad SPI, and AXI GPIO module used for USB interrupts.
+
+=== Processor System Reset
+
+The Processor System Reset module generates reset signals for the MicroBlaze processor and other components in the design. It ensures that all components are reset on power on, and also ensures that resets are properly synchronized with the system clock. In our design, it generates reset signals for the MicroBlaze, AXI Interconnect, AXI Interrupt Controller, and all the AXI peripherals.
+
+=== AXI Timer
+
+The AXI timer allows the MicroBlaze to keep track of time by creating programmable interrupt timers, which can be configured by the MicroBlaze via AXI. This is useful because it allows the MicroBlaze to perform time-based operations, such as polling the USB device at regular intervals (as done in our design).
+
+=== AXI Uartlite
+
+The AXI Uartlite module allows the Microblaze to send and receive data using the UART protocol. In our design, we use this module to allow the MicroBlaze to print messages to a serial console, which get sent through the "PROG UART" port on the RealDigital Urbana board. On the host computer, we can use a serial terminal (like the `screen` command, or the integrated debug console in Vitis) to view these messages.
+
+=== AXI Quad SPI
+
+The AXI Quad SPI module allows the MicroBlaze to communicate with SPI devices using the SPI protocol. In our design, we use this module to communicate with the MAX3421E USB controller chip.
+
+=== AXI GPIO Modules
+
+The AXI GPIO modules allow the MicroBlaze to interact with general-purpose input/output (GPIO) pins on the FPGA board using memory-mapped I/O. In our design, we use two AXI GPIO modules for USB communication: one for reading USB interrupts from the MAX3421E chip, and one for controlling the reset line of the MAX3421E chip. Additionally, we use four AXI GPIO modules for transferring the plane state from the MicroBlaze to the hardware design for rendering.
+
 == Summary of Program Files
 
 = FPGA Implementation
