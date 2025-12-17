@@ -1,4 +1,4 @@
-#import "template.typ": template
+#import "template.typ": template, design_table
 
 #show: template.with(
   lab_title: "Final Project Report",
@@ -271,6 +271,34 @@ To support the features described above, the MicroBlaze and required peripherals
 
 == RTL Block Diagram
 
+@block_diagram_rtl shows the RTL block diagram of the FPGA implementation.
+
+#figure(
+    image("media/block_rtl.png"),
+    caption: [
+        RTL Block Diagram, with the DDR3 renderer module shown in the center
+    ],
+) <block_diagram_rtl>
+
 == Design Analysis
 
+@design_table shows design analysis results for the FPGA implementation.
+
+#figure(
+    design_table(
+        luts: 7096,
+        dsps: 71,
+        bram: 37.5,
+        lutram: 500,
+        ffs: 7493,
+        io: 88,
+        mmcm: 3,
+        wns: -3.234,
+        spower: 0.077,
+        dpower: 0.953,
+    ),
+    caption: [
+        Design analysis results
+    ],
+) <design_table>
 = Conclusion
