@@ -1,4 +1,4 @@
-#import "../Reports/template.typ": template
+#import "template.typ": template
 
 #show: template.with(
     lab_title: "Final Project Proposal",
