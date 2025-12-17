@@ -29,6 +29,9 @@
     show figure: set block(spacing: 2.5em)
     show math.equation: set block(spacing: 2em)
 
+    show link: underline
+    show link: set text(fill: blue)
+
     let cover_page = [
         #grid(
             columns: 1fr,
