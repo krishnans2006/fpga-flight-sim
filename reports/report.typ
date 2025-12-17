@@ -257,7 +257,7 @@ This loop combines all the components described previously, reading user inputs,
 To support the features described above, the MicroBlaze and required peripherals were implemented in a Vivado block design. The complete block design is shown in @vivado_block_design.
 
 #figure(
-  image("media/block_diagram.svg", width: 100%),
+  image("media/vivado_block_design.png", width: 100%),
   caption: [
     Vivado Block Design
   ],
