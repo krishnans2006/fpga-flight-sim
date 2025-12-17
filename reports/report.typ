@@ -31,6 +31,47 @@ We propose to design and implement a comprehensive flight simulator, similar to 
 
 == Description
 
+The software component of the flight simulator is primarily responsible for handling user inputs, calculating flight dynamics by running an accurate physics simulation, and communicating the plane's state to the hardware design for rendering.
+
+== User Input
+
+User inputs are handled through USB keyboard communication. Specifically, the Serial Peripheral Interface (SPI) protocol is used to communicate with the MAX3421E chip on the FPGA board.
+
+Using this SPI primitive, the MicroBlaze implements a USB driver that performs high-level USB operations, like listing connected devices, configuring them, and reading data. This driver is implemented in `MAX3421E.c` and other files in the `lw_usb` directory.
+
+Additionally, the MAX3421E chip also connects to some non-SPI pins on the FPGA board---specifically, the interrupt and reset pins. The complete interface between the FPGA and MAX3421E chip is shown in @max3421e_connection. The interrupt and reset pins are both connected into GPIO modules (`gpio_usb_int` and `gpio_usb_rst`) in the Vivado block design, allowing the MicroBlaze to read the interrupt status and control the reset line via MMIO.
+
+#figure(
+  image("media/max3421e_connection.svg", width: 100%),
+  caption: [
+    Connection between the FPGA and MAX3421E chip
+  ],
+) <max3421e_connection>
+
+The MicroBlaze uses the USB driver to read keyboard inputs from the user every timestep. Specifically, the keys for controlling the plane are as follows:
+
+- Throttle: *Up Arrow* (Increase), *Down Arrow* (Decrease)
+- Rudder: *Left Arrow* (Left), *Right Arrow* (Right)
+- Elevators: *W* (Pitch Up), *S* (Pitch Down)
+- Ailerons: *A* (Roll Left), *D* (Roll Right)
+
+The `usb.c` file contains the code for reading and processing these keyboard inputs. It implements the `usb_get_inputs` function, which parses these key presses into a `struct usb_report` data structure containing the current user inputs. The struct definition is as follows:
+
+```c
+#include "xil_types.h"
+
+struct usb_report {
+    u8 is_throttle_up;
+    u8 is_throttle_down;
+    u8 is_pitch_up;
+    u8 is_pitch_down;
+    u8 is_roll_left;
+    u8 is_roll_right;
+    u8 is_yaw_left;
+    u8 is_yaw_right;
+};
+```
+
 == Flight Dynamics
 
 A significant portion of the difficulty for this project came from implementing accurate flight dynamics. At first, we attempted to implement this physics engine in hardware, but quickly realized that the complexity of the calculations were simply infeasible given the limited resources on the FPGA board. For example, even simple additions and subtractions would infer DSP units, which were both limited in number and significant sources of timing violations. As a result, we decided to implement flight dynamics on the MicroBlaze processor, allowing us to just send current flight state (position, velocity, attitude, etc.) to the hardware design for rendering.
@@ -188,7 +229,39 @@ GPIO1.pitch = export_state->pitch;
 
 This code is implemented in the `write_plane_export_to_gpio` function in `gpio.c`, which is called every timestep to update the GPIO peripherals with the latest plane state (after it is packed into the `plane_state_export` struct).
 
+== Main Loop
+
+Putting it all together, the main loop of the MicroBlaze software is implemented in `main.c`. The code for the main loop is as follows:
+
+```c
+while (TRUE) {
+    // Populate USB report
+    u8 rcode = usb_get_inputs(&report);
+
+    // Update plane state based on USB report
+    float time_step = 0.1f;
+    update_plane_state(&plane, &report, time_step);
+
+    // Export plane state to plane_state_export struct
+    export_plane_state(&plane, &plane_export);
+
+    // Write exported state to GPIO MMIO
+    write_plane_export_to_gpio(&plane_export);
+}
+```
+
+This loop combines all the components described previously, reading user inputs, updating flight dynamics, packing the plane state, and writing it to GPIO for the hardware design to render.
+
 == Vivado Block Design
+
+To support the features described above, the MicroBlaze and required peripherals were implemented in a Vivado block design. The complete block design is shown in @vivado_block_design.
+
+#figure(
+  image("media/block_diagram.svg", width: 100%),
+  caption: [
+    Vivado Block Design
+  ],
+) <vivado_block_design>
 
 == Summary of Block Design Components
 
