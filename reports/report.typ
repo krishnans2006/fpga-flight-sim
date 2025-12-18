@@ -21,29 +21,29 @@ The operation of our project is rather simple; after connecting a USB keyboard t
   caption: [
     Block Diagram
   ],
-)
+) <block_diagram>
 
-Figure 1 shows our proposed block diagram. As you will see in this report, we deviated substantially from this design due to resource constraints and other miscellaneous design choices. 
+@block_diagram shows our proposed block diagram. As you will see in this report, we deviated substantially from this design due to resource constraints and other miscellaneous design choices. 
 
 = Hardware
 
 == Description
 
-The hardware component of this project is responsible for rendering objects to the monitor, as shown in Figure 1. Because we implemented 3D rendering, we added a fairly large graphics pipeline between the display logic and the object data storage (ROMs). The addition of 3D graphics necessitated the implementation of several vector/matrix processing units, used for applying linear transformations, projection, and interpolation.
+The hardware component of this project is responsible for rendering objects to the monitor, as shown in @block_diagram. Because we implemented 3D rendering, we added a fairly large graphics pipeline between the display logic and the object data storage (ROMs). The addition of 3D graphics necessitated the implementation of several vector/matrix processing units, used for applying linear transformations, projection, and interpolation.
 
-In our implementation, we leveraged the DDR3 memory capabilities of the RealDigital Urbana board--thus allowing us to store large video buffers (VRAM) which ordinarily would not have fit within BRAM/Distributed RAM on the Spartan-7 FPGA (or at least without extraordinary logic element usage). 
+In our implementation, we leveraged the DDR3 memory capabilities of the RealDigital Urbana board---thus allowing us to store large video buffers (VRAM) which ordinarily would not have fit within BRAM/Distributed RAM on the Spartan-7 FPGA (or at least without extraordinary logic element usage). 
 
 == Module Descriptions
 
 === flight_sim_top.sv
 
-flight_sim_top.sv is our top level file which instantiates both the graphics component of our project, as well as the block diagram shown in Figure 10.
+flight_sim_top.sv is our top level file which instantiates both the graphics component of our project, as well as the block diagram shown in @vivado_block_design.
 
 === ddr_renderer_top.sv
 
 ddr_renderer_top.sv is our top-level graphics module, instantiating the line buffer, graphics pipeline, graphics cache, and necessary arbitration and state machine logic. 
 
-The overall high-level structure of ddr3_renderer_top is given by Figure 2.
+The overall high-level structure of ddr3_renderer_top is given by @block_diagram_ddr3.
 
 #figure(
     image("media/graphics_bd.png"),
@@ -62,47 +62,45 @@ if (fbuf_active) begin
     r_phy_cmd_en = rd_cmd_en;
     r_phy_cmd_sel = rd_cmd_sel;
     r128_wrdata = 'b0;
-	end else if (init_active) begin
-	// if initialization is active, frame buffer CAN interrupt it in order to display
-		ddr3_cache_ready = 1'b0;
-		ddr3_mem_wrdy = ~wr_cmd_en;
-		app_addr = staging_buffer_addr + wr_addr;
-		r_phy_cmd_en = wr_cmd_en;
-		r_phy_cmd_sel = wr_cmd_sel;
-		r128_wrdata = ddr3_wr_data;
-	end else if (cache_active) begin
-	// cache is uninterruptable
-	  ddr3_cache_ready = !w_phy_cmd_full;
-		ddr3_mem_wrdy = 1'b0;
-		app_addr = cache_ddr3_addr;
-		r_phy_cmd_en = cache_ddr3_req;
-		r_phy_cmd_sel = cache_ddr3_rw_n;
-		r128_wrdata = cache_ddr3_dout;
-	end else begin
-		ddr3_mem_wrdy = ~wr_cmd_en;
-		ddr3_cache_ready = 1'b0;
-		app_addr = staging_buffer_addr + wr_addr;
-		r_phy_cmd_en = wr_cmd_en;
-		r_phy_cmd_sel = wr_cmd_sel;
-		r128_wrdata = ddr3_wr_data;
-	end
-
+end else if (init_active) begin
+// if initialization is active, frame buffer CAN interrupt in order to display
+    ddr3_cache_ready = 1'b0;
+    ddr3_mem_wrdy = ~wr_cmd_en;
+    app_addr = staging_buffer_addr + wr_addr;
+    r_phy_cmd_en = wr_cmd_en;
+    r_phy_cmd_sel = wr_cmd_sel;
+    r128_wrdata = ddr3_wr_data;
+end else if (cache_active) begin
+// cache is uninterruptable
+    ddr3_cache_ready = !w_phy_cmd_full;
+    ddr3_mem_wrdy = 1'b0;
+    app_addr = cache_ddr3_addr;
+    r_phy_cmd_en = cache_ddr3_req;
+    r_phy_cmd_sel = cache_ddr3_rw_n;
+    r128_wrdata = cache_ddr3_dout;
+end else begin
+    ddr3_mem_wrdy = ~wr_cmd_en;
+    ddr3_cache_ready = 1'b0;
+    app_addr = staging_buffer_addr + wr_addr;
+    r_phy_cmd_en = wr_cmd_en;
+    r_phy_cmd_sel = wr_cmd_sel;
+    r128_wrdata = ddr3_wr_data;
+end
 ```
 
-In this implementation, the line buffer (responsible to writing to the HDMI output) is given highest priority, followed by the initialization module, cache, and lastly, the graphics. 
+In this implementation, the line buffer (responsible for writing to the HDMI output) is given highest priority, followed by the initialization module, cache, and lastly, the graphics. 
 
-To allow the graphics and display logic to work concurrently, we use a double-buffering technique. We instantiate two VRAMs in our DDR3--one from address 0x00000 to 0x4AFFF, and another from address 0x4B000 to 0x95FFF. We label one as the "output" buffer and the other as the "staging" buffer. On every falling edge of ```sv vsync```, we swap the pointers to these buffers, thus allowing for consistent output to the monitor. 
+To allow the graphics and display logic to work concurrently, we use a double-buffering technique. We instantiate two VRAMs in our DDR3---one from address 0x00000 to 0x4AFFF, and another from address 0x4B000 to 0x95FFF. We label one as the "output" buffer and the other as the "staging" buffer. On every falling edge of ```sv vsync```, we swap the pointers to these buffers, thus allowing for consistent output to the monitor. 
 
 An excerpt of this implementation is shown below:
 
 ```sv 
-		if (~vsync && old_vga_vsync) begin
-		  rd_addr_offset <= 27'b0;
-		  // on falling edge of vsync, swap buffers
-		  staging_buffer_addr <= output_buffer_addr;
-		  output_buffer_addr  <= staging_buffer_addr;
-		end 
-
+if (~vsync && old_vga_vsync) begin
+    rd_addr_offset <= 27'b0;
+    // on falling edge of vsync, swap buffers
+    staging_buffer_addr <= output_buffer_addr;
+    output_buffer_addr  <= staging_buffer_addr;
+end
 ```
 
 Lastly, ddr3_renderer_top has an FSM to handle DDR3 reads/writes. 
@@ -114,18 +112,19 @@ Lastly, ddr3_renderer_top has an FSM to handle DDR3 reads/writes.
     ],
 ) <block_diagram_ddr3_fsm>
 
-For reference, the ```sv vsync ``` signal refers to the *falling edge* of the actual vsync signal. Signals ```sv w_phy_cmd_empty ``` and ```sv w_phy_cmd_full``` come from the DDR3 command FIFO, as per the light-weight controller specification. Each DDR3 burst writes 128 bytes, equivalent to 8 pixels on the screen. Thus, in order to read a full horizontal strip into the line buffer, we need 80 consecutive DRAM bursts. The ```sv StFlush ```state exists in order to avoid potential cache read/write requests from executing under the line buffer.
+For reference, the ```sv vsync``` signal refers to the *falling edge* of the actual vsync signal. Signals ```sv w_phy_cmd_empty``` and ```sv w_phy_cmd_full``` come from the DDR3 command FIFO, as per the light-weight controller specification. Each DDR3 burst writes 128 bytes, equivalent to 8 pixels on the screen. Thus, in order to read a full horizontal strip into the line buffer, we need 80 consecutive DRAM bursts. The ```sv StFlush```state exists in order to avoid potential cache read/write requests from executing under the line buffer.
 
 === ddr3_arbiter
 
-The ddr3_arbiter.sv module is poorly named--it just instantiates the DDR3 objects as per the specification of the light-weight DDR3 controller. Furthermore, it connects to LED[3:0] on the Urbana board, indicating whether DDR3 is enabled/disabled. 
+The ddr3_arbiter.sv module is poorly named---it just instantiates the DDR3 objects as per the specification of the light-weight DDR3 controller. Furthermore, it connects to LED[3:0] on the Urbana board, indicating whether DDR3 is enabled/disabled.
 
-=== ddr3_rdcal.v/ddr3_x16_phy_cust.v/ddr3_x16_phy_params.vh
+=== ddr3_rdcal.v / ddr3_x16_phy_cust.v / ddr3_x16_phy_params.vh
+
 These files are imported from the light-weight DDR3 controller module. 
 
 === frame_buffer.sv
 
-frame_buffer.sv defines the horizontal line buffer which is displayed to the HDMI monitor. Internally, it consists of a True Dual Port BRAM instantianted with size 640x1, with each address defining a 16-bit color space. One port of the BRAM is used to write data in from ddr3_renderer_top, while the other port is used to display color data to the VGA to HDMI IP. 
+This file defines the horizontal line buffer which is displayed to the HDMI monitor. Internally, it consists of a True Dual Port BRAM instantianted with size 640x1, with each address defining a 16-bit color space. One port of the BRAM is used to write data in from ddr3_renderer_top, while the other port is used to display color data to the VGA to HDMI IP. 
 
 In order to read data in from ddr3_renderer_top, there is a (trivial) FSM consisting of IDLE, ACTIVE, and WAIT states. There is also combinational logic to map the corresponding 128-bit bursts from DDR3 into locations within BRAM. The following is an excerpt of that logic:
 
@@ -133,9 +132,9 @@ In order to read data in from ddr3_renderer_top, there is a (trivial) FSM consis
 bram_waddr = bram_addr_base + {7'b0, bram_wr_dbyte_index_q};
 
 for (integer i = 0; i < 8; i = i + 1) begin
-  if (bram_wr_dbyte_index_q == i) begin
-    bram_dina = bram_dina_burst[i*16 +: 16];
-  end
+    if (bram_wr_dbyte_index_q == i) begin
+        bram_dina = bram_dina_burst[i*16 +: 16];
+    end
 end
 ```
 
@@ -145,7 +144,7 @@ The GPU makes frequent DDR3 reads (primarily during the Z-buffer state of the pi
 
 The cache consists of a single port BRAM, structured into sixteen 512-bit wide cache lines (32 consecutive values). We could achieve better spatial locality by expanding the width of our cache lines, but this comes at a cost of increased DDR3 latency, which could potentially interfere with other aspects of the design. 
 
-The cache uses the following FSM in Figure 4:
+The cache uses the FSM shown in @block_diagram_cache_fsm.
 
 
 #figure(
@@ -167,7 +166,7 @@ This is the top-level graphics module which instantiates all modules in the grap
 
 In order to make efficient usage of DDR3, we devised a basic memory coalescing mechanism within gpu_wb_controller. At a high-level, the writeback controller waits for 8 sequential memory adddresses to be written to, after which point it executes one DDR3 write operation. In the event that the writeback controller recieves a memory address not in the same continguous area, it flushes the current buffer to DDR3, and then reads the new value. 
 
-The FSM for writeback logic is shown in Figure 5. 
+The FSM for writeback logic is shown in @writeback_fsm.
 
 #figure(
     image("media/wb_fsm.png"),
@@ -189,11 +188,11 @@ $
 in order to calculate the Z-value of the current pixel (Barycentric Interpolation). This calculation is implemented by inferring DSP units on the FPGA:
 
 ```sv 
-  tmp0 = $signed(z0) * $signed(alpha);
-  tmp1 = $signed(z1) * $signed(beta);
-  tmp2 = $signed(z2) * $signed(gamma);
+tmp0 = $signed(z0) * $signed(alpha);
+tmp1 = $signed(z1) * $signed(beta);
+tmp2 = $signed(z2) * $signed(gamma);
 
-  sum = tmp0 + tmp1 + tmp2;
+sum = tmp0 + tmp1 + tmp2;
 ```
 
 Note: a potential optimization we could have done to reduce WNS would be to pipeline this into a explicit multiplication and addition stage, instead of performing the entire interpolation combinationally. 
@@ -204,7 +203,7 @@ After calculating the incoming Z-value, it is compared with the current Z-value 
 
 rasterizer.sv is responsible for generating a sequence of pixels which are bounded by the specified triangle, passed in from the projector module. It also instantiates the barycentric calculation module, which determines if pixels fall within the specified triangle, as well as the barycentric coordinates ($alpha, beta, gamma$)
 
-The rasterizer logic consists of the FSM shown in Figure 6.
+The rasterizer logic consists of the FSM shown in @rasterizer_fsm.
 
 #figure(
     image("media/rasterizer_fsm.png"),
@@ -227,7 +226,6 @@ $
   "Area"(P, B, C) = (B_x - P_x)(C_y - P_y) - (B_y - P_y)(C_x - P_x) \
 
   "Area"(P, C, A) = (C_x - P_x)(A_y - P_y) - (C_y - P_y)(A_x - P_x) \
-  
 $
 
 The ratio of these areas to the overall inverse area of the triangle $A B C$ returns the barycentric coordinates $alpha, beta, gamma$. 
@@ -300,25 +298,25 @@ The interaction between gpio.sv and transformation.sv is shown below:
 
 ```sv
 transformation transformation_inst (
-  .clk(clk),
-  .rst(rst),
-  .t_x(initial_t_x),
-  .t_y(initial_t_y),
-  .t_z(initial_t_z),
-  .color(16'hFFFF),
-  .in_valid(out_valid),
-  .data_read(data_read),
-  .model_matrix('{
-    '{ cos, -sin, 10'b0, 10'b0 },
-    '{ sin,  cos, 10'b0, 10'b0 },
-    '{ 10'b0, 10'b0, 10'h100, 10'b0 }
-  }),
-  .stall(1'b0),
-  .out_x(transformed_t_x),
-  .out_y(transformed_t_y),
-  .out_z(transformed_t_z),
-  .color_out(color_out),
-  .valid(transform_valid)
+    .clk(clk),
+    .rst(rst),
+    .t_x(initial_t_x),
+    .t_y(initial_t_y),
+    .t_z(initial_t_z),
+    .color(16'hFFFF),
+    .in_valid(out_valid),
+    .data_read(data_read),
+    .model_matrix('{
+        '{ cos, -sin, 10'b0, 10'b0 },
+        '{ sin,  cos, 10'b0, 10'b0 },
+        '{ 10'b0, 10'b0, 10'h100, 10'b0 }
+    }),
+    .stall(1'b0),
+    .out_x(transformed_t_x),
+    .out_y(transformed_t_y),
+    .out_z(transformed_t_z),
+    .color_out(color_out),
+    .valid(transform_valid)
 );
 ```
 
@@ -333,8 +331,6 @@ Vertex data is stored in BRAM as 96-bit values, holding the Q16.16 $(X, Y, Z) $ 
 Face data is stored in BRAM as 32-bit values, where bits [31:16] store the color of the particular triangular face, and bits [15:0] store the addresses of each vertex within the vertex ROM.
 
 The Vertex and Face ROMs are intialized with their respective .coe file in order to load the appropriate data. 
-
-
 
 = Software
 
@@ -703,9 +699,9 @@ There are several design decisions which, in retrospect, could have simplified t
 
 - *Color Space Reduction* - By reducing the color space from 16-bit RGB565 to 8-bit, we can have a higher pixel throughput (as our memory subsystem can now store twice the pixels as before).
 
-Thus, there is a lot of work that can be done to extend the functionality of this project, like adding some of the features which we weren't able to implement. Luckily, there is a lot of physical space on our FPGA for these features--we ended up using $21.77%$ of the LUTs, and $11.49%$ of the FFs. This can be attributed to many optimizations and choice to use light-weight memory controllers rather than LUT-intensive Xilinx IPs. However, we did use a significant amount of DSP units ($59.17%$), which limits the amount of arithmetic-intensive units we can potentially add to the design. 
+Thus, there is a lot of work that can be done to extend the functionality of this project, like adding some of the features which we weren't able to implement. Luckily, there is a lot of physical space on our FPGA for these features---we ended up using $21.77%$ of the LUTs, and $11.49%$ of the FFs. This can be attributed to many optimizations and choice to use light-weight memory controllers rather than LUT-intensive Xilinx IPs. However, we did use a significant amount of DSP units ($59.17%$), which limits the amount of arithmetic-intensive units we can potentially add to the design. 
 
-Overall, we found this project to be very rewarding (albeit stressful). We had extremely complex hardware and software components, and we put a lot of work into writing (numerous) FSMs, memory controllers, and graphics architectures. There was also a significant debugging component to our project--especially considering the number of moving parts. We would have to unit test each module, and then write larger testbenches to test overall system functionality. 
+Overall, we found this project to be very rewarding (albeit stressful). We had extremely complex hardware and software components, and we put a lot of work into writing (numerous) FSMs, memory controllers, and graphics architectures. There was also a significant debugging component to our project---especially considering the number of moving parts. We would have to unit test each module, and then write larger testbenches to test overall system functionality. 
 
 Lastly, rather than following a prexisting design, this project had us making a lot of independent design decisions. We firmly believe our experiences making these design decisions (some good, some awful in retrospect) will be incredibly beneficial in our future endeavours in digital hardware design.
 
@@ -726,3 +722,5 @@ https://github.com/kooltzh/xilinx-coe-generator/tree/master
 https://www.cs.utexas.edu/~fussell/courses/cs384g-fall2013/lectures/lecture20-Z_buffer_pipeline.pdf
 
 https://github.com/sylefeb/tinygpus
+
+https://eng.libretexts.org/Bookshelves/Aerospace_Engineering/Fundamentals_of_Aerospace_Engineering_(Arnedo)/07%3A_Mechanics_of_flight/7.01%3A_Performances/7.1.03%3A_Hypotheses
