@@ -139,7 +139,7 @@ Lastly, ddr3_renderer_top has an FSM to handle DDR3 reads/writes.
 
 <div align="center">
     <figure>
-        <p><img src="reports/media/top_fsm.png" /></p>
+        <p><img src="reports/media/top_fsm_bg.png" /></p>
         <figcaption><p>FSM Diagram of DDR3 Read Logic</p></figcaption>
     </figure>
 </div>
@@ -202,7 +202,7 @@ The cache uses the following FSM in Figure 4:
 
 <div align="center">
     <figure>
-        <p><img src="reports/media/cache_fsm.png" /></p>
+        <p><img src="reports/media/cache_fsm_bg.png" /></p>
         <figcaption><p>FSM Diagram of Direct-Mapped Cache Logic</p></figcaption>
     </figure>
 </div>
@@ -237,7 +237,7 @@ The FSM for writeback logic is shown in Figure 5.
 
 <div align="center">
     <figure>
-        <p><img src="reports/media/wb_fsm.png" /></p>
+        <p><img src="reports/media/wb_fsm_bg.png" /></p>
         <figcaption><p>FSM Diagram of Writeback Controller Logic</p></figcaption>
     </figure>
 </div>
@@ -289,7 +289,7 @@ The rasterizer logic consists of the FSM shown in Figure 6.
 
 <div align="center">
     <figure>
-        <p><img src="reports/media/rasterizer_fsm.png" /></p>
+        <p><img src="reports/media/rasterizer_fsm_bg.png" /></p>
         <figcaption><p>FSM Diagram of Rasterizer Logic</p></figcaption>
     </figure>
 </div>
@@ -502,7 +502,7 @@ read the interrupt status and control the reset line via MMIO.
 
 <div align="center">
     <figure>
-        <p><img src="reports/media/max3421e_connection.svg" style="width:100.0%" /></p>
+        <p><img src="reports/media/max3421e_connection_bg.svg" style="width:100.0%" /></p>
         <figcaption><p>Connection between the FPGA and MAX3421E chip</p></figcaption>
     </figure>
 </div>
