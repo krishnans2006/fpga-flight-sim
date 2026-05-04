@@ -1,5 +1,33 @@
 # FPGA Flight Sim
 
+* [Introduction](#introduction)
+    * [(Brief) Description of Operation](#brief-description-of-operation)
+* [Proposed High Level Block Diagram](#proposed-high-level-block-diagram)
+* [Hardware](#hardware)
+    * [Description](#description)
+    * [Module Descriptions](#module-descriptions)
+* [Software](#software)
+    * [Description](#description-1)
+    * [User Input](#user-input)
+    * [Flight Dynamics](#flight-dynamics)
+        * [Parameters](#parameters)
+        * [Equations](#equations)
+        * [Edge Cases and Constants](#edge-cases-and-constants)
+    * [Hardware Communication](#hardware-communication)
+        * [Communication Protocol](#communication-protocol)
+        * [Data Packing](#data-packing)
+        * [Memory\-Mapped I/O](#memory-mapped-io)
+    * [Main Loop](#main-loop)
+    * [Vivado Block Design](#vivado-block-design)
+    * [Summary of Block Design Components](#summary-of-block-design-components)
+    * [Summary of Program Files](#summary-of-program-files)
+* [FPGA Implementation](#fpga-implementation)
+    * [RTL Block Diagram](#rtl-block-diagram)
+    * [Design Analysis](#design-analysis)
+* [Conclusion](#conclusion)
+    * [AI Usage](#ai-usage)
+    * [References](#references)
+
 ## Introduction
 
 For our project, we designed and implemented a comprehensive 3D flight
