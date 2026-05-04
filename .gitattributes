@@ -11,6 +11,8 @@ IP/*/sim/*.v linguist-vendored
 IP/*/sim/*/** linguist-generated
 IP/*/xgui/** linguist-generated
 IP/*/component.xml linguist-generated
+# References
+reference/** linguist-vendored
 
 # Vitis
 
