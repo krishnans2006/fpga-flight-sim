@@ -21,7 +21,7 @@ updates with respect to the changes in position, altitude, etc.
 
 ## Proposed High Level Block Diagram
 
-<figure>
+<figure align="center">
 <p><img src="reports/media/block_diagram.svg" style="width:100.0%" /></p>
 <figcaption><p>Block Diagram</p></figcaption>
 </figure>
@@ -65,7 +65,7 @@ arbitration and state machine logic.
 The overall high-level structure of ddr3_renderer_top is given by Figure
 2.
 
-<figure>
+<figure align="center">
 <p><img src="reports/media/graphics_bd.png" /></p>
 <figcaption><p>Block Diagram of ddr3 rendering
 mechanism.</p></figcaption>
@@ -133,7 +133,7 @@ end
 
 Lastly, ddr3_renderer_top has an FSM to handle DDR3 reads/writes.
 
-<figure>
+<figure align="center">
 <p><img src="reports/media/top_fsm.png" /></p>
 <figcaption><p>FSM Diagram of DDR3 Read Logic</p></figcaption>
 </figure>
@@ -194,7 +194,7 @@ interfere with other aspects of the design.
 
 The cache uses the following FSM in Figure 4:
 
-<figure>
+<figure align="center">
 <p><img src="reports/media/cache_fsm.png" /></p>
 <figcaption><p>FSM Diagram of Direct-Mapped Cache Logic</p></figcaption>
 </figure>
@@ -227,7 +227,7 @@ then reads the new value.
 
 The FSM for writeback logic is shown in Figure 5.
 
-<figure>
+<figure align="center">
 <p><img src="reports/media/wb_fsm.png" /></p>
 <figcaption><p>FSM Diagram of Writeback Controller
 Logic</p></figcaption>
@@ -278,7 +278,7 @@ barycentric coordinates ($\alpha,\beta,\gamma$)
 
 The rasterizer logic consists of the FSM shown in Figure 6.
 
-<figure>
+<figure align="center">
 <p><img src="reports/media/rasterizer_fsm.png" /></p>
 <figcaption><p>FSM Diagram of Rasterizer Logic</p></figcaption>
 </figure>
@@ -323,7 +323,7 @@ fractional precision required. In this excerpt, `32'h01000000` is equal to decim
 We determine if a point is within the triangle by checking if the sign
 bit of all three areas are the same.
 
-<figure>
+<figure align="center">
 <p><img src="reports/media/barycentric_tb.png" /></p>
 <figcaption><p>Testbench of Barycentric Calculation
 Module</p></figcaption>
@@ -360,7 +360,7 @@ latency of other arithmetic operations, we must consider:
 
 ##### Joint testbench for projector and rasterizer module
 
-<figure>
+<figure align="center">
 <p><img src="reports/media/rproj_tb.png" style="width:100.0%" /></p>
 <figcaption><p>Joint testbench for Projector and Rasterizer
 Module</p></figcaption>
@@ -378,7 +378,7 @@ example.
 This particular testbench generates a ASCII representation of the final
 image, as seen below:
 
-<figure>
+<figure align="center">
 <p><img src="reports/media/example_img.png"
 style="width:25.0%;height:25.0%" /></p>
 <figcaption><p>ASCII output of above testbench. In this case, we draw a
@@ -487,7 +487,7 @@ reset pins are both connected into GPIO modules (`gpio_usb_int` and
 `gpio_usb_rst`) in the Vivado block design, allowing the MicroBlaze to
 read the interrupt status and control the reset line via MMIO.
 
-<figure>
+<figure align="center">
 <p><img src="reports/media/max3421e_connection.svg" style="width:100.0%" /></p>
 <figcaption><p>Connection between the FPGA and MAX3421E
 chip</p></figcaption>
@@ -804,7 +804,7 @@ To support the features described above, the MicroBlaze and required
 peripherals were implemented in a Vivado block design. The complete
 block design is shown below.
 
-<figure>
+<figure align="center">
 <p><img src="reports/media/vivado_block_design.png" style="width:100.0%" /></p>
 <figcaption><p>Vivado Block Design</p></figcaption>
 </figure>
@@ -987,7 +987,7 @@ communication.
 
 The image below shows the RTL block diagram of the FPGA implementation.
 
-<figure>
+<figure align="center">
 <p><img src="reports/media/block_rtl.png" style="height:80.0%" /></p>
 <figcaption><p>RTL Block Diagram, with the DDR3 renderer module shown in
 the center</p></figcaption>
@@ -997,7 +997,7 @@ the center</p></figcaption>
 
 Below are design analysis results for the FPGA implementation.
 
-<table>
+<table align="center">
     <tr>
         <th colspan="2">Utilization</th>
     </tr>
