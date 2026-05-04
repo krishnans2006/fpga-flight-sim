@@ -1,5 +1,7 @@
 # FPGA Flight Sim
 
+## Contents
+
 * [Introduction](#introduction)
     * [(Brief) Description of Operation](#brief-description-of-operation)
 * [Proposed High Level Block Diagram](#proposed-high-level-block-diagram)
