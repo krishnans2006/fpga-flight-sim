@@ -2,6 +2,10 @@
 
 A PDF report is available [here](https://raw.githubusercontent.com/krishnans2006/fpga-flight-sim/refs/heads/main/reports/final_report.pdf).
 
+Vivado and Vitis use a confusing folder structure:
+- The hardware design (in SystemVerilog) can be found in [`flight_sim/flight_sim.srcs/sources_1`](https://github.com/krishnans2006/fpga-flight-sim/tree/main/flight_sim/flight_sim.srcs/sources_1)
+- The software (in MicroBlaze C) can be found in [`flight_sim_sdk/flight_sim_mb/src`](https://github.com/krishnans2006/fpga-flight-sim/tree/main/flight_sim_sdk/flight_sim_mb/src)
+
 ## Contents
 
 * [Introduction](#introduction)
