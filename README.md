@@ -1,5 +1,7 @@
 # FPGA Flight Sim
 
+A PDF report is available [here](https://raw.githubusercontent.com/krishnans2006/fpga-flight-sim/refs/heads/main/reports/final_report.pdf).
+
 ## Contents
 
 * [Introduction](#introduction)
